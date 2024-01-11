@@ -31,11 +31,14 @@ class Owner(db.Model):
 class Pet_Owner(db.Model):
     """A pet owner."""
 
-    __tablename__ = "petowners"
+    __tablename__ = "pet_owners"
 
-    petowner_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    pet_owner_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"))
     pet_id = db.Column(db.Integer, db.ForeignKey("pets.pet_id"))
+
+    pet_owner = db.relationship("Pet_Owner", back_populates="owners")
+    messages = db.relationship("Message", back_populates="owners")
 
     def __repr__(self):
         return f"<Petowner_id={self.petowner_id} owner_id={self.owner_id} pet_id={self.pet_id}>"
