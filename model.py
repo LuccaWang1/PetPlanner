@@ -19,7 +19,7 @@ class Owner(db.Model):
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
 
-    pet_owner = db.relationship("Pet_Owner", back_populates="owners")
+    pets = db.relationship("Pet", back_populates="owners", secondary="pet_owners")
     messages = db.relationship("Message", back_populates="owners")
     saved_settings = db.relationship("Saved_Setting", back_populates="owners")
     owner_events = db.relationship("Event", back_populates="owners")
@@ -36,9 +36,6 @@ class Pet_Owner(db.Model):
     pet_owner_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"))
     pet_id = db.Column(db.Integer, db.ForeignKey("pets.pet_id"))
-
-    pet_owner = db.relationship("Pet_Owner", back_populates="owners")
-    messages = db.relationship("Message", back_populates="owners")
 
     def __repr__(self):
         return f"<Petowner_id={self.petowner_id} owner_id={self.owner_id} pet_id={self.pet_id}>"
@@ -58,7 +55,7 @@ class Pet(db.Model):
     type = db.Column(db.String)
     age = db.Column(db.Integer)
 
-    messages = db.relationship("Message", back_populates="owners")
+    owners = db.relationship("Owner", secondary="pet_owners", back_populates="pets")
     savedsettings = db.relationship("SavedSetting", back_populates="owners")
     events = db.relationship("Event", back_populates="owners")
 
