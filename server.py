@@ -7,7 +7,7 @@ from model import connect_to_db, db
 import crud
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
+app.secret_key = os.environ["SECRET_KEY"]
 app.jinja_env.undefined = StrictUndefined
 
 PET = os.environ["GOOGLE_CLIENT"]
@@ -25,22 +25,22 @@ def dashboard():
     return render_template("dashboard.html")
 
 @app.route("/dashboard/pets")
-def dashboard():
+def dashboard_pets():
     """View logged in owner's pets list."""
 
     return render_template("pets.html")
 
-@app.route("/dashboard/pets/pet")
-def dashboard():
-    """View logged in owner's pets list."""
+@app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
+def dashboard_pets_pet():
+    """View logged in owner's specific pet."""
 
-    #is this going to have the dictionary in the url? 
+    #need code here 
 
-    return render_template("pets.html")
+    return render_template("pet.html") #might need to update this 
 
 if __name__ == "__main__":    
     from model import connect_to_db
 
-    connect_to_db(app, "postgresql://localhost:5000")
+    connect_to_db(app, "postgresql://localhost:5000") #postgresql:///pets
 
     app.run(host="0.0.0.0", debug=True)
