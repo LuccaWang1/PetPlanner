@@ -7,6 +7,7 @@ from datetime import datetime
 
 import crud
 import model
+from model import Owner, Pet, Specialist
 import server
 
 os.system("dropdb pets")
@@ -15,16 +16,45 @@ os.system("createdb pets")
 model.connect_to_db(server.app)
 model.db.create_all()
 
-# test_owner = [
-#     owner_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     owner_fname = db.Column(db.String(25))
-#     owner_lname = db.Column(db.String(25))
-#     owner_email = db.Column(db.String(40), unique=True)
-#     password = db.Column(db.String(25))
+def seed_test_user(): 
+    test_user = Owner(
+        owner_fname="Lucca",
+        owner_lname="Test",
+        owner_email="LuccaTest@gmail.com",
+        password="Testpassword",
+    )
 
-#     messages = db.relationship("Message", back_populates="owners")
-#     saved_settings = db.relationship("Saved_Setting", back_populates="owners")
+    model.db.session.add(test_user)
+    model.db.session.commit()
 
-#     pets = db.relationship("Pet", back_populates="owners", secondary="pet_owners")
-#     events = db.relationship("Event", back_populates="owners", secondary="owner_events")
-# ]
+def seed_pets():
+    pet = Pet(
+        pet_fname="Feefee",
+        pet_lname="Wang",
+        energy_level="medium",
+        age=6,
+        coat_type="short",
+        animal_type="dog",
+        weight="42",
+    )
+
+    model.db.session.add(pet)
+    model.db.session.commit()
+
+def seed_specialist():
+    specialist = Specialist(
+        specialist_fname="Carol",
+        specialist_lname="Calista",
+        street="1889 Calle de Ninos",
+        street2="Calista",
+        city="Las Cruces",
+        state="NM",
+        zip_code="88005",
+        role="vet",
+        specialist_email="calistaanimalhospital@gmail.com",
+        phone="(575) 525-1000",
+        specialist_comment="I love this vet and the office!! Vet for Lily and Feefee",
+    )
+
+    model.db.session.add(specialist)
+    model.db.session.commit()

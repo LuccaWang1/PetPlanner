@@ -57,7 +57,7 @@ class Pet(db.Model):
     age = db.Column(db.Integer)
     coat_type = db.Column(db.String(5)) #dropdown: long, short
     animal_type = db.Column(db.String(3)) #bc "dog" or "cat"
-    weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters
+    weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")
