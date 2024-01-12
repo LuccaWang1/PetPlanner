@@ -1,15 +1,15 @@
-#classes that represent the database 
+#classes that represent the database
 
 """Models for PetPlanner app."""
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime
 
 db = SQLAlchemy()
 
 
-class Owner(db.Model): #an owner can assign another owner to their same pet without the other owner having to do anything <- this is separate from the function of an owner being able to message another owner 
+class Owner(db.Model): 
+    #an owner can assign another owner to their same pet without the other owner having to do anything <- this is separate from the function of an owner being able to message another owner
     """An owner - a main table."""
 
     __tablename__ = "owners"
@@ -20,17 +20,17 @@ class Owner(db.Model): #an owner can assign another owner to their same pet with
     owner_email = db.Column(db.String(40), unique=True)
     password = db.Column(db.String(25))
 
-    sent_messages = db.relationship("Message", back_populates="sent_message")
-    received_messages = db.relationship("Message", back_populates="received_message")
+    #look at this - and uncomment this out after debugging: 
+    # sent_messages = db.relationship("Message", back_populates="sent_message")
+    # received_messages = db.relationship("Message", back_populates="received_message")
     saved_settings = db.relationship("Saved_Setting", back_populates="owner")
 
     pets = db.relationship("Pet", back_populates="owners", secondary="pet_owners")
     events = db.relationship("Event", back_populates="owners", secondary="owner_events")
 
     def __repr__(self):
-        return f"<Owner owner_id={self.owner_id} fname={self.owner_fname} lname={self.owner_lname} email={self.owner_email}>"
+        return f'<Owner id={self.owner_id} email={self.owner_email}>'
 
-    #when owner adds or edits pet
 
 class Pet_Owner(db.Model):
     """A pet owner - an associative table."""
