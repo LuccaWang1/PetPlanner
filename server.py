@@ -16,6 +16,9 @@ PET = os.environ["GOOGLE_CLIENT"]
 def homepage():
     """View homepage."""
 
+    #code for login here 
+    #code for if the user is already in session, go to their dashboard
+
     return render_template("homepage.html")
 
 @app.route("/dashboard")

@@ -21,8 +21,9 @@ class Owner(db.Model):
     password = db.Column(db.String(25))
 
     #look at this - and uncomment this out after debugging: 
-    # sent_messages = db.relationship("Message", back_populates="sent_message")
-    # received_messages = db.relationship("Message", back_populates="received_message")
+    sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="receiver")
+    received_messages = db.relationship("Message", foreign_keys="Message.receiver_id", back_populates="sender")
+
     saved_settings = db.relationship("Saved_Setting", back_populates="owner")
 
     pets = db.relationship("Pet", back_populates="owners", secondary="pet_owners")
@@ -58,6 +59,7 @@ class Pet(db.Model):
     coat_type = db.Column(db.String(5)) #dropdown: long, short
     animal_type = db.Column(db.String(3)) #bc "dog" or "cat"
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
+    emergency_contact = db.Column(db.String(25))
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")
@@ -96,7 +98,7 @@ class Specialist(db.Model):
     zip_code = db.Column(db.String(10))
     role = db.Column(db.String(15)) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
     specialist_email = db.Column(db.String(40))
-    phone = db.Column(db.String(13))
+    phone = db.Column(db.String(14))
     specialist_comment = db.Column(db.Text)
 
     pets = db.relationship("Pet", back_populates="specialists", secondary="pet_specialists")
@@ -165,8 +167,8 @@ class Message(db.Model):
     message_comment = db.Column(db.Text)
     date_sent = db.Column(db.DateTime)
 
-    sent_message = db.relationship("Owner", back_populates="sent_messages")
-    received_message = db.relationship("Owner", back_populates="received_messages")
+    sender = db.relationship("Owner", foreign_keys="Message.sender_id", back_populates="sent_messages") #how to get the Message.sender_id object b/c of foreign_keys
+    receiver = db.relationship("Owner", foreign_keys="Message.receiver_id", back_populates="received_messages")
 
     def __repr__(self):
         return f"<Message message_id={self.message_id} sender owner_id={self.owner_id} receiver owner_id={self.owner_id}>"
