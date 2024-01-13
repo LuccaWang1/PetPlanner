@@ -35,6 +35,7 @@ pet = Pet(
     coat_type="short",
     animal_type="dog",
     weight="42",
+    pet_comment="I absolutely love this dog!"
 )
 
 pet.owners.append(test_user)

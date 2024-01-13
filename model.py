@@ -60,6 +60,7 @@ class Pet(db.Model):
     animal_type = db.Column(db.String(3)) #bc "dog" or "cat"
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
     emergency_contact = db.Column(db.String(25))
+    pet_comment = db.Column(db.Text)
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")
