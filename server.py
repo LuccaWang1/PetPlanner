@@ -7,19 +7,40 @@ from model import connect_to_db, db
 import crud
 
 app = Flask(__name__)
-app.secret_key = os.environ["SECRET_KEY"]
+app.secret_key = os.environ["SECRET_KEY"] # Required to use Flask sessions
 app.jinja_env.undefined = StrictUndefined
 
 PET = os.environ["GOOGLE_CLIENT"]
 
-@app.route("/")
+@app.route("/", methods=['POST']) 
 def homepage():
-    """View homepage."""
+    """Return homepage, also check if the user has already entered a name and if so redirect to /dashboard webpage."""
+    
+    owner_email = request.args.get('email')
 
-    #code for login here 
-    #code for if the user is already in session, go to their dashboard
+    if 'email' in session:
+        name = session['name']
+        return redirect("/dashboard") #make sure this is correct with a POST request
+    else:
+        name = session['name'] = {}
+        return render_template("homepage.html")
 
-    return render_template("homepage.html")
+# def handle_login():
+#     """Log user into application."""
+
+#     username = request.form['username']
+#     password = request.form['password']
+
+#     if password == ""
+#         session["current_user"] = username
+#         flash(f'Logged in as {username}')
+#         return redirect('/')
+
+#     else:
+#         flash('Wrong password!')
+#         return redirect('/login')
+
+    
 
 @app.route("/dashboard")
 def dashboard():
@@ -42,8 +63,6 @@ def dashboard_pets_pet():
     return render_template("pet.html") #might need to update this 
 
 if __name__ == "__main__":    
-    from model import connect_to_db
-
     connect_to_db(app, "postgresql://localhost:5000") #postgresql:///pets
 
     app.run(host="0.0.0.0", debug=True)
