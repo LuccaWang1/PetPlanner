@@ -12,6 +12,24 @@
 from model import db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting, connect_to_db
 
 
+def handle_login():
+    """Log user into application."""
+
+    owner_email = request.form['email']
+    owner_password = request.form['password']
+
+    # owner = Owner.query.filter_by(owner_email=owner_email).one()
+    # if Owner.query.filter_by(owner.owner_password) == owner_password: 
+
+    if password == ""
+        session["current_user"] = email
+        flash(f'Logged in as {email}')
+        return redirect('/')
+
+    else:
+        flash('Wrong password!')
+        return redirect('/login')
+
 def create_user(email, owner_fname, owner_lname, password):
     """Create and return a new user."""
 

@@ -7,40 +7,31 @@ from model import connect_to_db, db
 import crud
 
 app = Flask(__name__)
-app.secret_key = os.environ["SECRET_KEY"] # Required to use Flask sessions
+app.secret_key = os.environ["KEY"] # Required to use Flask sessions
 app.jinja_env.undefined = StrictUndefined
 
 PET = os.environ["GOOGLE_CLIENT"]
 
 @app.route("/", methods=['POST']) 
 def homepage():
-    """Return homepage, also check if the user has already entered a name and if so redirect to /dashboard webpage."""
+    """Handle login request with a POST request, and store the login information in a session."""
     
-    owner_email = request.args.get('email')
+    if request.method == 'POST':
+        owner_email = request.form.get('email')
+        owner_password = request.form.get('password')
 
-    if 'email' in session:
-        name = session['name']
-        return redirect("/dashboard") #make sure this is correct with a POST request
+    if 'email' in session and 'password' in session:
+    #     name = session['name']
+        return redirect("/dashboard")
     else:
-        name = session['name'] = {}
-        return render_template("homepage.html")
+         if owner_email == 'example@example.com' and owner_password == 'let-me-in':
+                session['email'] = owner_email
+                flash(f'Logged in as {owner_email}')
+                return redirect("/dashboard")
+            else:
+                flash('Wrong email or password!')
 
-# def handle_login():
-#     """Log user into application."""
-
-#     username = request.form['username']
-#     password = request.form['password']
-
-#     if password == ""
-#         session["current_user"] = username
-#         flash(f'Logged in as {username}')
-#         return redirect('/')
-
-#     else:
-#         flash('Wrong password!')
-#         return redirect('/login')
-
-    
+    return render_template("your_template.html")
 
 @app.route("/dashboard")
 def dashboard():
