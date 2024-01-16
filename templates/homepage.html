@@ -1,38 +1,26 @@
 {% extends 'base.html' %}
 
 <!-- start head -->
-{% block head %}
-{% block svg_favicon %}{% endblock %}
-
+{% block head %}{% endblock %}
 {% block title %}{% endblock %}
-
-{% block bootstrap_css %}{% endblock %}
-{% endblock %}
 <!-- end head -->
 
 <!-- start body -->
-{% block body_nav %}{% endblock %}
+{% block content %}
 <h1>Welcome to PetPlanner!</h1>
 <p>Where our pets come first</p>
 
-<div class="div-center"><img class="img" src="/static/images/Feefee_hiking.png"/></div>
+<!-- <div class="div-center"><img class="img" src="/static/images/Feefee_hiking.png"/></div> -->
 
 <form action="/" class="form-signin" id="login-form" method="POST">
-  <div>
     <label for="email">Email</label>
     <input id="email" type="text" name="email" required />
-  </div>
   <p></p>
-  <div>
     <label for="password">Password</label>
     <input id="password" type="text" name="password" required />
-  </div>
   <p></p>
-  <div>
     <button type="submit" id="login-btn">Log In</button>
-  </div>
 </form>
-{% block container_fluid %}{% endblock %}
-
-{% block bootstrap_bottom_body %}{% endblock %}
+<!-- {% block container_fluid %}{% endblock %} -->
+{% endblock %}
 <!-- end body -->

@@ -12,24 +12,24 @@ app.jinja_env.undefined = StrictUndefined
 
 PET = os.environ["GOOGLE_CLIENT"]
 
-@app.route("/", methods=['POST']) 
+@app.route("/", methods=['POST', 'GET']) 
 def homepage():
     """Handle login request with a POST request, and store the login information in a session."""
     
-    if request.method == 'POST':
-        owner_email = request.form.get('email')
-        owner_password = request.form.get('password')
+    # if request.method == 'POST':
+    # owner_email = request.form.get('email')
+    # owner_password = request.form.get('password')
 
-    if 'email' in session and 'password' in session:
-    #     name = session['name']
-        return redirect("/dashboard")
-    else:
-        if owner_email == 'example@example.com' and owner_password == 'let-me-in':
-            session['email'] = owner_email
-            flash(f'Logged in as {owner_email}')
-            return redirect("/dashboard")
-        else:
-            flash('Wrong email or password!')
+    # if 'email' in session and 'password' in session:
+    # #     name = session['name']
+    #     return redirect("/dashboard")
+    # else:
+    #     if owner_email == 'example@example.com' and owner_password == 'let-me-in':
+    #         session['email'] = owner_email
+    #         flash(f'Logged in as {owner_email}')
+    #         return redirect("/dashboard")
+    #     else:
+    #         flash('Wrong email or password!')
 
     return render_template("homepage.html")
 
