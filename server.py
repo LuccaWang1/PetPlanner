@@ -24,14 +24,14 @@ def homepage():
     #     name = session['name']
         return redirect("/dashboard")
     else:
-         if owner_email == 'example@example.com' and owner_password == 'let-me-in':
-                session['email'] = owner_email
-                flash(f'Logged in as {owner_email}')
-                return redirect("/dashboard")
-            else:
-                flash('Wrong email or password!')
+        if owner_email == 'example@example.com' and owner_password == 'let-me-in':
+            session['email'] = owner_email
+            flash(f'Logged in as {owner_email}')
+            return redirect("/dashboard")
+        else:
+            flash('Wrong email or password!')
 
-    return render_template("your_template.html")
+    return render_template("homepage.html")
 
 @app.route("/dashboard")
 def dashboard():

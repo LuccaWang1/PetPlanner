@@ -15,10 +15,10 @@ class Owner(db.Model):
     __tablename__ = "owners"
 
     owner_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    owner_fname = db.Column(db.String(25))
-    owner_lname = db.Column(db.String(25))
-    owner_email = db.Column(db.String(40), unique=True)
-    password = db.Column(db.String(25))
+    owner_fname = db.Column(db.String(25), nullable=False)
+    owner_lname = db.Column(db.String(25), nullable=False)
+    owner_email = db.Column(db.String(40), unique=True, nullable=False)
+    password = db.Column(db.String(25), nullable=False)
 
     #look at this - and uncomment this out after debugging: 
     sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="receiver")
@@ -52,12 +52,12 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    pet_fname = db.Column(db.String(25))
+    pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
     energy_level = db.Column(db.String(6)) #dropdown: high, medium, low
     age = db.Column(db.Integer)
     coat_type = db.Column(db.String(5)) #dropdown: long, short
-    animal_type = db.Column(db.String(3)) #bc "dog" or "cat"
+    animal_type = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
     emergency_contact = db.Column(db.String(25))
     pet_comment = db.Column(db.Text)
@@ -90,14 +90,14 @@ class Specialist(db.Model):
 
     specialist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     specialist_fname = db.Column(db.String(25))
-    specialist_lname = db.Column(db.String(25))
+    specialist_lname = db.Column(db.String(25), nullable=False)
     
     street = db.Column(db.String(40))
     street2 = db.Column(db.String(40))
     city = db.Column(db.String(40))
     state = db.Column(db.String(3))
     zip_code = db.Column(db.String(10))
-    role = db.Column(db.String(15)) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
+    role = db.Column(db.String(15), nullable=False) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
     specialist_email = db.Column(db.String(40))
     phone = db.Column(db.String(14))
     specialist_comment = db.Column(db.Text)
@@ -141,12 +141,12 @@ class Event(db.Model):
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     todays_date = db.Column(db.DateTime) #watch this, might rename to date_created? 
-    title = db.Column(db.String(40))
+    title = db.Column(db.String(40), nullable=False)
     event_comment = db.Column(db.Text)
     location = db.Column(db.String(40))
-    start = db.Column(db.DateTime)
-    end = db.Column(db.DateTime)
-    timeZone = db.Column(db.String)
+    start = db.Column(db.DateTime, nullable=False)
+    end = db.Column(db.DateTime, nullable=False)
+    timeZone = db.Column(db.String, nullable=False)
     #notification = db.Column(db.String) #yes or no - two buttons or dropdown menu #might need to add a column for the timing of the notification? 
 
     owners = db.relationship("Owner", back_populates="events", secondary="owner_events")
@@ -162,11 +162,11 @@ class Message(db.Model):
     __tablename__ = "messages"
 
     message_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    sender_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"))
-    receiver_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"))
-    pet_id = db.Column(db.Integer, db.ForeignKey("pets.pet_id")) #dropdown menu of their pets 
-    message_comment = db.Column(db.Text)
-    date_sent = db.Column(db.DateTime)
+    sender_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"), nullable=False)
+    receiver_id = db.Column(db.Integer, db.ForeignKey("owners.owner_id"), nullable=False)
+    pet_id = db.Column(db.Integer, db.ForeignKey("pets.pet_id"), nullable=False) #dropdown menu of their pets 
+    message_comment = db.Column(db.Text, nullable=False)
+    date_sent = db.Column(db.DateTime, nullable=False)
 
     sender = db.relationship("Owner", foreign_keys="Message.sender_id", back_populates="sent_messages") #how to get the Message.sender_id object b/c of foreign_keys
     receiver = db.relationship("Owner", foreign_keys="Message.receiver_id", back_populates="received_messages")

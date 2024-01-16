@@ -15,16 +15,17 @@ from model import db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Eve
 def handle_login():
     """Log user into application."""
 
-    owner_email = request.form['email']
-    owner_password = request.form['password']
+    owner_email_input = request.form['email']
+    owner_password_input = request.form['password']
 
-    # owner = Owner.query.filter_by(owner_email=owner_email).one()
+    user = Owner.query.filter_by(owner_email=owner_email).one() #update 
     # if Owner.query.filter_by(owner.owner_password) == owner_password: 
 
-    if password == ""
-        session["current_user"] = email
-        flash(f'Logged in as {email}')
+    if owner_password == "": 
+        flash(f'Please enter a password')
         return redirect('/')
+
+    
 
     else:
         flash('Wrong password!')
