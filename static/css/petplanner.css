@@ -4,36 +4,16 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #333;
-}
-
-header {
-    color: #4b8df8;
-    padding: 10px;
-    text-align: center;
-}
-
-h1 {
-    color: #4b8df8
-}
-
-p {
-    color: #4b8df8
-}
-
-label {
-    color: #4b8df8
+    color: #000000;
 }
 
 button {
     background-color: #defeca;
     border: none;
-    color: #4b8df8;
-    padding: 15px 32px;
+    color: #000000;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
 }
 
 input {

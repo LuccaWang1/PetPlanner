@@ -15,21 +15,19 @@ from model import db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Eve
 def handle_login():
     """Log user into application."""
 
-    owner_email_input = request.form['email']
-    owner_password_input = request.form['password']
+    # owner_email_input = request.form['email']
+    # owner_password_input = request.form['password']
 
-    user = Owner.query.filter_by(owner_email=owner_email).one() #update 
-    # if Owner.query.filter_by(owner.owner_password) == owner_password: 
+    # user = Owner.query.filter_by(owner_email=owner_email).one() #update 
+    # # if Owner.query.filter_by(owner.owner_password) == owner_password: 
 
-    if owner_password == "": 
-        flash(f'Please enter a password')
-        return redirect('/')
+    # if owner_password == "": 
+    #     flash(f'Please enter a password')
+    #     return redirect('/')
 
-    
-
-    else:
-        flash('Wrong password!')
-        return redirect('/login')
+    # else:
+    #     flash('Wrong password!')
+    #     return redirect('/login')
 
 def create_user(email, owner_fname, owner_lname, password):
     """Create and return a new user."""

@@ -6,21 +6,12 @@
 <!-- end head -->
 
 <!-- start body -->
+{% block navbar %}{% endblock %}
+
 {% block content %}
-<h1>Welcome to PetPlanner!</h1>
-<p>Where our pets come first</p>
+<h1>PetPlanner</h1>
 
-<!-- <div class="div-center"><img class="img" src="/static/images/Feefee_hiking.png"/></div> -->
-
-<form action="/" class="form-signin" id="login-form" method="POST">
-    <label for="email">Email</label>
-    <input id="email" type="text" name="email" required />
-  <p></p>
-    <label for="password">Password</label>
-    <input id="password" type="text" name="password" required />
-  <p></p>
-    <button type="submit" id="login-btn">Log In</button>
-</form>
-<!-- {% block container_fluid %}{% endblock %} -->
+<a href="/login">Log In</a>
+<a href="/create-account">Create Account</a>
 {% endblock %}
 <!-- end body -->

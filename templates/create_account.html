@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+<!-- start head -->
+{% block head %}{% endblock %}
+{% block title %}Create Account{% endblock %}
+<!-- end head -->
+
+<!-- start body -->
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<h1>Log In</h1>
+
+<form action="/create-account" id="login-form" method="POST">
+    <label for="owner_fname">First Name</label>
+    <input id="owner_fname" type="text" name="owner_fname" required />
+    <p></p>
+    <label for="owner_lname">Last Name</label>
+    <input id="owner_lname" type="text" name="owner_lname" required />
+    <p></p>
+    <label for="email">Email</label>
+    <input id="email" type="text" name="email" required />
+    <p></p>
+    <label for="password">Password</label>
+    <input id="password" type="text" name="password" required />
+    <p></p>
+    <button type="submit" id="login-btn">Log In</button>
+</form>
+{% endblock %}
+<!-- end body -->

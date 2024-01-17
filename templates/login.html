@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}{% endblock %}
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<h1>Log In</h1>
+
+<form action="/loginhandler" class="form-signin" id="login-form" method="POST">
+    <label for="email">Email</label>
+    <input id="email" type="text" name="email" required />
+  <p></p>
+    <label for="password">Password</label>
+    <input id="password" type="text" name="password" required />
+  <p></p>
+    <input type="submit" id="login-btn">Log In
+</form>
+
+<p></p>
+
+<a href="/create-account">If you don't have an account, you can create one here</a>
+
+{% endblock %}
