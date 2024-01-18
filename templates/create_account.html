@@ -11,7 +11,7 @@
 {% block content %}
 <h1>Create Account</h1>
 
-<form action="/create-account-handler" id="login-form" method="POST">
+<form action="/create-account-handler" id="create-account-form" method="POST">
     <label for="owner_fname">First Name</label>
     <input id="owner_fname" type="text" name="owner_fname" required />
     <p></p>
@@ -24,7 +24,7 @@
     <label for="password">Password</label>
     <input id="password" type="text" name="password" required />
     <p></p>
-    <button type="submit" id="login-btn">Create My Account</button>
+    <button type="submit" id="create-account-btn">Create My Account</button>
 </form>
 {% endblock %}
 <!-- end body -->

@@ -72,8 +72,8 @@ def handle_create_account():
 
     owner_fname = request.form.get('owner_fname')
     owner_lname = request.form.get('owner_lname')
-    owner_email = request.form.get('email')
-    owner_password = request.form.get('password')
+    owner_email = request.form.get('owner_email')
+    password = request.form.get('password')
     
     if 'owner_email' in session: #you're already logged in 
         flash("Great news: You already have an account, and you're already logged in! Here's your dashboard:")
@@ -84,15 +84,14 @@ def handle_create_account():
 
     if user: #check in db, log in 
         if owner_password == user.password:
-            session['owner_email'] = owner_email
             flash("Great news: You already have an account - please log in with your log in information, email and password:")
             return redirect("/login")
     else: 
-        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, owner_password=owner_password) #create user instance
+        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
         db.session.add(new_user) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
-        flash(f"Thanks for creating your account, ${owner_fname} - you're in!")
-        return redirect("/dashboard")
+        flash(f"Thanks for creating your account, {owner_fname} - please log in")
+        return redirect("/login")
 
 @app.route("/dashboard")
 def dashboard():
