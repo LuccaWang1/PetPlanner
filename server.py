@@ -14,38 +14,37 @@ PET = os.environ["GOOGLE_CLIENT"]
 
 @app.route("/", methods=['POST', 'GET']) 
 def homepage():
-    """Load the homepage"""
+    """Render the homepage.html template."""
 
     return render_template("homepage.html")
 
 @app.route("/login", methods=["GET"])
 def login():
-    """Handle login request with a POST request, and store the login information in a session."""
+    """Render login.html template."""
     
     return render_template("login.html")
 
-@app.route("/loginhandler", methods=["POST"])
+@app.route("/login-handler", methods=["POST"])
 def loginhandler():
+    """Handle login request with a POST request, and store the login information in a session."""
+
     owner_email = request.form.get('email')
     owner_password = request.form.get('password')
-    print(owner_email)
-    print(owner_password)
-    print(session)
 
     if 'owner_email' in session: #you're already logged in 
-        flash("You're already logged in")
-        print("Just before I should redirect to dashboard b/c already logged in")
+        flash("Great news: You're already logged in")
         return redirect("/dashboard")
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
-    print(user)
 
     if user: #check in db, log in 
         if owner_password == user.password:
             session['owner_email'] = owner_email
-            return redirect("/dashboard")
+            session['owner_fname'] = user.owner_fname
+            print(session)
+            return redirect("/dashboard", owner_fname=user.owner_fname)
         else: #check in db, if user in db but pw is incorrect 
-            flash('Wrong password - please try again or reset your password')
+            flash('Oops! Wrong password - please try again or reset your password')
             return redirect("/login")
     else: 
         flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
@@ -54,12 +53,37 @@ def loginhandler():
 
 @app.route("/create-account")
 def create_account():
-    """Handle create account request with a POST request, and store the login information in a session."""
-
-    # if: check if in db already, then tell the user they're already in the database
-    # else: add new user to owner db and store information in session
+    """Render the create_account.html webpage."""
 
     return render_template("create_account.html")
+
+@app.route("/create-account-handler", methods=["POST"])
+def handle_create_account():
+    """Handle create account request with a POST request, and store the login information in a session."""
+
+    owner_fname = request.form.get('owner_fname')
+    owner_lname = request.form.get('owner_lname')
+    owner_email = request.form.get('email')
+    owner_password = request.form.get('password')
+    
+    if 'owner_email' in session: #you're already logged in 
+        flash("Great news: You already have an account, and you're already logged in! Here's your dashboard:")
+        return redirect("/dashboard")
+    
+    user = Owner.query.filter_by(owner_email=owner_email).first()
+    print(user)
+
+    if user: #check in db, log in 
+        if owner_password == user.password:
+            session['owner_email'] = owner_email
+            flash("Great news: You already have an account - please log in with your log in information, email and password:")
+            return redirect("/login")
+    else: 
+        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, owner_password=owner_password) #create user instance
+        db.session.add(new_user) #add user instance to database with .add built-in func
+        db.session.commit() #then need to commit the change/add to the database
+        flash(f"Thanks for creating your account, ${owner_fname} - you're in!")
+        return redirect("/dashboard")
 
 @app.route("/dashboard")
 def dashboard():

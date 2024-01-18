@@ -9,7 +9,6 @@ db = SQLAlchemy()
 
 
 class Owner(db.Model): 
-    #an owner can assign another owner to their same pet without the other owner having to do anything <- this is separate from the function of an owner being able to message another owner
     """An owner - a main table."""
 
     __tablename__ = "owners"
