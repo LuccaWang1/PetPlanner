@@ -91,6 +91,12 @@ def dashboard():
 
     return render_template("dashboard.html")
 
+@app.route("/my-account")
+def get_account_info():
+    """Render my_account.html with user's account information."""
+
+    return render_template("my_account.html")
+
 @app.route("/dashboard/pets")
 def dashboard_pets():
     """View logged in owner's pets list."""
@@ -104,6 +110,8 @@ def dashboard_pets_pet():
     #need code here 
 
     return render_template("pet.html") #might need to update this 
+
+
 
 if __name__ == "__main__":    
     connect_to_db(app) #postgresql:///pets
