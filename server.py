@@ -53,11 +53,12 @@ def loginhandler():
         flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
         return redirect("/login")
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['GET'])
 def logout():
     session.clear() # Clear the session data
 
-    return jsonify({'message': 'Logout successful'})
+    return redirect("/") 
+    #jsonify({'message': 'Logout successful'}) 
 
 @app.route("/create-account")
 def create_account():
