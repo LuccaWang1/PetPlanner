@@ -7,8 +7,9 @@
 
 {% block content %}
 <h1>Dashboard</h1>
+<h1>Welcome, {{ owner_fname }} {{ owner_lname }}!</h1>
 
-<p><u>Here are your pets:</u></p>
+<p><u>Here are your pets, {{ owner_fname }}:</u></p>
 <p>List of pets with their events:</p>
 <ul>
     <li>Pet1</li>
@@ -24,5 +25,5 @@
     <li>Pet3</li>
 </ul>
 
-<a href="/login">Back to Log In page</a>
+<a href="/">Back to homepage - you'll still be logged in</a>
 {% endblock %}

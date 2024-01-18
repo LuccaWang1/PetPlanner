@@ -20,14 +20,13 @@
 
 <body>
   <header>
-    <!-- Static navbar -->
-    {% block navbar %}{% endblock %}
-    
     <ul>
       {% for message in get_flashed_messages() %}
         <li>{{ message }}</li>
       {% endfor %}
     </ul>
+
+    <script src="login_logout_listener.js"></script>
   </header>
 
   <main>
@@ -49,10 +48,11 @@
       </div>  
       
       <div class="topnav-right">
-        <a href="/login">Log In</a>
+        <a id="loginlogout" href="/login">Log In</a>
         <a href="/my-account">My Account</a>
       </div>
     </div>
+
     {% block content %}{% endblock %}
   </main>
 

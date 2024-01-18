@@ -41,15 +41,23 @@ def loginhandler():
         if owner_password == user.password:
             session['owner_email'] = owner_email
             session['owner_fname'] = user.owner_fname
-            print(session)
-            return redirect("/dashboard", owner_fname=user.owner_fname)
+            session['owner_lname'] = user.owner_lname
+
+            return redirect("/dashboard")
+        
         else: #check in db, if user in db but pw is incorrect 
-            flash('Oops! Wrong password - please try again or reset your password')
+            flash('Oops! Incorrect password - please try again or reset your password')
             return redirect("/login")
+    
     else: 
         flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
         return redirect("/login")
-    
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.clear() # Clear the session data
+
+    return jsonify({'message': 'Logout successful'})
 
 @app.route("/create-account")
 def create_account():
@@ -89,7 +97,16 @@ def handle_create_account():
 def dashboard():
     """View logged in user's/owner's dashboard."""
 
-    return render_template("dashboard.html")
+    # Retrieve owner_fname and owner_lname from the session
+    owner_fname = session.get('owner_fname')
+    owner_lname = session.get('owner_lname')
+
+    # Check if the user is logged in
+    if owner_fname and owner_lname:
+        return render_template("dashboard.html", owner_fname=owner_fname, owner_lname=owner_lname)
+    else:
+        flash("You need to log in first.")
+        return redirect("/login")
 
 @app.route("/my-account")
 def get_account_info():
