@@ -83,7 +83,7 @@ def handle_create_account():
     print(user)
 
     if user: #check in db, log in 
-        if owner_password == user.password:
+        if password == user.password:
             flash("Great news: You already have an account - please log in with your log in information, email and password:")
             return redirect("/login")
     else: 
@@ -92,6 +92,7 @@ def handle_create_account():
         db.session.commit() #then need to commit the change/add to the database
         flash(f"Thanks for creating your account, {owner_fname} - please log in")
         return redirect("/login")
+        #lines 90-92 can be a crud function 
 
 @app.route("/dashboard")
 def dashboard():
@@ -112,7 +113,15 @@ def dashboard():
 def get_account_info():
     """Render my_account.html with user's account information."""
 
-    return render_template("my_account.html")
+    # Check if the user is logged in
+    if "owner_email" in session:
+        owner_fname = session.get('owner_fname')
+        owner_lname = session.get('owner_lname')
+        owner_email = session.get('owner_email')
+        return render_template("my_account.html", owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email)
+    else:
+        flash("You'll need to log in first.")
+        return redirect("/login")
 
 @app.route("/dashboard/pets")
 def dashboard_pets():

@@ -11,18 +11,70 @@
 {% block content %}
 <h1>My Account</h1>
 
-<p>
-User's first name last name </br>
-email </br>
-change password </br>
+<!-- Regular user info: first and last name and email -->
+<h2>My Account Information</h2>
+
+<form id="editInfoForm">
+    <div id="MA_OwnerInfoContainer">
+        <div id="MA_FirstNameContainer">
+            <label for="MA_owner_fname">First Name:</label>
+            <input type="text" class="MA_info" id="MA_owner_fname" value="{{ session['owner_fname'] }}" readonly>
+        </div>
+
+        </br>
+
+        <div id="MA_LastNameContainer">
+            <label for="MA_owner_lname">Last Name:</label>
+            <input type="text" class="MA_info" id="MA_owner_lname" value="{{ session['owner_lname'] }}" readonly>
+        </div>
+
+        </br>
+
+        <div id="MA_EmailContainer">
+            <label for="MA_owner_email">Email:</label>
+            <input type="text" class="MA_info" id="MA_owner_email" value="{{ session['owner_email'] }}" readonly>
+        </div>
+    </div>
+
+    </br>
+
+    <button type="button" id="MA_OwnerInfoEditButton">Edit</button>
+    <button type="submit" id="MA_OwnerInfoSaveButton">Save</button>
+</form>
+
+</br>
+
+<!-- Changing password -->
+<h2>Change My Password</h2>
+
+<form id="changePW">
+    <div id="MA_PasswordContainerOldPW">
+        <label for="MA_password_old">Current/Old Password:</label>
+        <input type="text" id="MA_password_old">
+    </div>
+    
+    </br>
+
+    <div id="MA_PasswordContainer">
+        <label for="MA_password">Change My Password:</label>
+        <input type="text" id="MA_password">
+    </div>
+
+    </br>
+
+    <div id="MA_PasswordContainerVerify">
+        <label for="MA_passwordVerify">Verify Password:</label>
+        <input type="text" id="MA_passwordVerify">
+    </div>
+</div>
+
+</br>
+
+    <button type="submit" id="saveChangePW">Save</button>
+</form>
+
 </br></br>
-My pets:</br>
-pet list </br>
-</br></br>
-My event settings </br>
-</br></br>
-Most recent specialists I've added </br>
-list of 3 most recent specialists added </br>
-</p>
+
+<script src="static/js/petplanner.js"></script>
 {% endblock %}
 <!-- end body -->

@@ -30,10 +30,10 @@
   <main>
     <!-- navbar -->
     <div class="topnav"> 
+      {% if "owner_email" in session %}
       <a class="active" href="/dashboard">Dashboard</a>
       <a href="#mypets">My Pets</a>
       <a href="#myevents">My Events</a>
-      
       <div class="dropdown">
         <button class="dropbtn">Add
           <i class="fa fa-caret-down"></i>
@@ -43,7 +43,11 @@
           <a href="#">Event</a>
           <a href="#">Specialist</a>
         </div>
-      </div>  
+      </div> 
+      {% else %}
+      <a class="active" href="/">Home</a>
+      <a href="/create-account">Create Account</a>
+      {% endif %}
       
       <div class="topnav-right">
       {% if "owner_email" in session %}
