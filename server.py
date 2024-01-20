@@ -171,6 +171,18 @@ def save_account_info():
     else:
         return jsonify({'error': 'Owner not found'}), 404
 
+
+@app.route("/save-new-password", methods=['POST'])
+def save_new_password():
+    """Save the user's new password in the db for them"""
+
+    
+
+
+
+
+
+
 @app.route("/dashboard/pets")
 def dashboard_pets():
     """View logged in owner's pets list."""

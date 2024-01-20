@@ -2,7 +2,9 @@
 
 console.log("i'm in the js file, my_account.js")
 
-// edit my account user info START
+
+
+// START edit my account user info
 const editInfoFormButton = document.querySelector('#MA_OwnerInfoEditButton');
 
 function handleClick() {
@@ -14,10 +16,11 @@ function handleClick() {
 }
 
 editInfoFormButton.addEventListener('click', handleClick);
-// edit my account user info END
+// END edit my account user info
 
 
-// save my account user info START
+
+// START save my account user info 
 const saveInfoButton = document.querySelector('#MA_OwnerInfoSaveButton');
 
 function saveChangesInfoForm(event) {
@@ -40,6 +43,7 @@ function saveChangesInfoForm(event) {
 
    // send data to server (and save to db & session), get back the same info as the values typed into the form
    console.log('just before the fetch request');
+   
    fetch('/save-account-info', {
       method: 'POST',
       body: JSON.stringify(saveFormInputs),
@@ -55,76 +59,70 @@ function saveChangesInfoForm(event) {
          console.log('doing the fetch AJAX response');
          console.log(responseJson);
       
-         document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
-         document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
-         document.querySelector('#owner_email').innerText = responseJson['owner_email'];
+         document.querySelector('#MA_owner_fname').innerHTML = responseJson['owner_fname']; 
+         document.querySelector('#MA_owner_lname').innerHTML = responseJson['owner_lname'];
+         document.querySelector('#MA_owner_email').innerHTML = responseJson['owner_email'];
       })
-      .catch((error) => {
-         console.error('Error during fetch:', error);
-      });
+}
+
 console.log('after the response from the server is given');
 
-saveInfoButton.addEventListener('click', saveChangesInfoForm);
-// save my account user info END
+saveInfoButton.addEventListener('submit', saveChangesInfoForm);
+// END save my account user info
 
 
-// save new user pw START
-const pwForm = document.querySelector('#changePW');
-const pwSubmitButton = document.querySelector('saveChangePW');
 
-function savePasswordChange() {
-   // check current/old password input.value to db/hashed pw
+// // save new user pw START
+// const pwForm = document.querySelector('#changePW');
+// const pwSubmitButton = document.querySelector('saveChangePW');
+
+// function savePasswordChange() {
+//    // check current/old password input.value to db/hashed pw
    
-   // if 2 passwords are the same:
-   const inputPW1 = document.querySelector('MA_password');
-   const inputPW2Verify = document.querySelector('MA_passwordVerify');
-   const inputPW1Value = inputPW1.value
-   const inputPW2VerifyValue = inputPW2Verify.value 
-   console.log(inputPW1Value);
-   console.log(inputPW2VerifyValue);
+//    // if 2 passwords are the same:
+//    const inputPW1 = document.querySelector('MA_password');
+//    const inputPW2Verify = document.querySelector('MA_passwordVerify');
+//    const inputPW1Value = inputPW1.value
+//    const inputPW2VerifyValue = inputPW2Verify.value 
+//    console.log(inputPW1Value);
+//    console.log(inputPW2VerifyValue);
 
-   if (inputPW1Value === inputPW2VerifyValue) {
-      newPW = {password: inputPW1Value} 
+//    if (inputPW1Value === inputPW2VerifyValue) {
+//       newPW = {password: inputPW1Value} 
 
-      fetch('/save-new-password', {
-         method: 'POST',
-         body: JSON.stringify(newPW),
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      })
-         .then((response) => {
-            console.log('doing the fetch request from here to server.py')
-            return response.json();
-         })
-         .then((responseJson) => {
-            console.log('doing the fetch AJAX response');
-            console.log(responseJson);
+//       fetch('/save-new-password', {
+//          method: 'POST',
+//          body: JSON.stringify(newPW),
+//          headers: {
+//             'Content-Type': 'application/json',
+//          },
+//       })
+//          .then((response) => {
+//             console.log('doing the fetch request from here to server.py')
+//             return response.json();
+//          })
+//          .then((responseJson) => {
+//             console.log('doing the fetch AJAX response');
+//             console.log(responseJson);
          
-            document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
-            document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
-            document.querySelector('#owner_email').innerText = responseJson['owner_email'];
-         })
-         .catch((error) => {
-            console.error('Error during fetch:', error);
-         });
+//             document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
+//             document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
+//             document.querySelector('#owner_email').innerText = responseJson['owner_email'];
+//          })
+//          .catch((error) => {
+//             console.error('Error during fetch:', error);
+//          });
 
 
 
+//       alert("You're password has been changed");
+//    } else {
+//       alert('Please try again (by checking the same new password is typed into both the Change My Password field and the Verify Password field exactly the same)');
+//    }
+//    // add and commit to db ... how do I do this with a hashed pw? 
+//    // else: 
+//    // tell the user to try again by checking that they typed in the same thing in both the Change My Password field and the Verify Password field
+// };
 
-
-
-
-
-
-      alert("You're password has been changed");
-   } else {
-      alert('Please try again (by checking the same new password is typed into both the Change My Password field and the Verify Password field exactly the same)');
-   }
-   // add and commit to db ... how do I do this with a hashed pw? 
-   // else: 
-   // tell the user to try again by checking that they typed in the same thing in both the Change My Password field and the Verify Password field
-};
-
-pwForm.addEventListener('submit', savePasswordChange);
-// save new user pw END
+// pwForm.addEventListener('submit', savePasswordChange);
+// // save new user pw END

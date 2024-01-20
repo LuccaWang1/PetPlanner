@@ -45,6 +45,22 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    transition-duration: 0.4s;
+    opacity: 0.7;
+}
+
+.button:hover {
+    background-color: #defeca;
+    color: #72bcd4;
+    border: 2px solid #FFC0CB;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 1;
+}
+
+.button:click {
+    background-color: #FFC0CB;
+    color: #72bcd4;
+    border: 2px solid #72bcd4;
 }
 
 /* Any input field will be light green */
