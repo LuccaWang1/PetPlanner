@@ -18,28 +18,28 @@
     <div id="MA_OwnerInfoContainer">
         <div id="MA_FirstNameContainer">
             <label for="MA_owner_fname">First Name:</label>
-            <input type="text" class="MA_info" id="MA_owner_fname" value="{{ session['owner_fname'] }}" readonly>
+            <input type="text" class="MA_info" id="MA_owner_fname" value="{{ session['owner_fname'] }}" readonly required>
         </div>
 
         </br>
 
         <div id="MA_LastNameContainer">
             <label for="MA_owner_lname">Last Name:</label>
-            <input type="text" class="MA_info" id="MA_owner_lname" value="{{ session['owner_lname'] }}" readonly>
+            <input type="text" class="MA_info" id="MA_owner_lname" value="{{ session['owner_lname'] }}" readonly required>
         </div>
 
         </br>
 
         <div id="MA_EmailContainer">
             <label for="MA_owner_email">Email:</label>
-            <input type="text" class="MA_info" id="MA_owner_email" value="{{ session['owner_email'] }}" readonly>
+            <input type="text" class="MA_info" id="MA_owner_email" value="{{ session['owner_email'] }}" readonly required>
         </div>
     </div>
 
     </br>
 
     <button type="button" id="MA_OwnerInfoEditButton">Edit</button>
-    <button type="submit" id="MA_OwnerInfoSaveButton">Save</button>
+    <button type="button" id="MA_OwnerInfoSaveButton">Save</button>
 </form>
 
 </br>
@@ -63,7 +63,7 @@
     </br>
 
     <div id="MA_PasswordContainerVerify">
-        <label for="MA_passwordVerify">Verify Password:</label>
+        <label for="MA_passwordVerify">Verify New Password:</label>
         <input type="text" id="MA_passwordVerify">
     </div>
 </div>
@@ -75,6 +75,6 @@
 
 </br></br>
 
-<script src="static/js/petplanner.js"></script>
+<script src="static/js/my_account.js"></script>
 {% endblock %}
 <!-- end body -->

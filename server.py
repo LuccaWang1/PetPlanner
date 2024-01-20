@@ -2,7 +2,8 @@
 
 import os
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
+import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
 import crud
 
@@ -18,15 +19,19 @@ def homepage():
 
     return render_template("homepage.html")
 
+
 @app.route("/login", methods=["GET"])
 def login():
     """Render login.html template."""
     
     return render_template("login.html")
 
+
 @app.route("/login-handler", methods=["POST"])
 def loginhandler():
     """Handle login request with a POST request, and store the login information in a session."""
+
+    print("I'm in the login-handler route and view function")
 
     owner_email = request.form.get('email')
     owner_password = request.form.get('password')
@@ -36,9 +41,13 @@ def loginhandler():
         return redirect("/dashboard")
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
+    
+    session['owner_id'] = user.owner_id
+    print(session)
 
     if user: #check in db, log in 
         if owner_password == user.password:
+            session['owner_id'] = user.owner_id
             session['owner_email'] = owner_email
             session['owner_fname'] = user.owner_fname
             session['owner_lname'] = user.owner_lname
@@ -57,8 +66,7 @@ def loginhandler():
 def logout():
     session.clear() # Clear the session data
 
-    return redirect("/") 
-    #jsonify({'message': 'Logout successful'}) 
+    return redirect("/")
 
 @app.route("/create-account")
 def create_account():
@@ -118,10 +126,50 @@ def get_account_info():
         owner_fname = session.get('owner_fname')
         owner_lname = session.get('owner_lname')
         owner_email = session.get('owner_email')
+    
         return render_template("my_account.html", owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email)
     else:
         flash("You'll need to log in first.")
         return redirect("/login")
+
+@app.route("/save-account-info", methods=["POST"])
+def save_account_info():
+    """Save account info. in session and database, and then redirect to the /my-account route."""
+
+    print(session)
+
+    owner_id = session.get('owner_id')
+    owner_fname = request.json.get('owner_fname')
+    owner_lname = request.json.get('owner_lname')
+    owner_email = request.json.get('owner_email')
+
+    print(owner_id)
+    print(owner_fname)
+    print(owner_lname)
+    print(owner_email)
+
+    user = Owner.query.get(owner_id)
+    print(user)
+
+    if user:
+        print("in the if user area - line 155 or around there")
+        user.owner_fname = owner_fname
+        print(f"Owner first name is: {owner_fname}")
+        user.owner_lname = owner_lname
+        print(f"Owner last name is: {owner_lname}")
+        user.owner_email = owner_email
+        print(f"Owner email is: {owner_email}")
+
+        db.session.commit()
+        print("Session has been saved with new information")
+        
+        return jsonify({
+            'owner_fname': user.owner_fname,
+            'owner_lname': user.owner_lname,
+            'owner_email': user.owner_email,
+        })
+    else:
+        return jsonify({'error': 'Owner not found'}), 404
 
 @app.route("/dashboard/pets")
 def dashboard_pets():

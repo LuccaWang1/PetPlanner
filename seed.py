@@ -35,7 +35,8 @@ pet = Pet(
     coat_type="short",
     animal_type="dog",
     weight="42",
-    pet_comment="I absolutely love this dog!"
+    pet_comment="I absolutely love this dog!",
+    insurance="Nationwide"
 )
 
 pet.owners.append(test_user)

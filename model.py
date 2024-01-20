@@ -1,5 +1,3 @@
-#classes that represent the database
-
 """Models for PetPlanner app."""
 
 from flask_sqlalchemy import SQLAlchemy
@@ -19,7 +17,6 @@ class Owner(db.Model):
     owner_email = db.Column(db.String(40), unique=True, nullable=False)
     password = db.Column(db.String(25), nullable=False)
 
-    #look at this - and uncomment this out after debugging: 
     sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="receiver")
     received_messages = db.relationship("Message", foreign_keys="Message.receiver_id", back_populates="sender")
 
