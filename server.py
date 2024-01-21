@@ -162,12 +162,17 @@ def save_account_info():
 
         db.session.commit()
         print("Session has been saved with new information")
+
+        session['owner_fname'] = owner_fname
+        session['owner_lname'] = owner_lname
+        session['owner_email'] = owner_email
+        session.modified = True
         
         return jsonify({
-            'owner_fname': user.owner_fname,
-            'owner_lname': user.owner_lname,
-            'owner_email': user.owner_email,
-        })
+            'owner_fname': owner_fname,
+            'owner_lname': owner_lname,
+            'owner_email': owner_email,
+        }), 200
     else:
         return jsonify({'error': 'Owner not found'}), 404
 

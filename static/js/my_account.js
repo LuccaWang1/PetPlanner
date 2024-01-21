@@ -2,8 +2,6 @@
 
 console.log("i'm in the js file, my_account.js")
 
-
-
 // START edit my account user info
 const editInfoFormButton = document.querySelector('#MA_OwnerInfoEditButton');
 
@@ -13,6 +11,9 @@ function handleClick() {
    document.querySelector('#MA_owner_fname').removeAttribute('readonly');
    document.querySelector('#MA_owner_lname').removeAttribute('readonly');
    document.querySelector('#MA_owner_email').removeAttribute('readonly');
+   document.querySelector('#MA_owner_fname').style.backgroundColor = 'rgb(255,192,203)';
+   document.querySelector('#MA_owner_lname').style.backgroundColor = 'rgb(255,192,203)';
+   document.querySelector('#MA_owner_email').style.backgroundColor = 'rgb(255,192,203)';
 }
 
 editInfoFormButton.addEventListener('click', handleClick);
@@ -21,11 +22,15 @@ editInfoFormButton.addEventListener('click', handleClick);
 
 
 // START save my account user info 
-const saveInfoButton = document.querySelector('#MA_OwnerInfoSaveButton');
+const saveInfoForm = document.querySelector('#editInfoForm');
 
 function saveChangesInfoForm(event) {
    event.preventDefault();
    
+   document.querySelector('#MA_owner_fname').style.backgroundColor = 'rgb(212,235,242)';
+   document.querySelector('#MA_owner_lname').style.backgroundColor = 'rgb(212,235,242)';
+   document.querySelector('#MA_owner_email').style.backgroundColor = 'rgb(212,235,242)';
+
    console.log('in the saveChangesInfoForm function')
 
    // get values - any new values 
@@ -52,22 +57,21 @@ function saveChangesInfoForm(event) {
       },
    })
       .then((response) => {
-         console.log('doing the fetch request from here to server.py')
-         return response.json();
+         console.log('in the response .then')
+         return response.json()
       })
       .then((responseJson) => {
-         console.log('doing the fetch AJAX response');
+         console.log('in the responseJson .then doing the fetch AJAX response');
          console.log(responseJson);
       
          document.querySelector('#MA_owner_fname').innerHTML = responseJson['owner_fname']; 
          document.querySelector('#MA_owner_lname').innerHTML = responseJson['owner_lname'];
          document.querySelector('#MA_owner_email').innerHTML = responseJson['owner_email'];
+         console.log('after the response from the server is given');
       })
 }
 
-console.log('after the response from the server is given');
-
-saveInfoButton.addEventListener('submit', saveChangesInfoForm);
+saveInfoForm.addEventListener('submit', saveChangesInfoForm);
 // END save my account user info
 
 
