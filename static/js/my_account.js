@@ -14,6 +14,14 @@ function handleClick() {
    document.querySelector('#MA_owner_fname').style.backgroundColor = 'rgb(255,192,203)';
    document.querySelector('#MA_owner_lname').style.backgroundColor = 'rgb(255,192,203)';
    document.querySelector('#MA_owner_email').style.backgroundColor = 'rgb(255,192,203)';
+
+   const owner_fname = document.querySelector('#MA_owner_fname').value;
+   const owner_lname = document.querySelector('#MA_owner_lname').value;
+   const owner_email = document.querySelector('#MA_owner_email').value;
+
+   console.log(owner_fname)
+   console.log(owner_lname)
+   console.log(owner_email)
 }
 
 editInfoFormButton.addEventListener('click', handleClick);
@@ -37,6 +45,10 @@ function saveChangesInfoForm(event) {
    const owner_fname = document.querySelector('#MA_owner_fname').value;
    const owner_lname = document.querySelector('#MA_owner_lname').value;
    const owner_email = document.querySelector('#MA_owner_email').value;
+
+   console.log(owner_fname)
+   console.log(owner_lname)
+   console.log(owner_email)
 
    const saveFormInputs = {
       owner_fname: owner_fname,
