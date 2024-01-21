@@ -88,57 +88,59 @@ saveInfoForm.addEventListener('submit', saveChangesInfoForm);
 
 
 
-// // save new user pw START
-// const pwForm = document.querySelector('#changePW');
-// const pwSubmitButton = document.querySelector('saveChangePW');
+// START save new pw
+const pwForm = document.querySelector('#changePWForm');
 
-// function savePasswordChange() {
-//    // check current/old password input.value to db/hashed pw
+function savePWChange() {
+   // check current/old password input.value to db/hashed pw
    
-//    // if 2 passwords are the same:
-//    const inputPW1 = document.querySelector('MA_password');
-//    const inputPW2Verify = document.querySelector('MA_passwordVerify');
-//    const inputPW1Value = inputPW1.value
-//    const inputPW2VerifyValue = inputPW2Verify.value 
-//    console.log(inputPW1Value);
-//    console.log(inputPW2VerifyValue);
+   // does the current/old password match with the password in the db? 
+   const inputCurrentPWValue = document.querySelector('#MA_password_old').value;
 
-//    if (inputPW1Value === inputPW2VerifyValue) {
-//       newPW = {password: inputPW1Value} 
+   // if 2 passwords are the same:
+   const inputPW1Value = document.querySelector('MA_password').value;
+   const inputPW2VerifyValue = document.querySelector('MA_passwordVerify').value;
 
-//       fetch('/save-new-password', {
-//          method: 'POST',
-//          body: JSON.stringify(newPW),
-//          headers: {
-//             'Content-Type': 'application/json',
-//          },
-//       })
-//          .then((response) => {
-//             console.log('doing the fetch request from here to server.py')
-//             return response.json();
-//          })
-//          .then((responseJson) => {
-//             console.log('doing the fetch AJAX response');
-//             console.log(responseJson);
+   console.log(f`The current/old password is ${inputCurrentPWValue}`);
+   console.log(f`The current/old password is ${inputPW1Value}`);
+   console.log(f`The current/old password is ${inputPW2VerifyValue}`);
+
+   if (inputPW1Value === inputPW2VerifyValue) {
+      newPW = {password: inputPW1Value} 
+
+      fetch('/save-new-password', {
+         method: 'POST',
+         body: JSON.stringify(newPW),
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      })
+         .then((response) => {
+            console.log('doing the fetch request from here to server.py')
+            return response.json();
+         })
+         .then((responseJson) => {
+            console.log('doing the fetch AJAX response');
+            console.log(responseJson);
          
-//             document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
-//             document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
-//             document.querySelector('#owner_email').innerText = responseJson['owner_email'];
-//          })
-//          .catch((error) => {
-//             console.error('Error during fetch:', error);
-//          });
+            document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
+            document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
+            document.querySelector('#owner_email').innerText = responseJson['owner_email'];
+         })
+         .catch((error) => {
+            console.error('Error during fetch:', error);
+         });
 
 
 
-//       alert("You're password has been changed");
-//    } else {
-//       alert('Please try again (by checking the same new password is typed into both the Change My Password field and the Verify Password field exactly the same)');
-//    }
-//    // add and commit to db ... how do I do this with a hashed pw? 
-//    // else: 
-//    // tell the user to try again by checking that they typed in the same thing in both the Change My Password field and the Verify Password field
-// };
+      alert("You're password has been changed");
+   } else {
+      alert('Please try again - check that your current password is what you typed in, and check that the new password is the same in both the New Password field and the Verify the New Password field');
+   }
+   // add and commit to db ... how do I do this with a hashed pw? 
+   // else: 
+   // tell the user to try again by checking that they typed in the same thing in both the Change My Password field and the Verify Password field
+};
 
-// pwForm.addEventListener('submit', savePasswordChange);
-// // save new user pw END
+pwForm.addEventListener('submit', savePWChange);
+// END save new pw
