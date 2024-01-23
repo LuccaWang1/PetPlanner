@@ -23,6 +23,10 @@ def homepage():
 @app.route("/login", methods=["GET"])
 def login():
     """Render login.html template."""
+
+    if 'owner_email' in session: #you're already logged in 
+        flash("Great news: You're already logged in")
+        return redirect("/dashboard")
     
     return render_template("login.html")
 
@@ -34,16 +38,10 @@ def loginhandler():
     print("I'm in the login-handler route and view function")
 
     owner_email = request.form.get('email')
+    owner_email = owner_email.lower()
     owner_password = request.form.get('password')
-
-    if 'owner_email' in session: #you're already logged in 
-        flash("Great news: You're already logged in")
-        return redirect("/dashboard")
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
-    
-    session['owner_id'] = user.owner_id
-    print(session)
 
     if user: #check in db, log in 
         if owner_password == user.password:
@@ -72,6 +70,10 @@ def logout():
 def create_account():
     """Render the create_account.html webpage."""
 
+    if 'owner_email' in session: #you're already logged in 
+        flash("Great news: You already have an account, and you're already logged in! Here's your dashboard:")
+        return redirect("/dashboard")
+
     return render_template("create_account.html")
 
 @app.route("/create-account-handler", methods=["POST"])
@@ -81,19 +83,16 @@ def handle_create_account():
     owner_fname = request.form.get('owner_fname')
     owner_lname = request.form.get('owner_lname')
     owner_email = request.form.get('owner_email')
+    owner_email = owner_email.lower()
     password = request.form.get('password')
-    
-    if 'owner_email' in session: #you're already logged in 
-        flash("Great news: You already have an account, and you're already logged in! Here's your dashboard:")
-        return redirect("/dashboard")
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
     print(user)
 
-    if user: #check in db, log in 
-        if password == user.password:
-            flash("Great news: You already have an account - please log in with your log in information, email and password:")
-            return redirect("/login")
+    if user: #check in db, log in
+        flash("Great news: You already have an account - please log in with your log in information, email and password:")
+        return redirect("/login")
+  
     else: 
         new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
         db.session.add(new_user) #add user instance to database with .add built-in func
@@ -142,6 +141,7 @@ def save_account_info():
     owner_fname = request.json.get('owner_fname')
     owner_lname = request.json.get('owner_lname')
     owner_email = request.json.get('owner_email')
+    owner_email = owner_email.lower()
 
     print(owner_id)
     print(owner_fname)

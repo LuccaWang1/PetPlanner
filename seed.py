@@ -19,7 +19,7 @@ model.db.create_all()
 test_user = Owner(
     owner_fname="Lucca",
     owner_lname="Test",
-    owner_email="LuccaTest@gmail.com",
+    owner_email="luccatest@gmail.com",
     password="Testpassword",
 )
 

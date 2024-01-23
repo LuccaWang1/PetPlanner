@@ -35,16 +35,20 @@ const saveInfoForm = document.querySelector('#editInfoForm');
 function saveChangesInfoForm(event) {
    event.preventDefault();
    
-   document.querySelector('#MA_owner_fname').style.backgroundColor = 'rgb(212,235,242)';
-   document.querySelector('#MA_owner_lname').style.backgroundColor = 'rgb(212,235,242)';
-   document.querySelector('#MA_owner_email').style.backgroundColor = 'rgb(212,235,242)';
+   const fnameSaveInput = document.querySelector('#MA_owner_fname');
+   const lnameSaveInput = document.querySelector('#MA_owner_lname');
+   const emailSaveInput = document.querySelector('#MA_owner_email');
+
+   fnameSaveInput.style.backgroundColor = 'rgb(212,235,242)';
+   lnameSaveInput.style.backgroundColor = 'rgb(212,235,242)';
+   emailSaveInput.style.backgroundColor = 'rgb(212,235,242)';
 
    console.log('in the saveChangesInfoForm function')
 
    // get values - any new values 
-   const owner_fname = document.querySelector('#MA_owner_fname').value;
-   const owner_lname = document.querySelector('#MA_owner_lname').value;
-   const owner_email = document.querySelector('#MA_owner_email').value;
+   const owner_fname = fnameSaveInput.value;
+   const owner_lname = lnameSaveInput.value;
+   const owner_email = emailSaveInput.value;
 
    console.log(owner_fname)
    console.log(owner_lname)
@@ -76,9 +80,9 @@ function saveChangesInfoForm(event) {
          console.log('in the responseJson .then doing the fetch AJAX response');
          console.log(responseJson);
       
-         document.querySelector('#MA_owner_fname').innerHTML = responseJson['owner_fname']; 
-         document.querySelector('#MA_owner_lname').innerHTML = responseJson['owner_lname'];
-         document.querySelector('#MA_owner_email').innerHTML = responseJson['owner_email'];
+         fnameSaveInput.innerHTML = responseJson['owner_fname']; 
+         lnameSaveInput.innerHTML = responseJson['owner_lname'];
+         emailSaveInput.innerHTML = responseJson['owner_email'];
          console.log('after the response from the server is given');
       })
 }
