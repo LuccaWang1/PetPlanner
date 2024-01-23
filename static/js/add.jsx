@@ -1,6 +1,6 @@
 'use strict';
 
-function MyVerticallyCenteredModal() {
+function addPetModal(props) {
   const [show, setShow] = React.useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,7 +27,7 @@ function MyVerticallyCenteredModal() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Pet Name</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
@@ -38,7 +38,7 @@ function MyVerticallyCenteredModal() {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Example textarea</Form.Label>
+              <Form.Label>Adjectives to describe your pet</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
           </Form>
@@ -56,7 +56,7 @@ function MyVerticallyCenteredModal() {
   );
 }
 
-function App() {
+function addAPet() {
     const [modalShow, setModalShow] = React.useState(false);
   
     return (
@@ -65,12 +65,15 @@ function App() {
           Launch vertically centered modal
         </Button>
   
-        <MyVerticallyCenteredModal
+        <addPetModal
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
       </>
     );
   }
-  
-  ReactDOM.render(<App />, document.querySelector('#add_pet'));
+
+// Import necessary components
+const { Button, Modal, Form } = ReactBootstrap;  
+
+ReactDOM.render(<App />, document.querySelector('#add_pet'));
