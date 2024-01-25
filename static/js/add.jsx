@@ -7,6 +7,36 @@ const { Button, Modal, Form } = ReactBootstrap;
 
 // START add a pet feature modal
 function AddPetModal(props) {
+// nest function for the event handler onSubmit 
+
+// need nested function for each input onChange
+  // function MyComponent(props) {
+  //   const [state, setState] = React.useState("starting value");
+
+  //   function handleChange(evt) {
+  //     setState(evt.target.value);
+  //   }
+
+  //   return (
+  //     <form>
+  //       <input type="text" value={state} onChange={handleChange} />
+  //     </form>
+  //   );
+  
+
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //for the form 
+  function handleFormSubmit(evt) {
+    evt.preventDefault();
+    
+    //fetch POST request
+  }
+
   return (
     <>
       <Modal
@@ -20,29 +50,61 @@ function AddPetModal(props) {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Pet Name</Form.Label>
+              <Form.Label>Pet First Name</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+                value={petFirstName}
+                onChange={handleFirstName}
+                type="text"
+                placeholder="Feefee"
                 autoFocus
               />
             </Form.Group>
+            
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Pet Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Wang"
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Age</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="6"
+                autoFocus
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Energy Level</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Energy Level</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </Form.Select>
+            </Form.Group>
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Adjectives to describe your pet</Form.Label>
+              <Form.Label>Comments</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
+
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.onHide}>
+          <Button variant="primary" type="submit">
             Save Changes
           </Button>
         </Modal.Footer>
