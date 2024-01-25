@@ -5,19 +5,23 @@ console.log("i'm in the js file, my_account.js")
 // START edit my account user info
 const editInfoFormButton = document.querySelector('#MA_OwnerInfoEditButton');
 
+myAccountOwnerFName = document.querySelector('#MA_owner_fname')
+myAccountOwnerLName = document.querySelector('#MA_owner_lname')
+myAccountOwnerEmail = document.querySelector('#MA_owner_email')
+
 function handleClick() {
    console.log('in the handleClick function');
 
-   document.querySelector('#MA_owner_fname').removeAttribute('readonly');
-   document.querySelector('#MA_owner_lname').removeAttribute('readonly');
-   document.querySelector('#MA_owner_email').removeAttribute('readonly');
-   document.querySelector('#MA_owner_fname').style.backgroundColor = 'rgb(255,192,203)';
-   document.querySelector('#MA_owner_lname').style.backgroundColor = 'rgb(255,192,203)';
-   document.querySelector('#MA_owner_email').style.backgroundColor = 'rgb(255,192,203)';
+   myAccountOwnerFName.removeAttribute('readonly');
+   myAccountOwnerLName.removeAttribute('readonly');
+   myAccountOwnerEmail.removeAttribute('readonly');
+   myAccountOwnerFName.style.backgroundColor = 'rgb(255,192,203)';
+   myAccountOwnerLName.style.backgroundColor = 'rgb(255,192,203)';
+   myAccountOwnerEmail.style.backgroundColor = 'rgb(255,192,203)';
 
-   const owner_fname = document.querySelector('#MA_owner_fname').value;
-   const owner_lname = document.querySelector('#MA_owner_lname').value;
-   const owner_email = document.querySelector('#MA_owner_email').value;
+   const owner_fname = myAccountOwnerFName.value;
+   const owner_lname = myAccountOwnerLName.value;
+   const owner_email = myAccountOwnerEmail.value;
 
    console.log(owner_fname)
    console.log(owner_lname)
@@ -34,21 +38,17 @@ const saveInfoForm = document.querySelector('#editInfoForm');
 
 function saveChangesInfoForm(event) {
    event.preventDefault();
-   
-   const fnameSaveInput = document.querySelector('#MA_owner_fname');
-   const lnameSaveInput = document.querySelector('#MA_owner_lname');
-   const emailSaveInput = document.querySelector('#MA_owner_email');
 
-   fnameSaveInput.style.backgroundColor = 'rgb(212,235,242)';
-   lnameSaveInput.style.backgroundColor = 'rgb(212,235,242)';
-   emailSaveInput.style.backgroundColor = 'rgb(212,235,242)';
+   myAccountOwnerFName.style.backgroundColor = 'rgb(212,235,242)';
+   myAccountOwnerLName.style.backgroundColor = 'rgb(212,235,242)';
+   myAccountOwnerEmail.style.backgroundColor = 'rgb(212,235,242)';
 
    console.log('in the saveChangesInfoForm function')
 
    // get values - any new values 
-   const owner_fname = fnameSaveInput.value;
-   const owner_lname = lnameSaveInput.value;
-   const owner_email = emailSaveInput.value;
+   const owner_fname = myAccountOwnerFName.value;
+   const owner_lname = myAccountOwnerLName.value;
+   const owner_email = myAccountOwnerEmail.value;
 
    console.log(owner_fname)
    console.log(owner_lname)
@@ -80,9 +80,9 @@ function saveChangesInfoForm(event) {
          console.log('in the responseJson .then doing the fetch AJAX response');
          console.log(responseJson);
       
-         fnameSaveInput.innerHTML = responseJson['owner_fname']; 
-         lnameSaveInput.innerHTML = responseJson['owner_lname'];
-         emailSaveInput.innerHTML = responseJson['owner_email'];
+         myAccountOwnerFName.innerHTML = responseJson['owner_fname']; 
+         myAccountOwnerLName.innerHTML = responseJson['owner_lname'];
+         myAccountOwnerEmail.innerHTML = responseJson['owner_email'];
          console.log('after the response from the server is given');
       })
 }

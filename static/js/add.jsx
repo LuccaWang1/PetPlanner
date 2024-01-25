@@ -5,11 +5,7 @@ console.log("jsx is running");
 // Import necessary components
 const { Button, Modal, Form } = ReactBootstrap;
 
-// START add a pet feature modal
-function AddPetModal(props) {
-// nest function for the event handler onSubmit 
 
-// need nested function for each input onChange
   // function MyComponent(props) {
   //   const [state, setState] = React.useState("starting value");
 
@@ -22,8 +18,14 @@ function AddPetModal(props) {
   //       <input type="text" value={state} onChange={handleChange} />
   //     </form>
   //   );
-  
 
+// START add a pet feature modal
+function AddPetModal(props) {
+// nest function for the event handler onSubmit 
+
+// need nested function for each input onChange
+
+//nested function for input pet first name
   const [petFirstName, setPetFirstName] = React.useState("");
 
   function handleFirstName(evt) {
