@@ -105,19 +105,19 @@ input {
 }
 
 /* Add the background color to navbar links on hover */
-.topnav a:hover, .dropdown:hover .dropbtn {
+.topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
     background-color: #72bcd4;
     color: #d4ebf2;
 }
 
 /* The dropdown container */
-.dropdown {
+.LW-dropdown {
     float: left;
     overflow: hidden;
 }
   
 /* Dropdown button */
-.dropdown .dropbtn {
+.LW-dropdown .LW-dropbtn {
     font-size: 17px;
     border: none;
     outline: none;
@@ -129,7 +129,7 @@ input {
 }
 
 /* Dropdown content (hidden by default) */
-.dropdown-content {
+.LW-dropdown-content {
     display: none;
     position: absolute;
     min-width: 160px;
@@ -138,7 +138,7 @@ input {
 }
   
 /* Links inside the dropdown */
-.dropdown-content a {
+.LW-dropdown-content a,button {
     float: none;
     color: #72bcd4;
     background-color: #d4ebf2;
@@ -149,10 +149,10 @@ input {
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.LW-dropdown:hover .LW-dropdown-content {
     display: block;
 }
 
-.dropdown-content a:hover {
+.LW-dropdown-content a:hover {
     background-color: #72bcd4;
 }
