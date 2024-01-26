@@ -20,6 +20,56 @@ function AddPetModal(props) {
     setPetFirstName(evt.target.value)
   }
 
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+  //nested function for input pet first name
+  const [petFirstName, setPetFirstName] = React.useState("");
+
+  function handleFirstName(evt) {
+    setPetFirstName(evt.target.value)
+  }
+
+
   //^^This part above repeat for inputs HERE 
 
   //for the form - happens once 
@@ -41,62 +91,340 @@ function AddPetModal(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add My Pet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Pet First Name</Form.Label>
-              <Form.Control
-                value={petFirstName}
-                onChange={handleFirstName}
-                type="text"
-                placeholder="Feefee"
-                autoFocus
-              />
+        <Form>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Species</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Select</option> 
+                <option value="bird">Bird</option>
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+                <option value="fish">Fish</option>
+                <option value="guinea_pig">Guinea Pig</option>
+                <option value="horse">Horse</option>
+                <option value="turtle">Turtle</option>
+              </Form.Select>
             </Form.Group>
             
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Pet Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Wang"
-                autoFocus
-              />
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" placeholder="" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" placeholder="" />
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Age</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="6"
-                autoFocus
-              />
+              <Form.Select aria-label="Default select example">
+                <option>Select</option> 
+                <option value="0">Baby</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+                <option value="60">60</option>
+                <option value="61">61</option>
+                <option value="62">62</option>
+                <option value="63">63</option>
+                <option value="64">64</option>
+                <option value="65">65</option>
+                <option value="66">66</option>
+                <option value="67">67</option>
+                <option value="68">68</option>
+                <option value="69">69</option>
+                <option value="70">70</option>
+                <option value="71">71</option>
+                <option value="72">72</option>
+                <option value="73">73</option>
+                <option value="74">74</option>
+                <option value="75">75</option>
+                <option value="76">76</option>
+                <option value="77">77</option>
+                <option value="78">78</option>
+                <option value="79">79</option>
+                <option value="80">80</option>
+                <option value="81">81</option>
+                <option value="82">82</option>
+                <option value="83">83</option>
+                <option value="84">84</option>
+                <option value="85">85</option>
+                <option value="86">86</option>
+                <option value="87">87</option>
+                <option value="88">88</option>
+                <option value="89">89</option>
+                <option value="90">90</option>
+                <option value="91">91</option>
+                <option value="92">92</option>
+                <option value="93">93</option>
+                <option value="94">94</option>
+                <option value="95">95</option>
+                <option value="96">96</option>
+                <option value="97">97</option>
+                <option value="98">98</option>
+                <option value="99">99</option>
+                <option value="100">100</option>
+                <option value="101">101</option>
+                <option value="102">102</option>
+                <option value="103">103</option>
+                <option value="104">104</option>
+                <option value="105">105</option>
+                <option value="106">106</option>
+                <option value="107">107</option>
+                <option value="108">108</option>
+                <option value="109">109</option>
+                <option value="110">110</option>
+              </Form.Select>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Energy Level</Form.Label>
               <Form.Select aria-label="Default select example">
-                <option>Energy Level</option>
+                <option>Select</option> 
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </Form.Select>
             </Form.Group>
 
-            <Form.Group
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Weight (lbs.)</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Select</option> 
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+                <option value="60">60</option>
+                <option value="61">61</option>
+                <option value="62">62</option>
+                <option value="63">63</option>
+                <option value="64">64</option>
+                <option value="65">65</option>
+                <option value="66">66</option>
+                <option value="67">67</option>
+                <option value="68">68</option>
+                <option value="69">69</option>
+                <option value="70">70</option>
+                <option value="71">71</option>
+                <option value="72">72</option>
+                <option value="73">73</option>
+                <option value="74">74</option>
+                <option value="75">75</option>
+                <option value="76">76</option>
+                <option value="77">77</option>
+                <option value="78">78</option>
+                <option value="79">79</option>
+                <option value="80">80</option>
+                <option value="81">81</option>
+                <option value="82">82</option>
+                <option value="83">83</option>
+                <option value="84">84</option>
+                <option value="85">85</option>
+                <option value="86">86</option>
+                <option value="87">87</option>
+                <option value="88">88</option>
+                <option value="89">89</option>
+                <option value="90">90</option>
+                <option value="91">91</option>
+                <option value="92">92</option>
+                <option value="93">93</option>
+                <option value="94">94</option>
+                <option value="95">95</option>
+                <option value="96">96</option>
+                <option value="97">97</option>
+                <option value="98">98</option>
+                <option value="99">99</option>
+                <option value="100">100</option>
+                <option value="101">101</option>
+                <option value="102">102</option>
+                <option value="103">103</option>
+                <option value="104">104</option>
+                <option value="105">105</option>
+                <option value="106">106</option>
+                <option value="107">107</option>
+                <option value="108">108</option>
+                <option value="109">109</option>
+                <option value="110">110</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridCity">
+              <Form.Label>Coat</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Coat</option> 
+                <option value="hairless">Hairless</option>
+                <option value="short">Short</option>
+                <option value="long">Long</option>
+              </Form.Select>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Emergency Contact First Name</Form.Label>
+              <Form.Control type="text" placeholder=""/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Emergency Contact Last Name</Form.Label>
+              <Form.Control type="text" placeholder=""/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Emergency Contact Phone</Form.Label>
+              <Form.Control type="number" placeholder="(xxx) xxx-xxxx"/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Emergency Contact Email</Form.Label>
+              <Form.Control type="email" placeholder="email@email.com"/>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Insurance Company</Form.Label>
+              <Form.Control type="text" placeholder=""/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Policy Number</Form.Label>
+              <Form.Control type="text" placeholder=""/>
+            </Form.Group>
+          </Row>
+
+          <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Comments</Form.Label>
               <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+          </Form.Group>
 
-          </Form>
+        </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" type="submit">
             Save Changes
@@ -143,18 +471,15 @@ function AddEventModal(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add An Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Event Name</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
+              <Form.Label>Event title</Form.Label>
+              <Form.Control as="textarea" rows={3} />
             </Form.Group>
+
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
@@ -162,11 +487,12 @@ function AddEventModal(props) {
               <Form.Label>Event title</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" onClick={props.onHide}>
             Save Changes
@@ -222,7 +548,7 @@ function AddSpecialistModal(props) {
               <Form.Label>Role</Form.Label>
               <Form.Select aria-label="Default select example">
                 <option>Select</option> 
-                <option value="vet">Vet </option>
+                <option value="vet">Vet</option>
                 <option value="groomer">Groomer</option>
                 <option value="nail_trimmer">Nail Trimmer</option>
                 <option value="emergency_vet">Emergency Vet</option>
@@ -238,7 +564,7 @@ function AddSpecialistModal(props) {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>First Name</Form.Label>
+              <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" placeholder="" />
             </Form.Group>
           </Row>
@@ -251,7 +577,7 @@ function AddSpecialistModal(props) {
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Phone</Form.Label>
-              <Form.Control type="email" placeholder="email@email.com" />
+              <Form.Control type="email" placeholder="(xxx) xxx-xxxx" />
             </Form.Group>
           </Row>
 
@@ -281,11 +607,20 @@ function AddSpecialistModal(props) {
               <Form.Control type="number" placeholder="66049"/>
             </Form.Group>
           </Row>
+
+          <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Comments</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+          </Form.Group>
+
         </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" onClick={props.onHide}>
             Save Changes
