@@ -15,27 +15,27 @@ body {
     background-repeat: no-repeat;
     color: #72bcd4;
     background-color: #d4ebf2
-}
+} 
 
 /* unvisited link */
 a:link {
     color: #72bcd4;
-  }
-  
-  /* visited link */
-  a:visited {
+}
+
+/* visited link */
+a:visited {
     color: #72bcd4;
-  }
-  
-  /* mouse over link */
-  a:hover {
+}
+
+/* mouse over link */
+a:hover {
     color: #72bcd4;
-  }
-  
-  /* selected link */
-  a:active {
-    color: #FFC0CB;
-  }
+}
+
+/* selected link */
+a:active {
+color: #FFC0CB;
+}
 
 /* Any button */
 button {
@@ -52,7 +52,7 @@ button:hover {
     background-color: #d4ebf2;
     color: #72bcd4;
     border: 2px solid #FFC0CB;
-    /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
 }
 
@@ -126,7 +126,7 @@ input {
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
-}
+} 
 
 /* Dropdown content (hidden by default) */
 .LW-dropdown-content {

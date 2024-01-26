@@ -3,7 +3,7 @@
 console.log("jsx is running");
 
 // Import necessary components
-const { Button, Modal, Form } = ReactBootstrap;
+const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 
   // function MyComponent(props) {
@@ -23,21 +23,25 @@ const { Button, Modal, Form } = ReactBootstrap;
 function AddPetModal(props) {
 // nest function for the event handler onSubmit 
 
-// need nested function for each input onChange
+  // need nested function for each input onChange
 
-//nested function for input pet first name
+  //nested function for input pet first name
   const [petFirstName, setPetFirstName] = React.useState("");
 
   function handleFirstName(evt) {
     setPetFirstName(evt.target.value)
   }
 
-  //for the form 
+  //^^This part above repeat for inputs HERE 
+
+  //for the form - happens once 
   function handleFormSubmit(evt) {
     evt.preventDefault();
     
     //fetch POST request
   }
+
+
 
   return (
     <>
@@ -224,23 +228,46 @@ function AddSpecialistModal(props) {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Specialist Name</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
+        <Form>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Specialist's First Name</Form.Label>
+              <Form.Control type="text" placeholder="" />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Specialist title</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Specialist's First Name</Form.Label>
+              <Form.Control type="text" placeholder="" />
             </Form.Group>
-          </Form>
+          </Row>
+
+          <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Label>Address</Form.Label>
+            <Form.Control type="text" placeholder="1234 Main Street" />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formGridAddress2">
+            <Form.Label>Address 2</Form.Label>
+            <Form.Control type="text" placeholder="Apartment, studio, or floor" />
+          </Form.Group>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control type="text"/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>State</Form.Label>
+              <Form.Control type="text" placeholder="CA"/>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridZip">
+              <Form.Label>Zip</Form.Label>
+              <Form.Control type="number" placeholder="66049"/>
+            </Form.Group>
+          </Row>
+        </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
