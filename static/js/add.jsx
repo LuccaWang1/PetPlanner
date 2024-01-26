@@ -14,62 +14,11 @@ function AddPetModal(props) {
   // need nested function for each input onChange
 
   //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
+  const [petFName, setPetFName] = React.useState("");
 
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
+  function handlePetFName(evt) {
+    setPetFName(evt.target.value)
   }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-  //nested function for input pet first name
-  const [petFirstName, setPetFirstName] = React.useState("");
-
-  function handleFirstName(evt) {
-    setPetFirstName(evt.target.value)
-  }
-
-
   //^^This part above repeat for inputs HERE 
 
   //for the form - happens once 
@@ -112,7 +61,7 @@ function AddPetModal(props) {
             
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" placeholder="" />
+              <Form.Control value={petFName} onChange={handlePetFName} type="text" placeholder="" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">

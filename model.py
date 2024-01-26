@@ -48,16 +48,20 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    species = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
-    energy_level = db.Column(db.String(6)) #dropdown: high, medium, low
     age = db.Column(db.Integer)
-    coat_type = db.Column(db.String(5)) #dropdown: long, short
-    animal_type = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
-    emergency_contact = db.Column(db.String(25))
+    energy_level = db.Column(db.String(6)) #dropdown: high, medium, low
+    coat = db.Column(db.String(5)) #dropdown: long, short
+    emer_contact_fname = db.Column(db.String(25))
+    emer_contact_lname = db.Column(db.String(25))
+    emer_contact_phone = db.Column(db.String(25))
+    emer_contact_email = db.Column(db.String(25))
+    insurance_company = db.Column(db.Text)
+    insurance_policy_num = db.Column(db.Text)
     pet_comment = db.Column(db.Text)
-    insurance = db.Column(db.Text)
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")
@@ -86,23 +90,22 @@ class Specialist(db.Model):
     __tablename__ = "specialists"
 
     specialist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    role = db.Column(db.String(15), nullable=False) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
     specialist_fname = db.Column(db.String(25))
     specialist_lname = db.Column(db.String(25), nullable=False)
-    
+    specialist_email = db.Column(db.String(40))
+    specialist_phone = db.Column(db.String(14))
     street = db.Column(db.String(40))
     street2 = db.Column(db.String(40))
     city = db.Column(db.String(40))
     state = db.Column(db.String(3))
     zip_code = db.Column(db.String(10))
-    role = db.Column(db.String(15), nullable=False) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
-    specialist_email = db.Column(db.String(40))
-    phone = db.Column(db.String(14))
     specialist_comment = db.Column(db.Text)
 
     pets = db.relationship("Pet", back_populates="specialists", secondary="pet_specialists")
 
     def __repr__(self):
-        return f"<Specialist specialist_id={self.specialist_id} specialist_fname={self.specialist_fname} specialist_lname={self.specialist_lname}>"
+        return f"<Specialist specialist_id={self.specialist_id} role={self.role} specialist_lname={self.specialist_lname}>"
 
 
 class Pet_Events(db.Model):
