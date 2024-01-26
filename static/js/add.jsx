@@ -6,18 +6,6 @@ console.log("jsx is running");
 const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 
-  // function MyComponent(props) {
-  //   const [state, setState] = React.useState("starting value");
-
-  //   function handleChange(evt) {
-  //     setState(evt.target.value);
-  //   }
-
-  //   return (
-  //     <form>
-  //       <input type="text" value={state} onChange={handleChange} />
-  //     </form>
-  //   );
 
 // START add a pet feature modal
 function AddPetModal(props) {
@@ -225,19 +213,45 @@ function AddSpecialistModal(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add a Specialist</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Specialist's First Name</Form.Label>
+              <Form.Label>Role</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Select</option> 
+                <option value="vet">Vet </option>
+                <option value="groomer">Groomer</option>
+                <option value="nail_trimmer">Nail Trimmer</option>
+                <option value="emergency_vet">Emergency Vet</option>
+                <option value="emergency_vet">Pharmacy</option>
+                <option value="doctor">Doctor</option>
+                <option value="other">Other</option>
+              </Form.Select>
+            </Form.Group>
+            
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>First Name</Form.Label>
               <Form.Control type="text" placeholder="" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Specialist's First Name</Form.Label>
+              <Form.Label>First Name</Form.Label>
               <Form.Control type="text" placeholder="" />
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="email@email.com" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Phone</Form.Label>
+              <Form.Control type="email" placeholder="email@email.com" />
             </Form.Group>
           </Row>
 
