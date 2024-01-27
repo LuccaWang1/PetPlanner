@@ -9,26 +9,123 @@ const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 // START add a pet feature modal
 function AddPetModal(props) {
-// nest function for the event handler onSubmit 
 
-  // need nested function for each input onChange
+  //START nested functions for pet inputs
+  const [species, setSpecies] = React.useState("");
 
-  //nested function for input pet first name
+  function handleSpecies(evt) {
+    setSpecies(evt.target.value)
+  }
+  
   const [petFName, setPetFName] = React.useState("");
 
   function handlePetFName(evt) {
     setPetFName(evt.target.value)
   }
-  //^^This part above repeat for inputs HERE 
 
-  //for the form - happens once 
-  function handleFormSubmit(evt) {
-    evt.preventDefault();
-    
-    //fetch POST request
+  const [petLName, setPetLName] = React.useState("");
+
+  function handlePetLName(evt) {
+    setPetLName(evt.target.value)
   }
 
+  const [age, setAge] = React.useState("");
 
+  function handleAge(evt) {
+    setAge(evt.target.value)
+  }
+
+  const [weight, setWeight] = React.useState("");
+
+  function handleWeight(evt) {
+    setWeight(evt.target.value)
+  }
+
+  const [energyLevel, setEnergyLevel] = React.useState("");
+
+  function handleEnergyLevel(evt) {
+    setEnergyLevel(evt.target.value)
+  }
+
+  const [coat, setCoat] = React.useState("");
+
+  function handleCoat(evt) {
+    setCoat(evt.target.value)
+  }
+
+  const [emerContactFName, setEmerContactFName] = React.useState("");
+
+  function handleEmerContactFName(evt) {
+    setEmerContactFName(evt.target.value)
+  }
+
+  const [emerContactLName, setEmerContactLName] = React.useState("");
+
+  function handleEmerContactLName(evt) {
+    setEmerContactLName(evt.target.value)
+  }
+
+  const [emerContactPhone, setEmerContactPhone] = React.useState("");
+
+  function handleEmerContactPhone(evt) {
+    setEmerContactPhone(evt.target.value)
+  }
+
+  const [emerContactEmail, setEmerContactEmail] = React.useState("");
+
+  function handleEmerContactEmail(evt) {
+    setEmerContactEmail(evt.target.value)
+  }
+
+  const [insuranceCompany, setInsuranceCompany] = React.useState("");
+
+  function handleInsuranceCompany(evt) {
+    setInsuranceCompany(evt.target.value)
+  }
+
+  const [insurancePolicyNum, setInsurancePolicyNum] = React.useState("");
+
+  function handleInsurancePolicyNum(evt) {
+    setInsurancePolicyNum(evt.target.value)
+  }
+
+  const [petComment, setPetComment] = React.useState("");
+
+  function handlePetComment(evt) {
+    setPetComment(evt.target.value)
+  }
+
+  //submit form, save to db 
+  function handleAddAPetFormSubmit(evt) {
+    evt.preventDefault();
+    
+    const addAPetFormInputs = {
+      pet: {
+        species: species,
+        pet_fname: petFName,
+        pet_lname: petLName,
+        age: age,
+        weight: weight,
+        energy_level: energyLevel,
+        coat: coat,
+        emer_contact_fname: emerContactFName, 
+        emer_contact_lname: emerContactLName,
+        emer_contact_phone: emerContactPhone,
+        emer_contact_email: emerContactEmail,
+        insurance_company: insuranceCompany,
+        insurance_policy_num: insurancePolicyNum,
+        pet_comment: petComment,
+      },
+    };
+
+    fetch('/add-a-pet', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(addAPetFormInputs),
+    });
+  }
 
   return (
     <>
@@ -43,11 +140,11 @@ function AddPetModal(props) {
           <Modal.Title>Add My Pet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form>
+        <Form onSubmit={handleAddAPetFormSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Species</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select value={species} onChange={handleSpecies} aria-label="Default select example">
                 <option>Select</option> 
                 <option value="bird">Bird</option>
                 <option value="cat">Cat</option>
@@ -66,14 +163,14 @@ function AddPetModal(props) {
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" placeholder="" />
+              <Form.Control value={petLName} onChange={handlePetLName} type="text" placeholder="" />
             </Form.Group>
           </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Age</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select value={age} onChange={handleAge} aria-label="Default select example">
                 <option>Select</option> 
                 <option value="0">Baby</option>
                 <option value="1">1</option>
@@ -190,18 +287,8 @@ function AddPetModal(props) {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Energy Level</Form.Label>
-              <Form.Select aria-label="Default select example">
-                <option>Select</option> 
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Weight (lbs.)</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select value={weight} onChange={handleWeight} aria-label="Default select example">
                 <option>Select</option> 
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -316,9 +403,19 @@ function AddPetModal(props) {
               </Form.Select>
             </Form.Group>
 
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Energy Level</Form.Label>
+              <Form.Select value={energyLevel} onChange={handleEnergyLevel} aria-label="Default select example">
+                <option>Select</option> 
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </Form.Select>
+            </Form.Group>
+
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Coat</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select value={coat} onChange={handleCoat} aria-label="Default select example">
                 <option>Coat</option> 
                 <option value="hairless">Hairless</option>
                 <option value="short">Short</option>
@@ -330,34 +427,34 @@ function AddPetModal(props) {
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Emergency Contact First Name</Form.Label>
-              <Form.Control type="text" placeholder=""/>
+              <Form.Control value={emerContactFName} onChange={handleEmerContactFName} type="text" placeholder=""/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Emergency Contact Last Name</Form.Label>
-              <Form.Control type="text" placeholder=""/>
+              <Form.Control value={emerContactLName} onChange={handleEmerContactLName} type="text" placeholder=""/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Emergency Contact Phone</Form.Label>
-              <Form.Control type="number" placeholder="(xxx) xxx-xxxx"/>
+              <Form.Control value={emerContactPhone} onChange={handleEmerContactPhone} ype="number" placeholder="(xxx) xxx-xxxx"/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Emergency Contact Email</Form.Label>
-              <Form.Control type="email" placeholder="email@email.com"/>
+              <Form.Control value={emerContactEmail} onChange={handleEmerContactEmail} type="email" placeholder="email@email.com"/>
             </Form.Group>
           </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Insurance Company</Form.Label>
-              <Form.Control type="text" placeholder=""/>
+              <Form.Control value={insuranceCompany} onChange={handleInsuranceCompany} type="text" placeholder=""/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>Policy Number</Form.Label>
-              <Form.Control type="text" placeholder=""/>
+              <Form.Control value={insurancePolicyNum} onChange={handleInsurancePolicyNum} type="text" placeholder=""/>
             </Form.Group>
           </Row>
 
@@ -366,7 +463,7 @@ function AddPetModal(props) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Comments</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control value={petComment} onChange={handlePetComment} as="textarea" rows={3} />
           </Form.Group>
 
         </Form>

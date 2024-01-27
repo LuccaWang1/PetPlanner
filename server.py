@@ -179,13 +179,59 @@ def save_account_info():
 
 @app.route("/save-new-password", methods=['POST'])
 def save_new_password():
-    """Save the user's new password in the db for them"""
+    """Save the user's new password in the db."""
 
+
+
+@app.route("/add-a-pet", methods=['PUT'])
+def create_pet():
+    """Create a new instance of the Pet class, and save it in the db."""
+
+    pet_data = request.json.get('pet', {})
+    print(pet_data)
+
+    species = pet_data.get('species')
+    pet_fname = pet_data.json.get('pet_fname')
+    pet_lname = pet_data.get('pet_lname')
+    age = pet_data.get('age')
+    weight = pet_data.get('weight')
+    energy_level = pet_data.get('energy_level')
+    coat = pet_data.get('coat')
+    emer_contact_fname = pet_data.get('emer_contact_fname')
+    emer_contact_lname = pet_data.get('emer_contact_lname')
+    emer_contact_phone = pet_data.get('emer_contact_phone')
+    emer_contact_email = pet_data.get('emer_contact_email')
+    insurance_company = pet_data.get('insurance_company')
+    insurance_policy_num = pet_data.get('emer_contact_email')
+    pet_comment = pet_data.get('pet_comment')
+
+    pet = Pet.query.filter_by(pet_fname=pet_fname).first()
+    print(pet)
+
+    if pet: #check in db, if in db, tell user
+        #check if all inputs are the same? 
+        #if the same, tell user, pet's already been created
+        flash("An instance of this ")
+        render_template("my_account.html") #PICK UP HERE IN CODE
+  
+    else: 
+        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
+        db.session.add(new_user) #add user instance to database with .add built-in func
+        db.session.commit() #then need to commit the change/add to the database
+        flash(f"Thanks for creating your account, {owner_fname} - please log in")
+        #return redirect("/login")
     
 
-
-
-
+    session['owner_fname'] = owner_fname
+    session['owner_lname'] = owner_lname
+    session['owner_email'] = owner_email
+    session.modified = True
+    
+    return jsonify({
+        'owner_fname': owner_fname,
+        'owner_lname': owner_lname,
+        'owner_email': owner_email,
+    }), 200   
 
 
 @app.route("/dashboard/pets")
