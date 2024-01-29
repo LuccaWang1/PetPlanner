@@ -51,6 +51,7 @@ class Pet(db.Model):
     species = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
+    birthday = db.Column(db.Integer)
     age = db.Column(db.Integer)
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
     energy_level = db.Column(db.String(6)) #dropdown: high, medium, low

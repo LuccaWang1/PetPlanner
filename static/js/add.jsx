@@ -29,6 +29,12 @@ function AddPetModal(props) {
     setPetLName(evt.target.value)
   }
 
+  const [birthday, setBirthday] = React.useState("");
+
+  function handleBirthday(evt) {
+    setBirthday(evt.target.value)
+  }
+
   const [age, setAge] = React.useState("");
 
   function handleAge(evt) {
@@ -104,6 +110,7 @@ function AddPetModal(props) {
         species: species,
         pet_fname: petFName,
         pet_lname: petLName,
+        birthday: birthday,
         age: age,
         weight: weight,
         energy_level: energyLevel,
@@ -168,6 +175,11 @@ function AddPetModal(props) {
           </Row>
 
           <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Birthday</Form.Label>
+              <Form.Control value={birthday} onChange={handleBirthday} type="number" placeholder="09/27/2017" />
+            </Form.Group>
+            
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Age</Form.Label>
               <Form.Select value={age} onChange={handleAge} aria-label="Default select example">
@@ -466,15 +478,16 @@ function AddPetModal(props) {
               <Form.Control value={petComment} onChange={handlePetComment} as="textarea" rows={3} />
           </Form.Group>
 
+          <Button variant="primary" type="submit">
+            Save Changes
+          </Button>
         </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.onHide}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit">
-            Save Changes
-          </Button>
+          
         </Modal.Footer>
       </Modal>
     </>

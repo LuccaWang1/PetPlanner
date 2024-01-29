@@ -192,8 +192,9 @@ def create_pet():
     print(pet_data)
 
     species = pet_data.get('species')
-    pet_fname = pet_data.json.get('pet_fname')
+    pet_fname = pet_data.get('pet_fname')
     pet_lname = pet_data.get('pet_lname')
+    birthday = pet_data.get('birthday')
     age = pet_data.get('age')
     weight = pet_data.get('weight')
     energy_level = pet_data.get('energy_level')
@@ -206,9 +207,10 @@ def create_pet():
     insurance_policy_num = pet_data.get('emer_contact_email')
     pet_comment = pet_data.get('pet_comment')
 
-    # search for pet and if pet instance, update pet info, else, create new pet instance HERE
-    # pet = Pet.query.filter_by(pet_fname=pet_fname).first()
-    # print(pet)
+    pet = db.session.query(Owner.owner_id, Pet.pet_fname).select_from(Owner).join(Pet).filter(Owner.owner_id==owner_id, Pet.pet_fname==pet_fname).first()
+    print(pet)
+
+    return "success"
 
     # if pet: #check in db, if in db, tell user
     #     new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance

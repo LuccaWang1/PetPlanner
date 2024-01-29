@@ -7,7 +7,7 @@ from datetime import datetime
 
 import crud
 import model
-from model import Owner, Pet, Specialist, Event
+from model import Owner, Pet, Specialist, Event, Pet_Owner, Pet_Specialist
 import server
 
 os.system("dropdb pets")
@@ -17,26 +17,41 @@ model.connect_to_db(server.app)
 model.db.create_all()
 
 test_user = Owner(
+    owner_id=1, 
     owner_fname="Lucca",
     owner_lname="Test",
     owner_email="luccatest@gmail.com",
     password="Testpassword",
 )
 
-model.db.session.add(test_user) #could do add all and do list of users 
+model.db.session.add(test_user)
 model.db.session.commit()
 
+pet_owner = Pet_Owner(
+    pet_owner_id=1,
+    owner_id=1,
+    pet_id=1,
+)
+
+model.db.session.add(pet_owner)
+model.db.session.commit()
 
 pet = Pet(
+    pet_id=1,
+    species="dog",
     pet_fname="Feefee",
     pet_lname="Wang",
-    energy_level="medium",
     age=6,
-    coat_type="short",
-    animal_type="dog",
     weight="42",
+    energy_level="medium",
+    coat="short",
+    emer_contact_fname="Emily",
+    emer_contact_lname="Wang",
+    emer_contact_phone="",
+    emer_contact_email="test@testemailemer.com",
+    insurance_company="Nationwide",
+    insurance_policy_num="",
     pet_comment="I absolutely love this dog!",
-    insurance="Nationwide"
 )
 
 pet.owners.append(test_user)
@@ -44,17 +59,27 @@ pet.owners.append(test_user)
 model.db.session.add(pet)
 model.db.session.commit()
 
+pet_specialist = Pet_Specialist(
+    pet_specialist_id=1,
+    pet_id=1,
+    specialist_id=1,
+)
+
+model.db.session.add(pet_specialist)
+model.db.session.commit()
+
 specialist = Specialist(
+    specialist_id=1,
+    role="Vet",
     specialist_fname="Carol",
     specialist_lname="Calista",
+    specialist_email="calistaanimalhospital@gmail.com",
+    specialist_phone="(575) 525-1000",
     street="1889 Calle de Ninos",
     street2="Calista",
     city="Las Cruces",
     state="NM",
     zip_code="88005",
-    role="vet",
-    specialist_email="calistaanimalhospital@gmail.com",
-    phone="(575) 525-1000",
     specialist_comment="I love this vet and the office!! Vet for Lily and Feefee",
 )
 
