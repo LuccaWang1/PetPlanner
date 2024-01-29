@@ -187,6 +187,7 @@ def save_new_password():
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
 
+    owner_id = session.get('owner_id')
     pet_data = request.json.get('pet', {})
     print(pet_data)
 
@@ -205,33 +206,33 @@ def create_pet():
     insurance_policy_num = pet_data.get('emer_contact_email')
     pet_comment = pet_data.get('pet_comment')
 
-    pet = Pet.query.filter_by(pet_fname=pet_fname).first()
-    print(pet)
+    # search for pet and if pet instance, update pet info, else, create new pet instance HERE
+    # pet = Pet.query.filter_by(pet_fname=pet_fname).first()
+    # print(pet)
 
-    if pet: #check in db, if in db, tell user
-        #check if all inputs are the same? 
-        #if the same, tell user, pet's already been created
-        flash("An instance of this ")
-        render_template("my_account.html") #PICK UP HERE IN CODE
+    # if pet: #check in db, if in db, tell user
+    #     new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
+    #     db.session.add(new_user) #add user instance to database with .add built-in func
+    #     db.session.commit() #then need to commit the change/add to the database
+    #     flash(f"Thanks for creating your account, {owner_fname} - please log in")
   
-    else: 
-        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
-        db.session.add(new_user) #add user instance to database with .add built-in func
-        db.session.commit() #then need to commit the change/add to the database
-        flash(f"Thanks for creating your account, {owner_fname} - please log in")
-        #return redirect("/login")
+    # else: 
+    #     new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
+    #     db.session.add(new_user) #add user instance to database with .add built-in func
+    #     db.session.commit() #then need to commit the change/add to the database
+    #     flash(f"Thanks for creating your account, {owner_fname} - please log in")
+    #     #return redirect("/login")
     
-
-    session['owner_fname'] = owner_fname
-    session['owner_lname'] = owner_lname
-    session['owner_email'] = owner_email
-    session.modified = True
+    # session['owner_fname'] = owner_fname
+    # session['owner_lname'] = owner_lname
+    # session['owner_email'] = owner_email
+    # session.modified = True
     
-    return jsonify({
-        'owner_fname': owner_fname,
-        'owner_lname': owner_lname,
-        'owner_email': owner_email,
-    }), 200   
+    # return jsonify({
+    #     'owner_fname': owner_fname,
+    #     'owner_lname': owner_lname,
+    #     'owner_email': owner_email,
+    # }), 200   
 
 
 @app.route("/dashboard/pets")
