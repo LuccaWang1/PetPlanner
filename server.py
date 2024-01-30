@@ -60,11 +60,13 @@ def loginhandler():
         flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
         return redirect("/login")
 
+
 @app.route('/logout', methods=['GET'])
 def logout():
     session.clear() # Clear the session data
 
     return redirect("/")
+
 
 @app.route("/create-account")
 def create_account():
@@ -75,6 +77,7 @@ def create_account():
         return redirect("/dashboard")
 
     return render_template("create_account.html")
+
 
 @app.route("/create-account-handler", methods=["POST"])
 def handle_create_account():
@@ -101,6 +104,7 @@ def handle_create_account():
         return redirect("/login")
         #lines 90-92 can be a crud function 
 
+
 @app.route("/dashboard")
 def dashboard():
     """View logged in user's/owner's dashboard."""
@@ -116,6 +120,7 @@ def dashboard():
         flash("You need to log in first.")
         return redirect("/login")
 
+
 @app.route("/my-account")
 def get_account_info():
     """Render my_account.html with user's account information."""
@@ -130,6 +135,7 @@ def get_account_info():
     else:
         flash("You'll need to log in first.")
         return redirect("/login")
+
 
 @app.route("/save-account-info", methods=["POST"])
 def save_account_info():
@@ -182,7 +188,6 @@ def save_new_password():
     """Save the user's new password in the db."""
 
 
-
 @app.route("/add-a-pet", methods=['PUT'])
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
@@ -207,34 +212,56 @@ def create_pet():
     insurance_policy_num = pet_data.get('emer_contact_email')
     pet_comment = pet_data.get('pet_comment')
 
-    pet = db.session.query(Owner.owner_id, Pet.pet_fname).select_from(Owner).join(Pet).filter(Owner.owner_id==owner_id, Pet.pet_fname==pet_fname).first()
+    pet = Pet.query.filter_by(pet_fname=pet_fname).join(Pet.owners).filter(Owner.owner_id==owner_id).first()
     print(pet)
 
-    return "success"
+    if pet: #check in db, if in db, tell user
+        response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
+        return jsonify(response), 200
+        
+    else: 
+        pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+        db.session.add(pet) #add user instance to database with .add built-in func
+        db.session.commit() #then need to commit the change/add to the database
+        response = {"success": True, "status": f"{pet_fname}'s been added!"}
+        return jsonify(response), 200
 
-    # if pet: #check in db, if in db, tell user
-    #     new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
-    #     db.session.add(new_user) #add user instance to database with .add built-in func
-    #     db.session.commit() #then need to commit the change/add to the database
-    #     flash(f"Thanks for creating your account, {owner_fname} - please log in")
-  
+
+@app.route("/add-a-specialist", methods=['PUT'])
+def add_specialist_to_pet():
+    """Create a new instance of the Specialist class that's associated with a pet, and save it in the db."""
+
+    owner_id = session.get('owner_id')
+    specialist_data = request.json.get('specialist', {})
+    print(specialist_data)
+
+    role = specialist_data.get('role')
+    specialist_fname = specialist_data.get('specialist_fname')
+    specialist_lname = specialist_data.get('specialist_lname')
+    specialist_email = specialist_data.get('specialist_email')
+    specialist_phone = specialist_data.get('specialist_phone')
+    street = specialist_data.get('street')
+    street2 = specialist_data.get('street2')
+    city = specialist_data.get('city')
+    state = specialist_data.get('state')
+    zip_code = specialist_data.get('zip_code')
+    specialist_comment = specialist_data.get('specialist_comment')
+
+    # specialist = Specialist.query.filter_by(specialist_fname=specialist_fname).join(Pet.specialists).first()
+    # print(specialist)
+
+    # if specialist: #check in db, if in db, tell user
+    #     response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
+    #     return jsonify(response), 200
+        
     # else: 
-    #     new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
-    #     db.session.add(new_user) #add user instance to database with .add built-in func
+    #     pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+    #     db.session.add(pet) #add user instance to database with .add built-in func
     #     db.session.commit() #then need to commit the change/add to the database
-    #     flash(f"Thanks for creating your account, {owner_fname} - please log in")
-    #     #return redirect("/login")
-    
-    # session['owner_fname'] = owner_fname
-    # session['owner_lname'] = owner_lname
-    # session['owner_email'] = owner_email
-    # session.modified = True
-    
-    # return jsonify({
-    #     'owner_fname': owner_fname,
-    #     'owner_lname': owner_lname,
-    #     'owner_email': owner_email,
-    # }), 200   
+    #     response = {"success": True, "status": f"{pet_fname}'s been added!"}
+    #     return jsonify(response), 200
+
+
 
 
 @app.route("/dashboard/pets")
@@ -243,6 +270,7 @@ def dashboard_pets():
 
     return render_template("pets.html")
 
+
 @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
 def dashboard_pets_pet():
     """View logged in owner's specific pet."""
@@ -250,7 +278,6 @@ def dashboard_pets_pet():
     #need code here 
 
     return render_template("pet.html") #might need to update this 
-
 
 
 if __name__ == "__main__":    

@@ -27,15 +27,6 @@ test_user = Owner(
 model.db.session.add(test_user)
 model.db.session.commit()
 
-pet_owner = Pet_Owner(
-    pet_owner_id=1,
-    owner_id=1,
-    pet_id=1,
-)
-
-model.db.session.add(pet_owner)
-model.db.session.commit()
-
 pet = Pet(
     pet_id=1,
     species="dog",
@@ -56,18 +47,6 @@ pet = Pet(
 
 pet.owners.append(test_user)
 
-model.db.session.add(pet)
-model.db.session.commit()
-
-pet_specialist = Pet_Specialist(
-    pet_specialist_id=1,
-    pet_id=1,
-    specialist_id=1,
-)
-
-model.db.session.add(pet_specialist)
-model.db.session.commit()
-
 specialist = Specialist(
     specialist_id=1,
     role="Vet",
@@ -83,7 +62,9 @@ specialist = Specialist(
     specialist_comment="I love this vet and the office!! Vet for Lily and Feefee",
 )
 
-model.db.session.add(specialist)
+pet.specialists.append(specialist)
+
+model.db.session.add(pet)
 model.db.session.commit()
 
 # def seed_event():
