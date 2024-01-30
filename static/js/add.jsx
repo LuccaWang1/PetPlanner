@@ -724,6 +724,22 @@ function AddSpecialistModal(props) {
             </Row>
 
             <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>What pet or pets would you like to assign this specialist to?</Form.Label>
+                <Form.Select value={role} onChange={handleRole} aria-label="Default select example">
+                  <option>Select</option>
+                  <option value="vet">Vet</option>
+                  <option value="groomer">Groomer</option>
+                  <option value="nail_trimmer">Nail Trimmer</option>
+                  <option value="emergency_vet">Emergency Vet</option>
+                  <option value="emergency_vet">Pharmacy</option>
+                  <option value="doctor">Doctor</option>
+                  <option value="other">Other</option>
+                </Form.Select>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Email</Form.Label>
                 <Form.Control value={specialistEmail} onChange={handleSpecialistEmail} type="email" placeholder="email@email.com" />
