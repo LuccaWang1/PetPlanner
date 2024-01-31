@@ -188,12 +188,25 @@ def save_new_password():
     """Save the user's new password in the db."""
 
 
+
+def validate_pet(pet_data):
+    """Validate a pet's information for number fields if not filled out in React form, then set to these defaults."""
+
+    if pet_data['birthday'] is None:
+        pet_data['birthday'] = 0
+    if pet_data['age'] is None:
+        pet_data['age'] = 0
+    if pet_data['weight'] is None:
+        pet_data['weight'] = 0  
+
 @app.route("/add-a-pet", methods=['PUT'])
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
 
     owner_id = session.get('owner_id')
     pet_data = request.json.get('pet', {})
+    print(pet_data)
+    validate_pet(pet_data)
     print(pet_data)
 
     species = pet_data.get('species')
@@ -227,7 +240,7 @@ def create_pet():
         return jsonify(response), 200
 
 
-@app.route("/get-pets-for-owner", methods=['PUT'])
+@app.route("/get-pets-for-owner")
 def get_existing_pets_assoc_w_owner():
     """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
 

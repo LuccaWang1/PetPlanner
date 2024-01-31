@@ -17,7 +17,6 @@ model.connect_to_db(server.app)
 model.db.create_all()
 
 test_user = Owner(
-    owner_id=1, 
     owner_fname="Lucca",
     owner_lname="Test",
     owner_email="luccatest@gmail.com",
@@ -28,7 +27,6 @@ model.db.session.add(test_user)
 model.db.session.commit()
 
 pet = Pet(
-    pet_id=1,
     species="dog",
     pet_fname="Feefee",
     pet_lname="Wang",
@@ -48,7 +46,6 @@ pet = Pet(
 pet.owners.append(test_user)
 
 specialist = Specialist(
-    specialist_id=1,
     role="Vet",
     specialist_fname="Carol",
     specialist_lname="Calista",

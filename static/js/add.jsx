@@ -145,7 +145,7 @@ function AddPetModal(props) {
           <Form onSubmit={handleAddAPetFormSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Species</Form.Label>
+                <Form.Label>*Species</Form.Label>
                 <Form.Select
                   value={species}
                   onChange={handleSpecies}
@@ -163,7 +163,7 @@ function AddPetModal(props) {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>*First Name</Form.Label>
                 <Form.Control
                   value={petFName}
                   onChange={handlePetFName}
@@ -608,6 +608,8 @@ function AddSpecialistModal(props) {
   const [petsSelected, setPetsSelected] = React.useState("");
 
   function handlePetsSelected(evt) {
+    console.log(evt.target.value) 
+    // if they select multiple, see what that does, might need to update the server.py route for handling this and this func too 
     setPetsSelected(evt.target.value);
   }
 
@@ -760,6 +762,7 @@ function AddSpecialistModal(props) {
                   value={petsSelected}
                   onChange={handlePetsSelected}
                   aria-label="What pet or pets would you like to assign this specialist to?"
+                  multiple
                 >
                   <option>Select</option>
                   {pets.map((pet) => (
