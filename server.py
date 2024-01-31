@@ -192,18 +192,19 @@ def save_new_password():
 def validate_pet(pet_data):
     """Validate a pet's information for number fields if not filled out in React form, then set to these defaults."""
 
-    if pet_data['birthday'] is None:
-        pet_data['birthday'] = 0
-    if pet_data['age'] is None:
-        pet_data['age'] = 0
-    if pet_data['weight'] is None:
-        pet_data['weight'] = 0  
+    if pet_data['birthday'] is not None and not isinstance(pet_data['birthday'], int):
+        pet_data['birthday'] = None
+    if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
+        pet_data['age'] = None
+    if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
+        pet_data['weight'] = None
 
 @app.route("/add-a-pet", methods=['PUT'])
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
 
     owner_id = session.get('owner_id')
+    print(owner_id)
     pet_data = request.json.get('pet', {})
     print(pet_data)
     validate_pet(pet_data)
@@ -225,6 +226,8 @@ def create_pet():
     insurance_policy_num = pet_data.get('emer_contact_email')
     pet_comment = pet_data.get('pet_comment')
 
+    owner = Owner.query.filter_by(owner_id=owner_id).first()
+
     pet = Pet.query.filter_by(pet_fname=pet_fname).join(Pet.owners).filter(Owner.owner_id==owner_id).first()
     print(pet)
 
@@ -234,6 +237,7 @@ def create_pet():
         
     else: 
         pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+        pet.owners.append(owner)
         db.session.add(pet) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         response = {"success": True, "status": f"{pet_fname}'s been added!"}

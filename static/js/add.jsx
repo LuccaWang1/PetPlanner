@@ -102,14 +102,45 @@ function AddPetModal(props) {
   function handleAddAPetFormSubmit(evt) {
     evt.preventDefault();
 
+    // Validation
+    if (species === "" || petFName === "") {
+      alert('Please enter the species type and first name')
+      console.log("input error on species and first name");
+      return;
+    }
+
+    let inputBirthday
+
+    if (birthday === "") {
+      inputBirthday = null;
+    } else {
+      inputBirthday = Number(birthday)
+    }
+    
+    let inputAge
+
+    if (age === "") {
+      inputAge = null;
+    } else {
+      inputAge = Number(age)
+    }
+    
+    let inputWeight
+
+    if (weight === "") {
+      inputWeight = null;
+    } else {
+      inputWeight = Number(weight)
+    }
+
     const addAPetFormInputs = {
       pet: {
         species: species,
         pet_fname: petFName,
         pet_lname: petLName,
-        birthday: birthday,
-        age: age,
-        weight: weight,
+        birthday: inputBirthday,
+        age: inputAge,
+        weight: inputWeight,
         energy_level: energyLevel,
         coat: coat,
         emer_contact_fname: emerContactFName,
@@ -131,7 +162,9 @@ function AddPetModal(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
+        location.reload()
+        // props.onHide() 
+        // console.log(responseData);
       });
   }
 
@@ -196,7 +229,7 @@ function AddPetModal(props) {
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Age</Form.Label>
-                <Form.Select value={age} onChange={handleAge} aria-label="Age">
+                <Form.Select value={age} onChange={handleAge} aria-label="Age" type="number">
                   <option>Select</option>
                   <option value="0">Baby</option>
                   <option value="1">1</option>
