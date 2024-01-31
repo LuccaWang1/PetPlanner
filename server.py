@@ -227,6 +227,46 @@ def create_pet():
         return jsonify(response), 200
 
 
+@app.route("/get-pets-for-owner", methods=['PUT'])
+def get_existing_pets_assoc_w_owner():
+    """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
+
+    #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
+
+    owner_id = session.get('owner_id')
+    print(owner_id)
+
+    # Query the pets associated with the given owner_id
+    owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+    print(owner_pets)
+
+    # Create a list of dictionaries with pet information
+    pets_info = []
+
+    for pet in owner_pets:
+        pets_info.append(
+            {"pet_id": pet.pet_id,
+            "species": pet.species,
+            "pet_fname": pet.pet_fname,
+            "pet_lname": pet.pet_lname,
+            "birthday": pet.birthday,
+            "age": pet.age,
+            "weight": pet.weight,
+            "energy_level": pet.energy_level,
+            "coat": pet.coat,
+            "emer_contact_fname": pet.emer_contact_fname,
+            "emer_contact_lname": pet.emer_contact_lname,
+            "emer_contact_phone": pet.emer_contact_phone,
+            "emer_contact_email": pet.emer_contact_email, 
+            "insurance_company": pet.insurance_company,
+            "insurance_policy_num": pet.insurance_policy_num, 
+            "pet_comment": pet.pet_comment,
+            }
+        )
+    print(pets_info)
+    return jsonify(pets_info)
+
+
 @app.route("/add-a-specialist", methods=['PUT'])
 def add_specialist_to_pet():
     """Create a new instance of the Specialist class that's associated with a pet, and save it in the db."""
@@ -247,10 +287,15 @@ def add_specialist_to_pet():
     zip_code = specialist_data.get('zip_code')
     specialist_comment = specialist_data.get('specialist_comment')
 
-    # specialist = Specialist.query.filter_by(specialist_fname=specialist_fname).join(Pet.specialists).first()
-    # print(specialist)
+    #we have the owner id, then pull pets associated w/ owner, then pull specialists associated with all the pets, then query that set of the specialist
+    #add in owner_id below 
+    specialist = Specialist.query.filter_by(specialist_lname=specialist_lname).join(Pet.specialists).first()
+    print(specialist)
 
     # if specialist: #check in db, if in db, tell user
+    #if they're already in db, just add them to the pet 
+    #for pet add specialist 
+    #for specialist add pet  
     #     response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
     #     return jsonify(response), 200
         

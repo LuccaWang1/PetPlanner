@@ -5,7 +5,7 @@ console.log("jsx is running");
 // Import necessary components
 const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
-// START add a pet feature modal
+// START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
   //START nested functions for pet inputs
   const [species, setSpecies] = React.useState("");
@@ -131,7 +131,7 @@ function AddPetModal(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData)
+        console.log(responseData);
       });
   }
 
@@ -149,7 +149,7 @@ function AddPetModal(props) {
                 <Form.Select
                   value={species}
                   onChange={handleSpecies}
-                  aria-label="Default select example"
+                  aria-label="Species"
                 >
                   <option>Select</option>
                   <option value="bird">Bird</option>
@@ -196,11 +196,7 @@ function AddPetModal(props) {
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Age</Form.Label>
-                <Form.Select
-                  value={age}
-                  onChange={handleAge}
-                  aria-label="Default select example"
-                >
+                <Form.Select value={age} onChange={handleAge} aria-label="Age">
                   <option>Select</option>
                   <option value="0">Baby</option>
                   <option value="1">1</option>
@@ -321,7 +317,7 @@ function AddPetModal(props) {
                 <Form.Select
                   value={weight}
                   onChange={handleWeight}
-                  aria-label="Default select example"
+                  aria-label="Weight (lbs.)"
                 >
                   <option>Select</option>
                   <option value="1">1</option>
@@ -442,7 +438,7 @@ function AddPetModal(props) {
                 <Form.Select
                   value={energyLevel}
                   onChange={handleEnergyLevel}
-                  aria-label="Default select example"
+                  aria-label="Energy Level"
                 >
                   <option>Select</option>
                   <option value="low">Low</option>
@@ -456,7 +452,7 @@ function AddPetModal(props) {
                 <Form.Select
                   value={coat}
                   onChange={handleCoat}
-                  aria-label="Default select example"
+                  aria-label="Coat"
                 >
                   <option>Coat</option>
                   <option value="hairless">Hairless</option>
@@ -543,17 +539,17 @@ function AddPetModal(props) {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Save Changes
-            </Button>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={props.onHide}>
+                Cancel
+              </Button>
+
+              <Button variant="primary" type="submit">
+                Save Changes
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-            Cancel
-          </Button>
-
-        </Modal.Footer>
       </Modal>
     </>
   );
@@ -575,10 +571,7 @@ function AddAPet() {
   );
 }
 
-const add_pet_div = document.querySelector("#add_pet");
-console.log(add_pet_div);
-
-ReactDOM.render(<AddAPet />, add_pet_div);
+ReactDOM.render(<AddAPet />, document.querySelector("#add_pet"));
 // END add a pet feature modal
 
 
@@ -587,107 +580,128 @@ ReactDOM.render(<AddAPet />, add_pet_div);
 
 
 
-// START add a specialist feature modal
+
+
+// START ADD A SPECIALIST FEATURE MODAL
 function AddSpecialistModal(props) {
-    //START nested functions for specialist inputs
-    const [role, setRole] = React.useState("");
-  
-    function handleRole(evt) {
-      setRole(evt.target.value);
-    }
-  
-    const [specialistFName, setSpecialistFName] = React.useState("");
-  
-    function handleSpecialistFName(evt) {
-      setSpecialistFName(evt.target.value);
-    }
-  
-    const [specialistLName, setSpecialistLName] = React.useState("");
-  
-    function handleSpecialistLName(evt) {
-      setSpecialistLName(evt.target.value);
-    }
-  
-    const [specialistEmail, setSpecialistEmail] = React.useState("");
-  
-    function handleSpecialistEmail(evt) {
-      setSpecialistEmail(evt.target.value);
-    }
-  
-    const [specialistPhone, setSpecialistPhone] = React.useState("");
-  
-    function handleSpecialistPhone(evt) {
-      setSpecialistPhone(evt.target.value);
-    }
-  
-    const [street, setStreet] = React.useState("");
-  
-    function handleStreet(evt) {
-      setStreet(evt.target.value);
-    }
-  
-    const [street2, setStreet2] = React.useState("");
-  
-    function handleStreet2(evt) {
-      setStreet2(evt.target.value);
-    }
-  
-    const [city, setCity] = React.useState("");
-  
-    function handleCity(evt) {
-      setCity(evt.target.value);
-    }
-  
-    const [state, setState] = React.useState("");
-  
-    function handleState(evt) {
-      setState(evt.target.value);
-    }
-  
-    const [zipCode, setZipCode] = React.useState("");
-  
-    function handleZipCode(evt) {
-      setZipCode(evt.target.value);
-    }
-  
-    const [specialistComment, setSpecialistComment] = React.useState("");
-  
-    function handleSpecialistComment(evt) {
-      setSpecialistComment(evt.target.value);
-    }
-  
-    //submit form, save to db
-    function handleAddASpecialistFormSubmit(evt) {
-      evt.preventDefault();
-  
-      const addASpecialistFormInputs = {
-        specialist: {
-          role: role,
-          specialist_fname: specialistFName,
-          specialist_lname: specialistLName,
-          specialist_email: specialistEmail,
-          specialist_phone: specialistPhone,
-          street: street,
-          street2: street2,
-          city: city,
-          state: state,
-          zip_code: zipCode,
-          specialist_comment: specialistComment,
-        },
-      };
-  
-      fetch("/add-a-specialist", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(addASpecialistFormInputs),
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          console.log(responseData)
-        });
-    }
+  console.log("in the AddSpecialistModal function")
+
+  //START nested functions for specialist inputs
+  const [role, setRole] = React.useState("");
+
+  function handleRole(evt) {
+    setRole(evt.target.value);
+  }
+
+  const [specialistFName, setSpecialistFName] = React.useState("");
+
+  function handleSpecialistFName(evt) {
+    setSpecialistFName(evt.target.value);
+  }
+
+  const [specialistLName, setSpecialistLName] = React.useState("");
+
+  function handleSpecialistLName(evt) {
+    setSpecialistLName(evt.target.value);
+  }
+
+  const [petsSelected, setPetsSelected] = React.useState("");
+
+  function handlePetsSelected(evt) {
+    setPetsSelected(evt.target.value);
+  }
+
+  const [specialistEmail, setSpecialistEmail] = React.useState("");
+
+  function handleSpecialistEmail(evt) {
+    setSpecialistEmail(evt.target.value);
+  }
+
+  const [specialistPhone, setSpecialistPhone] = React.useState("");
+
+  function handleSpecialistPhone(evt) {
+    setSpecialistPhone(evt.target.value);
+  }
+
+  const [street, setStreet] = React.useState("");
+
+  function handleStreet(evt) {
+    setStreet(evt.target.value);
+  }
+
+  const [street2, setStreet2] = React.useState("");
+
+  function handleStreet2(evt) {
+    setStreet2(evt.target.value);
+  }
+
+  const [city, setCity] = React.useState("");
+
+  function handleCity(evt) {
+    setCity(evt.target.value);
+  }
+
+  const [state, setState] = React.useState("");
+
+  function handleState(evt) {
+    setState(evt.target.value);
+  }
+
+  const [zipCode, setZipCode] = React.useState("");
+
+  function handleZipCode(evt) {
+    setZipCode(evt.target.value);
+  }
+
+  const [specialistComment, setSpecialistComment] = React.useState("");
+
+  function handleSpecialistComment(evt) {
+    setSpecialistComment(evt.target.value);
+  }
+
+  //submit form, save to db
+  function handleAddASpecialistFormSubmit(evt) {
+    evt.preventDefault();
+
+    console.log("in the handleAddASpecialistFormSubmit function")
+    
+    const addASpecialistFormInputs = {
+      specialist: {
+        role: role,
+        specialist_fname: specialistFName,
+        specialist_lname: specialistLName,
+        specialist_email: specialistEmail,
+        specialist_phone: specialistPhone,
+        street: street,
+        street2: street2,
+        city: city,
+        state: state,
+        zip_code: zipCode,
+        specialist_comment: specialistComment,
+      },
+    };
+
+    fetch("/add-a-specialist", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(addASpecialistFormInputs),
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+      });
+  }
+
+  const [pets, setPets] = React.useState([]); // State to store pets associated with owner_id
+
+  React.useEffect(() => {
+    // Fetch pets associated with the owner_id
+    fetch(`/get-pets-for-owner`)
+      .then((response) => response.json())
+      .then((petsInfoData) => setPets(petsInfoData));
+  }, []); // Empty dependency array, runs once only when component mounts
 
   return (
     <>
@@ -700,7 +714,11 @@ function AddSpecialistModal(props) {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Role</Form.Label>
-                <Form.Select value={role} onChange={handleRole} aria-label="Default select example">
+                <Form.Select
+                  value={role}
+                  onChange={handleRole}
+                  aria-label="Default select example"
+                >
                   <option>Select</option>
                   <option value="vet">Vet</option>
                   <option value="groomer">Groomer</option>
@@ -714,27 +732,41 @@ function AddSpecialistModal(props) {
 
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control value={specialistFName} onChange={handleSpecialistFName} type="text" placeholder="" />
+                <Form.Control
+                  value={specialistFName}
+                  onChange={handleSpecialistFName}
+                  type="text"
+                  placeholder=""
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control value={specialistLName} onChange={handleSpecialistLName} type="text" placeholder="" />
+                <Form.Control
+                  value={specialistLName}
+                  onChange={handleSpecialistLName}
+                  type="text"
+                  placeholder=""
+                />
               </Form.Group>
             </Row>
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>What pet or pets would you like to assign this specialist to?</Form.Label>
-                <Form.Select value={role} onChange={handleRole} aria-label="Default select example">
+                <Form.Label>
+                  What pet or pets would you like to assign this specialist to?
+                </Form.Label>
+                <Form.Select
+                  value={petsSelected}
+                  onChange={handlePetsSelected}
+                  aria-label="What pet or pets would you like to assign this specialist to?"
+                >
                   <option>Select</option>
-                  <option value="vet">Vet</option>
-                  <option value="groomer">Groomer</option>
-                  <option value="nail_trimmer">Nail Trimmer</option>
-                  <option value="emergency_vet">Emergency Vet</option>
-                  <option value="emergency_vet">Pharmacy</option>
-                  <option value="doctor">Doctor</option>
-                  <option value="other">Other</option>
+                  {pets.map((pet) => (
+                    <option key={pet.pet_id} value={pet.pet_id}>
+                      {pet.species}: {pet.pet_fname} {pet.pet_lname}
+                    </option>
+                  ))}
                 </Form.Select>
               </Form.Group>
             </Row>
@@ -742,23 +774,42 @@ function AddSpecialistModal(props) {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Email</Form.Label>
-                <Form.Control value={specialistEmail} onChange={handleSpecialistEmail} type="email" placeholder="email@email.com" />
+                <Form.Control
+                  value={specialistEmail}
+                  onChange={handleSpecialistEmail}
+                  type="email"
+                  placeholder="email@email.com"
+                  aria-label="Email"
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Phone</Form.Label>
-                <Form.Control value={specialistPhone} onChange={handleSpecialistPhone} type="email" placeholder="(xxx) xxx-xxxx" />
+                <Form.Control
+                  value={specialistPhone}
+                  onChange={handleSpecialistPhone}
+                  type="number"
+                  placeholder="(xxx) xxx-xxxx"
+                />
               </Form.Group>
             </Row>
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
               <Form.Label>Address</Form.Label>
-              <Form.Control value={street} onChange={handleStreet} type="text" placeholder="1234 Main Street" />
+              <Form.Control
+                value={street}
+                onChange={handleStreet}
+                type="text"
+                placeholder="1234 Main Street"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridAddress2">
               <Form.Label>Address 2</Form.Label>
-              <Form.Control value={street2} onChange={handleStreet2} type="text"
+              <Form.Control
+                value={street2}
+                onChange={handleStreet2}
+                type="text"
                 placeholder="Apartment, studio, or floor"
               />
             </Form.Group>
@@ -771,12 +822,22 @@ function AddSpecialistModal(props) {
 
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label>State</Form.Label>
-                <Form.Control value={state} onChange={handleState} type="text" placeholder="CA" />
+                <Form.Control
+                  value={state}
+                  onChange={handleState}
+                  type="text"
+                  placeholder="CA"
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label>Zip</Form.Label>
-                <Form.Control value={zipCode} onChange={handleZipCode} type="number" placeholder="66049" />
+                <Form.Control
+                  value={zipCode}
+                  onChange={handleZipCode}
+                  type="number"
+                  placeholder="66049"
+                />
               </Form.Group>
             </Row>
 
@@ -785,27 +846,32 @@ function AddSpecialistModal(props) {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Comments</Form.Label>
-              <Form.Control value={specialistComment} onChange={handleSpecialistComment} as="textarea" rows={3} />
+              <Form.Control
+                value={specialistComment}
+                onChange={handleSpecialistComment}
+                as="textarea"
+                rows={3}
+              />
             </Form.Group>
 
-            <Button variant="primary" onClick={props.onHide}>
-            Save Changes
-            </Button>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={props.onHide}>
+                Cancel
+              </Button>
+
+              <Button variant="primary" onClick={props.onHide}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-            Cancel
-          </Button>
-          
-        </Modal.Footer>
       </Modal>
     </>
   );
 }
 
 function AddASpecialist() {
-  console.log("Add a specialist");
+  console.log("In the AddASpecialist function");
 
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -820,22 +886,8 @@ function AddASpecialist() {
   );
 }
 
-const add_specialist_div = document.querySelector("#add_specialist");
-console.log(add_specialist_div);
-
-ReactDOM.render(<AddASpecialist />, add_specialist_div);
+ReactDOM.render(<AddASpecialist />, document.querySelector("#add_specialist"));
 // END add a specialist feature modal
-
-
-
-
-
-
-
-
-
-
-
 
 // START add an event feature modal
 function AddEventModal(props) {

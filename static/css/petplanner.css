@@ -156,3 +156,32 @@ input {
 .LW-dropdown-content a:hover {
     background-color: #72bcd4;
 }
+
+.bottomnav-right a {
+    float: right;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #d4ebf2;
+    color: #72bcd4;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Add the background color to bottom navbar links on hover */
+.bottomnav-right a:hover {
+    background-color: #72bcd4;
+    color: #d4ebf2;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Right-aligned bottomnav section */
+.bottomnav-right {
+    float: right;
+    color: #72bcd4;
+    background-color: #d4ebf2;
+    width: 100%;
+    bottom: 0;
+}

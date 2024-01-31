@@ -85,7 +85,18 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
+  <footer class="bottomnav-right">
+    <!-- footer navbar -->
+    <div class="bottomnav-right">
+      <div class="bottomnav-right">
+        {% block bottomnav %}
+        {% if "owner_email" in session %}
+        <a class="bottomnav-right" href="/">Back to homepage - you'll still be logged in</a>
+        {% else %}
+        {% endif %}
+        {% endblock %}
+      </div>
+    </div> 
   </footer>
 
   <script type="text/jsx" src="/static/js/add.jsx"></script>
