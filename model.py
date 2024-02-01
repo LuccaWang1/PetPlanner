@@ -92,6 +92,7 @@ class Specialist(db.Model):
 
     specialist_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     role = db.Column(db.String(15), nullable=False) #dropdown select menu: vet, groomer, doctor, emergency vet, pharmacy
+    specialist_company = db.Column(db.String(25))
     specialist_fname = db.Column(db.String(25))
     specialist_lname = db.Column(db.String(25), nullable=False)
     specialist_email = db.Column(db.String(40))
@@ -144,7 +145,7 @@ class Event(db.Model):
     start = db.Column(db.DateTime, nullable=False)
     end = db.Column(db.DateTime, nullable=False)
     title = db.Column(db.String(40), nullable=False)
-    
+
     todays_date = db.Column(db.DateTime) #watch this, might rename to date_created? 
     
     event_comment = db.Column(db.Text)
