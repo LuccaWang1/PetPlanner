@@ -14,7 +14,13 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js
 <h1>My Events</h1>
 <p></p>
 <div id='calendar'></div>
+<p></p>
+<script src="/static/js/calendar.js"></script>
+{% endblock %}
 
-<script src="static/js/my_events.js"></script>
+{% block bottomnav %}
+{% if "owner_email" in session %}
+<a class="bottomnav-right" href="/dashboard">Back to my babies</a>
+{% endif %}
 {% endblock %}
 <!-- end body -->

@@ -335,13 +335,24 @@ def add_specialist_to_pet():
     #     return jsonify(response), 200
 
 
+@app.route("/calendar-events")
+def show_cal_events():
+    """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
+    
+    owner_id = session.get('owner_id')
+    print(owner_id)
+
+    events = Event.query.filter_by(owner_id=owner_id).all()
+    print(events)
+
+    return jsonify(events)
 
 
-@app.route("/dashboard/pets")
-def dashboard_pets():
-    """View logged in owner's pets list."""
+@app.route("/my-events")
+def render_events():
+    """View logged in owner's pet's events in the calendar."""
 
-    return render_template("pets.html")
+    return render_template("my_events.html")
 
 
 @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 

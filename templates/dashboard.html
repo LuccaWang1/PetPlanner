@@ -25,5 +25,10 @@
     <li>Pet3</li>
 </ul>
 <p></p>
-<div id='calendar'></div>
+{% endblock %}
+
+{% block bottomnav %}
+{% if "owner_email" in session %}
+<a class="bottomnav-right" href="/">Homepage - you'll still be logged in</a>
+{% endif %}
 {% endblock %}

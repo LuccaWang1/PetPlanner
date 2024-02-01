@@ -145,8 +145,7 @@ class Event(db.Model):
     start = db.Column(db.DateTime, nullable=False)
     end = db.Column(db.DateTime, nullable=False)
     title = db.Column(db.String(40), nullable=False)
-
-    todays_date = db.Column(db.DateTime) #watch this, might rename to date_created? 
+    groupId = 
     
     event_comment = db.Column(db.Text)
     location = db.Column(db.String(40))

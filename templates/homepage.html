@@ -22,7 +22,12 @@ The app's integration with Google Calendar events allows users to conveniently p
 <!-- might make the line directly above pink with cursive ? -->
 {% endblock %}
 
-{% block bottomnav %}
+{% if "owner_email" in session %}
 <a class="bottomnav-right" href="/dashboard">Back to my babies</a>
+{% endif %}
+
+{% block bottomnav %}
+{% if "owner_email" in session %}
+<a class="bottomnav-right" href="/dashboard">Back to my babies</a>
+{% endif %}
 {% endblock %}
-<!-- end body -->

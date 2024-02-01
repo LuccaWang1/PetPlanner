@@ -650,11 +650,10 @@ function AddSpecialistModal(props) {
   const [allPetsSelected, setAllPetsSelected] = React.useState("");
   
   function handlePetSelected(evt) { 
-    setPetSelected(evt.target.value);
+    setPetSelected(evt.target.value); //pull value from dropdown menu
     
-    //if this and all are selected, prioritize all/handleAllPetsSelected
     if (setAllPetsSelected !== "") {
-      setAllPetsSelected("");
+      setAllPetsSelected(""); //but if the toggle for all pets is selected, then regardless of what's selected set this to None
     }}
 
   function handleAllPetsSelected(evt) { 

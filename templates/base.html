@@ -60,7 +60,7 @@
       {% if "owner_email" in session %}
       <a class="active" href="/dashboard">Dashboard</a>
       <a href="#mypets">My Pets</a>
-      <a href="#myevents">My Events</a>
+      <a href="/my-events">My Events</a>
       <div class="LW-dropdown">
         <button class="LW-dropbtn">Add
           <i class="fa fa-caret-down"></i>
@@ -97,16 +97,11 @@
     <div class="bottomnav-right">
       <div class="bottomnav-right">
         {% block bottomnav %}
-        {% if "owner_email" in session %}
-        <a class="bottomnav-right" href="/">Back to homepage - you'll still be logged in</a>
-        {% else %}
-        {% endif %}
         {% endblock %}
       </div>
     </div> 
   </footer>
 
-  <script type="text/js" src="/static/js/calendar.js"></script>
   <script type="text/jsx" src="/static/js/add.jsx"></script>
 </body>
 </html>

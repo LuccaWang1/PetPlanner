@@ -74,7 +74,11 @@
 </form>
 
 </br></br>
-
 <script src="static/js/my_account.js"></script>
 {% endblock %}
-<!-- end body -->
+
+{% block bottomnav %}
+{% if "owner_email" in session %}
+<a class="bottomnav-right" href="/dashboard">Back to my babies</a>
+{% endif %}
+{% endblock %}
