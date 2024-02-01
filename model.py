@@ -141,12 +141,15 @@ class Event(db.Model):
     __tablename__ = "events"
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    todays_date = db.Column(db.DateTime) #watch this, might rename to date_created? 
-    title = db.Column(db.String(40), nullable=False)
-    event_comment = db.Column(db.Text)
-    location = db.Column(db.String(40))
     start = db.Column(db.DateTime, nullable=False)
     end = db.Column(db.DateTime, nullable=False)
+    title = db.Column(db.String(40), nullable=False)
+    
+    todays_date = db.Column(db.DateTime) #watch this, might rename to date_created? 
+    
+    event_comment = db.Column(db.Text)
+    location = db.Column(db.String(40))
+    
     timeZone = db.Column(db.String, nullable=False)
     #notification = db.Column(db.String) #yes or no - two buttons or dropdown menu #might need to add a column for the timing of the notification? 
 

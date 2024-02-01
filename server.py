@@ -284,6 +284,16 @@ def get_existing_pets_assoc_w_owner():
     return jsonify(pets_info)
 
 
+def validate_specialist(specialist_data):
+    """Validate a specialist's information for number fields if not filled out in React form, then set to these defaults."""
+
+    if pet_data['birthday'] is not None and not isinstance(pet_data['birthday'], int):
+        pet_data['birthday'] = None
+    if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
+        pet_data['age'] = None
+    if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
+        pet_data['weight'] = None
+
 @app.route("/add-a-specialist", methods=['PUT'])
 def add_specialist_to_pet():
     """Create a new instance of the Specialist class that's associated with a pet, and save it in the db."""
@@ -293,6 +303,7 @@ def add_specialist_to_pet():
     print(specialist_data)
 
     role = specialist_data.get('role')
+    specialist_company = specialist_data.get('specialist_company')
     specialist_fname = specialist_data.get('specialist_fname')
     specialist_lname = specialist_data.get('specialist_lname')
     specialist_email = specialist_data.get('specialist_email')
@@ -309,7 +320,7 @@ def add_specialist_to_pet():
     specialist = Specialist.query.filter_by(specialist_lname=specialist_lname).join(Pet.specialists).first()
     print(specialist)
 
-    # if specialist: #check in db, if in db, tell user
+    #if specialist: #check in db, if in db, tell user
     #if they're already in db, just add them to the pet 
     #for pet add specialist 
     #for specialist add pet  

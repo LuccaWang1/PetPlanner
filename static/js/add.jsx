@@ -627,6 +627,12 @@ function AddSpecialistModal(props) {
     setRole(evt.target.value);
   }
 
+  const [specialistCompany, setSpecialistCompany] = React.useState("");
+
+  function handleSpecialistCompany(evt) {
+    setSpecialistCompany(evt.target.value);
+  }
+
   const [specialistFName, setSpecialistFName] = React.useState("");
 
   function handleSpecialistFName(evt) {
@@ -713,6 +719,7 @@ function AddSpecialistModal(props) {
     const addASpecialistFormInputs = {
       specialist: {
         role: role,
+        specialist_company: specialistCompany,
         specialist_fname: specialistFName,
         specialist_lname: specialistLName,
         specialist_email: specialistEmail,
@@ -773,6 +780,16 @@ function AddSpecialistModal(props) {
                   <option value="doctor">Doctor</option>
                   <option value="other">Other</option>
                 </Form.Select>
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>Company</Form.Label>
+                <Form.Control
+                  value={specialistCompany}
+                  onChange={handleSpecialistCompany}
+                  type="text"
+                  placeholder=""
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridEmail">
