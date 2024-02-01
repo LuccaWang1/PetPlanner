@@ -5,6 +5,7 @@ console.log("jsx is running");
 // Import necessary components
 const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
+
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
   //START nested functions for pet inputs
@@ -638,12 +639,21 @@ function AddSpecialistModal(props) {
     setSpecialistLName(evt.target.value);
   }
 
-  const [petsSelected, setPetsSelected] = React.useState("");
+  // START Selecting a pet or all pets 
+  const [petSelected, setPetSelected] = React.useState("");
+  const [allPetsSelected, setAllPetsSelected] = React.useState("");
+  
+  function handlePetSelected(evt) { 
+    setPetSelected(evt.target.value);
+    
+    //if this and all are selected, prioritize all/handleAllPetsSelected
+    if (setAllPetsSelected !== "") {
+      setAllPetsSelected("");
+    }}
 
-  function handlePetsSelected(evt) {
-    console.log(evt.target.value) 
-    // if they select multiple, see what that does, might need to update the server.py route for handling this and this func too 
-    setPetsSelected(evt.target.value);
+  function handleAllPetsSelected(evt) { 
+    setAllPetsSelected(evt.target.value);
+    setPetSelected(""); // if this is selected, then void the handlePetSelected option
   }
 
   const [specialistEmail, setSpecialistEmail] = React.useState("");
@@ -748,7 +758,7 @@ function AddSpecialistModal(props) {
           <Form onSubmit={handleAddASpecialistFormSubmit}>
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Role</Form.Label>
+                <Form.Label>*Role</Form.Label>
                 <Form.Select
                   value={role}
                   onChange={handleRole}
@@ -776,7 +786,7 @@ function AddSpecialistModal(props) {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Last Name</Form.Label>
+                <Form.Label>*Last Name</Form.Label>
                 <Form.Control
                   value={specialistLName}
                   onChange={handleSpecialistLName}
@@ -787,23 +797,26 @@ function AddSpecialistModal(props) {
             </Row>
 
             <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>
+                  *What pet or pets would you like to assign this specialist to?
+              </Form.Label>
+              <Form.Select value={petSelected} onChange={handlePetSelected}     aria-label="Select the pet this specialist helps care for:">
+                <option>Or, select one of your pets</option>
+                {pets.map((pet) => (
+                  <option key={pet.pet_id} value={pet.pet_id}>
+                  {pet.species}: {pet.pet_fname} {pet.pet_lname}
+                  </option>
+                ))}
+              </Form.Select>
+              </Form.Group>
+              
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>
-                  What pet or pets would you like to assign this specialist to?
-                </Form.Label>
-                <Form.Select
-                  value={petsSelected}
-                  onChange={handlePetsSelected}
-                  aria-label="What pet or pets would you like to assign this specialist to?"
-                  multiple
-                >
-                  <option>Select</option>
-                  {pets.map((pet) => (
-                    <option key={pet.pet_id} value={pet.pet_id}>
-                      {pet.species}: {pet.pet_fname} {pet.pet_lname}
-                    </option>
-                  ))}
-                </Form.Select>
+                <Form.Check value={allPetsSelected} onChange={handleAllPetsSelected}
+                  type="switch"
+                  id="custom-switch"
+                  label="Apply this specialist to all my pets"
+                />
               </Form.Group>
             </Row>
 
@@ -895,7 +908,7 @@ function AddSpecialistModal(props) {
                 Cancel
               </Button>
 
-              <Button variant="primary" onClick={props.onHide}>
+              <Button variant="primary" onClick={props.onHide} type="submit">
                 Save Changes
               </Button>
             </Modal.Footer>
@@ -947,16 +960,18 @@ function AddEventModal(props) {
               <Form.Label>Event title</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
+            
+            <Modal.Footer>
+              <Button variant="secondary" onClick={props.onHide}>
+                Cancel
+              </Button>
+
+              <Button variant="primary" onClick={props.onHide} type="submit">
+                Save Changes
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={props.onHide}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
