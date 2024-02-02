@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, flash, session, redirect, jso
 import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
 import crud
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = os.environ["KEY"] # Required to use Flask sessions
@@ -355,43 +356,54 @@ def render_events():
     return render_template("my_events.html")
 
 
-@app.route('/put-events-on-cal', methods=['GET'])
+@app.route('/put-events-on-cal')
 def publish_events():
     """Publish events on the calendar."""
 
-    #get user from session
+    owner_id = session.get('owner_id')
 
     if 'owner_email' not in session:
         return jsonify({'error': 'User not logged in'}), 401
     
-#     start_str = request.args.get('start')
-#     end_str = request.args.get('end')
+    start_str = request.args.get('start')
+    end_str = request.args.get('end')
 
-#     if start_str is None or end_str is None: 
-#         return jsonify({'error': 'Missing start or end parameter'}), 400
+    if start_str is None or end_str is None: 
+        return jsonify({'error': 'Missing start or end parameter'}), 400
     
-#     try: 
-#         month_start = datetime.fromisoformat(start_str)
-#         month_end = datetime.fromisoformat(end_str)
+    try: 
+        month_start = datetime.fromisoformat(start_str)
+        month_end = datetime.fromisoformat(end_str)
 
-#     except ValueError:
-#         return jsonify({'error': 'Invalid date format'}), 400
+    except ValueError:
+        return jsonify({'error': 'Invalid date format'}), 400
     
-#     events = Event.query.filter(
-#         Event.user_id == user_id,
-#         Event.start_date.between(month_start.date(), month_end.date()), 
-#         Event.deleted_on.is_(None)
-#     ).all()
+    events = Event.query.filter(
+        Event.owner_id == owner_id,
+        Event.start_date.between(month_start.date(), month_end.date()), 
+        Event.deleted_on.is_(None)
+    ).all()
 
-#     events_data = []
-#     for event in events:
-#         events_data.append({
-#             'event_id': event.event_id,
-#             'title' #etc
-#         })
+    events_data = []
+ 
+    for event in events:
+        events_data.append({
+            'event_id': event.event_id,
+            'title': event.title, 
+            'start_date': event.start_date,
+            'start_time': event.start_date, 
+            'end_date': event.end_date,
+            'end_time': event.end_time, 
+            'allDay': event.allDAy,
+            'description': event.description,
+            'extendedProps': {
+                'location': event.location,
+            }
+        })
 
-#     response_data = {'events': events_data}
-#     return jsonify(response_data)
+    response_data = {'events': events_data}
+    
+    return jsonify(response_data)
 
 
 # @app.route('/create-event', methods=['POST', 'GET', 'PUT'])

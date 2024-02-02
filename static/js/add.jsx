@@ -567,7 +567,7 @@ function AddPetModal(props) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Comments</Form.Label>
+              <Form.Label>Notes</Form.Label>
               <Form.Control
                 value={petComment}
                 onChange={handlePetComment}
@@ -914,7 +914,7 @@ function AddSpecialistModal(props) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Comments</Form.Label>
+              <Form.Label>Notes</Form.Label>
               <Form.Control
                 value={specialistComment}
                 onChange={handleSpecialistComment}
@@ -994,6 +994,12 @@ function AddEventModal(props) {
     setStartDate(evt.target.value);
   }
 
+  const [allDay, setAllDay] = React.useState("");
+
+  function handleAllDay(evt) {
+    setAllDay(evt.target.value);
+  }
+
   const [startTime, setStartTime] = React.useState("");
 
   function handleStartTime(evt) {
@@ -1026,7 +1032,8 @@ function AddEventModal(props) {
         start_time: startTime,
         end_date: endDate,
         end_time: endTime,
-        extendedProp: {
+        allDay: boolTF,
+        extendedProps: {
           location: location,
         } 
       },
@@ -1100,6 +1107,14 @@ function AddEventModal(props) {
                 />
               </Form.Group>
 
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Check value={allDay} onChange={handleAllDay}
+                  type="switch"
+                  id="all-day-rose"
+                  label="All Day (yes when on)"
+                />
+              </Form.Group>
+
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Start Time</Form.Label>
                 <Form.Control
@@ -1138,12 +1153,12 @@ function AddEventModal(props) {
 
             <Row className="mb-3">
               <Form.Group controlId="formGridPassword">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  value={eventDescription} onChange={handleEventDescription}
-                  type="text"
+                <Form.Label>Notes</Form.Label>
+                <Form.Control value={eventDescription} onChange={handleEventDescription}
                   placeholder=""
                   aria-label="Description"
+                  as="textarea"
+                  rows={3}
                 />
               </Form.Group>
             </Row>

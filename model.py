@@ -142,13 +142,13 @@ class Event(db.Model):
     __tablename__ = "events"
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    title = db.Column(db.String(40), nullable=False)
     location = db.Column(db.String(40))
-    
     start_date = db.Column(db.Date, nullable=False)
     start_time = db.Column(db.Time)
     end_date = db.Column(db.Date, nullable=False)
     end_time = db.Column(db.Time)
-    title = db.Column(db.String(40), nullable=False)
+    allDay = db.Column(db.Boolean, default=False)
     description = db.Column(db.Text)
 
     owners = db.relationship("Owner", back_populates="events", secondary="owner_events")
