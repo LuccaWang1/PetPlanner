@@ -5,6 +5,12 @@ console.log("add.jsx is running");
 // Import necessary components
 const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
+import React from 'react';
+
+import catAndDogBreeds from './project1-pet-planner/animal_breeds.py';
+
+const { cat_breeds, dog_breeds } = catAndDogBreeds;
+
 
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
@@ -37,6 +43,12 @@ function AddPetModal(props) {
 
   function handleAge(evt) {
     setAge(evt.target.value);
+  }
+
+  const [breed, setBreed] = React.useState("");
+
+  function handleBreed(evt) {
+    setBreed(evt.target.value);
   }
 
   const [weight, setWeight] = React.useState("");
@@ -141,6 +153,7 @@ function AddPetModal(props) {
         pet_lname: petLName,
         birthday: inputBirthday,
         age: inputAge,
+        breed: breed,
         weight: inputWeight,
         energy_level: energyLevel,
         coat: coat,
@@ -346,6 +359,21 @@ function AddPetModal(props) {
                 </Form.Select>
               </Form.Group>
 
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Breed</Form.Label>
+                <Form.Select value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+                  <option>Select</option>
+                  {species === "dog" && dog_breeds.map((dogBreed, index) => (
+                    <option key={index} value={dogBreed}>{dogBreed}</option>
+                  ))}
+                  {species === "cat" && cat_breeds.map((catBreed, index) => (
+                    <option key={index} value={catBreed}>{catBreed}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Weight (lbs.)</Form.Label>
                 <Form.Select
@@ -825,11 +853,11 @@ function AddSpecialistModal(props) {
                 <option>Or, select one of your pets</option>
                 {pets.map((pet) => (
                   <option key={pet.pet_id} value={pet.pet_id}>
-                  {pet.species}: {pet.pet_fname} {pet.pet_lname}
+                  {capitalizeTitle(pet.species)}: {pet.pet_fname} {pet.pet_lname}
                   </option>
                 ))}
               </Form.Select>
-              </Form.Group>
+            </Form.Group>
               
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Check value={allPetsSelected} onChange={handleAllPetsSelected}

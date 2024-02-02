@@ -53,6 +53,7 @@ class Pet(db.Model):
     pet_lname = db.Column(db.String(25))
     birthday = db.Column(db.Integer)
     age = db.Column(db.Integer)
+    breed = db.Column(db.String)
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
     energy_level = db.Column(db.String(6)) #dropdown: high, medium, low
     coat = db.Column(db.String(5)) #dropdown: long, short

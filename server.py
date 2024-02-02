@@ -8,17 +8,18 @@ from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Spec
 import crud
 from datetime import datetime
 import cloudinary.uploader
+import animal_breeds
 
 CLOUDINARY_KEY =  os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
 CLOUD_NAME = "LWPETPLANNER"
 
 app = Flask(__name__)
-app.secret_key = os.environ["KEY"] # Required to use Flask sessions
+app.secret_key = os.environ["KEY"]
 app.jinja_env.undefined = StrictUndefined
 
 
-@app.route("/", methods=['POST', 'GET']) 
+@app.route("/", methods=['POST', 'GET'])
 def homepage():
     """Render the homepage.html template."""
 
