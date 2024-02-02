@@ -355,14 +355,14 @@ def render_events():
     return render_template("my_events.html")
 
 
-# @app.route('/put-events-on-cal', methods=['GET'])
-# def publish_events():
-#     """Publish events on the calendar."""
+@app.route('/put-events-on-cal', methods=['GET'])
+def publish_events():
+    """Publish events on the calendar."""
 
-#     #get user from session
+    #get user from session
 
-#     if user_id is None:
-#         return jsonify({error;: 'User not logged in'}), 401
+    if 'owner_email' not in session:
+        return jsonify({'error': 'User not logged in'}), 401
     
 #     start_str = request.args.get('start')
 #     end_str = request.args.get('end')

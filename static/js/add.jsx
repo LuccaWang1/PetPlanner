@@ -223,8 +223,8 @@ function AddPetModal(props) {
                 <Form.Control
                   value={birthday}
                   onChange={handleBirthday}
-                  type="number"
-                  placeholder="09/27/2017"
+                  type="date"
+                  placeholder="mm/dd/yyyy"
                 />
               </Form.Group>
 
@@ -352,6 +352,7 @@ function AddPetModal(props) {
                   value={weight}
                   onChange={handleWeight}
                   aria-label="Weight (lbs.)"
+                  type="number"
                 >
                   <option>Select</option>
                   <option value="1">1</option>
@@ -473,6 +474,7 @@ function AddPetModal(props) {
                   value={energyLevel}
                   onChange={handleEnergyLevel}
                   aria-label="Energy Level"
+                  type="text"
                 >
                   <option>Select</option>
                   <option value="low">Low</option>
@@ -487,6 +489,7 @@ function AddPetModal(props) {
                   value={coat}
                   onChange={handleCoat}
                   aria-label="Coat"
+                  type="text"
                 >
                   <option>Coat</option>
                   <option value="hairless">Hairless</option>
@@ -769,6 +772,7 @@ function AddSpecialistModal(props) {
                   value={role}
                   onChange={handleRole}
                   aria-label="Default select example"
+                  type="text"
                 >
                   <option>Select</option>
                   <option value="vet">Vet</option>
@@ -817,7 +821,7 @@ function AddSpecialistModal(props) {
               <Form.Label>
                   *What pet or pets would you like to assign this specialist to?
               </Form.Label>
-              <Form.Select value={petSelected} onChange={handlePetSelected}     aria-label="Select the pet this specialist helps care for:">
+              <Form.Select value={petSelected} onChange={handlePetSelected}     aria-label="Select the pet this specialist helps care for:" type="text">
                 <option>Or, select one of your pets</option>
                 {pets.map((pet) => (
                   <option key={pet.pet_id} value={pet.pet_id}>
@@ -963,7 +967,7 @@ ReactDOM.render(<AddASpecialist />, document.querySelector("#add_specialist"));
 
 // START ADD AN EVENT FEATURE MODAL
 function AddEventModal(props) {
-  console.log("in the AddSpecialistModal function")
+  console.log("in the AddEventModal function")
 
   //START nested functions for specialist inputs
   const [eventTitle, setEventTitle] = React.useState("");
@@ -1016,13 +1020,15 @@ function AddEventModal(props) {
     
     const addEventFormInputs = {
       specialist: {
-        title: title,
-        description: description,
-        start_date: specialistFName,
-        start_time: specialistLName,
-        end_date: specialistEmail,
-        end_time: specialistPhone,
-        //extendedProp for location and event_id here 
+        title: eventTitle,
+        description: eventDescription,
+        start_date: startDate,
+        start_time: startTime,
+        end_date: endDate,
+        end_time: endTime,
+        extendedProp: {
+          location: location,
+        } 
       },
     };
 
@@ -1033,10 +1039,23 @@ function AddEventModal(props) {
       },
       body: JSON.stringify(addEventFormInputs),
     })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(responseData);
-      });
+    .then((response) => response.json())
+    .then((responseData) => {
+      console.log(responseData);
+
+      if (responseData && responseData.events) {
+        const eventsData = data.events.map(event => ({
+          title: event.title,
+          description: event.description,
+          start: event.start_date + (event.start_time ? 'T' + event.start_time : ''),
+          end: event.end_date + (event.end_time ? 'T' + event.end_time : ''),
+          allDay: false,
+          extendedProps: {
+            location: location,
+          }
+        }))
+      } 
+    });
   }
 
   return (
@@ -1059,18 +1078,6 @@ function AddEventModal(props) {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3">
-              <Form.Group controlId="formGridPassword">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  value={eventDescription} onChange={handleEventDescription}
-                  type="text"
-                  placeholder=""
-                  aria-label="Description"
-                />
-              </Form.Group>
-            </Row>
-
             <Form.Group className="mb-3" controlId="formGridAddress1">
               <Form.Label>Location</Form.Label>
               <Form.Control
@@ -1087,7 +1094,7 @@ function AddEventModal(props) {
                 <Form.Control
                   value={startDate}
                   onChange={handleStartDate}
-                  type="number"
+                  type="date"
                   placeholder="mm/dd/yyyy"
                   aria-label="Start Date"
                 />
@@ -1098,8 +1105,8 @@ function AddEventModal(props) {
                 <Form.Control
                   value={startTime}
                   onChange={handleStartTime}
-                  type="number"
-                  placeholder="hh:mm"
+                  type="time"
+                  placeholder="Hr:Mm AM/PM"
                   aria-label="Start Time"
                 />
               </Form.Group>
@@ -1111,7 +1118,7 @@ function AddEventModal(props) {
                 <Form.Control
                   value={endDate}
                   onChange={handleEndDate}
-                  type="number"
+                  type="date"
                   placeholder="mm/dd/yyyy"
                   aria-label="End Date"
                 />
@@ -1122,9 +1129,21 @@ function AddEventModal(props) {
                 <Form.Control
                   value={endTime}
                   onChange={handleEndTime}
-                  type="number"
-                  placeholder="hh:mm"
+                  type="time"
+                  placeholder="Hr:Mm AM/PM"
                   aria-label="End Time"
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group controlId="formGridPassword">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  value={eventDescription} onChange={handleEventDescription}
+                  type="text"
+                  placeholder=""
+                  aria-label="Description"
                 />
               </Form.Group>
             </Row>
