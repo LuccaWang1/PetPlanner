@@ -76,11 +76,7 @@ dog_breeds = [
     "Unknown",
 ]
 
-import json
-
 breed_data = {
     "cat_breeds": cat_breeds,
     "dog_breeds": dog_breeds,
 }
-
-breed_json = json.dumps(breed_data)

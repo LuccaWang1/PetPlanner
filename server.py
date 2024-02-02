@@ -8,7 +8,7 @@ from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Spec
 import crud
 from datetime import datetime
 import cloudinary.uploader
-import animal_breeds
+from animal_breeds import breed_data
 
 CLOUDINARY_KEY =  os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
@@ -205,6 +205,7 @@ def validate_pet(pet_data):
     if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
         pet_data['weight'] = None
 
+
 @app.route("/add-a-pet", methods=['PUT'])
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
@@ -212,15 +213,21 @@ def create_pet():
     owner_id = session.get('owner_id')
     print(owner_id)
     pet_data = request.json.get('pet', {})
+
+    formData 
+    #get individually, use request.form.get('ind') -- default would be none, but could go through and set a default value for each one 
+
     print(pet_data)
     validate_pet(pet_data)
     print(pet_data)
 
+    my_file = request.files['my-file']
     species = pet_data.get('species')
     pet_fname = pet_data.get('pet_fname')
     pet_lname = pet_data.get('pet_lname')
     birthday = pet_data.get('birthday')
     age = pet_data.get('age')
+    breed = pet_data.get('breed')
     weight = pet_data.get('weight')
     energy_level = pet_data.get('energy_level')
     coat = pet_data.get('coat')
@@ -242,12 +249,23 @@ def create_pet():
         return jsonify(response), 200
         
     else: 
-        pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+        result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SEC, cloud_name=CLOUD_NAME)
+
+        imgUrl = result['secure_url']
+        
+        pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment, imgUrl=imgUrl) #create pet instance
         pet.owners.append(owner)
         db.session.add(pet) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         response = {"success": True, "status": f"{pet_fname}'s been added!"}
         return jsonify(response), 200
+
+
+@app.route("/breeds")
+def show_breeds():
+    """Show cats and dog breeds from list in Python file, animal_breeds.py."""
+
+    return jsonify(breed_data)
 
 
 @app.route("/get-pets-for-owner")
@@ -446,17 +464,6 @@ def publish_events():
 
 #     return #dashboard 
 
-@app.route("/show-pets-form")
-def show_pets(): 
-    """Show pets form."""
-
-    return render_template("dashboard.html")
-
-@app.route("/process-pet-pic-form", methods=["POST"])
-def process_pet_pic_form():
-    petphoto = request.files['petphoto']
-
-    result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SEC, cloud_name=CLOUD_NAME)
 
 
 
