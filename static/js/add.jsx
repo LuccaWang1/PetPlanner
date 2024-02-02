@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("jsx is running");
+console.log("add.jsx is running");
 
 // Import necessary components
 const { Button, Modal, Form, Col, Row } = ReactBootstrap;
@@ -835,7 +835,7 @@ function AddSpecialistModal(props) {
                 <Form.Check value={allPetsSelected} onChange={handleAllPetsSelected}
                   type="switch"
                   id="custom-switch"
-                  label="Apply this specialist to all my pets"
+                  label="Apply this specialist to all my pets (on is yes)"
                 />
               </Form.Group>
             </Row>
@@ -1107,13 +1107,6 @@ function AddEventModal(props) {
                 />
               </Form.Group>
 
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Check value={allDay} onChange={handleAllDay}
-                  type="switch"
-                  id="all-day-rose"
-                  label="All Day (yes when on)"
-                />
-              </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Start Time</Form.Label>
@@ -1150,6 +1143,14 @@ function AddEventModal(props) {
                 />
               </Form.Group>
             </Row>
+
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Check value={allDay} onChange={handleAllDay}
+                type="switch"
+                id="all-day-rose"
+                label="All Day (on is all day)"
+              />
+            </Form.Group>
 
             <Row className="mb-3">
               <Form.Group controlId="formGridPassword">

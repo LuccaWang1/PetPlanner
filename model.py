@@ -63,6 +63,7 @@ class Pet(db.Model):
     insurance_company = db.Column(db.Text)
     insurance_policy_num = db.Column(db.Text)
     pet_comment = db.Column(db.Text)
+    #imgUrl
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")

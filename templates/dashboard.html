@@ -8,23 +8,15 @@
 {% block content %}
 <h1>Dashboard</h1>
 <h1>Welcome, {{ owner_fname }}!</h1>
-
-<p><u>Your pets:</u></p>
 <p></p>
-<ul>
-    <li>Pet1</li>
-        <ul>
-            <li>Pet1 event1</li>
-            <li>Pet1 event2</li>
-        </ul>
-    <li>Pet2</li>
-        <ul>
-            <li>Pet2 event1</li>
-            <li>Pet2 event2</li>
-        </ul>
-    <li>Pet3</li>
-</ul>
+<div id="pet-cards"></div>
 <p></p>
+<from action="/post-form-data" method="post" enctype="multipart/form/data">
+    <input type="file" name="petphoto">
+    <input type="submit">
+</from>
+<p></p>
+<script type="text/jsx" src="/static/js/my_pets.jsx"></script>
 {% endblock %}
 
 {% block bottomnav %}
@@ -32,3 +24,4 @@
 <a class="bottomnav-right" href="/">Homepage - you'll still be logged in</a>
 {% endif %}
 {% endblock %}
+

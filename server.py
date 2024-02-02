@@ -2,17 +2,21 @@
 
 import os
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, jsonify, url_for
 import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
 import crud
 from datetime import datetime
+import cloudinary.uploader
+
+CLOUDINARY_KEY =  os.environ['CLOUDINARY_KEY']
+CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
+CLOUD_NAME = "LWPETPLANNER"
 
 app = Flask(__name__)
 app.secret_key = os.environ["KEY"] # Required to use Flask sessions
 app.jinja_env.undefined = StrictUndefined
 
-PET = os.environ["GOOGLE_CLIENT"]
 
 @app.route("/", methods=['POST', 'GET']) 
 def homepage():
@@ -116,7 +120,7 @@ def dashboard():
 
     # Check if the user is logged in
     if owner_fname and owner_lname:
-        return render_template("dashboard.html", owner_fname=owner_fname, owner_lname=owner_lname)
+        return render_template("dashboard.html", owner_fname=owner_fname)
     else:
         flash("You need to log in first.")
         return redirect("/login")
@@ -288,12 +292,12 @@ def get_existing_pets_assoc_w_owner():
 def validate_specialist(specialist_data):
     """Validate a specialist's information for number fields if not filled out in React form, then set to these defaults."""
 
-    if pet_data['birthday'] is not None and not isinstance(pet_data['birthday'], int):
-        pet_data['birthday'] = None
-    if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
-        pet_data['age'] = None
-    if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
-        pet_data['weight'] = None
+    if specialist_data['birthday'] is not None and not isinstance(specialist_data['birthday'], int):
+        specialist_data['birthday'] = None
+    if specialist_data['age'] is not None and not isinstance(specialist_data['age'], int):
+        specialist_data['age'] = None
+    if specialist_data['weight'] is not None and not isinstance(specialist_data['weight'], int):
+        specialist_data['weight'] = None
 
 @app.route("/add-a-specialist", methods=['PUT'])
 def add_specialist_to_pet():
@@ -440,6 +444,19 @@ def publish_events():
 #     flash("Success!")
 
 #     return #dashboard 
+
+@app.route("/show-pets-form")
+def show_pets(): 
+    """Show pets form."""
+
+    return render_template("dashboard.html")
+
+@app.route("/process-pet-pic-form", methods=["POST"])
+def process_pet_pic_form():
+    petphoto = request.files['petphoto']
+
+    result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SEC, cloud_name=CLOUD_NAME)
+
 
 
 @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
