@@ -954,8 +954,91 @@ function AddASpecialist() {
 ReactDOM.render(<AddASpecialist />, document.querySelector("#add_specialist"));
 // END add a specialist feature modal
 
-// START add an event feature modal
+
+
+
+
+
+
+
+// START ADD AN EVENT FEATURE MODAL
 function AddEventModal(props) {
+  console.log("in the AddSpecialistModal function")
+
+  //START nested functions for specialist inputs
+  const [eventTitle, setEventTitle] = React.useState("");
+
+  function handleEventTitle(evt) {
+    setEventTitle(evt.target.value);
+  }
+
+  const [eventDescription, setEventDescription] = React.useState("");
+
+  function handleEventDescription(evt) {
+    setEventDescription(evt.target.value);
+  }
+
+  const [location, setLocation] = React.useState("");
+
+  function handleLocation(evt) {
+    setLocation(evt.target.value);
+  }
+
+  const [startDate, setStartDate] = React.useState("");
+
+  function handleStartDate(evt) {
+    setStartDate(evt.target.value);
+  }
+
+  const [startTime, setStartTime] = React.useState("");
+
+  function handleStartTime(evt) {
+    setStartTime(evt.target.value);
+  }
+
+  const [endDate, setEndDate] = React.useState("");
+
+  function handleEndDate(evt) {
+    setEndDate(evt.target.value);
+  }
+
+  const [endTime, setEndTime] = React.useState("");
+
+  function handleEndTime(evt) {
+    setEndTime(evt.target.value);
+  }
+
+  //submit form, save to db
+  function handleAddEventModal(evt) {
+    evt.preventDefault();
+
+    console.log("in the handleAddASpecialistFormSubmit function")
+    
+    const addEventFormInputs = {
+      specialist: {
+        title: title,
+        description: description,
+        start_date: specialistFName,
+        start_time: specialistLName,
+        end_date: specialistEmail,
+        end_time: specialistPhone,
+        //extendedProp for location and event_id here 
+      },
+    };
+
+    fetch("/create-event", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(addEventFormInputs),
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData);
+      });
+  }
+
   return (
     <>
       <Modal {...props} size="lg" backdrop="static" keyboard={false} centered>
@@ -963,19 +1046,88 @@ function AddEventModal(props) {
           <Modal.Title>Add An Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Event title</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+          <Form onSubmit={handleAddEventModal}>
+            <Row className="mb-3">
+              <Form.Group controlId="formGridPassword">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  value={eventTitle} onChange={handleEventTitle}
+                  type="text"
+                  placeholder=""
+                  aria-label="Title"
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group controlId="formGridPassword">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  value={eventDescription} onChange={handleEventDescription}
+                  type="text"
+                  placeholder=""
+                  aria-label="Description"
+                />
+              </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-3" controlId="formGridAddress1">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                value={location}
+                onChange={handleLocation}
+                type="text"
+                placeholder="1234 Main Street"
+              />
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Event title</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Start Date</Form.Label>
+                <Form.Control
+                  value={startDate}
+                  onChange={handleStartDate}
+                  type="number"
+                  placeholder="mm/dd/yyyy"
+                  aria-label="Start Date"
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Start Time</Form.Label>
+                <Form.Control
+                  value={startTime}
+                  onChange={handleStartTime}
+                  type="number"
+                  placeholder="hh:mm"
+                  aria-label="Start Time"
+                />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>End Date</Form.Label>
+                <Form.Control
+                  value={endDate}
+                  onChange={handleEndDate}
+                  type="number"
+                  placeholder="mm/dd/yyyy"
+                  aria-label="End Date"
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>End Time</Form.Label>
+                <Form.Control
+                  value={endTime}
+                  onChange={handleEndTime}
+                  type="number"
+                  placeholder="hh:mm"
+                  aria-label="End Time"
+                />
+              </Form.Group>
+            </Row>
             
             <Modal.Footer>
               <Button variant="secondary" onClick={props.onHide}>
@@ -1009,8 +1161,5 @@ function AddAnEvent() {
   );
 }
 
-const add_event_div = document.querySelector("#add_event");
-console.log(add_event_div);
-
-ReactDOM.render(<AddAnEvent />, add_event_div);
+ReactDOM.render(<AddAnEvent />, document.querySelector("#add_event"));
 // END add an event feature modal

@@ -355,6 +355,81 @@ def render_events():
     return render_template("my_events.html")
 
 
+# @app.route('/put-events-on-cal', methods=['GET'])
+# def publish_events():
+#     """Publish events on the calendar."""
+
+#     #get user from session
+
+#     if user_id is None:
+#         return jsonify({error;: 'User not logged in'}), 401
+    
+#     start_str = request.args.get('start')
+#     end_str = request.args.get('end')
+
+#     if start_str is None or end_str is None: 
+#         return jsonify({'error': 'Missing start or end parameter'}), 400
+    
+#     try: 
+#         month_start = datetime.fromisoformat(start_str)
+#         month_end = datetime.fromisoformat(end_str)
+
+#     except ValueError:
+#         return jsonify({'error': 'Invalid date format'}), 400
+    
+#     events = Event.query.filter(
+#         Event.user_id == user_id,
+#         Event.start_date.between(month_start.date(), month_end.date()), 
+#         Event.deleted_on.is_(None)
+#     ).all()
+
+#     events_data = []
+#     for event in events:
+#         events_data.append({
+#             'event_id': event.event_id,
+#             'title' #etc
+#         })
+
+#     response_data = {'events': events_data}
+#     return jsonify(response_data)
+
+
+# @app.route('/create-event', methods=['POST', 'GET', 'PUT'])
+# def create_event():
+#     """Create an event and save to the database."""
+    
+#     if user not in session: 
+#         flash
+#         return redirect('/homepage')
+
+#     user = pull owner_id from session 
+#     crud function that's repeating 
+
+#     title = request.form.get("title")
+#     #etc 
+
+#     start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+#     end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+
+#     start_time = datetime.combine(start_date, datetime.strptime(start_time_str, "%H:%M").time())
+#     end_time = datetime.combine(end_date, datetime.strptime(end_time_str, "%H:%M").time())
+
+#     event = Event(owner_id=owner_event_id,
+                  
+#                   )
+    
+#     event_data = {
+#         "event_id": event.event_id,
+#         #etc
+#     }
+
+#     db.session.add(event)
+#     db.session.commit()
+#     flash("Success!")
+
+#     return #dashboard 
+
+
 @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
 def dashboard_pets_pet():
     """View logged in owner's specific pet."""

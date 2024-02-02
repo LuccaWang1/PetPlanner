@@ -63,8 +63,3 @@ pet.specialists.append(specialist)
 
 model.db.session.add(pet)
 model.db.session.commit()
-
-# def seed_event():
-#     event = Event(
-#         todays_date=datetime.utcnow(), 
-#     )

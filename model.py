@@ -142,16 +142,14 @@ class Event(db.Model):
     __tablename__ = "events"
 
     event_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    start = db.Column(db.DateTime, nullable=False)
-    end = db.Column(db.DateTime, nullable=False)
-    title = db.Column(db.String(40), nullable=False)
-    groupId = 
-    
-    event_comment = db.Column(db.Text)
     location = db.Column(db.String(40))
     
-    timeZone = db.Column(db.String, nullable=False)
-    #notification = db.Column(db.String) #yes or no - two buttons or dropdown menu #might need to add a column for the timing of the notification? 
+    start_date = db.Column(db.Date, nullable=False)
+    start_time = db.Column(db.Time)
+    end_date = db.Column(db.Date, nullable=False)
+    end_time = db.Column(db.Time)
+    title = db.Column(db.String(40), nullable=False)
+    description = db.Column(db.Text)
 
     owners = db.relationship("Owner", back_populates="events", secondary="owner_events")
     pets = db.relationship("Pet", back_populates="events", secondary="pet_events")
