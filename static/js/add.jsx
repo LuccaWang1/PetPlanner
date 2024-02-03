@@ -8,6 +8,7 @@ const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
   //START nested functions for pet inputs
+  
   const [species, setSpecies] = React.useState("");
 
   function handleSpecies(evt) {
@@ -38,12 +39,12 @@ function AddPetModal(props) {
     setAge(evt.target.value);
   }
 
-  //already declared near line 180
+  //already declared near line 195
   function handleBreed(evt) {
     setBreed(evt.target.value);
   }
-
-  const [weight, setWeight] = React.useState("");
+    
+    const [weight, setWeight] = React.useState("");
 
   function handleWeight(evt) {
     setWeight(evt.target.value);
@@ -139,31 +140,31 @@ function AddPetModal(props) {
     }
 
     //append each one individually rather than an object, append to formData (you'd send )
-    const addAPetFormInputs = {
-      pet: {
-        petphoto: 
-        species: species,
-        pet_fname: petFName,
-        pet_lname: petLName,
-        birthday: inputBirthday,
-        age: inputAge,
-        breed: breed,
-        weight: inputWeight,
-        energy_level: energyLevel,
-        coat: coat,
-        emer_contact_fname: emerContactFName,
-        emer_contact_lname: emerContactLName,
-        emer_contact_phone: emerContactPhone,
-        emer_contact_email: emerContactEmail,
-        insurance_company: insuranceCompany,
-        insurance_policy_num: insurancePolicyNum,
-        pet_comment: petComment,
-      },
-    };
+    const formData = new FormData(); //create variable to send to server 
 
+    const petPhoto = document.querySelector('#petphoto');
+   
+    formData.append("petphoto", petPhoto.files[0]);
+    formData.append("species", species);
+    formData.append("pet_fname", petFName);
+    formData.append("pet_lname", petLName);
+    formData.append("birthday", inputBirthday);
+    formData.append("age", inputAge);
+    formData.append("breed", breed);
+    formData.append("weight", inputWeight);
+    formData.append("energy_level", energyLevel);
+    formData.append("coat", coat);
+    formData.append("emer_contact_fname", emerContactFName);
+    formData.append("emer_contact_lname", emerContactLName);
+    formData.append("emer_contact_phone", emerContactPhone);
+    formData.append("emer_contact_email", emerContactEmail);
+    formData.append("insurance_company", insuranceCompany);
+    formData.append("insurance_policy_num", insurancePolicyNum);
+    formData.append("pet_comment", petComment);
+    //have add all items to formData to now send to server in fetch send below:
     fetch("/add-a-pet", {
       method: "PUT",
-      body: JSON.stringify(addAPetFormInputs),
+      body: formData,
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -173,14 +174,43 @@ function AddPetModal(props) {
       });
   }
 
-  const [breed, setBreed] = React.useState([]); // State to store none selected, then if selected, start at None
+  const [breed, setBreed] = React.useState(""); // State to store none selected, then if selected, start at None
+
+  const [breedOptions, setBreedOptions] = React.useState({});
 
   React.useEffect(() => {
     // Fetch cat and dog breed data 
     fetch(`/breeds`)
       .then((response) => response.json())
-      .then((breedData) => setBreed(breedData));
+      .then((breedData) => setBreedOptions(breedData));
   }, []); // Empty dependency array, runs once only when component mounts
+
+  let breedInput = null
+
+  if (species === "dog" || species === "cat") {
+    const petOptions = []
+    
+    if (species === "dog") {
+      for (let b of breedOptions.dog_breeds) {
+        petOptions.push(<option value={b}>{b}</option>)
+      }
+    } else {
+      for (let b of breedOptions.cat_breeds) {
+        petOptions.push(<option value={b}>{b}</option>)
+      }
+    } 
+    breedInput = (
+      <Form.Select value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+        <option>Select</option>
+        {petOptions}
+      </Form.Select>
+    )
+  } else {
+    breedInput = (
+      <Form.Control value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+      </Form.Control>
+    )
+  }
 
   return (
     <>
@@ -190,6 +220,15 @@ function AddPetModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddAPetFormSubmit}>
+            
+            <Form.Group controlId="formGridEmail">
+              <Form.Label>Photo</Form.Label>
+              <Form.Control
+                id="petphoto"
+                type="file"
+              />
+            </Form.Group>
+
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>*Species</Form.Label>
@@ -230,7 +269,13 @@ function AddPetModal(props) {
               </Form.Group>
             </Row>
 
+            {/* should below on lines 250-253 be be if statements? Also dogBreed and catBreed are not defined - how do we match up 183 then */}
             <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Breed</Form.Label>
+                {breedInput}
+              </Form.Group>
+
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
@@ -249,19 +294,6 @@ function AddPetModal(props) {
                       <option key={index} value={index}>
                         {index === 0 ? 'Baby' : index}
                       </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Breed</Form.Label>
-                <Form.Select value={breed} onChange={handleBreed} aria-label="Breed" type="text">
-                  <option>Select</option>
-                  {species === "dog" && dog_breeds.map((dogBreed, index) => (
-                    <option key={index} value={dogBreed}>{dogBreed}</option>
-                  ))}
-                  {species === "cat" && cat_breeds.map((catBreed, index) => (
-                    <option key={index} value={catBreed}>{catBreed}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -419,8 +451,11 @@ function AddAPet() {
     </React.Fragment>
   );
 }
+const addAPet = document.querySelector("#add_pet")
 
-ReactDOM.render(<AddAPet />, document.querySelector("#add_pet"));
+if (addAPet !== null) {
+  ReactDOM.render(<AddAPet />, addAPet);
+}
 // END add a pet feature modal
 
 
@@ -637,7 +672,7 @@ function AddSpecialistModal(props) {
                 <option>Or, select one of your pets</option>
                 {pets.map((pet) => (
                   <option key={pet.pet_id} value={pet.pet_id}>
-                  {capitalizeTitle(pet.species)}: {pet.pet_fname} {pet.pet_lname}
+                  {pet.species}: {pet.pet_fname} {pet.pet_lname}
                   </option>
                 ))}
               </Form.Select>
@@ -767,7 +802,11 @@ function AddASpecialist() {
   );
 }
 
-ReactDOM.render(<AddASpecialist />, document.querySelector("#add_specialist"));
+const addASpecialist = document.querySelector("#add_specialist")
+
+if (addASpecialist !== null) {
+  ReactDOM.render(<AddASpecialist />, addASpecialist);
+}
 // END add a specialist feature modal
 
 
@@ -1008,5 +1047,9 @@ function AddAnEvent() {
   );
 }
 
-ReactDOM.render(<AddAnEvent />, document.querySelector("#add_event"));
+const addAnEvent = document.querySelector("#add_event")
+
+if (addAnEvent !== null) {
+  ReactDOM.render(<AddAnEvent />, addAnEvent);
+}
 // END add an event feature modal

@@ -47,6 +47,7 @@ class Pet(db.Model):
 
     __tablename__ = "pets"
 
+    imgUrl = db.Column(db.Text)
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     species = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     pet_fname = db.Column(db.String(25), nullable=False)
@@ -64,7 +65,6 @@ class Pet(db.Model):
     insurance_company = db.Column(db.Text)
     insurance_policy_num = db.Column(db.Text)
     pet_comment = db.Column(db.Text)
-    #imgUrl
 
     owners = db.relationship("Owner", back_populates="pets", secondary="pet_owners")
     specialists = db.relationship("Specialist", back_populates="pets", secondary="pet_specialists")
