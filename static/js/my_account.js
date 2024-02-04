@@ -1,13 +1,13 @@
 'use strict';
 
-console.log("i'm in the js file, my_account.js")
+console.log("i'm in the js file, my_account.js");
 
 // START edit my account user info
 const editInfoFormButton = document.querySelector('#MA_OwnerInfoEditButton');
 
-myAccountOwnerFName = document.querySelector('#MA_owner_fname')
-myAccountOwnerLName = document.querySelector('#MA_owner_lname')
-myAccountOwnerEmail = document.querySelector('#MA_owner_email')
+const myAccountOwnerFName = document.querySelector('#MA_owner_fname');
+const myAccountOwnerLName = document.querySelector('#MA_owner_lname');
+const myAccountOwnerEmail = document.querySelector('#MA_owner_email');
 
 function handleClick() {
    console.log('in the handleClick function');
@@ -23,9 +23,9 @@ function handleClick() {
    const owner_lname = myAccountOwnerLName.value;
    const owner_email = myAccountOwnerEmail.value;
 
-   console.log(owner_fname)
-   console.log(owner_lname)
-   console.log(owner_email)
+   console.log(owner_fname);
+   console.log(owner_lname);
+   console.log(owner_email);
 }
 
 editInfoFormButton.addEventListener('click', handleClick);
@@ -43,16 +43,16 @@ function saveChangesInfoForm(event) {
    myAccountOwnerLName.style.backgroundColor = 'rgb(212,235,242)';
    myAccountOwnerEmail.style.backgroundColor = 'rgb(212,235,242)';
 
-   console.log('in the saveChangesInfoForm function')
+   console.log('in the saveChangesInfoForm function');
 
    // get values - any new values 
    const owner_fname = myAccountOwnerFName.value;
    const owner_lname = myAccountOwnerLName.value;
    const owner_email = myAccountOwnerEmail.value;
 
-   console.log(owner_fname)
-   console.log(owner_lname)
-   console.log(owner_email)
+   console.log(owner_fname);
+   console.log(owner_lname);
+   console.log(owner_email);
 
    const saveFormInputs = {
       owner_fname: owner_fname,
