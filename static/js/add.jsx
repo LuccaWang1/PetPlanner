@@ -167,12 +167,17 @@ function AddPetModal(props) {
       method: "PUT",
       body: formData,
     })
-      .then((response) => response.json())
-      .then((responseData) => {
-        // location.reload()
-        // props.onHide() 
-        console.log(responseData);
-      });
+    .then((response) => {
+      console.log('in the first response .then')
+      console.log('console logging response.json:', response.json())
+      return response.json()
+    })
+    .then((responseData) => {
+      // location.reload()
+      // props.onHide() 
+      console.log('in the second response .then with responseData')
+      console.log('console logging responseData', responseData);
+    });
   }
 
   const [breed, setBreed] = React.useState(""); // State to store none selected, then if selected, start at None

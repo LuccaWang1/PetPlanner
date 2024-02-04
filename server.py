@@ -12,7 +12,7 @@ from animal_breeds import breed_data
 
 CLOUDINARY_KEY =  os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
-CLOUD_NAME = "LWPETPLANNER"
+CLOUD_NAME = "lwpetplanner"
 
 app = Flask(__name__)
 app.secret_key = os.environ["KEY"]
@@ -269,7 +269,7 @@ def create_pet():
 
 @app.route("/breeds")
 def show_breeds():
-    """Show cats and dog breeds from list in Python file, animal_breeds.py."""
+    """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
 
     return jsonify(breed_data)
 

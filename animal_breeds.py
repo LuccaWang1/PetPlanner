@@ -11,20 +11,20 @@ cat_breeds = [
     "Calico",
     "Chartreux",
     "Javanese",
-    "Maine Coon"
-    "Munchkin"
+    "Maine Coon",
+    "Munchkin",
     "Norwegian Forest Cat",
     "Persian",
     "Ragdoll",
-    "Russian Blue"
+    "Russian Blue",
     "Scottish Fold",
     "Siamese",
-    "Siberian"
-    "Snowshoe"
+    "Siberian",
+    "Snowshoe",
     "Sphynx",
-    "Tabby"
-    "Tonkinese"
-    "Tortoiseshell"
+    "Tabby",
+    "Tonkinese",
+    "Tortoiseshell",
     "Tuxedo",
     "Unknown",
 ]
@@ -35,7 +35,7 @@ dog_breeds = [
     "Border Collie",
     "Beagle",
     "Belgian Malinois",
-    "Bernese Mountain Dog"
+    "Bernese Mountain Dog",
     "Boston Terrier",
     "Boxer",
     "Bulldog",
@@ -54,13 +54,13 @@ dog_breeds = [
     "Giant Schnauzer",
     "Golden Retriever",
     "Great Dane",
-    "Italian Greyhound"
+    "Italian Greyhound",
     "Labrador Retriever",
     "Maltese",
-    "Manchester Terrier"
+    "Manchester Terrier",
     "Mastiff",
     "Miniature Schnauzer",
-    "Mix/Mutt"
+    "Mix/Mutt",
     "Papillon",
     "Pembroke Welsh Corgi",    
     "Poodle",

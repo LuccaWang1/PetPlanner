@@ -49,7 +49,7 @@ class Pet(db.Model):
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     imgUrl = db.Column(db.Text)
-    species = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
+    species = db.Column(db.String, nullable=False) #"dog", "cat", "horse"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
     birthday = db.Column(db.Integer)
