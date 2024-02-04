@@ -7,6 +7,7 @@ const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
+  console.log("in the AddPetModal")
   //START nested functions for pet inputs
   
   const [species, setSpecies] = React.useState("");
@@ -44,7 +45,7 @@ function AddPetModal(props) {
     setBreed(evt.target.value);
   }
     
-    const [weight, setWeight] = React.useState("");
+  const [weight, setWeight] = React.useState("");
 
   function handleWeight(evt) {
     setWeight(evt.target.value);
@@ -139,7 +140,7 @@ function AddPetModal(props) {
       inputWeight = Number(weight)
     }
 
-    //append each one individually rather than an object, append to formData (you'd send )
+    //append each one individually rather than an object, append to formData
     const formData = new FormData(); //create variable to send to server 
 
     const petPhoto = document.querySelector('#petphoto');
@@ -170,7 +171,7 @@ function AddPetModal(props) {
       .then((responseData) => {
         location.reload()
         // props.onHide() 
-        // console.log(responseData);
+        console.log(responseData);
       });
   }
 
@@ -437,7 +438,7 @@ function AddPetModal(props) {
 }
 
 function AddAPet() {
-  console.log("Add pet");
+  console.log("in the AddAPet function");
 
   const [modalShow, setModalShow] = React.useState(false);
 

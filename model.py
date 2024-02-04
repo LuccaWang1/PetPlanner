@@ -47,8 +47,8 @@ class Pet(db.Model):
 
     __tablename__ = "pets"
 
-    imgUrl = db.Column(db.Text)
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    imgUrl = db.Column(db.Text)
     species = db.Column(db.String(3), nullable=False) #bc "dog" or "cat"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
