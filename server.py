@@ -209,56 +209,62 @@ def validate_pet(pet_data):
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
 
-    owner_id = session.get('owner_id')
-    print(owner_id)
-    #formData = request.form.get('pet', {})
+    try: 
+        owner_id = session.get('owner_id')
+        print(owner_id)
+        #formData = request.form.get('pet', {})
 
-    #formData.request.form.get('petphoto') 
-    #get individually, use request.form.get('ind') -- default would be none, but could go through and set a default value for each one 
+        #formData.request.form.get('petphoto') 
+        #get individually, use request.form.get('ind') -- default would be none, but could go through and set a default value for each one 
 
-    my_file = request.files['petphoto']
-    species = request.form.get('species')
-    pet_fname = request.form.get('pet_fname')
-    pet_lname = request.form.get('pet_lname')
-    birthday = request.form.get('birthday')
-    age = request.form.get('age')
-    breed = request.form.get('breed')
-    weight = request.form.get('weight')
-    energy_level = request.form.get('energy_level')
-    coat = request.form.get('coat')
-    emer_contact_fname = request.form.get('emer_contact_fname')
-    emer_contact_lname = request.form.get('emer_contact_lname')
-    emer_contact_phone = request.form.get('emer_contact_phone')
-    emer_contact_email = request.form.get('emer_contact_email')
-    insurance_company = request.form.get('insurance_company')
-    insurance_policy_num = request.form.get('emer_contact_email')
-    pet_comment = request.form.get('pet_comment')
+        my_file = request.files['petphoto']
+        species = request.form.get('species')
+        pet_fname = request.form.get('pet_fname')
+        pet_lname = request.form.get('pet_lname')
+        birthday = request.form.get('birthday')
+        age = request.form.get('age')
+        breed = request.form.get('breed')
+        weight = request.form.get('weight')
+        energy_level = request.form.get('energy_level')
+        coat = request.form.get('coat')
+        emer_contact_fname = request.form.get('emer_contact_fname')
+        emer_contact_lname = request.form.get('emer_contact_lname')
+        emer_contact_phone = request.form.get('emer_contact_phone')
+        emer_contact_email = request.form.get('emer_contact_email')
+        insurance_company = request.form.get('insurance_company')
+        insurance_policy_num = request.form.get('emer_contact_email')
+        pet_comment = request.form.get('pet_comment')
 
-    pet_data = [birthday, age, weight]
-    print(pet_data)
-    validate_pet(pet_data)
-    print(pet_data)
+        pet_data = {'birthday': birthday, 'age': age, 'weight': weight}
+        print(pet_data)
+        validate_pet(pet_data)
+        print(pet_data)
 
-    owner = Owner.query.filter_by(owner_id=owner_id).first()
+        owner = Owner.query.filter_by(owner_id=owner_id).first()
 
-    pet = Pet.query.filter_by(pet_fname=pet_fname).join(Pet.owners).filter(Owner.owner_id==owner_id).first()
-    print(pet)
+        pet = Pet.query.filter_by(pet_fname=pet_fname).join(Pet.owners).filter(Owner.owner_id==owner_id).first()
+        print(pet)
 
-    if pet: #check in db, if in db, tell user
-        response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
-        return jsonify(response), 200
-        
-    else: 
-        result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name=CLOUD_NAME)
+        if pet: #check in db, if in db, tell user
+            response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
+            return jsonify(response), 200
+            
+        else: 
+            result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name=CLOUD_NAME)
 
-        imgUrl = result['secure_url']
-        
-        pet = Pet(imgUrl=imgUrl, species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
-        pet.owners.append(owner)
-        db.session.add(pet) #add user instance to database with .add built-in func
-        db.session.commit() #then need to commit the change/add to the database
-        response = {"success": True, "status": f"{pet_fname}'s been added!"}
-        return jsonify(response), 200
+            imgUrl = result['secure_url']
+            
+            pet = Pet(imgUrl=imgUrl, species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+            pet.owners.append(owner)
+            db.session.add(pet) #add user instance to database with .add built-in func
+            db.session.commit() #then need to commit the change/add to the database
+            response = {"success": True, "status": f"{pet_fname}'s been added!"}
+            return jsonify(response), 200
+    except Exception as e:
+        # If an exception occurs, return an error response
+        error_message = str(e)
+        response = {"success": False, "error": error_message}
+        return jsonify(response), 500
 
 
 @app.route("/breeds")

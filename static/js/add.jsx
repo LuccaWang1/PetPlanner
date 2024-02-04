@@ -169,7 +169,7 @@ function AddPetModal(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        location.reload()
+        // location.reload()
         // props.onHide() 
         console.log(responseData);
       });
