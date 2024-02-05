@@ -223,8 +223,10 @@ def validate_pet(pet_data):
 
     if pet_data['birthday'] is not None and not isinstance(pet_data['birthday'], int):
         pet_data['birthday'] = None
+    
     if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
         pet_data['age'] = None
+    
     if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
         pet_data['weight'] = None
 
@@ -234,10 +236,12 @@ def create_pet():
 
     owner_id = session.get('owner_id')
     print(owner_id)
+
     pet_data = request.json.get('pet', {})
     print("printing pet_data:", pet_data)
     validate_pet(pet_data)
     print(pet_data)
+
     species = pet_data.get('species')
     pet_fname = pet_data.get('pet_fname')
     pet_lname = pet_data.get('pet_lname')
@@ -269,64 +273,65 @@ def create_pet():
         db.session.add(pet) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         response = {"success": True, "status": f"{pet_fname}'s been added!"}
+        return jsonify(response), 200
 
 
-@app.route("/breeds")
-def show_breeds():
-    """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
+# @app.route("/breeds")
+# def show_breeds():
+#     """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
 
-    return jsonify(breed_data)
-
-
-@app.route("/get-pets-for-owner")
-def get_existing_pets_assoc_w_owner():
-    """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
-
-    #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
-
-    owner_id = session.get('owner_id')
-    print(owner_id)
-
-    # Query the pets associated with the given owner_id
-    owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
-    print(owner_pets)
-
-    # Create a list of dictionaries with pet information
-    pets_info = []
-
-    for pet in owner_pets:
-        pets_info.append(
-            {"pet_id": pet.pet_id,
-            "species": pet.species,
-            "pet_fname": pet.pet_fname,
-            "pet_lname": pet.pet_lname,
-            "birthday": pet.birthday,
-            "age": pet.age,
-            "weight": pet.weight,
-            "energy_level": pet.energy_level,
-            "coat": pet.coat,
-            "emer_contact_fname": pet.emer_contact_fname,
-            "emer_contact_lname": pet.emer_contact_lname,
-            "emer_contact_phone": pet.emer_contact_phone,
-            "emer_contact_email": pet.emer_contact_email, 
-            "insurance_company": pet.insurance_company,
-            "insurance_policy_num": pet.insurance_policy_num, 
-            "pet_comment": pet.pet_comment,
-            }
-        )
-    print(pets_info)
-    return jsonify(pets_info)
+#     return jsonify(breed_data)
 
 
-def validate_specialist(specialist_data):
-    """Validate a specialist's information for number fields if not filled out in React form, then set to these defaults."""
+# @app.route("/get-pets-for-owner")
+# def get_existing_pets_assoc_w_owner():
+#     """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
 
-    if specialist_data['birthday'] is not None and not isinstance(specialist_data['birthday'], int):
-        specialist_data['birthday'] = None
-    if specialist_data['age'] is not None and not isinstance(specialist_data['age'], int):
-        specialist_data['age'] = None
-    if specialist_data['weight'] is not None and not isinstance(specialist_data['weight'], int):
-        specialist_data['weight'] = None
+#     #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
+
+#     owner_id = session.get('owner_id')
+#     print(owner_id)
+
+#     # Query the pets associated with the given owner_id
+#     owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+#     print(owner_pets)
+
+#     # Create a list of dictionaries with pet information
+#     pets_info = []
+
+#     for pet in owner_pets:
+#         pets_info.append(
+#             {"pet_id": pet.pet_id,
+#             "species": pet.species,
+#             "pet_fname": pet.pet_fname,
+#             "pet_lname": pet.pet_lname,
+#             "birthday": pet.birthday,
+#             "age": pet.age,
+#             "weight": pet.weight,
+#             "energy_level": pet.energy_level,
+#             "coat": pet.coat,
+#             "emer_contact_fname": pet.emer_contact_fname,
+#             "emer_contact_lname": pet.emer_contact_lname,
+#             "emer_contact_phone": pet.emer_contact_phone,
+#             "emer_contact_email": pet.emer_contact_email, 
+#             "insurance_company": pet.insurance_company,
+#             "insurance_policy_num": pet.insurance_policy_num, 
+#             "pet_comment": pet.pet_comment,
+#             }
+#         )
+#     print(pets_info)
+#     return jsonify(pets_info)
+
+
+# def validate_specialist(specialist_data):
+#     """Validate a specialist's information for number fields if not filled out in React form, then set to these defaults."""
+
+#     if specialist_data['birthday'] is not None and not isinstance(specialist_data['birthday'], int):
+#         specialist_data['birthday'] = None
+#     if specialist_data['age'] is not None and not isinstance(specialist_data['age'], int):
+#         specialist_data['age'] = None
+#     if specialist_data['weight'] is not None and not isinstance(specialist_data['weight'], int):
+#         specialist_data['weight'] = None
 
 @app.route("/add-a-specialist", methods=['PUT'])
 def add_specialist_to_pet():

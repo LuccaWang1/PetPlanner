@@ -48,13 +48,13 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    imgUrl = db.Column(db.Text)
+    #mgUrl = db.Column(db.Text)
     species = db.Column(db.String, nullable=False) #"dog", "cat", "horse"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
     birthday = db.Column(db.Integer)
     age = db.Column(db.Integer)
-    breed = db.Column(db.String)
+    #breed = db.Column(db.String)
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
     energy_level = db.Column(db.String(6)) #dropdown: high, medium, low
     coat = db.Column(db.String(5)) #dropdown: long, short

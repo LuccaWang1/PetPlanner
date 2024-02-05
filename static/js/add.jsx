@@ -7,6 +7,8 @@ const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
+  console.log('in the AddPetModal function')
+  
   //START nested functions for pet inputs
   const [species, setSpecies] = React.useState("");
   
@@ -101,8 +103,10 @@ function AddPetModal(props) {
   function handleAddAPetFormSubmit(evt) {
     evt.preventDefault();
 
+    console.log('in the handleAddAPetFormSubmit function')
+
     // Validation
-    if (species === "" || petFName === "") {
+    if (species === '' || petFName === '') {
       alert('Please enter the species type and first name')
       console.log("input error on species and first name");
       return;
@@ -151,32 +155,32 @@ function AddPetModal(props) {
         pet_comment: petComment,
       },
     };
+
+    console.log(addAPetFormInputs)
     
     fetch("/add-a-pet", {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(addAPetFormInputs),
     })
-    .then((response) => {
-      response.json()
-      console.log("Response.json:" + response.json())
-    })
+    .then((response) => response.json())
     .then((responseData) => {
         console.log(responseData);
-        location.reload()
-        // props.onHide() 
-        // console.log(responseData);
+        props.onHide()
       });
+  
   }
 
   return (
     <>
       <Modal {...props} size="lg" backdrop="static" keyboard={false} centered>
+        
         <Modal.Header closeButton>
           <Modal.Title>Add My Pet</Modal.Title>
         </Modal.Header>
+        
         <Modal.Body>
           <Form onSubmit={handleAddAPetFormSubmit}>
             <Row className="mb-3">
@@ -242,9 +246,7 @@ function AddPetModal(props) {
                   ))}
                 </Form.Select>
               </Form.Group>
-            </Row>
 
-            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Weight (lbs.)</Form.Label>
                 <Form.Select value={weight} onChange={handleWeight} aria-label="Weight (lbs.)" type="number">
@@ -256,7 +258,9 @@ function AddPetModal(props) {
                   ))}
                 </Form.Select>
               </Form.Group>
+            </Row>
 
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Energy Level</Form.Label>
                 <Form.Select
@@ -541,12 +545,12 @@ function AddSpecialistModal(props) {
 
   const [pets, setPets] = React.useState([]); // State to store pets associated with owner_id
 
-  React.useEffect(() => {
-    // Fetch pets associated with the owner_id
-    fetch(`/get-pets-for-owner`)
-      .then((response) => response.json())
-      .then((petsInfoData) => setPets(petsInfoData));
-  }, []); // Empty dependency array, runs once only when component mounts
+  // React.useEffect(() => {
+  //   // Fetch pets associated with the owner_id
+  //   fetch(`/get-pets-for-owner`)
+  //   .then((response) => response.json())
+  //   .then((petsInfoData) => setPets(petsInfoData));
+  // }, []); // Empty dependency array, runs once only when component mounts
 
   return (
     <>
