@@ -7,97 +7,105 @@ const { Button, Modal, Form, Col, Row } = ReactBootstrap;
 
 // START ADD A PET FEATURE MODAL
 function AddPetModal(props) {
+  console.log("in the AddPetModal")
   //START nested functions for pet inputs
-  const [species, setSpecies] = React.useState("");
   
+  const [species, setSpecies] = React.useState("");
+
   function handleSpecies(evt) {
     setSpecies(evt.target.value);
   }
-  
+
   const [petFName, setPetFName] = React.useState("");
-  
+
   function handlePetFName(evt) {
     setPetFName(evt.target.value);
   }
-  
+
   const [petLName, setPetLName] = React.useState("");
-  
+
   function handlePetLName(evt) {
     setPetLName(evt.target.value);
   }
-  
+
   const [birthday, setBirthday] = React.useState("");
-  
+
   function handleBirthday(evt) {
     setBirthday(evt.target.value);
   }
-  
+
   const [age, setAge] = React.useState("");
-  
+
   function handleAge(evt) {
     setAge(evt.target.value);
   }
-  
+
+  //already declared near line 195
+  // function handleBreed(evt) {
+  //   setBreed(evt.target.value);
+  // }
+    
   const [weight, setWeight] = React.useState("");
-  
+
   function handleWeight(evt) {
     setWeight(evt.target.value);
   }
-  
+
   const [energyLevel, setEnergyLevel] = React.useState("");
-  
+
   function handleEnergyLevel(evt) {
     setEnergyLevel(evt.target.value);
   }
-  
+
   const [coat, setCoat] = React.useState("");
-  
+
   function handleCoat(evt) {
     setCoat(evt.target.value);
   }
-  
+
   const [emerContactFName, setEmerContactFName] = React.useState("");
-  
+
   function handleEmerContactFName(evt) {
     setEmerContactFName(evt.target.value);
   }
-  
+
   const [emerContactLName, setEmerContactLName] = React.useState("");
-  
+
   function handleEmerContactLName(evt) {
     setEmerContactLName(evt.target.value);
   }
-  
+
   const [emerContactPhone, setEmerContactPhone] = React.useState("");
-  
+
   function handleEmerContactPhone(evt) {
     setEmerContactPhone(evt.target.value);
   }
-  
+
   const [emerContactEmail, setEmerContactEmail] = React.useState("");
-  
+
   function handleEmerContactEmail(evt) {
     setEmerContactEmail(evt.target.value);
   }
-  
+
   const [insuranceCompany, setInsuranceCompany] = React.useState("");
-  
+
   function handleInsuranceCompany(evt) {
     setInsuranceCompany(evt.target.value);
   }
-  
+
   const [insurancePolicyNum, setInsurancePolicyNum] = React.useState("");
-  
+
   function handleInsurancePolicyNum(evt) {
     setInsurancePolicyNum(evt.target.value);
   }
-  
+
   const [petComment, setPetComment] = React.useState("");
-  
+
   function handlePetComment(evt) {
     setPetComment(evt.target.value);
   }
 
+  //submit form, save to db
   function handleAddAPetFormSubmit(evt) {
     evt.preventDefault();
 
@@ -115,7 +123,7 @@ function AddPetModal(props) {
     } else {
       inputBirthday = Number(birthday)
     }
-
+    
     let inputAge
 
     if (age === "") {
@@ -123,7 +131,7 @@ function AddPetModal(props) {
     } else {
       inputAge = Number(age)
     }
-
+    
     let inputWeight
 
     if (weight === "") {
@@ -131,6 +139,30 @@ function AddPetModal(props) {
     } else {
       inputWeight = Number(weight)
     }
+
+    //append each one individually rather than an object, append to formData
+    // const formData = new FormData(); //create variable to send to server 
+
+    // const petPhoto = document.querySelector('#petphoto');
+   
+    // formData.append("petphoto", petPhoto.files[0]);
+    // formData.append("species", species);
+    // formData.append("pet_fname", petFName);
+    // formData.append("pet_lname", petLName);
+    // formData.append("birthday", inputBirthday);
+    // formData.append("age", inputAge);
+    // formData.append("breed", breed);
+    // formData.append("weight", inputWeight);
+    // formData.append("energy_level", energyLevel);
+    // formData.append("coat", coat);
+    // formData.append("emer_contact_fname", emerContactFName);
+    // formData.append("emer_contact_lname", emerContactLName);
+    // formData.append("emer_contact_phone", emerContactPhone);
+    // formData.append("emer_contact_email", emerContactEmail);
+    // formData.append("insurance_company", insuranceCompany);
+    // formData.append("insurance_policy_num", insurancePolicyNum);
+    // formData.append("pet_comment", petComment);
+    //have add all items to formData to now send to server in fetch send below:
 
     const addAPetFormInputs = {
       pet: {
@@ -143,33 +175,63 @@ function AddPetModal(props) {
         energy_level: energyLevel,
         coat: coat,
         emer_contact_fname: emerContactFName,
-        emer_contact_lname: emerContactLName,
-        emer_contact_phone: emerContactPhone,
-        emer_contact_email: emerContactEmail,
-        insurance_company: insuranceCompany,
-        insurance_policy_num: insurancePolicyNum,
-        pet_comment: petComment,
-      },
-    };
-    
+      }
+  }
+  console.log(`PAYLOAD: ${addAPetFormInputs}`)
     fetch("/add-a-pet", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addAPetFormInputs),
+      method: "POST",
+      body: addAPetFormInputs,
     })
     .then((response) => {
-      response.json()
-      console.log("Response.json:" + response.json())
+      console.log('in the first response .then')
+      console.log('console logging response.json:', response.json())
+      // return response.json()
     })
     .then((responseData) => {
-        console.log(responseData);
-        location.reload()
-        // props.onHide() 
-        // console.log(responseData);
-      });
+      // location.reload()
+      // props.onHide() 
+      console.log('in the second response .then with responseData')
+      console.log('console logging responseData', responseData);
+    });
   }
+
+  // const [breed, setBreed] = React.useState(""); // State to store none selected, then if selected, start at None
+
+  // const [breedOptions, setBreedOptions] = React.useState({});
+
+  // React.useEffect(() => {
+  //   // Fetch cat and dog breed data 
+  //   fetch(`/breeds`)
+  //     .then((response) => response.json())
+  //     .then((breedData) => setBreedOptions(breedData));
+  // }, []); // Empty dependency array, runs once only when component mounts
+
+  // let breedInput = null
+
+  // if (species === "dog" || species === "cat") {
+  //   const petOptions = []
+    
+  //   if (species === "dog") {
+  //     for (let b of breedOptions.dog_breeds) {
+  //       petOptions.push(<option value={b}>{b}</option>)
+  //     }
+  //   } else {
+  //     for (let b of breedOptions.cat_breeds) {
+  //       petOptions.push(<option value={b}>{b}</option>)
+  //     }
+  //   } 
+  //   breedInput = (
+  //     <Form.Select value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+  //       <option>Select</option>
+  //       {petOptions}
+  //     </Form.Select>
+  //   )
+  // } else {
+  //   breedInput = (
+  //     <Form.Control value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+  //     </Form.Control>
+  //   )
+  // }
 
   return (
     <>
@@ -179,8 +241,17 @@ function AddPetModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddAPetFormSubmit}>
+            
+            <Form.Group controlId="formGridEmail">
+              <Form.Label>Photo</Form.Label>
+              <Form.Control
+                id="petphoto"
+                type="file"
+              />
+            </Form.Group>
+
             <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>*Species</Form.Label>
                 <Form.Select
                   value={species}
@@ -221,6 +292,11 @@ function AddPetModal(props) {
 
             {/* should below on lines 250-253 be be if statements? Also dogBreed and catBreed are not defined - how do we match up 183 then */}
             <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Breed</Form.Label>
+                {breedInput}
+              </Form.Group>
+
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
@@ -365,16 +441,17 @@ function AddPetModal(props) {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={props.onHide}>
+                Cancel
+              </Button>
+
+              <Button variant="primary" type="submit">
                 Save Changes
-            </Button>
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-              Cancel
-            </Button>
-          </Modal.Footer>
       </Modal>
     </>
   );
