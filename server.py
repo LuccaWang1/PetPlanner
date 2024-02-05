@@ -193,6 +193,29 @@ def save_account_info():
 def save_new_password():
     """Save the user's new password in the db."""
 
+    owner_id = session.get('owner_id')
+    password = request.json.get('password')
+
+    print("Owner_id:", owner_id)
+
+    user = Owner.query.get(owner_id)
+    print("User found or not found in database:", user)
+
+    if user:
+        print("in the /save-new-password route, found user - around line 205 in server.py")
+
+        user.password = password #set to new pw
+        db.session.commit() #save to db
+
+        print("Session has been saved with new My Account pw")
+
+        session.modified = True #session updated as well 
+        
+        return jsonify({
+            'status': 'success',
+        }), 200
+    else:
+        return jsonify({'error': 'Owner not found'}), 404
 
 
 def validate_pet(pet_data):

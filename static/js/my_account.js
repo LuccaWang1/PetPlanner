@@ -95,7 +95,17 @@ saveInfoForm.addEventListener('submit', saveChangesInfoForm);
 // START save new pw
 const pwForm = document.querySelector('#changePWForm');
 
-function savePWChange() {
+const inputCurrentPW = document.querySelector('#MA_password_old')
+const inputPW1 = document.querySelector('MA_password')
+const inputPW2Verify = document.querySelector('MA_passwordVerify')
+
+// inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
+// inputPW1.style.backgroundColor = 'rgb(255,192,203)';
+// inputPW2Verify.style.backgroundColor = 'rgb(255,192,203)';
+
+function savePWChange(event) {
+   event.preventDefault();
+
    // check current/old password input.value to db/hashed pw
    
    // does the current/old password match with the password in the db? 
@@ -111,6 +121,7 @@ function savePWChange() {
 
    if (inputPW1Value === inputPW2VerifyValue) {
       newPW = {password: inputPW1Value} 
+      console.log('check if newpw1 and newpw2 are the same, then put newpw in dictionary to send server - before fetch')
 
       fetch('/save-new-password', {
          method: 'POST',
@@ -119,27 +130,25 @@ function savePWChange() {
             'Content-Type': 'application/json',
          },
       })
-         .then((response) => {
-            console.log('doing the fetch request from here to server.py')
-            return response.json();
-         })
-         .then((responseJson) => {
-            console.log('doing the fetch AJAX response');
-            console.log(responseJson);
-         
-            document.querySelector('#owner_fname').innerText = responseJson['owner_fname']; 
-            document.querySelector('#owner_lname').innerText = responseJson['owner_lname'];
-            document.querySelector('#owner_email').innerText = responseJson['owner_email'];
-         })
-         .catch((error) => {
-            console.error('Error during fetch:', error);
-         });
+      .then((response) => {
+         console.log('attempting to update pw: doing the fetch request change pw js to server.py')
+         return response.json();
+      })
+      .then((responseJson) => {
+         console.log('attempting to update pw: doing the fetch AJAX response responseJson:', responseJson);
+         console.log(responseJson);
+      })
+      .catch((error) => {
+         console.error('Error during fetch:', error);
+      });
 
-
+      // inputCurrentPW.style.backgroundColor = 'rgb(212,235,242)';
+      // inputPW1.style.backgroundColor = 'rgb(212,235,242)';
+      // inputPW2Verify.style.backgroundColor = 'rgb(212,235,242)';
 
       alert("You're password has been changed");
    } else {
-      alert('Please try again - check that your current password is what you typed in, and check that the new password is the same in both the New Password field and the Verify the New Password field');
+      alert('Please try again - check that your current password is what you typed in, and check that the new password is the same in both the New Password and Verify the New Password fields');
    }
    // add and commit to db ... how do I do this with a hashed pw? 
    // else: 
