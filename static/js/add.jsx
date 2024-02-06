@@ -39,6 +39,11 @@ function AddPetModal(props) {
   function handleAge(evt) {
     setAge(evt.target.value);
   }
+
+  //already declared near line 195
+  function handleBreed(evt) {
+    setBreed(evt.target.value);
+  }
   
   const [weight, setWeight] = React.useState("");
   
@@ -136,41 +141,78 @@ function AddPetModal(props) {
       inputWeight = Number(weight)
     }
 
-    const addAPetFormInputs = {
-      pet: {
-        species: species,
-        pet_fname: petFName,
-        pet_lname: petLName,
-        birthday: inputBirthday,
-        age: inputAge,
-        weight: inputWeight,
-        energy_level: energyLevel,
-        coat: coat,
-        emer_contact_fname: emerContactFName,
-        emer_contact_lname: emerContactLName,
-        emer_contact_phone: emerContactPhone,
-        emer_contact_email: emerContactEmail,
-        insurance_company: insuranceCompany,
-        insurance_policy_num: insurancePolicyNum,
-        pet_comment: petComment,
-      },
-    };
+    const formData = new FormData(); //create variable to send to server 
 
-    console.log(addAPetFormInputs)
-    
+    const petPhoto = document.querySelector('#petphoto');
+   
+    formData.append("petphoto", petPhoto.files[0]);
+    formData.append("species", species);
+    formData.append("pet_fname", petFName);
+    formData.append("pet_lname", petLName);
+    formData.append("birthday", inputBirthday);
+    formData.append("age", inputAge);
+    formData.append("breed", breed);
+    formData.append("weight", inputWeight);
+    formData.append("energy_level", energyLevel);
+    formData.append("coat", coat);
+    formData.append("emer_contact_fname", emerContactFName);
+    formData.append("emer_contact_lname", emerContactLName);
+    formData.append("emer_contact_phone", emerContactPhone);
+    formData.append("emer_contact_email", emerContactEmail);
+    formData.append("insurance_company", insuranceCompany);
+    formData.append("insurance_policy_num", insurancePolicyNum);
+    formData.append("pet_comment", petComment);
+    //have add all items to formData to now send to server in fetch send below:
     fetch("/add-a-pet", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addAPetFormInputs),
+      body: formData,
     })
-    .then((response) => response.json())
-    .then((responseData) => {
+      .then((response) => response.json())
+      .then((responseData) => {
+        location.reload()
+        props.onHide() 
+        // console.log(responseData);
         console.log(responseData);
-        props.onHide()
+        if (response['success'] === false) {
+          alert(`Looks like this ${pet_fname}'s already been previous added to your account`);
+        } else {
+          alert(`Success: ${pet_fname}'s been added!`)
+        }
       });
-  
+  }
+
+  const [breed, setBreed] = React.useState(""); // State to store none selected, then if selected, start at None
+  const [breedOptions, setBreedOptions] = React.useState({});
+  React.useEffect(() => {
+    // Fetch cat and dog breed data 
+    fetch(`/breeds`)
+      .then((response) => response.json())
+      .then((breedData) => setBreedOptions(breedData));
+  }, []); // Empty dependency array, runs once only when component mounts
+  let breedInput = null
+  if (species === "dog" || species === "cat") {
+    const petOptions = []
+    
+    if (species === "dog") {
+      for (let b of breedOptions.dog_breeds) {
+        petOptions.push(<option value={b}>{b}</option>)
+      }
+    } else {
+      for (let b of breedOptions.cat_breeds) {
+        petOptions.push(<option value={b}>{b}</option>)
+      }
+    } 
+    breedInput = (
+      <Form.Select value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+        <option>Select</option>
+        {petOptions}
+      </Form.Select>
+    )
+  } else {
+    breedInput = (
+      <Form.Control value={breed} onChange={handleBreed} aria-label="Breed" type="text">
+      </Form.Control>
+    )
   }
 
   return (
@@ -184,6 +226,14 @@ function AddPetModal(props) {
         <Modal.Body>
           <Form onSubmit={handleAddAPetFormSubmit}>
             <Row className="mb-3">
+            <Form.Group controlId="formGridEmail">
+              <Form.Label>Photo</Form.Label>
+              <Form.Control
+                id="petphoto"
+                type="file"
+              />
+            </Form.Group>
+            
             <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>*Species</Form.Label>
                 <Form.Select
@@ -225,6 +275,11 @@ function AddPetModal(props) {
 
             {/* should below on lines 250-253 be be if statements? Also dogBreed and catBreed are not defined - how do we match up 183 then */}
             <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Breed</Form.Label>
+                {breedInput}
+              </Form.Group>
+              
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
@@ -369,16 +424,15 @@ function AddPetModal(props) {
               />
             </Form.Group>
 
+            <Button variant="secondary" onClick={props.onHide}>
+              Cancel
+            </Button>
+            
             <Button variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
-                Save Changes
+              Save Changes
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.onHide}>
-              Cancel
-            </Button>
-          </Modal.Footer>
       </Modal>
     </>
   );
@@ -540,6 +594,7 @@ function AddSpecialistModal(props) {
       .then((response) => response.json())
       .then((responseData) => {
         console.log(responseData);
+
       });
   }
 
@@ -718,15 +773,13 @@ function AddSpecialistModal(props) {
               />
             </Form.Group>
 
-            <Modal.Footer>
               <Button variant="secondary" onClick={props.onHide}>
                 Cancel
               </Button>
 
-              <Button variant="primary" onClick={props.onHide} type="submit">
+              <Button variant="primary" type="submit" onClick=    {handleAddASpecialistFormSubmit}>
                 Save Changes
               </Button>
-            </Modal.Footer>
           </Form>
         </Modal.Body>
       </Modal>
@@ -817,6 +870,12 @@ function AddEventModal(props) {
     setEndTime(evt.target.value);
   }
 
+  const [boolTF, setboolTF] = React.useState("");
+
+  function handleBoolTF(evt) {
+    setboolTF(evt.target.value);
+  }
+
   //submit form, save to db
   function handleAddEventModal(evt) {
     evt.preventDefault();
@@ -848,7 +907,7 @@ function AddEventModal(props) {
     .then((response) => response.json())
     .then((responseData) => {
       console.log(responseData);
-
+      
       if (responseData && responseData.events) {
         const eventsData = data.events.map(event => ({
           title: event.title,
@@ -861,6 +920,8 @@ function AddEventModal(props) {
           }
         }))
       } 
+      location.reload()
+      props.onHide()
     });
   }
 
@@ -944,7 +1005,7 @@ function AddEventModal(props) {
             </Row>
 
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Check value={allDay} onChange={handleAllDay}
+              <Form.Check value={boolTF} onChange={handleBoolTF}
                 type="switch"
                 id="all-day-rose"
                 label="All Day (on is all day)"
@@ -962,16 +1023,13 @@ function AddEventModal(props) {
                 />
               </Form.Group>
             </Row>
-            
-            <Modal.Footer>
               <Button variant="secondary" onClick={props.onHide}>
                 Cancel
               </Button>
 
-              <Button variant="primary" onClick={props.onHide} type="submit">
+              <Button variant="primary" onClick={handleAddEventModal} type="submit">
                 Save Changes
               </Button>
-            </Modal.Footer>
           </Form>
         </Modal.Body>
       </Modal>

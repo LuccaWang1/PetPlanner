@@ -35,6 +35,7 @@ a:hover {
 /* selected link */
 a:active {
 color: #FFC0CB;
+transition-duration: 0.4s;
 }
 
 /* Any button */

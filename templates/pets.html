@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}{% endblock %}
+{% block title %}Dashboard{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<h1>My Pets</h1>
+<p></p>
+<div id="pet-cards"></div>
+<p></p>
+{% endblock %}
+
+{% block bottomnav %}
+{% if "owner_email" in session %}
+<a class="bottomnav-right" href="/">Homepage - you'll still be logged in</a>
+{% endif %}
+{% endblock %}
+

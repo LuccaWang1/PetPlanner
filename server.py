@@ -218,17 +218,17 @@ def save_new_password():
         return jsonify({'error': 'Owner not found'}), 404
 
 
-def validate_pet(pet_data):
-    """Validate a pet's information for number fields if not filled out in React form, then set to these defaults."""
+# def validate_pet(pet_data):
+#     """Validate a pet's information for number fields if not filled out in React form, then set to these defaults."""
 
-    if pet_data['birthday'] is not None and not isinstance(pet_data['birthday'], int):
-        pet_data['birthday'] = None
+#     if pet_data['birthday'] is "not None and not isinstance(pet_data['birthday'], int)":
+#         pet_data['birthday'] = None
     
-    if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
-        pet_data['age'] = None
+#     if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
+#         pet_data['age'] = None
     
-    if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
-        pet_data['weight'] = None
+#     if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
+#         pet_data['weight'] = None
 
 @app.route("/add-a-pet", methods=['POST'])
 def create_pet():
@@ -237,26 +237,37 @@ def create_pet():
     owner_id = session.get('owner_id')
     print(owner_id)
 
-    pet_data = request.json.get('pet', {})
-    print("printing pet_data:", pet_data)
-    validate_pet(pet_data)
-    print(pet_data)
+    #pet_data = request.json.get('pet', {})
+    #formData = request.form.get('pet', {})
+    #print("printing pet_data:", pet_data)
+    my_file = request.files.get('petphoto')
+    species = request.form.get('species')
+    pet_fname = request.form.get('pet_fname')
+    pet_lname = request.form.get('pet_lname')
+    birthday = request.form.get('birthday')
+    if birthday == "null":
+        birthday = None
+    age = request.form.get('age')
+    if age == "null":
+        age = None
+    breed = request.form.get('breed')
+    weight = request.form.get('weight')
+    if weight == "null":
+        weight = None
+    energy_level = request.form.get('energy_level')
+    coat = request.form.get('coat')
+    emer_contact_fname = request.form.get('emer_contact_fname')
+    emer_contact_lname = request.form.get('emer_contact_lname')
+    emer_contact_phone = request.form.get('emer_contact_phone')
+    emer_contact_email = request.form.get('emer_contact_email')
+    insurance_company = request.form.get('insurance_company')
+    insurance_policy_num = request.form.get('emer_contact_email')
+    pet_comment = request.form.get('pet_comment')
 
-    species = pet_data.get('species')
-    pet_fname = pet_data.get('pet_fname')
-    pet_lname = pet_data.get('pet_lname')
-    birthday = pet_data.get('birthday')
-    age = pet_data.get('age')
-    weight = pet_data.get('weight')
-    energy_level = pet_data.get('energy_level')
-    coat = pet_data.get('coat')
-    emer_contact_fname = pet_data.get('emer_contact_fname')
-    emer_contact_lname = pet_data.get('emer_contact_lname')
-    emer_contact_phone = pet_data.get('emer_contact_phone')
-    emer_contact_email = pet_data.get('emer_contact_email')
-    insurance_company = pet_data.get('insurance_company')
-    insurance_policy_num = pet_data.get('emer_contact_email')
-    pet_comment = pet_data.get('pet_comment')
+    # num_pet_data = {'birthday': inputBirthday, 'age':, weight}
+    # print(pet_data)
+    #validate_pet(pet_data)
+    # print(pet_data)
 
     owner = Owner.query.filter_by(owner_id=owner_id).first()
 
@@ -268,7 +279,15 @@ def create_pet():
         return jsonify(response), 200
 
     else: 
-        pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
+        if my_file is not None: 
+            result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name=CLOUD_NAME)
+
+            imgUrl = result['secure_url']
+        
+        else: 
+            imgUrl = None 
+        
+        pet = Pet(imgUrl=imgUrl, species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
         pet.owners.append(owner)
         db.session.add(pet) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
@@ -276,51 +295,51 @@ def create_pet():
         return jsonify(response), 200
 
 
-# @app.route("/breeds")
-# def show_breeds():
-#     """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
+@app.route("/breeds")
+def show_breeds():
+    """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
 
-#     return jsonify(breed_data)
+    return jsonify(breed_data)
 
 
-# @app.route("/get-pets-for-owner")
-# def get_existing_pets_assoc_w_owner():
-#     """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
+@app.route("/get-pets-for-owner")
+def get_existing_pets_assoc_w_owner():
+    """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
 
-#     #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
+    #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
 
-#     owner_id = session.get('owner_id')
-#     print(owner_id)
+    owner_id = session.get('owner_id')
+    print(owner_id)
 
-#     # Query the pets associated with the given owner_id
-#     owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
-#     print(owner_pets)
+    # Query the pets associated with the given owner_id
+    owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+    print(owner_pets)
 
-#     # Create a list of dictionaries with pet information
-#     pets_info = []
+    # Create a list of dictionaries with pet information
+    pets_info = []
 
-#     for pet in owner_pets:
-#         pets_info.append(
-#             {"pet_id": pet.pet_id,
-#             "species": pet.species,
-#             "pet_fname": pet.pet_fname,
-#             "pet_lname": pet.pet_lname,
-#             "birthday": pet.birthday,
-#             "age": pet.age,
-#             "weight": pet.weight,
-#             "energy_level": pet.energy_level,
-#             "coat": pet.coat,
-#             "emer_contact_fname": pet.emer_contact_fname,
-#             "emer_contact_lname": pet.emer_contact_lname,
-#             "emer_contact_phone": pet.emer_contact_phone,
-#             "emer_contact_email": pet.emer_contact_email, 
-#             "insurance_company": pet.insurance_company,
-#             "insurance_policy_num": pet.insurance_policy_num, 
-#             "pet_comment": pet.pet_comment,
-#             }
-#         )
-#     print(pets_info)
-#     return jsonify(pets_info)
+    for pet in owner_pets:
+        pets_info.append(
+            {"pet_id": pet.pet_id,
+            "species": pet.species,
+            "pet_fname": pet.pet_fname,
+            "pet_lname": pet.pet_lname,
+            "birthday": pet.birthday,
+            "age": pet.age,
+            "weight": pet.weight,
+            "energy_level": pet.energy_level,
+            "coat": pet.coat,
+            "emer_contact_fname": pet.emer_contact_fname,
+            "emer_contact_lname": pet.emer_contact_lname,
+            "emer_contact_phone": pet.emer_contact_phone,
+            "emer_contact_email": pet.emer_contact_email, 
+            "insurance_company": pet.insurance_company,
+            "insurance_policy_num": pet.insurance_policy_num, 
+            "pet_comment": pet.pet_comment,
+            }
+        )
+    print(pets_info)
+    return jsonify(pets_info)
 
 
 # def validate_specialist(specialist_data):
@@ -381,8 +400,10 @@ def show_cal_events():
     owner_id = session.get('owner_id')
     print(owner_id)
 
-    events = Event.query.filter_by(owner_id=owner_id).all()
+    owner_events = Event.query.join(Owner_Events).filter(Owner_Events.owner_id == owner_id).all()
     print(events)
+
+    #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
 
     return jsonify(events)
 
