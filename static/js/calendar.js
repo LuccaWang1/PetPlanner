@@ -3,7 +3,7 @@
 console.log("calendar.js is running");
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('/calendar-events')
+  fetch('/show-events')
   .then((response) => response.json())
   .then((responseData) => {
     document.querySelector('#my-div').innerText = responseData;
