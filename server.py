@@ -325,7 +325,7 @@ def get_existing_pets_assoc_w_owner():
     return jsonify(pets_info)
 
 
-@app.route("/pets-pet-cards") #working on this 
+@app.route("/pets-pet-cards")
 def get_owners_pets():
     """Get pets associated in this owner/user's account. (This is for the pet cards - jinja.)"""
 
@@ -445,16 +445,6 @@ def create_event():
 
     return jsonify(event_data)
 
-
-# def validate_specialist(specialist_data):
-#     """Validate a specialist's information for number fields if not filled out in React form, then set to these defaults."""
-
-#     if specialist_data['birthday'] is not None and not isinstance(specialist_data['birthday'], int):
-#         specialist_data['birthday'] = None
-#     if specialist_data['age'] is not None and not isinstance(specialist_data['age'], int):
-#         specialist_data['age'] = None
-#     if specialist_data['weight'] is not None and not isinstance(specialist_data['weight'], int):
-#         specialist_data['weight'] = None
 
 @app.route("/add-a-specialist", methods=['PUT'])
 def add_specialist_to_pet():
