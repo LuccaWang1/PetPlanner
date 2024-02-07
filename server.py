@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, url_for
 import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
-import crud #consider removing if no crud functions
+import crud
 from datetime import datetime, date
 import cloudinary.uploader
 from animal_breeds import breed_data
@@ -382,11 +382,9 @@ def publish_events():
     print("owner.events:", owner.events)
     #owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
 
-    #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
-
     events_data = []
  
-    for event in events:
+    for event in events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
         events_data.append({
             'event_id': event.event_id,
             'title': event.title, 

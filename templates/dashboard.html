@@ -10,14 +10,14 @@
 <h1>Welcome, {{ owner_fname }}!</h1>
 <p></p>
 <!-- look at div row and columns  -->
-<div class="card-deck">
+<div class="card-deck" class="d-flex flex-row">
 {% for pet in owner_pets %}
-  <div class="card" class="card-deck" class="row" style="width: 18rem;">
-    {% if pet.imgUrl %}
+  <div class="card" class="max-auto" style="width: 18rem;">
+      {% if pet.imgUrl %}
       <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Card image cap">
-    {% else %}
+      {% else %}
       <img class="card-img-top" src="/static/images/petplanner-defaultpetcardph.jpg" alt="Card image cap">
-    {% endif %}
+      {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ pet.pet_fname }}</h5>
         <p class="card-text">Notes: {{ pet.pet_comment }}</p>
@@ -29,6 +29,7 @@
       </ul>
       <div class="card-body">
         <a href="#" class="card-link">Edit</a>
+        <a href="#" class="card-link">Delete Pet</a>
         <a href="#" class="card-link">See Pet</a>
       </div>
     </div>

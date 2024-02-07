@@ -1,74 +1,52 @@
-#any functions that have to do with your database 
 """CRUD operations."""
-
-
-#user log in log out adding new user to database 
-#adding a new pet 
-#adding a new specialist 
-#adding an event 
-#updated pet info
-#updating specialist info
 
 from model import db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting, connect_to_db
 
 
-def handle_login():
-    """Log user into application."""
-
-    # owner_email_input = request.form['email']
-    # owner_password_input = request.form['password']
-
-    # user = Owner.query.filter_by(owner_email=owner_email).one() #update 
-    # # if Owner.query.filter_by(owner.owner_password) == owner_password: 
-
-    # if owner_password == "": 
-    #     flash(f'Please enter a password')
-    #     return redirect('/')
-
-    # else:
-    #     flash('Wrong password!')
-    #     return redirect('/login')
-
-def create_user(email, owner_fname, owner_lname, password):
+def create_user(owner_fname, owner_lname, email, password):
     """Create and return a new user."""
 
-    user = Owner(email=email, owner_fname=owner_fname, owner_lname=owner_lname, password=password)
+    user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, email=email, password=password)
 
     return user
 
 
-def get_users():
-    """Return all users."""
-
-    return Owner.query.all()
-
-
 def get_owner_by_id(owner_id):
     """Return a user/owner by primary key (owner_id)."""
-
+    
     return Owner.query.get(owner_id)
 
 
 def get_owner_by_email(owner_email):
     """Return an owner by email."""
 
-    return Owner.query.filter(Owner.owner_email == owner_email).first()
+    return Owner.query.get(owner_email).first()
 
 
-def create_pet(pet_fname, pet_lname, energy_level, age, coat_type, animal_type, weight):
+def create_pet(imgUrl, species, pet_fname, pet_lname, birthday, energy_level, age, breed, weight, coat_type, emer_contact_fname, emer_contact_lname, emer_contact_phone, emer_contact_email, insurance_company, insurance_policy_num):
     """Create and return a new pet."""
 
     pet = Pet(
+        imgUrl=imgUrl,
+        species=species,
         pet_fname=pet_fname,
         pet_lname=pet_lname,
-        energy_level=energy_level,
+        birthday=birthday,
         age=age,
+        breed=breed,
+        weight=weight,
+        energy_level=energy_level,
         coat_type=coat_type,
-        animal_type=animal_type,
-        weight=weight
+        emer_contact_fname=emer_contact_fname,
+        emer_contact_lname=emer_contact_lname,
+        emer_contact_phone=emer_contact_phone,
+        emer_contact_email=emer_contact_email,
+        insurance_company=insurance_company,
+        insurance_policy_num=insurance_policy_num,
     )
 
     return pet
+
 
 def update_pet(pet_fname, pet_lname, energy_level, age, coat_type, animal_type, weight):
     """Create and return a new pet."""
