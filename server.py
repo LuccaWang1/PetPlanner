@@ -371,7 +371,7 @@ def render_events():
     return render_template("my_events.html")
 
 
-@app.route('/show-events', methods=['POST'])
+@app.route('/show-events', methods=['POST', 'GET'])
 def publish_events():
     """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
     
@@ -379,12 +379,13 @@ def publish_events():
     print("owner_id:", owner_id) 
 
     owner = Owner.query.get(owner_id) #getting access to Owner and events
+    #owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
     print("owner.events:", owner.events)
     #owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
 
     events_data = []
  
-    for event in events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
+    for event in owner.events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
         events_data.append({
             'event_id': event.event_id,
             'title': event.title, 
@@ -420,28 +421,21 @@ def create_event():
     end_time = request.form.get("end_time")
     allDay = request.form.get("allDay")
     description = request.form.get("description")
-
+    
+    if allDay == "true":
+        allDay = True
+        start_time = None
+        end_time = None
+    else:
+        allDay = False
+        
     event = Event(title=title, location=location, start_date=start_date,start_time=start_time, end_date=end_date, end_time=end_time, allDay=allDay, description=description)
 
     event.owners.append(owner)
-    
-    event_data = {
-        "event_id": event.event_id,
-        "title": event.title,
-        "location": event.location,
-        "start_date": event.start_date,
-        "start_time": event.start_time,
-        "end_date": event.end_date,
-        "end_time": event.end_time,
-        "allDay": event.allDay, 
-        "description": event.description,
-        }
-
-    db.session.add(event)
-    db.session.commit()
-    flash("Success!")
-
-    return jsonify(event_data)
+    db.session.add(event) #add user instance to database with .add built-in func
+    db.session.commit() #then need to commit the change/add to the database
+    response = {"success": True, "status": f"{event.title}'s been added!"}
+    return jsonify(response), 200
 
 
 @app.route("/add-a-specialist", methods=['PUT'])

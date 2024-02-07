@@ -11,8 +11,8 @@
 <p></p>
 <!-- look at div row and columns  -->
 <div class="card-deck" class="d-flex flex-row">
-{% for pet in owner_pets %}
-  <div class="card" class="max-auto" style="width: 18rem;">
+  {% for pet in owner_pets %}
+    <div class="card" class="max-auto" style="width: 18rem;">
       {% if pet.imgUrl %}
       <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Card image cap">
       {% else %}
@@ -32,8 +32,9 @@
         <a href="#" class="card-link">Delete Pet</a>
         <a href="#" class="card-link">See Pet</a>
       </div>
-    </div>
-{% endfor %}
+    </div> 
+  <!-- looping through pet instances assoc. w/ owner id -->
+  {% endfor %}
 </div>
 <p></p>
 {% endblock %}

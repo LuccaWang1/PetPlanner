@@ -558,7 +558,8 @@ function AddSpecialistModal(props) {
     evt.preventDefault();
 
     console.log("in the handleAddASpecialistFormSubmit function")
-    
+  }
+
     const addASpecialistFormInputs = {
       specialist: {
         role: role,
@@ -577,7 +578,7 @@ function AddSpecialistModal(props) {
     };
 
     fetch("/add-a-specialist", {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -588,7 +589,6 @@ function AddSpecialistModal(props) {
         console.log(responseData);
 
       });
-  }
 
   const [pets, setPets] = React.useState([]); // State to store pets associated with owner_id
 
@@ -865,7 +865,7 @@ function AddEventModal(props) {
   const [boolTF, setboolTF] = React.useState("");
 
   function handleBoolTF(evt) {
-    setboolTF(evt.target.value);
+    setboolTF(evt.target.checked);
   }
 
   //submit form, save to db
@@ -873,47 +873,74 @@ function AddEventModal(props) {
     evt.preventDefault();
 
     console.log("in the handleAddEventModel function")
-    
-    const addEventFormInputs = {
-      specialist: {
-        title: eventTitle,
-        description: eventDescription,
-        start_date: startDate,
-        start_time: startTime,
-        end_date: endDate,
-        end_time: endTime,
-        allDay: boolTF,
-        location: location, 
-      },
-    };
 
+    const formDataEvent = new FormData(); //create variable to send to server 
+
+    formDataEvent.append("title", eventTitle);
+    formDataEvent.append("description", eventDescription);
+    formDataEvent.append("start_date", startDate);
+    formDataEvent.append("start_time", startTime);
+    formDataEvent.append("end_date", endDate);
+    formDataEvent.append("end_time", endTime);
+    formDataEvent.append("allDay", boolTF);
+    formDataEvent.append("location", location);
+
+    //have add all items to formData to now send to server in fetch send below:
     fetch("/create-event", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addEventFormInputs),
+      body: formDataEvent,
     })
-    .then((response) => response.json())
-    .then((responseData) => {
-      console.log(responseData);
+      .then((response) => response.json())
+      .then((responseData) => {
+        // location.reload()
+        props.onHide() 
+        console.log(responseData);
+        if (response['success'] === false) {
+          alert(`Looks like this ${eventTitle}'s already been previously added to your account`);
+        } else {
+          alert(`Success: ${eventTitle}'s been added!`)
+        }
+      });
+    }
+  //   const addEventFormInputs = {
+  //     specialist: {
+  //       title: eventTitle,
+  //       description: eventDescription,
+  //       start_date: startDate,
+  //       start_time: startTime,
+  //       end_date: endDate,
+  //       end_time: endTime,
+  //       allDay: boolTF,
+  //       location: location, 
+  //     },
+  //   };
+
+  //   fetch("/create-event", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(addEventFormInputs),
+  //   })
+  //   .then((response) => response.json())
+  //   .then((responseData) => {
+  //     console.log(responseData);
       
-      if (responseData && responseData.events) {
-        const eventsData = data.events.map(event => ({
-          title: event.title,
-          description: event.description,
-          start: event.start_date + (event.start_time ? 'T' + event.start_time : ''),
-          end: event.end_date + (event.end_time ? 'T' + event.end_time : ''),
-          allDay: false,
-          extendedProps: {
-            location: location,
-          }
-        }))
-      } 
-      location.reload()
-      props.onHide()
-    });
-  }
+  //     if (responseData && responseData.events) {
+  //       const eventsData = data.events.map(event => ({
+  //         title: event.title,
+  //         description: event.description,
+  //         start: event.start_date + (event.start_time ? 'T' + event.start_time : ''),
+  //         end: event.end_date + (event.end_time ? 'T' + event.end_time : ''),
+  //         allDay: false,
+  //         extendedProps: {
+  //           location: location,
+  //         }
+  //       }))
+  //     } 
+  //     location.reload()
+  //     props.onHide()
+  //   });
 
   return (
     <>
@@ -947,7 +974,7 @@ function AddEventModal(props) {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Start Date</Form.Label>
+                <Form.Label>*Start Date</Form.Label>
                 <Form.Control
                   value={startDate}
                   onChange={handleStartDate}
@@ -972,7 +999,7 @@ function AddEventModal(props) {
 
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>End Date</Form.Label>
+                <Form.Label>*End Date</Form.Label>
                 <Form.Control
                   value={endDate}
                   onChange={handleEndDate}
