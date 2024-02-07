@@ -9,24 +9,31 @@
 <h1>Dashboard</h1>
 <h1>Welcome, {{ owner_fname }}!</h1>
 <p></p>
-{% if pets %}
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<!-- look at div row and columns  -->
+<div class="card-deck">
+{% for pet in owner_pets %}
+  <div class="card" class="card-deck" class="row" style="width: 18rem;">
+    {% if pet.imgUrl %}
+      <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Card image cap">
+    {% else %}
+      <img class="card-img-top" src="/static/images/petplanner-defaultpetcardph.jpg" alt="Card image cap">
+    {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ pet.pet_fname }}</h5>
+        <p class="card-text">Notes: {{ pet.pet_comment }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Breed: {{ pet.breed }}</li>
+        <li class="list-group-item">Birthday: {{ pet.birthday }}</li>
+        <li class="list-group-item">Insurance Policy Number: {{ pet.insurance_policy_num }}</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Edit</a>
+        <a href="#" class="card-link">See Pet</a>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-  </div>
-  {% endif %}
+{% endfor %}
+</div>
 <p></p>
 {% endblock %}
 

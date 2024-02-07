@@ -52,7 +52,7 @@ class Pet(db.Model):
     species = db.Column(db.String, nullable=False) #"dog", "cat", "horse"
     pet_fname = db.Column(db.String(25), nullable=False)
     pet_lname = db.Column(db.String(25))
-    birthday = db.Column(db.Integer)
+    birthday = db.Column(db.Date)
     age = db.Column(db.Integer)
     breed = db.Column(db.String)
     weight = db.Column(db.Integer) #bc ex: 14.02 = 5 characters #frontend: make sure to specify lbs. as weight measurement on field
@@ -147,9 +147,9 @@ class Event(db.Model):
     title = db.Column(db.String(40), nullable=False)
     location = db.Column(db.String(40))
     start_date = db.Column(db.Date, nullable=False)
-    start_time = db.Column(db.Time)
+    start_time = db.Column(db.Time) #YYYY-MM-DDTHH:mm:ss.sssZ
     end_date = db.Column(db.Date, nullable=False)
-    end_time = db.Column(db.Time)
+    end_time = db.Column(db.Time) #YYYY-MM-DDTHH:mm:ss.sssZ
     allDay = db.Column(db.Boolean, default=False)
     description = db.Column(db.Text)
 
@@ -157,7 +157,7 @@ class Event(db.Model):
     pets = db.relationship("Pet", back_populates="events", secondary="pet_events")
 
     def __repr__(self):
-        return f"<Specialist specialist_id={self.specialist_id} specialist_fname={self.specialist_fname} specialist_lname={self.specialist_lname}>"
+        return f"<Event event_id={self.event_id} title={self.title} start_date={self.start_date}>"
 
 
 class Message(db.Model):

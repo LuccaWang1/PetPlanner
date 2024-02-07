@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, flash, session, redirect, jso
 import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
 import crud #consider removing if no crud functions
-from datetime import datetime
+from datetime import datetime, date
 import cloudinary.uploader
 from animal_breeds import breed_data
 
@@ -115,13 +115,17 @@ def handle_create_account():
 def dashboard():
     """View logged in user's/owner's dashboard."""
 
-    # Retrieve owner_fname and owner_lname from the session
+    # Retrieve owner info. from the session
+    owner_id = session.get('owner_id')
     owner_fname = session.get('owner_fname')
-    owner_lname = session.get('owner_lname')
+
+    # Query the pets associated with the given owner_id
+    owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+    print(owner_pets)
 
     # Check if the user is logged in
-    if owner_fname and owner_lname:
-        return render_template("dashboard.html", owner_fname=owner_fname)
+    if owner_fname and owner_id:
+        return render_template("dashboard.html", owner_fname=owner_fname, owner_pets=owner_pets)
     else:
         flash("You need to log in first.")
         return redirect("/login")
@@ -218,18 +222,6 @@ def save_new_password():
         return jsonify({'error': 'Owner not found'}), 404
 
 
-# def validate_pet(pet_data):
-#     """Validate a pet's information for number fields if not filled out in React form, then set to these defaults."""
-
-#     if pet_data['birthday'] is "not None and not isinstance(pet_data['birthday'], int)":
-#         pet_data['birthday'] = None
-    
-#     if pet_data['age'] is not None and not isinstance(pet_data['age'], int):
-#         pet_data['age'] = None
-    
-#     if pet_data['weight'] is not None and not isinstance(pet_data['weight'], int):
-#         pet_data['weight'] = None
-
 @app.route("/add-a-pet", methods=['POST'])
 def create_pet():
     """Create a new instance of the Pet class, and save it in the db."""
@@ -237,16 +229,11 @@ def create_pet():
     owner_id = session.get('owner_id')
     print(owner_id)
 
-    #pet_data = request.json.get('pet', {})
-    #formData = request.form.get('pet', {})
-    #print("printing pet_data:", pet_data)
     my_file = request.files.get('petphoto')
     species = request.form.get('species')
     pet_fname = request.form.get('pet_fname')
     pet_lname = request.form.get('pet_lname')
     birthday = request.form.get('birthday')
-    if birthday == "null":
-        birthday = None
     age = request.form.get('age')
     if age == "null":
         age = None
@@ -263,11 +250,6 @@ def create_pet():
     insurance_company = request.form.get('insurance_company')
     insurance_policy_num = request.form.get('emer_contact_email')
     pet_comment = request.form.get('pet_comment')
-
-    # num_pet_data = {'birthday': inputBirthday, 'age':, weight}
-    # print(pet_data)
-    #validate_pet(pet_data)
-    # print(pet_data)
 
     owner = Owner.query.filter_by(owner_id=owner_id).first()
 
@@ -304,7 +286,7 @@ def show_breeds():
 
 @app.route("/get-pets-for-owner")
 def get_existing_pets_assoc_w_owner():
-    """Get pets associated in this owner/user's account. (One use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
+    """Get pets associated in this owner/user's account. (Use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
 
     #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
 
@@ -326,6 +308,7 @@ def get_existing_pets_assoc_w_owner():
             "pet_lname": pet.pet_lname,
             "birthday": pet.birthday,
             "age": pet.age,
+            "breed": pet.breed,
             "weight": pet.weight,
             "energy_level": pet.energy_level,
             "coat": pet.coat,
@@ -340,6 +323,127 @@ def get_existing_pets_assoc_w_owner():
         )
     print(pets_info)
     return jsonify(pets_info)
+
+
+@app.route("/pets-pet-cards") #working on this 
+def get_owners_pets():
+    """Get pets associated in this owner/user's account. (This is for the pet cards - jinja.)"""
+
+    owner_id = session.get('owner_id')
+    print(owner_id)
+
+    # Query the pets associated with the given owner_id
+    owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+    print(owner_pets)
+
+    # Create a list of dictionaries with pet information
+    pets_info = []
+
+    for pet in owner_pets:
+        pets_info.append(
+            {"pet_id": pet.pet_id,
+            "species": pet.species,
+            "pet_fname": pet.pet_fname,
+            "pet_lname": pet.pet_lname,
+            "birthday": pet.birthday,
+            "age": pet.age,
+            "breed": pet.breed,
+            "weight": pet.weight,
+            "energy_level": pet.energy_level,
+            "coat": pet.coat,
+            "emer_contact_fname": pet.emer_contact_fname,
+            "emer_contact_lname": pet.emer_contact_lname,
+            "emer_contact_phone": pet.emer_contact_phone,
+            "emer_contact_email": pet.emer_contact_email, 
+            "insurance_company": pet.insurance_company,
+            "insurance_policy_num": pet.insurance_policy_num, 
+            "pet_comment": pet.pet_comment,
+            }
+        )
+    
+    return render_template(pets_info)
+
+
+@app.route("/my-events")
+def render_events():
+    """View logged in owner's pet's events in the calendar."""
+
+    return render_template("my_events.html")
+
+
+@app.route('/put-events-on-cal', methods=['POST'])
+def publish_events():
+    """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
+    
+    owner_id = session.get('owner_id')
+    print("owner_id:", owner_id) 
+
+    owner = Owner.query.get(owner_id) #getting access to Owner and events
+    print("owner.events:", owner.events)
+    #owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
+
+    #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
+
+    events_data = []
+ 
+    for event in events:
+        events_data.append({
+            'event_id': event.event_id,
+            'title': event.title, 
+            'start_date': event.start_date,
+            'start_time': event.start_date, 
+            'end_date': event.end_date,
+            'end_time': event.end_time, 
+            'allDay': event.allDay,
+            'description': event.description,
+            'extendedProps': {
+                'location': event.location,
+            }
+        })
+
+    response_data = {'events': events_data}
+    
+    return jsonify(response_data)
+
+
+@app.route('/create-event', methods=['POST'])
+def create_event():
+    """Create an event and save to the database."""
+    
+    owner_id = session.get('owner_id')
+    print(owner_id)
+    owner = Owner.query.get(owner_id)
+
+    title = request.form.get("title")
+    location = request.form.get("location")
+    start_date = request.form.get("start_date")
+    start_time = request.form.get("start_time")
+    end_date = request.form.get("end_date")
+    end_time = request.form.get("end_time")
+    allDay = request.form.get("allDay")
+    description = request.form.get("description")
+
+    event = Event(title=title, location=location, start_date=start_date,start_time=start_time, end_date=end_date, end_time=end_time, allDay=allDay, description=description)
+
+    event.owners.append(owner)
+    
+    event_data = {
+        "event_id": event.event_id,
+        "title": event.title,
+        "location": event.location,
+        "start_date": event.start_date,
+        "start_time": event.start_time,
+        "end_date": event.end_date,
+        "end_time": event.end_time,
+        "allDay": event.allDay, 
+        "description": event.description,
+        }
+
+    db.session.add(event)
+    db.session.commit()
+    flash("Success!")
+
+    return jsonify(event_data)
 
 
 # def validate_specialist(specialist_data):
@@ -393,123 +497,13 @@ def add_specialist_to_pet():
     #     return jsonify(response), 200
 
 
-@app.route("/calendar-events")
-def show_cal_events():
-    """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
-    
-    owner_id = session.get('owner_id')
-    print(owner_id)
+# @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
+# def dashboard_pets_pet():
+#     """View logged in owner's specific pet."""
 
-    owner_events = Event.query.join(Owner_Events).filter(Owner_Events.owner_id == owner_id).all()
-    print(events)
+#     #need code here 
 
-    #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
-
-    return jsonify(events)
-
-
-@app.route("/my-events")
-def render_events():
-    """View logged in owner's pet's events in the calendar."""
-
-    return render_template("my_events.html")
-
-
-@app.route('/put-events-on-cal')
-def publish_events():
-    """Publish events on the calendar."""
-
-    owner_id = session.get('owner_id')
-
-    if 'owner_email' not in session:
-        return jsonify({'error': 'User not logged in'}), 401
-    
-    start_str = request.args.get('start')
-    end_str = request.args.get('end')
-
-    if start_str is None or end_str is None: 
-        return jsonify({'error': 'Missing start or end parameter'}), 400
-    
-    try: 
-        month_start = datetime.fromisoformat(start_str)
-        month_end = datetime.fromisoformat(end_str)
-
-    except ValueError:
-        return jsonify({'error': 'Invalid date format'}), 400
-    
-    events = Event.query.filter(
-        Event.owner_id == owner_id,
-        Event.start_date.between(month_start.date(), month_end.date()), 
-        Event.deleted_on.is_(None)
-    ).all()
-
-    events_data = []
- 
-    for event in events:
-        events_data.append({
-            'event_id': event.event_id,
-            'title': event.title, 
-            'start_date': event.start_date,
-            'start_time': event.start_date, 
-            'end_date': event.end_date,
-            'end_time': event.end_time, 
-            'allDay': event.allDAy,
-            'description': event.description,
-            'extendedProps': {
-                'location': event.location,
-            }
-        })
-
-    response_data = {'events': events_data}
-    
-    return jsonify(response_data)
-
-
-# @app.route('/create-event', methods=['POST', 'GET', 'PUT'])
-# def create_event():
-#     """Create an event and save to the database."""
-    
-#     if user not in session: 
-#         flash
-#         return redirect('/homepage')
-
-#     user = pull owner_id from session 
-#     crud function that's repeating 
-
-#     title = request.form.get("title")
-#     #etc 
-
-#     start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
-#     end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
-
-#     start_time = datetime.combine(start_date, datetime.strptime(start_time_str, "%H:%M").time())
-#     end_time = datetime.combine(end_date, datetime.strptime(end_time_str, "%H:%M").time())
-
-#     event = Event(owner_id=owner_event_id,
-                  
-#                   )
-    
-#     event_data = {
-#         "event_id": event.event_id,
-#         #etc
-#     }
-
-#     db.session.add(event)
-#     db.session.commit()
-#     flash("Success!")
-
-#     return #dashboard 
-
-
-
-
-@app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
-def dashboard_pets_pet():
-    """View logged in owner's specific pet."""
-
-    #need code here 
-
-    return render_template("pet.html") #might need to update this 
+#     return render_template("pet.html") #might need to update this 
 
 
 if __name__ == "__main__":    

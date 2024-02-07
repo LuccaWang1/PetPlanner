@@ -117,14 +117,6 @@ function AddPetModal(props) {
       return;
     }
 
-    let inputBirthday
-
-    if (birthday === "") {
-      inputBirthday = null;
-    } else {
-      inputBirthday = Number(birthday)
-    }
-
     let inputAge
 
     if (age === "") {
@@ -149,7 +141,7 @@ function AddPetModal(props) {
     formData.append("species", species);
     formData.append("pet_fname", petFName);
     formData.append("pet_lname", petLName);
-    formData.append("birthday", inputBirthday);
+    formData.append("birthday", birthday);
     formData.append("age", inputAge);
     formData.append("breed", breed);
     formData.append("weight", inputWeight);
@@ -880,7 +872,7 @@ function AddEventModal(props) {
   function handleAddEventModal(evt) {
     evt.preventDefault();
 
-    console.log("in the handleAddASpecialistFormSubmit function")
+    console.log("in the handleAddEventModel function")
     
     const addEventFormInputs = {
       specialist: {
@@ -891,14 +883,12 @@ function AddEventModal(props) {
         end_date: endDate,
         end_time: endTime,
         allDay: boolTF,
-        extendedProps: {
-          location: location,
-        } 
+        location: location, 
       },
     };
 
     fetch("/create-event", {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -935,7 +925,7 @@ function AddEventModal(props) {
           <Form onSubmit={handleAddEventModal}>
             <Row className="mb-3">
               <Form.Group controlId="formGridPassword">
-                <Form.Label>Title</Form.Label>
+                <Form.Label>*Title</Form.Label>
                 <Form.Control
                   value={eventTitle} onChange={handleEventTitle}
                   type="text"

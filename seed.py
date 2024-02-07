@@ -27,9 +27,12 @@ model.db.session.add(test_user)
 model.db.session.commit()
 
 pet = Pet(
+    imgUrl="",
     species="dog",
     pet_fname="Feefee",
     pet_lname="Wang",
+    breed="Mutt/Mix",
+    birthday="2017-09-26",
     age=6,
     weight="42",
     energy_level="medium",
@@ -44,6 +47,20 @@ pet = Pet(
 )
 
 pet.owners.append(test_user)
+
+event = Event(
+    title="Feefee's nail trim",
+    location="PetCo",
+    start_date="2024-02-07",
+    start_time="12:30:00", #2018-09-01T00:00:00-05:00, YYYY-MM-DDTHH:mm:ss.sssZ
+    end_date="2024-02-07",
+    end_time="12:30:00",
+    allDay=False,
+    description="",
+)
+
+event.owners.append(test_user)
+event.pets.append(pet)
 
 specialist = Specialist(
     role="Vet",
