@@ -371,7 +371,7 @@ def render_events():
     return render_template("my_events.html")
 
 
-@app.route('/put-events-on-cal', methods=['POST'])
+@app.route('/show-events', methods=['POST'])
 def publish_events():
     """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
     
