@@ -11,8 +11,9 @@
 <p></p>
 <!-- look at div row and columns  -->
 
+<div class="row row-cols-3">
 {% for pet in owner_pets %}
-<div class="card-deck">
+<div class="col">
     <div class="card" style="width: 18rem;">
       {% if pet.imgUrl %}
       <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Pet image">
@@ -37,6 +38,7 @@
   <!-- looping through pet instances assoc. w/ owner id -->
 </div>
 {% endfor %}
+</div>
 <p></p>
 {% endblock %}
 

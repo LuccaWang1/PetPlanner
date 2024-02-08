@@ -161,13 +161,13 @@ function AddPetModal(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        location.reload()
-        props.onHide() 
         console.log(responseData);
-        if (response['success'] === false) {
-          alert(`Looks like this ${pet_fname}'s already been previous added to your account`);
+        if (responseData['success'] === false) {
+          alert(responseData.status);
         } else {
-          alert(`Success: ${pet_fname}'s been added!`)
+          props.onHide()
+          alert(responseData.status)
+          location.reload()
         }
       });
   }

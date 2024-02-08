@@ -234,9 +234,15 @@ def create_pet():
     pet_fname = request.form.get('pet_fname')
     pet_lname = request.form.get('pet_lname')
     birthday = request.form.get('birthday', None)
+    if birthday == "":
+        birthday = None
     age = request.form.get('age', None)
+    if age == "null":
+        age = None
     breed = request.form.get('breed')
     weight = request.form.get('weight', None)
+    if weight == "null":
+        weight = None
     energy_level = request.form.get('energy_level')
     coat = request.form.get('coat')
     emer_contact_fname = request.form.get('emer_contact_fname')
