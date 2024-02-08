@@ -147,9 +147,9 @@ class Event(db.Model):
     title = db.Column(db.String(40), nullable=False)
     location = db.Column(db.String(40))
     start_date = db.Column(db.Date, nullable=False)
-    start_time = db.Column(db.Time) #YYYY-MM-DDTHH:mm:ss.sssZ
+    start_time = db.Column(db.Time)
     end_date = db.Column(db.Date, nullable=False)
-    end_time = db.Column(db.Time) #YYYY-MM-DDTHH:mm:ss.sssZ
+    end_time = db.Column(db.Time)
     allDay = db.Column(db.Boolean, default=False)
     description = db.Column(db.Text)
 

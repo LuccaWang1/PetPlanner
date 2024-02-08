@@ -163,7 +163,6 @@ function AddPetModal(props) {
       .then((responseData) => {
         location.reload()
         props.onHide() 
-        // console.log(responseData);
         console.log(responseData);
         if (response['success'] === false) {
           alert(`Looks like this ${pet_fname}'s already been previous added to your account`);
@@ -496,12 +495,13 @@ function AddSpecialistModal(props) {
   function handlePetSelected(evt) { 
     setPetSelected(evt.target.value); //pull value from dropdown menu
     
-    if (setAllPetsSelected !== "") {
-      setAllPetsSelected(""); //but if the toggle for all pets is selected, then regardless of what's selected set this to None
-    }}
+    if (allPetsSelected !== "") {
+      petSelected == ""
+    }
+  }
 
   function handleAllPetsSelected(evt) { 
-    setAllPetsSelected(evt.target.value);
+    setAllPetsSelected(evt.target.checked);
     setPetSelected(""); // if this is selected, then void the handlePetSelected option
   }
 
@@ -558,46 +558,48 @@ function AddSpecialistModal(props) {
     evt.preventDefault();
 
     console.log("in the handleAddASpecialistFormSubmit function")
-  }
 
-    const addASpecialistFormInputs = {
-      specialist: {
-        role: role,
-        specialist_company: specialistCompany,
-        specialist_fname: specialistFName,
-        specialist_lname: specialistLName,
-        specialist_email: specialistEmail,
-        specialist_phone: specialistPhone,
-        street: street,
-        street2: street2,
-        city: city,
-        state: state,
-        zip_code: zipCode,
-        specialist_comment: specialistComment,
-      },
-    };
+    const formDataSpecialist = new FormData(); //create variable to send to server 
+
+    formDataSpecialist.append("role", role);
+    formDataSpecialist.append("specialist_company", specialistCompany);
+    formDataSpecialist.append("specialist_fname", specialistFName);
+    formDataSpecialist.append("specialist_lname", specialistLName);
+    formDataSpecialist.append("specialist_email", specialistEmail);
+    formDataSpecialist.append("specialist_phone", specialistPhone);
+    formDataSpecialist.append("street", street);
+    formDataSpecialist.append("street2", street2);  
+    formDataSpecialist.append("city", city); 
+    formDataSpecialist.append("state", state); 
+    formDataSpecialist.append("zip_code", zipCode); 
+    formDataSpecialist.append("specialist_comment", specialistComment); 
+    formDataSpecialist.append("pet_selected", petSelected); 
+    formDataSpecialist.append("all_pets_selected", allPetsSelected); 
 
     fetch("/add-a-specialist", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addASpecialistFormInputs),
+      body: formDataSpecialist,
     })
       .then((response) => response.json())
       .then((responseData) => {
+        props.onHide() 
         console.log(responseData);
-
+        if (responseData['success'] === false) {
+          alert("Looks like this specialist's already been previously added to your account");
+        } else {
+          alert(`Success: This specialist's been added!`)
+        }
       });
+    }
 
   const [pets, setPets] = React.useState([]); // State to store pets associated with owner_id
 
-  // React.useEffect(() => {
-  //   // Fetch pets associated with the owner_id
-  //   fetch(`/get-pets-for-owner`)
-  //   .then((response) => response.json())
-  //   .then((petsInfoData) => setPets(petsInfoData));
-  // }, []); // Empty dependency array, runs once only when component mounts
+  React.useEffect(() => {
+    // Fetch pets associated with the owner_id
+    fetch(`/get-pets-for-owner`)
+    .then((response) => response.json())
+    .then((petsInfoData) => setPets(petsInfoData));
+  }, []); // Empty dependency array, runs once only when component mounts
 
   return (
     <>
@@ -613,7 +615,7 @@ function AddSpecialistModal(props) {
                 <Form.Select
                   value={role}
                   onChange={handleRole}
-                  aria-label="Default select example"
+                  aria-label="Role"
                   type="text"
                 >
                   <option>Select</option>
@@ -764,12 +766,11 @@ function AddSpecialistModal(props) {
                 rows={3}
               />
             </Form.Group>
-
               <Button variant="secondary" onClick={props.onHide}>
                 Cancel
               </Button>
 
-              <Button variant="primary" type="submit" onClick=    {handleAddASpecialistFormSubmit}>
+              <Button variant="primary" type="submit" onClick={handleAddASpecialistFormSubmit}>
                 Save Changes
               </Button>
           </Form>
@@ -991,7 +992,7 @@ function AddEventModal(props) {
                   value={startTime}
                   onChange={handleStartTime}
                   type="time"
-                  placeholder="Hr:Mm AM/PM"
+                  placeholder=""
                   aria-label="Start Time"
                 />
               </Form.Group>
@@ -1015,7 +1016,7 @@ function AddEventModal(props) {
                   value={endTime}
                   onChange={handleEndTime}
                   type="time"
-                  placeholder="Hr:Mm AM/PM"
+                  placeholder=""
                   aria-label="End Time"
                 />
               </Form.Group>

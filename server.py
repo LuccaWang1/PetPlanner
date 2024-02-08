@@ -438,45 +438,51 @@ def create_event():
     return jsonify(response), 200
 
 
-@app.route("/add-a-specialist", methods=['PUT'])
+@app.route("/add-a-specialist", methods=['POST'])
 def add_specialist_to_pet():
     """Create a new instance of the Specialist class that's associated with a pet, and save it in the db."""
 
     owner_id = session.get('owner_id')
-    specialist_data = request.json.get('specialist', {})
-    print(specialist_data)
+    owner = Owner.query.get(owner_id)
 
-    role = specialist_data.get('role')
-    specialist_company = specialist_data.get('specialist_company')
-    specialist_fname = specialist_data.get('specialist_fname')
-    specialist_lname = specialist_data.get('specialist_lname')
-    specialist_email = specialist_data.get('specialist_email')
-    specialist_phone = specialist_data.get('specialist_phone')
-    street = specialist_data.get('street')
-    street2 = specialist_data.get('street2')
-    city = specialist_data.get('city')
-    state = specialist_data.get('state')
-    zip_code = specialist_data.get('zip_code')
-    specialist_comment = specialist_data.get('specialist_comment')
+    role = request.form.get('role')
+    specialist_company = request.form.get('specialist_company')
+    specialist_fname = request.form.get('specialist_fname')
+    specialist_lname = request.form.get('specialist_lname')
+    specialist_email = request.form.get('specialist_email')
+    specialist_phone = request.form.get('specialist_phone')
+    street = request.form.get('street')
+    street2 = request.form.get('street2')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    zip_code = request.form.get('zip_code')
+    specialist_comment = request.form.get('specialist_comment')
+    pet_selected = request.form.get('pet_selected')
+    print(type(pet_selected))
+    print(pet_selected)
+    all_pets_selected = request.form.get('all_pets_selected')
 
-    #we have the owner id, then pull pets associated w/ owner, then pull specialists associated with all the pets, then query that set of the specialist
-    #add in owner_id below 
     specialist = Specialist.query.filter_by(specialist_lname=specialist_lname).join(Pet.specialists).first()
     print(specialist)
 
-    #if specialist: #check in db, if in db, tell user
-    #if they're already in db, just add them to the pet 
-    #for pet add specialist 
-    #for specialist add pet  
-    #     response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
-    #     return jsonify(response), 200
+    if specialist: #check in db, if in db, tell user
+        response = {"success": False, "status": "Looks like this specialist was already added"}
+        return jsonify(response), 200
+
+    else: 
+        specialist = Specialist(role=role, specialist_company=specialist_company, specialist_fname=specialist_fname, specialist_lname=specialist_lname, specialist_email=specialist_email, specialist_phone=specialist_phone, street=street, street2=street2, city=city, state=state, zip_code=zip_code, specialist_comment=specialist_comment)
         
-    # else: 
-    #     pet = Pet(species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
-    #     db.session.add(pet) #add user instance to database with .add built-in func
-    #     db.session.commit() #then need to commit the change/add to the database
-    #     response = {"success": True, "status": f"{pet_fname}'s been added!"}
-    #     return jsonify(response), 200
+        if all_pets_selected == "true":
+            for pet in owner.pets:
+                specialist.pets.append(pet)
+        else: #if all pets selected is not selected, if it's false 
+            pet = Pet.query.get(pet_selected)
+            specialist.pets.append(pet)
+        
+        db.session.add(specialist) #add specialist to database
+        db.session.commit() #then need to commit the to the database
+        response = {"success": True, "status": "This specialist's been added!"}
+        return jsonify(response), 200
 
 
 # @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
