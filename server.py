@@ -233,14 +233,10 @@ def create_pet():
     species = request.form.get('species')
     pet_fname = request.form.get('pet_fname')
     pet_lname = request.form.get('pet_lname')
-    birthday = request.form.get('birthday')
-    age = request.form.get('age')
-    if age == "null":
-        age = None
+    birthday = request.form.get('birthday', None)
+    age = request.form.get('age', None)
     breed = request.form.get('breed')
-    weight = request.form.get('weight')
-    if weight == "null":
-        weight = None
+    weight = request.form.get('weight', None)
     energy_level = request.form.get('energy_level')
     coat = request.form.get('coat')
     emer_contact_fname = request.form.get('emer_contact_fname')
@@ -269,6 +265,8 @@ def create_pet():
         else: 
             imgUrl = None 
         
+        print(birthday)
+
         pet = Pet(imgUrl=imgUrl, species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
         pet.owners.append(owner)
         db.session.add(pet) #add user instance to database with .add built-in func
@@ -370,39 +368,46 @@ def render_events():
 
     return render_template("my_events.html")
 
-
-@app.route('/show-events', methods=['POST', 'GET'])
+    
+@app.route('/show-events')
 def publish_events():
     """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
     
+    print("IN THE SHOW EVENTS ROUTE")
+
     owner_id = session.get('owner_id')
-    print("owner_id:", owner_id) 
+    print("OWNER_ID SHOW EVENTS:", owner_id)
 
     owner = Owner.query.get(owner_id) #getting access to Owner and events
     #owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
-    print("owner.events:", owner.events)
+    print("OWNER DICT:", owner)
     #owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
 
-    events_data = []
- 
-    for event in owner.events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
-        events_data.append({
-            'event_id': event.event_id,
-            'title': event.title, 
-            'start_date': event.start_date,
-            'start_time': event.start_date, 
-            'end_date': event.end_date,
-            'end_time': event.end_time, 
-            'allDay': event.allDay,
-            'description': event.description,
-            'extendedProps': {
-                'location': event.location,
-            }
-        })
+    if owner:
+        print("OWNER.EVENTS:", owner.events)
 
-    response_data = {'events': events_data}
-    
-    return jsonify(response_data)
+        events_data = []
+ 
+        for event in owner.events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
+            events_data.append({
+                'title': event.title, 
+                'start_date': event.start_date.isoformat() if event.start_date else None,
+                'start_time': event.start_time.isoformat() if event.start_time else None, 
+                'end_date': event.end_date.isoformat() if event.end_date else None,
+                'end_time': event.end_time.isoformat() if event.end_time else None, 
+                'allDay': event.allDay,
+                'description': event.description,
+            })
+
+            print("EVENTS_DATA:", events_data)
+
+        request_data = {'events': events_data}
+        print(type(request_data))
+        print(request_data)
+        return jsonify(request_data), 200     
+    else:
+        print("Owner not found.")
+        return jsonify({'error': 'Owner not found'}), 404
 
 
 @app.route('/create-event', methods=['POST'])

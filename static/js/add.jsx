@@ -893,55 +893,15 @@ function AddEventModal(props) {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        // location.reload()
         props.onHide() 
         console.log(responseData);
-        if (response['success'] === false) {
-          alert(`Looks like this ${eventTitle}'s already been previously added to your account`);
+        if (responseData['success'] === false) {
+          alert('Oops, something went wrong, please try again');
         } else {
-          alert(`Success: ${eventTitle}'s been added!`)
+          alert("Success: The event's been added!")
         }
       });
     }
-  //   const addEventFormInputs = {
-  //     specialist: {
-  //       title: eventTitle,
-  //       description: eventDescription,
-  //       start_date: startDate,
-  //       start_time: startTime,
-  //       end_date: endDate,
-  //       end_time: endTime,
-  //       allDay: boolTF,
-  //       location: location, 
-  //     },
-  //   };
-
-  //   fetch("/create-event", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(addEventFormInputs),
-  //   })
-  //   .then((response) => response.json())
-  //   .then((responseData) => {
-  //     console.log(responseData);
-      
-  //     if (responseData && responseData.events) {
-  //       const eventsData = data.events.map(event => ({
-  //         title: event.title,
-  //         description: event.description,
-  //         start: event.start_date + (event.start_time ? 'T' + event.start_time : ''),
-  //         end: event.end_date + (event.end_time ? 'T' + event.end_time : ''),
-  //         allDay: false,
-  //         extendedProps: {
-  //           location: location,
-  //         }
-  //       }))
-  //     } 
-  //     location.reload()
-  //     props.onHide()
-  //   });
 
   return (
     <>

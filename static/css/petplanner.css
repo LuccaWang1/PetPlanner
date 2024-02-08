@@ -10,7 +10,7 @@ light pink: #FFC0CB
 body {
     font-family: 'Arial', sans-serif;
     /* background-image: url('../images/Feefee_hiking_landscape.jpg'); */
-    background-size: cover;
+    /* background-size: cover; */
     background-position: center;
     background-repeat: no-repeat;
     color: #72bcd4;
@@ -192,4 +192,11 @@ input {
     grid-template-columns: 3fr 3fr 3fr 3fr;
     grid-gap: 20px;
     align-items: center;
+}
+
+.calendar {
+    max-width: 800px; 
+    margin: 10px auto;
+    background: #72bcd4;
+    color: #d4ebf2
 }

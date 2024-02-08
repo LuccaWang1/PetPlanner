@@ -80,3 +80,47 @@ pet.specialists.append(specialist)
 
 model.db.session.add(pet)
 model.db.session.commit()
+
+
+
+
+#     [
+#       {
+#         title: "Lily turns 10!",
+#         start: '2024-02-14'
+#       },
+#       {
+#         title: 'Feefee staying in Calista boarding',
+#         start: '2024-02-01',
+#         end: '2024-02-03'
+#       },
+#       {
+#         groupId: 'Daily Morning Walk',
+#         title: 'Repeating Event',
+#         start: '2024-02-07T08:30:00'
+#       },
+#       {
+#         groupId: 'Daily Evening Walk',
+#         title: 'Repeating Event',
+#         start: '2024-02-07T17:30:00'
+#       },
+#       {
+#         title: "Lily's vet appt.",
+#         start: '2024-02-19T10:30:00',
+#         end: '2024-02-19T11:15:00'
+#       },
+#       {
+#         title: 'Feefee Lunch Walk',
+#         start: '2024-02-08T12:00:00'
+#       },
+#       {
+#         title: 'Feefee play date with Beau',
+#         start: '2024-02-24T14:30:00'
+#       },
+#       {
+#         title: "Achilles' Birthday Party",
+#         location: "Meryl Lou's home",
+#         start: '2023-11-13T07:00:00'
+#       },
+#     ]
+#   });

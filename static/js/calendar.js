@@ -1,98 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
+  const calendarEl = document.getElementById('calendar');
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+  const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    initialDate: '2024-02-07',
+    initialDate: '2024-02-14',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    events: [
-      {
-        title: 'All Day Event',
-        start: '2023-11-01'
-      },
-      {
-        title: 'Long Event',
-        start: '2023-11-07',
-        end: '2023-11-10'
-      },
-      {
-        groupId: '999',
-        title: 'Repeating Event',
-        start: '2023-11-09T16:00:00'
-      },
-      {
-        groupId: '999',
-        title: 'Repeating Event',
-        start: '2023-11-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: '2023-11-11',
-        end: '2023-11-13'
-      },
-      {
-        title: 'Meeting',
-        start: '2023-11-12T10:30:00',
-        end: '2023-11-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2023-11-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2023-11-12T14:30:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2023-11-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'https://google.com/',
-        start: '2023-11-28'
-      }
-    ]
-  });
+    editable: true,
+    selectable: true,
+    events: function(info, successCallback, failureCallback) {
+      console.log(info)
+      // Fetch events from the server
+      fetch('/show-events')
+      .then(response => response.json())
+      .then(data => {
+          if (data && data.events) {
+            console.log(data)
+            console.log(data.events)
+              const eventsData = data.events.map(event => ({
+                  title: event.title,
+                  description: event.description,
+                  start: event.start_date,
+                  end: event.end_date,
+                  allDay: event.allDay,
+              }));
 
+              successCallback(eventsData);
+
+          } else {
+              console.error('Received data or events array is undefined.');
+              failureCallback('Received data or events array is undefined.');
+          }
+      });
+    },
+  });
   calendar.render();
 });
-
-
-
-
-
-// "use strict";
-
-// console.log("calendar.js is running");
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   fetch('/show-events')
-//   .then((response) => response.json())
-//   .then((responseData) => {
-//     document.querySelector('#my-div').innerText = responseData;
-  
-//     console.log(responseData)
-
-//     const calendarEl = document.getElementById('calendar');
-  
-//   const calendar = new FullCalendar.Calendar(calendarEl, {
-//     initialView: 'dayGridMonth',
-//     initialDate: '2024-02-06',
-//     headerToolbar: {
-//       left: 'prev,next today',
-//       center: 'title',
-//       right: 'dayGridMonth,timeGridWeek,timeGridDay'
-//     },
-//     events: responseData
-//   });
-
-//     calendar.render();
-//   });
-//   });
-
-// redo this code to make the calendar appear on the DOM 
