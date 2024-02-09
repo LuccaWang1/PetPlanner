@@ -15,9 +15,9 @@ function handleClick() {
    myAccountOwnerFName.removeAttribute('readonly');
    myAccountOwnerLName.removeAttribute('readonly');
    myAccountOwnerEmail.removeAttribute('readonly');
-   myAccountOwnerFName.style.backgroundColor = 'rgb(255,192,203)';
-   myAccountOwnerLName.style.backgroundColor = 'rgb(255,192,203)';
-   myAccountOwnerEmail.style.backgroundColor = 'rgb(255,192,203)';
+   myAccountOwnerFName.style.backgroundColor = 'rgb(223,138,118)';
+   myAccountOwnerLName.style.backgroundColor = 'rgb(223,138,118)';
+   myAccountOwnerEmail.style.backgroundColor = 'rgb(223,138,118)';
 
    const owner_fname = myAccountOwnerFName.value;
    const owner_lname = myAccountOwnerLName.value;
