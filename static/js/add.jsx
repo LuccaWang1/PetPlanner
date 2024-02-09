@@ -415,11 +415,11 @@ function AddPetModal(props) {
               />
             </Form.Group>
 
-            <Button variant="secondary" onClick={props.onHide}>
+            <Button className='LW-modal-btn' variant="secondary" onClick={props.onHide}>
               Cancel
             </Button>
             
-            <Button variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
+            <Button className='LW-modal-btn' variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
               Save Changes
             </Button>
           </Form>
@@ -436,7 +436,7 @@ function AddAPet() {
 
   return (
     <React.Fragment>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" className='LW-dropdown-content-btn' onClick={() => setModalShow(true)}>
         Pet
       </Button>
 
@@ -766,11 +766,11 @@ function AddSpecialistModal(props) {
                 rows={3}
               />
             </Form.Group>
-              <Button variant="secondary" onClick={props.onHide}>
+              <Button className='LW-modal-btn' variant="secondary" onClick={props.onHide}>
                 Cancel
               </Button>
 
-              <Button variant="primary" type="submit" onClick={handleAddASpecialistFormSubmit}>
+              <Button className='LW-modal-btn' variant="primary" type="submit" onClick={handleAddASpecialistFormSubmit}>
                 Save Changes
               </Button>
           </Form>
@@ -787,7 +787,7 @@ function AddASpecialist() {
 
   return (
     <React.Fragment>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" className='LW-dropdown-content-btn' onClick={() => setModalShow(true)}>
         Specialist
       </Button>
 
@@ -1001,11 +1001,11 @@ function AddEventModal(props) {
                 />
               </Form.Group>
             </Row>
-              <Button variant="secondary" onClick={props.onHide}>
+              <Button className='LW-modal-btn' variant="secondary" onClick={props.onHide}>
                 Cancel
               </Button>
 
-              <Button variant="primary" onClick={handleAddEventModal} type="submit">
+              <Button className='LW-modal-btn' variant="primary" onClick={handleAddEventModal} type="submit">
                 Save Changes
               </Button>
           </Form>
@@ -1022,7 +1022,7 @@ function AddAnEvent() {
 
   return (
     <React.Fragment>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" className='LW-dropdown-content-btn' onClick={() => setModalShow(true)}>
         Event
       </Button>
 

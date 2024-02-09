@@ -9,17 +9,21 @@
 {% block content %}
 <h1>Log In</h1>
 
+<div>
 <form action="/login-handler" class="form-signin" id="login-form" method="POST">
+  <div>  
     <label for="email">Email</label>
     <input id="email" type="text" name="email" required />
-  <p></p>
+  </div>
+  <div>
     <label for="password">Password</label>
     <input id="password" type="password" name="password" required />
-  <p></p>
+  </div>
+  <div>
     <button type="submit" id="login-btn">Log In</button>
+  </div>
 </form>
-
-<p></p>
+</div>
 
 <a href="/create-account">If you don't have an account, you can create one here</a>
 {% endblock %}

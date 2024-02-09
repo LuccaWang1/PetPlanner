@@ -6,6 +6,7 @@ black: #000000
 light pink: #FFC0CB 
 */
 
+
 /* Anything inside the body */
 body {
     font-family: 'Arial', sans-serif;
@@ -14,58 +15,68 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     color: #72bcd4;
-    background-color: #d4ebf2
+    background-color: #d4ebf2;
+    padding-left: 2em;
+    padding-right: 2em;  
 } 
 
 /* unvisited link */
 a:link {
     color: #72bcd4;
+    border-radius: 5;
 }
 
 /* visited link */
 a:visited {
     color: #72bcd4;
+    border-radius: 5;
 }
 
 /* mouse over link */
 a:hover {
     color: #72bcd4;
+    border-radius: 5;
 }
 
 /* selected link */
 a:active {
-color: #FFC0CB;
-transition-duration: 0.4s;
+    color: #FFC0CB;
+    transition-duration: 0.1s;
+    border-radius: 5;
 }
 
 /* Any button */
-button {
+.button {
     background-color: #72bcd4;
     border: none;
     color: #d4ebf2;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition-duration: 0.4s;
+    transition-duration: 0.1s;
+    border-radius: 10;
 }
 
-button:hover {
+.button:hover {
     background-color: #d4ebf2;
     color: #72bcd4;
     border: 2px solid #FFC0CB;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
+    border-radius: 10;
 }
 
-button:active {
+.button:active {
     background-color: #FFC0CB;
     color: #72bcd4;
     border: 2px solid #72bcd4;
+    border-radius: 10;
 }
 
 /* Any input field will be light green */
 input {
     background-color: #d4ebf2;
+    border-radius: 10;
 }
 
 /* Add a black background color to the top navigation */
@@ -74,6 +85,7 @@ input {
     overflow: hidden;
     font-family: 'Arial', sans-serif;
     color: black;
+    border-radius: 5;
 }
 
 /* Right-aligned section inside the top navigation */
@@ -81,6 +93,8 @@ input {
     float: right;
     color: black;
     background-color: #d4ebf2;
+    border-radius: 5;
+    border-radius: 5;
 }
 
 /* Style the links inside the navigation bar */
@@ -92,6 +106,7 @@ input {
     font-size: 17px;
     background-color: #d4ebf2;
     color: #72bcd4;
+    border-radius: 5;
 }
 
 /* Add a color to the active/current link */
@@ -103,12 +118,14 @@ input {
     font-size: 17px;
     background-color: #d4ebf2;
     color: #72bcd4;
+    border-radius: 5;
 }
 
 /* Add the background color to navbar links on hover */
 .topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
     background-color: #72bcd4;
     color: #d4ebf2;
+    border-radius: 5;
 }
 
 /* The dropdown container */
@@ -127,6 +144,7 @@ input {
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
+    border-radius: 5;
 } 
 
 /* Dropdown content (hidden by default) */
@@ -139,7 +157,7 @@ input {
 }
   
 /* Links inside the dropdown */
-.LW-dropdown-content a,button {
+.LW-dropdown-content-btn {
     float: none;
     color: #72bcd4;
     background-color: #d4ebf2;
@@ -147,15 +165,23 @@ input {
     text-decoration: none;
     display: block;
     text-align: left;
+    width: 100%;
+    border-radius: 5;
+    border-color: #FFC0CB;
+    border-radius: 5;
 }
 
 /* Show the dropdown menu on hover */
 .LW-dropdown:hover .LW-dropdown-content {
     display: block;
+    border-color: #FFC0CB;
+    border-radius: 5;
 }
 
-.LW-dropdown-content a:hover {
+.LW-dropdown-content-btn:hover {
     background-color: #72bcd4;
+    border-radius: 5;
+    border-color: #FFC0CB;
 }
 
 .bottomnav-right a {
@@ -168,6 +194,7 @@ input {
     color: #72bcd4;
     width: 100%;
     bottom: 0;
+    border-radius: 5;
 }
 
 /* Add the background color to bottom navbar links on hover */
@@ -176,6 +203,7 @@ input {
     color: #d4ebf2;
     width: 100%;
     bottom: 0;
+    border-radius: 5;
 }
 
 /* Right-aligned bottomnav section */
@@ -185,18 +213,57 @@ input {
     background-color: #d4ebf2;
     width: 100%;
     bottom: 0;
+    border-radius: 5;
 }
 
-.grid {
+/* .grid {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     grid-gap: 20px;
     align-items: center;
-}
+} */
 
 .calendar {
     max-width: 800px; 
     margin: 10px auto;
     background: #72bcd4;
-    color: #d4ebf2
+    color: #d4ebf2;
+    border-radius: 5;
+}
+
+h1 {
+    text-align: center;
+}
+
+p.center {
+    text-align: center;
+}
+
+.LW-modal-btn {
+    background: #72bcd4;
+    color: #d4ebf2;
+    border-radius: 5;
+}
+
+.LW-modal-btn:hover {
+    background: #72bcd4;
+    color: #d4ebf2;
+    border-radius: 5;
+}
+
+.LW-modal-btn:active {
+    background: #72bcd4;
+    color: #d4ebf2;
+    border-radius: 5;
+}
+
+button:active {
+    background-color: #FFC0CB;
+    color: #72bcd4;
+    border: 2px solid #72bcd4;
+    border-radius: 5;
+}
+
+div {
+    border-radius: 5;
 }
