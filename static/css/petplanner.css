@@ -3,7 +3,7 @@ blue: #72bcd4
 light blue: #d4ebf2 
 light green: #defeca 
 black: #000000 
-pink beige: #df8a76 
+light pink beige: #e69e8f 
 */
 
 
@@ -40,7 +40,7 @@ a:hover {
 
 /* selected link */
 a:active {
-    color: #df8a76;
+    color: #e69e8f;
     transition-duration: 0.1s;
     border-radius: 5px;
 }
@@ -60,14 +60,14 @@ button {
 button:hover {
     background-color: #d4ebf2;
     color: #72bcd4;
-    border: 2px solid #df8a76;
+    border: 2px solid #e69e8f;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
     border-radius: 5px;
 }
 
 button:active {
-    background-color: #df8a76;
+    background-color: #e69e8f;
     color: #72bcd4;
     border: 2px solid #72bcd4;
     border-radius: 5px;
@@ -166,21 +166,21 @@ input {
     text-align: left;
     width: 100%;
     border-radius: 5px;
-    border-color: #df8a76;
+    border-color: #e69e8f;
     border-radius: 5px;
 }
 
 /* Show the dropdown menu on hover */
 .LW-dropdown:hover .LW-dropdown-content {
     display: block;
-    border-color: #df8a76;
+    border-color: #e69e8f;
     border-radius: 5px;
 }
 
 .LW-dropdown-content-btn:hover {
     background-color: #72bcd4;
     border-radius: 5px;
-    border-color: #df8a76;
+    border-color: #e69e8f;
 }
 
 .bottomnav-right a {
@@ -250,7 +250,7 @@ p.center {
 }
 
 button:active {
-    background-color: #df8a76;
+    background-color: #e69e8f;
     color: #d4ebf2;
     border: 2px solid #72bcd4;
     border-radius: 5px;
@@ -262,5 +262,5 @@ div {
 
 img {
     border-radius: 5px;
-    border-color: #df8a76;
+    border-color: #e69e8f;
 }
