@@ -11,24 +11,31 @@
 {% block content %}
 <h1>Create Account</h1>
 
-<div>
+<p></p>
+
+<div class="box flex">
 <form action="/create-account-handler" id="create-account-form" method="POST">
+    <p></p>
     <div>
     <label for="owner_fname">First Name</label>
     <input id="owner_fname" type="text" name="owner_fname" required />
     </div>
+    <p></p>
     <div>
     <label for="owner_lname">Last Name</label>
     <input id="owner_lname" type="text" name="owner_lname" required />
     </div>
+    <p></p>
     <div>
     <label for="owner_email">Email</label>
     <input id="owner_email" type="text" name="owner_email" required />
     </div>
+    <p></p>
     <div>
     <label for="password">Password</label>
     <input id="password" type="password" name="password" required />
     </div>
+    <p></p>
     <div>
     <button type="submit" id="create-account-btn">Create My Account</button>
     </div>

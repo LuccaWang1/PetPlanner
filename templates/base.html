@@ -61,7 +61,7 @@
     <div class="topnav"> 
       {% if "owner_email" in session %}
       <a class="active" href="/dashboard">Dashboard</a>
-      <a href="#mypets">My Pets</a>
+      <!-- <a href="#mypets">My Pets</a> -->
       <a href="/my-events">My Events</a>
       <div class="LW-dropdown">
         <button class="LW-dropbtn">Add
@@ -69,11 +69,11 @@
         </button>
         <div class="LW-dropdown-content">
           <!-- <a href="#" id="add_pet">Pet</a> -->
-          <div id="add_pet"></div>
+          <div class="LW-dropdown-content-btn" id="add_pet"></div>
           <!-- <a href="#">Event</a> -->
-          <div id="add_event"></div>
+          <div class="LW-dropdown-content-btn" id="add_event"></div>
           <!-- <a href="#">Specialist</a> -->
-          <div id="add_specialist"></div>  
+          <div class="LW-dropdown-content-btn" id="add_specialist"></div>  
         </div>
       </div> 
       {% else %}
