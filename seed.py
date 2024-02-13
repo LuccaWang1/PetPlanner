@@ -48,9 +48,9 @@ pet1 = Pet(
 pet2 = Pet(
     imgUrl="/static/images/Seed_Pets/2petplanner-turtle-Tilly-ben-collins.jpeg",
     species="turtle",
-    pet_fname="Tilly",
+    pet_fname="JSON",
     pet_lname="",
-    breed="",
+    breed="Eastern Box Turtle",
     birthday="2021-08-04",
     age=2,
     weight=4,
@@ -70,7 +70,7 @@ pet3 = Pet(
     species="bird",
     pet_fname="AJAX",
     pet_lname="",
-    breed="",
+    breed="Cockatiel",
     birthday="2019-05-25",
     age=4,
     weight=2,
@@ -166,7 +166,7 @@ pet7 = Pet(
 )
 
 pet8 = Pet(
-    imgUrl="/static/images/Seed_Pets/8petplanner-dog-mix-Bentley",
+    imgUrl="/static/images/Seed_Pets/8petplanner-dog-mix-Bentley.jpg",
     species="dog",
     pet_fname="Bentley",
     pet_lname="",
@@ -175,7 +175,7 @@ pet8 = Pet(
     age=8,
     weight=20,
     energy_level="Medium",
-    coat="Medium",
+    coat="Long",
     emer_contact_fname="Emily",
     emer_contact_lname="Wang",
     emer_contact_phone="",
@@ -267,9 +267,9 @@ pet7.owners.append(test_user)
 db.session.add(pet7)
 db.session.commit()
 
-# pet8.owners.append(test_user)
-# db.session.add(pet8)
-# db.session.commit()
+pet8.owners.append(test_user)
+db.session.add(pet8)
+db.session.commit()
 
 # pet9.owners.append(test_user)
 # pet10.owners.append(test_user)
@@ -336,6 +336,28 @@ event5 = Event(
     description="",
 )
 
+event6 = Event(
+    title="Vet Appt.",
+    location="Calista",
+    start_date="2024-02-15",
+    start_time="10:30:00", #2018-09-01T00:00:00-05:00, YYYY-MM-DDTHH:mm:ss.sssZ
+    end_date="2024-02-15",
+    end_time="11:30:00",
+    allDay=False,
+    description="",
+)
+
+event7 = Event(
+    title="Beau Hike",
+    location="A Mountain",
+    start_date="2024-02-17",
+    start_time="08:30:00", #2018-09-01T00:00:00-05:00, YYYY-MM-DDTHH:mm:ss.sssZ
+    end_date="2024-02-17",
+    end_time="11:30:00",
+    allDay=False,
+    description="",
+)
+
 event1.owners.append(test_user)
 event1.pets.append(pet1)
 event1.pets.append(pet2)
@@ -347,11 +369,15 @@ event3.pets.append(pet1)
 event3.pets.append(pet2)
 event4.owners.append(test_user)
 event5.owners.append(test_user)
+event6.owners.append(test_user)
+event7.owners.append(test_user)
 db.session.add(event1)
 db.session.add(event2)
 db.session.add(event3)
 db.session.add(event4)
 db.session.add(event5)
+db.session.add(event6)
+db.session.add(event7)
 db.session.commit()
 
 # specialist = Specialist(
