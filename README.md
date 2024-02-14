@@ -122,7 +122,9 @@ Pet owners can also add a specialist. A Javascript fetch request brings in the u
 [Back to the Table of Contents](#table-of-contents) 
 
 <a name="data-model"></a>
+
 ### Snapshot of the Data Model
+
 The data model on this puppy is huge. It's designed with future features in mind and has over 6 tables and more associative tables to create several many-to-many relationships. There are also one-to-many relationships between tables. The Postgresql database is modeled and queried with SQLAlchemy.
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/petplanner_Data_Model.png)
@@ -130,7 +132,9 @@ The data model on this puppy is huge. It's designed with future features in mind
 [Back to the Table of Contents](#table-of-contents) 
 
 ### How To Run PetPlanner 
+
 <a name="run-pp"></a>
+
 #### Run the PetPlanner Flask App
 
 1. Set up and activate a python virtualenv, and install all dependencies:
