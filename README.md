@@ -89,6 +89,10 @@ Once they save the pet, they'll be notified of the add, and the pet will appear 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Pet.png)
 
+![Image of Add A Pet Javascript React Bootstrap Modal Form, the species Form Control Select option for various animal species/types hardcoded into form](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_species.png)
+
+![Image of Add A Pet Javascript React Bootstrap Modal Form, the breed Form Control Select option for various breeds from conditional rendering, depending on animal species/type selected by user, mapped from the data sets built from research and data scraping](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_breeds.png)
+
 8. Add an event 
 
 Users can add an event for their pet. My Events webpage is an HTML page that uses Jinja templating and the Full Calendar API. When we refresh the page, we see the event's added to our calendar. 
