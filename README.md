@@ -4,7 +4,7 @@
 PetPlanner is a web application Lucca Wang built from scratch (with Python, Flask, Javascript, and React) for pet lovers to keep track of their pets’ information in a centralized location. She used two APIs: Cloudinary for photo uploading and Full Calendar for a calendar with events. Lucca created data sets through her research and from data scraping for lists of different animal breeds. 
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
-
+<a name="table-of-contents"></a>
 ## Table of Contents 
 - [Technologies Used](#technologies-used) 
 - [MVP Description](#mvp-description)
@@ -30,6 +30,8 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 13. Cloudinary API
 14. Full Calendar API  
 
+[Back to the Table of Contents](#table-of-contents) 
+
 ![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 <a name="mvp-description"></a>
 ### MVP Description
@@ -46,6 +48,9 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include.
 
 ![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist_Modal.png)
+
+[Back to the Table of Contents](#table-of-contents) 
+
 <a name="how-to-1"></a>
 ### How To Use PetPlanner / What The User Can Do
 1. Create an account 
@@ -111,27 +116,49 @@ Users can add an event for their pet. My Events webpage is an HTML page that use
 Pet owners can also add a specialist. A Javascript fetch request brings in the user's pet data, and Lucca mapped to it so the user can associate one or all of their pets with the specialist. 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
+
+[Back to the Table of Contents](#table-of-contents) 
+
 <a name="data-model"></a>
 ### Snapshot of the Data Model
 The data model on this puppy is huge. It's designed with future features in mind and has over 6 tables and more associative tables to create several many-to-many relationships. There are also one-to-many relationships between tables. The Postgresql database is modeled and queried with SQLAlchemy.
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/petplanner_Data_Model.png)
 
+[Back to the Table of Contents](#table-of-contents) 
+
 ### How To Run PetPlanner 
 <a name="run-pp"></a>
 #### Run the PetPlanner Flask App
-* Set up and activate a python virtualenv, and install all dependencies:
-⋅⋅* pip install -r requirements.txt
-* Make sure you have PostgreSQL running. Create a new database in psql named pets:
-⋅⋅* psql
-⋅⋅* CREATE DATABASE pets;
-* Create the tables in your database:
-⋅⋅* python -i model.py
-⋅⋅* While in interactive mode, create tables: db.create_all()
-⋅⋅* Seed the pets table with some pets
-* Now, quit interactive mode. Start up the flask server:
-⋅⋅* python server.py
-* Go to localhost:5000 to see the web app
+
+1. Set up and activate a python virtualenv, and install all dependencies:
+
+* pip install -r requirements.txt
+
+2. Make sure you have PostgreSQL running. Create a new database in psql named pets:
+
+* psql
+
+* CREATE DATABASE pets;
+
+3. Create the tables in your database:
+
+* python -i model.py
+
+* While in interactive mode, create tables: db.create_all()
+
+* Seed the pets table with some pets
+
+4. Now, quit interactive mode. Start up the flask server:
+
+* python server.py
+
+5. Go to localhost:5000 to see the web app
+
+[Back to the Table of Contents](#table-of-contents) 
+
 <a name="author"></a>
 ### Author
 Lucca Wang is an American software engineer.
+
+[Back to the Table of Contents](#table-of-contents) 
