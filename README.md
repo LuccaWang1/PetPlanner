@@ -55,15 +55,15 @@ The buttons contain hover and active css for visible changes for the user. And w
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/petplanner_My_Account.png)
 
-![Image of My Account webpage after the user clicks the Edit button](/static/images/Readme_Markdown/petplanner__My_Account_Edit.png)
+![Image of My Account webpage after the user clicks the Edit button](/static/images/Readme_Markdown/petplanner_My_Account_Edit.png)
 
 5. View the Homepage 
 
-![Image of the Homepage with the turtle slide on the automatically moving Carousel that also has buttons](/static/images/Readme_Markdown/petplanner__Homepage_Turtle.png)
+![Image of the Homepage with the turtle slide on the automatically moving Carousel that also has buttons](/static/images/Readme_Markdown/petplanner_Homepage_Turtle.png)
 
 6. View their Dashboard with their pets on it 
 
-![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner__Dashboard.png)
+![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 
 7. Add a pet 
 8. Add an event 
