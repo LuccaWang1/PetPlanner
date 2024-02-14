@@ -15,6 +15,8 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 - [How To Use PetPlanner / What The User Can Do](#how-to-1)
 - [Snapshot of the Data Model](#data-model)
 - [How To Run PetPlanner](#run-pp)
+- [Photos](#photos)
+- [Credits](#credits)
 - [Author](#author) 
 <a name="technologies-used"></a>
 
@@ -165,8 +167,49 @@ The data model on this puppy is huge. It's designed with future features in mind
 
 [Back to the Table of Contents](#table-of-contents) 
 
+<a name="photos"></a>
+
+### Photos 
+
+Photos were sourced from Unsplash and sourced from Lucca. 
+
+There are 6 organized folders in the /static/images folder for clean organization:
+1. Carousel slides 
+2. Default add a pet photo - for if someone doesn't have a photo of their pet at the time they add a pet. It's a pink/red-ish image with hearts on it 
+3. Demo add a pet - photo of Benny the Bengal cat 
+4. Favicon - it's a calendar icon with a heart in the middle. This is the Bootstrap calendar2-heart-fill.svg.
+5. Readme Markdown photos for this document - screenshots of the web app to go along with the text in this document
+6. Seed pets - these were for the demo video uploaded to Youtube at [https://www.youtube.com/watch?v=GA6h8ELNkco](https://www.youtube.com/watch?v=GA6h8ELNkco)
+
+All photos are labelled/documented in the titles in the same way "petplanner-title/name.format". 
+
+All photos for adding a pet are around the same size and are 500px width by around 500px tall. 
+All photos for the carousel are 1200px width.  
+
+[Back to the Table of Contents](#table-of-contents) 
+
+<a name="credits"></a>
+ 
+### Credits 
+
+Software engineer, creator of this app (and author): Lucca Wang 
+
+Amazing guidance and help from: 
+Drue Gilbert 
+
+Trew Boisvert 
+
+Also thank you for the support from: 
+Cris Pope 
+
+Druhin Bala 
+
+[Back to the Table of Contents](#table-of-contents) 
+
 <a name="author"></a>
+
 ### Author
+
 Lucca Wang is an American software engineer.
 
 [Back to the Table of Contents](#table-of-contents)
