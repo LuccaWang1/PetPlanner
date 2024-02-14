@@ -66,6 +66,17 @@ The buttons contain hover and active css for visible changes for the user. And w
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 
 7. Add a pet 
+
+![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Pet.png)
+
 8. Add an event 
+
+![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_An_Event.png)
+
 9. See their events on the My Events webpage 
+
+![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_My_Events.png)
+
 10. Add a specialist 
+
+![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
