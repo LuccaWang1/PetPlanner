@@ -195,14 +195,14 @@ All photos for the carousel are 1200px width.
 Software engineer, creator of this app (and author): Lucca Wang 
 
 Amazing guidance and help from: 
-Drue Gilbert 
+* Drue Gilbert 
 
-Trew Boisvert 
+* Trew Boisvert 
 
 Also thank you for the support from: 
-Cris Pope 
+* Cris Pope 
 
-Druhin Bala 
+* Druhin Bala 
 
 [Back to the Table of Contents](#table-of-contents) 
 
