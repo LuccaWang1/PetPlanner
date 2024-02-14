@@ -7,13 +7,14 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 
 ## Table of Contents 
 - [Technologies Used](#technologies-used) 
-- MVP Description
-- How To Use PetPlanner / What The User Can Do
-- Snapshot of the Data Model
-- How To Run PetPlanner
-- Author 
+- [MVP Description](#mvp-description)
+- [How To Use PetPlanner / What The User Can Do](#how-to-1)
+- [Snapshot of the Data Model](#data-model)
+- [How To Run PetPlanner](#run-pp)
+- [Author](#author) 
+<a name="technologies-used"></a>
 
-### <a name="technologies-used"></a>Technologies Used
+### Technologies Used
 1. Python
 2. Flask
 3. Javascript
@@ -30,7 +31,7 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 14. Full Calendar API  
 
 ![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
-
+<a name="mvp-description"></a>
 ### MVP Description
 1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets from a guinea pig to a bird to a horse to a cat. The breeds are shown as a result of conditional rendering in Javascript React and Lucca's data scraping and research on breeds and creating data sets from that breed research information. Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
 
@@ -45,7 +46,7 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include.
 
 ![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist_Modal.png)
-
+<a name="how-to-1"></a>
 ### How To Use PetPlanner / What The User Can Do
 1. Create an account 
 
@@ -110,15 +111,15 @@ Users can add an event for their pet. My Events webpage is an HTML page that use
 Pet owners can also add a specialist. A Javascript fetch request brings in the user's pet data, and Lucca mapped to it so the user can associate one or all of their pets with the specialist. 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
-
+<a name="data-model"></a>
 ### Snapshot of the Data Model
 The data model on this puppy is huge. It's designed with future features in mind and has over 6 tables and more associative tables to create several many-to-many relationships. There are also one-to-many relationships between tables. The Postgresql database is modeled and queried with SQLAlchemy.
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/petplanner_Data_Model.png)
 
 ### How To Run PetPlanner 
-
-#### Run the There and Back Again Flask App
+<a name="run-pp"></a>
+#### Run the PetPlanner Flask App
 * Set up and activate a python virtualenv, and install all dependencies:
 ⋅⋅* pip install -r requirements.txt
 * Make sure you have PostgreSQL running. Create a new database in psql named pets:
@@ -131,6 +132,6 @@ The data model on this puppy is huge. It's designed with future features in mind
 * Now, quit interactive mode. Start up the flask server:
 ⋅⋅* python server.py
 * Go to localhost:5000 to see the web app
-
+<a name="author"></a>
 ### Author
 Lucca Wang is an American software engineer.
