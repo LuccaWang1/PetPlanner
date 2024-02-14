@@ -1,3 +1,5 @@
+<a name="top"></a>
+
 # PetPlanner
 
 ### Project Description 
@@ -131,9 +133,9 @@ The data model on this puppy is huge. It's designed with future features in mind
 
 [Back to the Table of Contents](#table-of-contents) 
 
-### How To Run PetPlanner 
-
 <a name="run-pp"></a>
+
+### How To Run PetPlanner 
 
 #### Run the PetPlanner Flask App
 
@@ -167,4 +169,6 @@ The data model on this puppy is huge. It's designed with future features in mind
 ### Author
 Lucca Wang is an American software engineer.
 
-[Back to the Table of Contents](#table-of-contents) 
+[Back to the Table of Contents](#table-of-contents)
+
+[Back to Top](#top)
