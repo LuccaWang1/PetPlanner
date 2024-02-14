@@ -56,11 +56,13 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 ![Image of the Log In webpage](/static/images/Readme_Markdown/petplanner_Log_In.png)
 
 3. Log out 
+
 Utilizing Jinja templating on the navbar, Lucca hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
 
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 
-4. Update their account information 
+4. Update their account information
+
 The buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Lucca had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/petplanner_My_Account.png)
@@ -75,7 +77,8 @@ The buttons contain hover and active css for visible changes for the user. And w
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 
-7. Add a pet 
+7. Add a pet
+
 All of the Javascript React Bootstrap Modal Forms (also see add an event and add a specialist) use 1-2 Javascript React AJAX fetch requests to one) load the user's information at the time the modal form loads on the DOM AND two) to save the information to the database and communicate between the server side and the client/browser side. Lucca takes pride in overcoming challenges related to handling asynchronous requests, sending and receiving JSON objects. She successfully managed date and time formatting.
 
 Pet lovers can add a pet, uploading a photo of their pet and entering the pet's information. They can add any type of animal from birds to dogs to horses.
@@ -87,16 +90,19 @@ Once they save the pet, they'll be notified of the add, and the pet will appear 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Pet.png)
 
 8. Add an event 
+
 Users can add an event for their pet. My Events webpage is an HTML page that uses Jinja templating and the Full Calendar API. When we refresh the page, we see the event's added to our calendar. 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_An_Event.png)
 
 9. See their events on the My Events webpage 
+
 Users can add an event for their pet. My Events webpage is an HTML page that uses Jinja templating and the Full Calendar API. When we refresh the page, we see the event's added to our calendar. 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_My_Events.png)
 
 10. Add a specialist 
+
 Pet owners can also add a specialist. A Javascript fetch request brings in the user's pet data, and Lucca mapped to it so the user can associate one or all of their pets with the specialist. 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
