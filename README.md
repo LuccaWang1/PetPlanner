@@ -1,27 +1,37 @@
 # PetPlanner
 
-![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
-
-### Project Description: 
+### Project Description 
 PetPlanner is a web application built from scratch for pet lovers of all kinds to keep track of their pets’ information, care providers, and events and appointments in a centralized location. After creating an account, pet owners can add a pet, specialist for their pet, and an event for the pet. Pet owners can add all their pets from horses to birds to cats and dogs.
 
-![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
+![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
 
-### Tech stack used: 
+##Table of Contents 
+- Technologies Used 
+- MVP Description
+- How To Use PetPlanner / What The User Can Do
+- Snapshot of the Data Model
+- How To Run PetPlanner
+- Author 
+
+### Technologies Used
 1. Python
 2. Flask
 3. Javascript
 4. React 
 5. Postgresql 
-6. AJAX
-7. SQLAlchemy
+6. AJAX/JSON
+7. SQLAlchemy/SQL
 8. Jinja2
 9. HTML 
 10. CSS
 11. Bootstrap
-12. Flexbox 
+12. Flexbox
+13. Cloudinary API
+14. Full Calendar API  
 
-### MVP Description: 
+![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
+
+### MVP Description
 1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets from a guinea pig to a bird to a horse to a cat. The breeds are shown as a result of conditional rendering in Javascript React and Lucca's data scraping and research on breeds and creating data sets from that breed research information. Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
 
 ![Image of Add A Pet Javascript React Bootstrap Modal Form, the species Form Control Select option for various animal species/types hardcoded into form](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_species.png)
@@ -36,7 +46,7 @@ PetPlanner is a web application built from scratch for pet lovers of all kinds t
 
 ![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist_Modal.png)
 
-### What the user can do: 
+### How To Use PetPlanner / What The User Can Do
 1. Create an account 
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/petplanner_Create_An_Account.png)
@@ -80,3 +90,26 @@ The buttons contain hover and active css for visible changes for the user. And w
 10. Add a specialist 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
+
+### Snapshot of the Data Model
+
+![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/petplanner_Data_Model.png)
+
+### How To Run PetPlanner 
+
+#### Run the There and Back Again Flask App
+- Set up and activate a python virtualenv, and install all dependencies:
+* pip install -r requirements.txt
+- Make sure you have PostgreSQL running. Create a new database in psql named pets:
+* psql
+* CREATE DATABASE pets;
+- Create the tables in your database:
+* python -i model.py
+* While in interactive mode, create tables: db.create_all()
+* Seed the pets table with some pets
+- Now, quit interactive mode. Start up the flask server:
+* python server.py
+- Go to localhost:5000 to see the web app
+
+### Author
+Lucca Wang is an American software engineer.
