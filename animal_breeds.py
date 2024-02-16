@@ -1,3 +1,5 @@
+"""Data sets of cat and dog breeds from research and data scraping."""
+
 cat_breeds = [
     "Abyssinian",
     "American Curl",

@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, url_for
 import json
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
-import crud
+#import crud
 from datetime import datetime, date
 import cloudinary.uploader
 from animal_breeds import breed_data
@@ -69,6 +69,8 @@ def loginhandler():
 
 @app.route('/logout', methods=['GET'])
 def logout():
+    """Log the user out by clearing the session."""
+
     session.clear() # Clear the session data
 
     return redirect("/")
@@ -494,15 +496,6 @@ def add_specialist_to_pet():
         db.session.commit() #then need to commit the to the database
         response = {"success": True, "status": "This specialist's been added!"}
         return jsonify(response), 200
-
-
-# @app.route("/dashboard/pets/pet") #is this going to have the dictionary in the url? 
-# def dashboard_pets_pet():
-#     """View logged in owner's specific pet."""
-
-#     #need code here 
-
-#     return render_template("pet.html") #might need to update this 
 
 
 if __name__ == "__main__":    

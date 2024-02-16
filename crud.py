@@ -116,20 +116,6 @@ def update_specialist(specialist_fname, specialist_lname, street, street2, city,
     return specialist
 
 
-# def create_event(#insert parameters here):
-#     """Create and return a new event."""
-
-#     event = Event(#add columns here)
-
-#     return event
-
-
-# def update_event(#insert parameters here):
-#     """ Update an event given that an owner edits an event. """
-    
-#     #add code here 
-
-
 if __name__ == "__main__":
     from server import app
 

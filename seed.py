@@ -1,5 +1,7 @@
 """Script to seed database."""
 
+#Created: test user, pets for test user, events for test user (appended to user/Owner class instance). Add and committed to session (AKA db).
+
 import os
 import json
 from random import choice, randint
