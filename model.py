@@ -15,7 +15,8 @@ class Owner(db.Model):
     owner_fname = db.Column(db.String(25), nullable=False)
     owner_lname = db.Column(db.String(25), nullable=False)
     owner_email = db.Column(db.String(40), unique=True, nullable=False)
-    password = db.Column(db.String(25), nullable=False)
+    #password = db.Column(db.String(25), nullable=False)
+    hashed = db.Column(db.String(100), nullable=False) #hashed passwords
 
     sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="receiver")
     received_messages = db.relationship("Message", foreign_keys="Message.receiver_id", back_populates="sender")

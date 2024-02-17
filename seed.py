@@ -10,6 +10,7 @@ from datetime import datetime
 import crud
 from model import Owner, Pet, Specialist, Event, Pet_Owner, Pet_Specialist, connect_to_db, db
 import server
+from passlib.hash import argon2
 
 os.system("dropdb pets")
 os.system("createdb pets")
@@ -17,11 +18,13 @@ os.system("createdb pets")
 connect_to_db(server.app)
 db.create_all()
 
+password="Testpassword"
+
 test_user = Owner(
     owner_fname="Lucca",
     owner_lname="Test",
     owner_email="luccatest@gmail.com",
-    password="Testpassword",
+    hashed = argon2.hash(password)
 )
 
 db.session.add(test_user)

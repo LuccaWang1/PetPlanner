@@ -9,8 +9,9 @@ from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Spec
 from datetime import datetime, date
 import cloudinary.uploader
 from animal_breeds import breed_data
+from passlib.hash import argon2
 
-CLOUDINARY_KEY =  os.environ['CLOUDINARY_KEY']
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
 CLOUD_NAME = "lwpetplanner"
 
@@ -45,12 +46,14 @@ def loginhandler():
 
     owner_email = request.form.get('email')
     owner_email = owner_email.lower()
-    owner_password = request.form.get('password')
+    password = request.form.get('password')
+    
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
 
     if user: #check in db, log in 
-        if owner_password == user.password:
+        #if password == user.password: #when pw wasn't hashed 
+        if argon2.verify(password, user.hashed): #verifying pw is correct with previously hashed pw in the db using argon2 verify method 
             session['owner_id'] = user.owner_id
             session['owner_email'] = owner_email
             session['owner_fname'] = user.owner_fname
@@ -96,6 +99,7 @@ def handle_create_account():
     owner_email = request.form.get('owner_email')
     owner_email = owner_email.lower()
     password = request.form.get('password')
+    hashed = argon2.hash(password) #hash to db, adding salt
     
     user = Owner.query.filter_by(owner_email=owner_email).first()
     print(user)
@@ -105,7 +109,7 @@ def handle_create_account():
         return redirect("/login")
   
     else: 
-        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, password=password) #create user instance
+        new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, hashed=hashed) #create user instance
         db.session.add(new_user) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         flash(f"Thanks for creating your account, {owner_fname} - please log in")
