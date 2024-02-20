@@ -419,7 +419,7 @@ function AddPetModal(props) {
               Cancel
             </Button>
             
-            <Button className='LW-modal-btn' variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
+            <Button className='LW-modal-btn ms-1' variant="primary" type="submit" onClick={handleAddAPetFormSubmit}>
               Save Changes
             </Button>
           </Form>
