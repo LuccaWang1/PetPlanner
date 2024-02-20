@@ -143,25 +143,25 @@ The data model on this puppy is huge. It's designed with future features in mind
 
 1. Set up and activate a python virtualenv, and install all dependencies:
 
-* pip install -r requirements.txt
+   pip install -r requirements.txt
 
 2. Make sure you have PostgreSQL running. Create a new database in psql named pets:
 
-* psql
+   psql
 
-* CREATE DATABASE pets;
+   CREATE DATABASE pets;
 
 3. Create the tables in your database:
 
-* python -i model.py
+   python -i model.py
 
-* While in interactive mode, create tables: db.create_all()
+   While in interactive mode, create tables: db.create_all()
 
-* Seed the pets table with some pets
+   Seed the pets table with some pets
 
 4. Now, quit interactive mode. Start up the flask server:
 
-* python server.py
+   python server.py
 
 5. Go to localhost:5000 to see the web app
 
