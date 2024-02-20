@@ -53,7 +53,7 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 
 3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include.
 
-![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist_Modal.png)
+![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
 
 [Back to the Table of Contents](#table-of-contents) 
 
