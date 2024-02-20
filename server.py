@@ -38,11 +38,25 @@ def login():
     return render_template("login.html")
 
 
+def is_valid_login(form_data):
+    if form_data.get('email') is None:
+        return False
+
+    if form_data.get('password') is None:
+        return False
+    
+    return True
+
+
 @app.route("/login-handler", methods=["POST"])
 def loginhandler():
     """Handle login request with a POST request, and store the login information in a session."""
 
     print("I'm in the login-handler route and view function")
+
+    if not is_valid_login(request.form): #if False 
+        flash("Please enter your email and a password")
+        return redirect("/login")
 
     owner_email = request.form.get('email')
     owner_email = owner_email.lower()
