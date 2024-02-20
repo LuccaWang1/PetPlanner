@@ -23,18 +23,17 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 ### Technologies Used
 1. Python
 2. Flask
-3. Javascript
-4. React 
+3. Javascript (AJAX/JSON)
+4. React.js (AJAX/JSON)
 5. Postgresql 
-6. AJAX/JSON
-7. SQLAlchemy/SQL
-8. Jinja2
-9. HTML 
-10. CSS
-11. Bootstrap
-12. Flexbox
-13. Cloudinary API
-14. Full Calendar API  
+6. SQLAlchemy/SQL
+7. Jinja2
+8. HTML 
+9. CSS
+10. Cloudinary API
+11. Full Calendar API
+12. Bootstrap
+13. Flexbox
 
 [Back to the Table of Contents](#table-of-contents) 
 
