@@ -770,7 +770,7 @@ function AddSpecialistModal(props) {
                 Cancel
               </Button>
 
-              <Button className='LW-modal-btn' variant="primary" type="submit" onClick={handleAddASpecialistFormSubmit}>
+              <Button className='LW-modal-btn ms-1' variant="primary" type="submit" onClick={handleAddASpecialistFormSubmit}>
                 Save Changes
               </Button>
           </Form>
@@ -1005,7 +1005,7 @@ function AddEventModal(props) {
                 Cancel
               </Button>
 
-              <Button className='LW-modal-btn' variant="primary" onClick={handleAddEventModal} type="submit">
+              <Button className='LW-modal-btn ms-1' variant="primary" onClick={handleAddEventModal} type="submit">
                 Save Changes
               </Button>
           </Form>
