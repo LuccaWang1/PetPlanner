@@ -1,5 +1,5 @@
 /* Colors: 
-blue: #72bcd4 
+blue: #0818A8 
 light blue: #d4ebf2 
 light green: #defeca 
 black: #000000 
@@ -14,7 +14,7 @@ body {
     /* background-size: cover; */
     background-position: center;
     background-repeat: no-repeat;
-    color: #72bcd4;
+    color: #0818A8;
     background-color: #d4ebf2;
     padding-left: 2em;
     padding-right: 2em;  
@@ -22,19 +22,19 @@ body {
 
 /* unvisited link */
 a:link {
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
 }
 
 /* visited link */
 a:visited {
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
 }
 
 /* mouse over link */
 a:hover {
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
 }
 
@@ -47,7 +47,7 @@ a:active {
 
 /* Any button */
 button {
-    background-color: #72bcd4;
+    background-color: #0818A8;
     border: none;
     color: #d4ebf2;
     text-align: center;
@@ -59,7 +59,7 @@ button {
 
 button:hover {
     background-color: #d4ebf2;
-    color: #72bcd4;
+    color: #0818A8;
     border: 2px solid #e69e8f;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
@@ -69,7 +69,7 @@ button:hover {
 button:active {
     background-color: #e69e8f;
     color: #d4ebf2;
-    border: 2px solid #72bcd4;
+    border: 2px solid #0818A8;
     border-radius: 5px;
 }
 
@@ -104,7 +104,7 @@ input {
     text-decoration: none;
     font-size: 17px;
     background-color: #d4ebf2;
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
 }
 
@@ -116,13 +116,13 @@ input {
     text-decoration: none;
     font-size: 17px;
     background-color: #d4ebf2;
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
 }
 
 /* Add the background color to navbar links on hover */
 .topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
-    background-color: #72bcd4;
+    background-color: #0818A8;
     color: #d4ebf2;
     border-radius: 5px;
 }
@@ -138,7 +138,7 @@ input {
     font-size: 17px;
     border: none;
     outline: none;
-    color: #72bcd4;
+    color: #0818A8;
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
@@ -151,14 +151,14 @@ input {
     display: none;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px #72bcd4;
+    box-shadow: 0px 8px 16px 0px #0818A8;
     z-index: 1;
 }
   
 /* Links inside the dropdown */
 .LW-dropdown-content-btn {
     float: none;
-    color: #72bcd4;
+    color: #0818A8;
     background-color: #d4ebf2;
     padding: 12px 16px;
     text-decoration: none;
@@ -178,7 +178,7 @@ input {
 }
 
 .LW-dropdown-content-btn:hover {
-    background-color: #72bcd4;
+    background-color: #0818A8;
     border-radius: 5px;
     border-color: #e69e8f;
 }
@@ -188,7 +188,7 @@ input {
     border-radius: 5px;
     border-color: 1px #e69e8f !important;
     color: #d4ebf2 !important;
-    border: 1px solid #72bcd4 !important;
+    border: 1px solid #0818A8 !important;
 }
 
 
@@ -199,7 +199,7 @@ input {
     text-decoration: none;
     font-size: 17px;
     background-color: #d4ebf2;
-    color: #72bcd4;
+    color: #0818A8;
     width: 100%;
     bottom: 0;
     border-radius: 5px;
@@ -207,7 +207,7 @@ input {
 
 /* Add the background color to bottom navbar links on hover */
 .bottomnav-right a:hover {
-    background-color: #72bcd4;
+    background-color: #0818A8;
     color: #d4ebf2;
     width: 100%;
     bottom: 0;
@@ -217,7 +217,7 @@ input {
 /* Right-aligned bottomnav section */
 .bottomnav-right {
     float: right;
-    color: #72bcd4;
+    color: #0818A8;
     background-color: #d4ebf2;
     width: 100%;
     bottom: 0;
@@ -227,7 +227,7 @@ input {
 .calendar {
     max-width: 800px; 
     margin: 10px auto;
-    background: #72bcd4;
+    background: #0818A8;
     color: #d4ebf2;
     border-radius: 5px;
     border-color: #e69e8f;
@@ -242,7 +242,7 @@ p.center {
 }
 
 .LW-modal-btn {
-    background: #72bcd4;
+    background: #0818A8;
     color: #d4ebf2;
     border-radius: 5px;
     border: none;
@@ -254,7 +254,7 @@ p.center {
 
 .LW-modal-btn:hover {
     background: #d4ebf2;
-    color: #72bcd4;
+    color: #0818A8;
     border-radius: 5px;
     border: 2px solid #e69e8f;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -266,7 +266,7 @@ p.center {
     background-color: #e69e8f !important;
     color: white !important;
     border-radius: 5px !important;
-    border: 2px solid #72bcd4 !important;
+    border: 2px solid #0818A8 !important;
 }
 
 div {
