@@ -51,9 +51,7 @@ def is_valid_login(form_data):
 def loginhandler():
     """Handle login request with a POST request, and store the login information in a session."""
 
-    print("I'm in the login-handler route and view function")
-
-    if not is_valid_login(request.form): #if False 
+    if not is_valid_login(request.form): #if False
         flash("Please enter your email and a password")
         return redirect("/login")
 
@@ -61,10 +59,9 @@ def loginhandler():
     owner_email = owner_email.lower()
     password = request.form.get('password')
     
-    
     user = Owner.query.filter_by(owner_email=owner_email).first()
 
-    if user: #check in db, log in 
+    if user: #check in db, log in
         if argon2.verify(password, user.hashed): #verifying pw is correct with previously hashed pw in the db using argon2 verify method 
             session['owner_id'] = user.owner_id
             session['owner_email'] = owner_email
@@ -73,11 +70,11 @@ def loginhandler():
 
             return redirect("/dashboard")
         
-        else: #check in db, if user in db but pw is incorrect 
+        else: #check in db, if user in db but pw is incorrect
             flash('Oops! Incorrect password - please try again or reset your password')
             return redirect("/login")
     
-    else: 
+    else:
         flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
         return redirect("/login")
 
