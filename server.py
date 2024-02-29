@@ -65,7 +65,6 @@ def loginhandler():
     user = Owner.query.filter_by(owner_email=owner_email).first()
 
     if user: #check in db, log in 
-        #if password == user.password: #when pw wasn't hashed 
         if argon2.verify(password, user.hashed): #verifying pw is correct with previously hashed pw in the db using argon2 verify method 
             session['owner_id'] = user.owner_id
             session['owner_email'] = owner_email
