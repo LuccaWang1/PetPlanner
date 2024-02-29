@@ -445,17 +445,17 @@ def create_event():
     start_time = request.form.get("start_time")
     end_date = request.form.get("end_date")
     end_time = request.form.get("end_time")
-    allDay = request.form.get("allDay")
+    all_day = request.form.get("allDay")
     description = request.form.get("description")
     
-    if allDay == "true":
-        allDay = True
+    if all_day == "true":
+        all_day = True
         start_time = None
         end_time = None
     else:
-        allDay = False
+        all_day = False
         
-    event = Event(title=title, location=location, start_date=start_date,start_time=start_time, end_date=end_date, end_time=end_time, allDay=allDay, description=description)
+    event = Event(title=title, location=location, start_date=start_date,start_time=start_time, end_date=end_date, end_time=end_time, all_day=all_day, description=description)
 
     event.owners.append(owner)
     db.session.add(event) #add user instance to database with .add built-in func
