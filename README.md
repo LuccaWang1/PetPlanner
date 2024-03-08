@@ -24,16 +24,16 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 1. Python
 2. Flask
 3. Javascript (AJAX/JSON)
-4. React.js (AJAX/JSON)
-5. Postgresql 
-6. SQLAlchemy/SQL
-7. Jinja2
+4. React
+5. PostgreSQL 
+6. SQL 
+7. SQLAlchemy
 8. HTML 
-9. CSS
+9. CSS, Flexbox
 10. Cloudinary API
 11. Full Calendar API
-12. Bootstrap
-13. Flexbox
+12. Jinja2
+13. Bootstrap
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -59,6 +59,8 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 <a name="how-to-1"></a>
 ### How To Use PetPlanner / What The User Can Do
 1. Create an account 
+
+A user instance is created via the user inputs to the form and the User class in model.py. The user's account information is stored in the app's postgreSQL relational database. Passwords are hashed with salt using Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/petplanner_Create_An_Account.png)
 

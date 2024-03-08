@@ -79,6 +79,12 @@ function AddEventModal(props) {
       formDataEvent.append("end_time", endTime);
       formDataEvent.append("allDay", boolTF);
       formDataEvent.append("location", location);
+
+      // Can create a regular JS object instead of using formData here - but might use a form library to handle repetitive code
+      // {
+      //   title: eventTitle, 
+      //   description: eventDescription,
+      // }
   
       //have add all items to formData to now send to server in fetch send below:
       fetch("/create-event", {
