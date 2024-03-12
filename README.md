@@ -3,13 +3,14 @@
 # PetPlanner
 
 ### Project Description 
-PetPlanner is a web application Lucca Wang built from scratch (with Python, Flask, Javascript, and React) for pet lovers to keep track of their pets’ information in a centralized location. She used two APIs: Cloudinary for photo uploading and Full Calendar for a calendar with events. Lucca created data sets through her research and from data scraping for lists of different animal breeds. 
+PetPlanner is a web application Lucca Wang built from scratch (with Python, Flask, Javascript, and React) for pet lovers to keep track of their pets’ information, including events and specialists like vets, in a centralized location. She used two APIs: Cloudinary for photo uploading and Full Calendar for a calendar with events. Lucca created data sets through her research and from data scraping for lists of different animal breeds. 
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
 
 <a name="table-of-contents"></a>
 
 ## Table of Contents 
+- [Snapshot of Project](#snapshot) 
 - [Technologies Used](#technologies-used) 
 - [MVP Description](#mvp-description)
 - [How To Use PetPlanner / What The User Can Do](#how-to-1)
@@ -18,6 +19,15 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 - [Photos](#photos)
 - [Credits](#credits)
 - [Author](#author) 
+<a name="snapshot"></a>
+
+### Snapshot of Project
+* Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
+* Experience overcoming AJAX fetch request JSON date and time challenges, including in React.
+* Built out a data model for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
+* Employed React's reusable components to create pet cards on the DOM placed on the user's Dashboard.
+* Utilized Cloudinary and FullCalendar APIs; built datasets from data scraping.
+
 <a name="technologies-used"></a>
 
 ### Technologies Used
