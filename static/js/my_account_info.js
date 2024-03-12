@@ -19,13 +19,9 @@ function handleClick() {
    myAccountOwnerLName.style.backgroundColor = 'rgb(230,158,143)';
    myAccountOwnerEmail.style.backgroundColor = 'rgb(230,158,143)';
 
-   const owner_fname = myAccountOwnerFName.value;
-   const owner_lname = myAccountOwnerLName.value;
-   const owner_email = myAccountOwnerEmail.value;
-
-   console.log(owner_fname);
-   console.log(owner_lname);
-   console.log(owner_email);
+   console.log(myAccountOwnerFName.value);
+   console.log(myAccountOwnerLName.value);
+   console.log(myAccountOwnerEmail.value);
 }
 
 editInfoFormButton.addEventListener('click', handleClick);
@@ -45,19 +41,10 @@ function saveChangesInfoForm(event) {
 
    console.log('in the saveChangesInfoForm function');
 
-   // get values - any new values 
-   const owner_fname = myAccountOwnerFName.value;
-   const owner_lname = myAccountOwnerLName.value;
-   const owner_email = myAccountOwnerEmail.value;
-
-   console.log(owner_fname);
-   console.log(owner_lname);
-   console.log(owner_email);
-
    const saveFormInputs = {
-      owner_fname: owner_fname,
-      owner_lname: owner_lname,
-      owner_email: owner_email,
+      owner_fname: myAccountOwnerFName.value,
+      owner_lname: myAccountOwnerLName.value,
+      owner_email: myAccountOwnerEmail.value,
    };
 
    console.log(saveFormInputs);
