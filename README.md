@@ -183,7 +183,7 @@ The data model on this puppy is huge. It's designed with future features in mind
 
 ### Photos 
 
-Photos were sourced from Unsplash and sourced from Lucca. 
+Photos were sourced from Unsplash and from Lucca Wang. (See the photos folder in the repo in: [PetPlanner/static/images in GitHub](https://github.com/LuccaWang1/PetPlanner/tree/main/static/images))
 
 There are 6 organized folders in the /static/images folder for clean organization:
 1. Carousel slides 
@@ -206,12 +206,12 @@ All photos for the carousel are 1200px width.
 
 Software engineer, creator of this app (and author): Lucca Wang 
 
-Amazing guidance and help from: 
+Amazing guidance from: 
 * Drue Gilbert 
 
 * Trew Boisvert 
 
-Also thank you for the support from: 
+Also thank you for the support: 
 * Cris Pope 
 
 * Druhin Bala 
