@@ -16,8 +16,8 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 - [How To Use PetPlanner / What The User Can Do](#how-to-1)
 - [Snapshot of the Data Model](#data-model)
 - [How To Run PetPlanner](#run-pp)
-- [Photos](#photos)
-- [Credits](#credits)
+- [Photos (frontend)](#photos)
+- [Credits (thank yous)](#credits)
 - [Author](#author) 
 <a name="snapshot"></a>
 
