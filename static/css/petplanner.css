@@ -1,6 +1,11 @@
 /* Colors: 
+current
 dark teal: #008080 
+light pink: #ffc0cb 'rgb(255,192,203)'
 light blue: #d4ebf2 
+white
+
+legacy
 light green: #defeca 
 black: #000000 
 light pink beige: #e69e8f 
@@ -40,7 +45,7 @@ a:hover {
 
 /* selected link */
 a:active {
-    color: #e69e8f;
+    color: #ffc0cb;
     transition-duration: 0.1s;
     border-radius: 5px;
 }
@@ -60,14 +65,14 @@ button {
 button:hover {
     background-color: #d4ebf2;
     color: #008080;
-    border: 2px solid #e69e8f;
+    border: 2px solid #ffc0cb;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
     border-radius: 5px;
 }
 
 button:active {
-    background-color: #e69e8f;
+    background-color: #ffc0cb;
     color: #d4ebf2;
     border: 2px solid #008080;
     border-radius: 5px;
@@ -166,27 +171,27 @@ input {
     text-align: left;
     width: 100%;
     border-radius: 5px;
-    border-color: #e69e8f;
+    border-color: #ffc0cb;
     border-radius: 5px;
 }
 
 /* Show the dropdown menu on hover */
 .LW-dropdown:hover .LW-dropdown-content {
     display: block;
-    border-color: #e69e8f;
+    border-color: #ffc0cb;
     border-radius: 5px;
 }
 
 .LW-dropdown-content-btn:hover {
     background-color: #008080;
     border-radius: 5px;
-    border-color: #e69e8f;
+    border-color: #ffc0cb;
 }
 
 .LW-dropdown-content-btn:active {
-    background-color: #e69e8f !important;
+    background-color: #ffc0cb !important;
     border-radius: 5px;
-    border-color: 1px #e69e8f !important;
+    border-color: 1px #ffc0cb !important;
     color: #d4ebf2 !important;
     border: 1px solid #008080 !important;
 }
@@ -230,7 +235,7 @@ input {
     background: #008080;
     color: #d4ebf2;
     border-radius: 5px;
-    border-color: #e69e8f;
+    border-color: #ffc0cb;
 }
 
 h1 {
@@ -256,14 +261,14 @@ p.center {
     background: #d4ebf2;
     color: #008080;
     border-radius: 5px;
-    border: 2px solid #e69e8f;
+    border: 2px solid #ffc0cb;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 1;
     border-radius: 5px;
 }
 
 .LW-modal-btn:active {
-    background-color: #e69e8f !important;
+    background-color: #ffc0cb !important;
     color: white !important;
     border-radius: 5px !important;
     border: 2px solid #008080 !important;
@@ -281,4 +286,4 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}

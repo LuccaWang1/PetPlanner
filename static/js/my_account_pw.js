@@ -9,9 +9,9 @@ const inputCurrentPW = document.querySelector('#MA_password_old')
 const inputPW1 = document.querySelector('MA_password')
 const inputPW2Verify = document.querySelector('MA_passwordVerify')
 
-// inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
-// inputPW1.style.backgroundColor = 'rgb(255,192,203)';
-// inputPW2Verify.style.backgroundColor = 'rgb(255,192,203)';
+inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
+inputPW1.style.backgroundColor = 'rgb(255,192,203)';
+inputPW2Verify.style.backgroundColor = 'rgb(255,192,203)';
 
 function savePWChange(event) {
    event.preventDefault();
