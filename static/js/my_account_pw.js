@@ -2,10 +2,6 @@
 
 console.log("in the my_account_pw.js file");
 
-'use strict';
-
-console.log("in the my_account_pw2.js file");
-
 // START edit my account user pw
 const editPWFormButton = document.querySelector('#MA_OwnerPWEditButton');
 
@@ -54,9 +50,9 @@ function savePWChange(event) {
    const inputPW1Value = document.querySelector('#MA_password').value;
    const inputPW2VerifyValue = document.querySelector('#MA_passwordVerify').value;
 
-   console.log(f`The current/old password is ${inputCurrentPWValue}`);
-   console.log(f`The new password is ${inputPW1Value}`);
-   console.log(f`The new verified password is ${inputPW2VerifyValue}`);
+   console.log(`The current/old password is ${inputCurrentPWValue}`);
+   console.log(`The new password is ${inputPW1Value}`);
+   console.log(`The new verified password is ${inputPW2VerifyValue}`);
 
    if (inputPW1Value === inputPW2VerifyValue) {
       newPW = {password: inputPW1Value} 

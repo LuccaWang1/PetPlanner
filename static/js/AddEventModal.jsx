@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("add.jsx is running");
+console.log("AddEventModal.jsx is running");
 
 const { Button, Modal, Form, Col, Row } = ReactBootstrap; 
 
