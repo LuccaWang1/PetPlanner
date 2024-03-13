@@ -2,23 +2,48 @@
 
 console.log("in the my_account_pw.js file");
 
-// START save new pw
-const pwForm = document.querySelector('#changePWForm');
+'use strict';
+
+console.log("in the my_account_pw2.js file");
+
+// START edit my account user pw
+const editPWFormButton = document.querySelector('#MA_OwnerPWEditButton');
 
 const inputCurrentPW = document.querySelector('#MA_password_old')
 const inputPW1 = document.querySelector('#MA_password')
 const inputPW2Verify = document.querySelector('#MA_passwordVerify')
 
-console.log(inputCurrentPW)
-console.log(inputPW1)
-console.log(inputPW2Verify)
+function handleClick() {
+   console.log('in the handleClick function');
 
-inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
-inputPW1.style.backgroundColor = 'rgb(255,192,203)';
-inputPW2Verify.style.backgroundColor = 'rgb(255,192,203)';
+   inputCurrentPW.removeAttribute('readonly');
+   inputPW1.removeAttribute('readonly');
+   inputPW2Verify.removeAttribute('readonly');
+
+   inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
+   inputPW1.style.backgroundColor = 'rgb(255,192,203)';
+   inputPW2Verify.style.backgroundColor = 'rgb(255,192,203)';
+
+   console.log(inputCurrentPW.value);
+   console.log(inputPW1.value);
+   console.log(inputPW2Verify.value);
+   // console.logs should show nothing, because not prepopulating those fields to keep pw more secure 
+}
+
+editPWFormButton.addEventListener('click', handleClick);
+// END edit my account user pw
+
+
+// START save my account user pw 
+const pwForm = document.querySelector('#changePWForm');
 
 function savePWChange(event) {
    event.preventDefault();
+
+   //change color upon form submit
+   inputCurrentPW.style.backgroundColor = 'rgb(212,235,242)';
+   inputPW1.style.backgroundColor = 'rgb(212,235,242)';
+   inputPW2Verify.style.backgroundColor = 'rgb(212,235,242)';
 
    // check current/old password input.value to db/hashed pw
    
@@ -26,12 +51,12 @@ function savePWChange(event) {
    const inputCurrentPWValue = document.querySelector('#MA_password_old').value;
 
    // if 2 passwords are the same:
-   const inputPW1Value = document.querySelector('MA_password').value;
-   const inputPW2VerifyValue = document.querySelector('MA_passwordVerify').value;
+   const inputPW1Value = document.querySelector('#MA_password').value;
+   const inputPW2VerifyValue = document.querySelector('#MA_passwordVerify').value;
 
    console.log(f`The current/old password is ${inputCurrentPWValue}`);
-   console.log(f`The current/old password is ${inputPW1Value}`);
-   console.log(f`The current/old password is ${inputPW2VerifyValue}`);
+   console.log(f`The new password is ${inputPW1Value}`);
+   console.log(f`The new verified password is ${inputPW2VerifyValue}`);
 
    if (inputPW1Value === inputPW2VerifyValue) {
       newPW = {password: inputPW1Value} 
@@ -56,17 +81,10 @@ function savePWChange(event) {
          console.error('Error during fetch:', error);
       });
 
-      // inputCurrentPW.style.backgroundColor = 'rgb(212,235,242)';
-      // inputPW1.style.backgroundColor = 'rgb(212,235,242)';
-      // inputPW2Verify.style.backgroundColor = 'rgb(212,235,242)';
-
       alert("You're password has been changed");
    } else {
       alert('Please try again - check that your current password is what you typed in, and check that the new password is the same in both the New Password and Verify the New Password fields');
    }
-   // add and commit to db ... how do I do this with a hashed pw? 
-   // else: 
-   // tell the user to try again by checking that they typed in the same thing in both the Change My Password field and the Verify Password field
 };
 
 pwForm.addEventListener('submit', savePWChange);

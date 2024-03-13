@@ -212,28 +212,27 @@ def save_account_info():
 def save_new_password():
     """Save the user's new password in the db."""
 
-    owner_id = session.get('owner_id')
-    password = request.json.get('password')
+    owner_id = session.get('owner_id') #pull owner_id to query database 
+    password = request.json.get('password') #get password from key at password in JSON object
 
     print("Owner_id:", owner_id)
 
-    user = Owner.query.get(owner_id)
+    user = Owner.query.get(owner_id) #query database for user instance with owner_id
     print("User found or not found in database:", user)
 
-    if user:
-        print("in the /save-new-password route, found user - around line 205 in server.py")
-
-        user.password = password #set to new pw
-        db.session.commit() #save to db
+    if user: #if user with owner_id is found in database, then: 
+        user.password = password #use chaining to set row of data at the user class instance and assign it to the new password passed to server from JS JSON object
+        db.session.commit() #save the new pw to the database 
 
         print("Session has been saved with new My Account pw")
 
-        session.modified = True #session updated as well 
+        session.modified = True #refresh the session to updated with the new user pw 
         
+        #now return a response of success
         return jsonify({
             'status': 'success',
         }), 200
-    else:
+    else: #else return a response of error
         return jsonify({'error': 'Owner not found'}), 404
 
 

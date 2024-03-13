@@ -25,8 +25,8 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 * Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
 * Experience overcoming AJAX fetch request JSON date and time challenges, including in React.
 * Built out a data model for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
-* Employed React's reusable components to create pet cards on the DOM placed on the user's Dashboard.
 * Utilized Cloudinary and FullCalendar APIs; built datasets from data scraping.
+* Hand built top and bottom navbars in HTML with Jinja for a clean user interface to streamline the user experience.
 
 <a name="technologies-used"></a>
 
