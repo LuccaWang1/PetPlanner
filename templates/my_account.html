@@ -52,26 +52,27 @@
     <div id="MA_OwnerPWContainer">
         <div id="MA_PasswordContainerOldPW">
             <label for="MA_password_old">Current/Old Password:</label>
-            <input type="password" id="MA_password_old">
+            <input type="password" id="MA_password_old" readonly required>
         </div>
         
         </br>
 
         <div id="MA_PasswordContainer">
             <label for="MA_password">Change My Password:</label>
-            <input type="password" id="MA_password">
+            <input type="password" id="MA_password" readonly required>
         </div>
 
         </br>
 
         <div id="MA_PasswordContainerVerify">
             <label for="MA_passwordVerify">Verify New Password:</label>
-            <input type="password" id="MA_passwordVerify">
+            <input type="password" id="MA_passwordVerify" readonly required>
         </div>
     </div>
 
     </br>
 
+    <button type="button" id="MA_OwnerPWEditButton">Edit</button>
     <button type="submit">Save</button>
 </form>
 

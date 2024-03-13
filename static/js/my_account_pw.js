@@ -6,8 +6,12 @@ console.log("in the my_account_pw.js file");
 const pwForm = document.querySelector('#changePWForm');
 
 const inputCurrentPW = document.querySelector('#MA_password_old')
-const inputPW1 = document.querySelector('MA_password')
-const inputPW2Verify = document.querySelector('MA_passwordVerify')
+const inputPW1 = document.querySelector('#MA_password')
+const inputPW2Verify = document.querySelector('#MA_passwordVerify')
+
+console.log(inputCurrentPW)
+console.log(inputPW1)
+console.log(inputPW2Verify)
 
 inputCurrentPW.style.backgroundColor = 'rgb(255,192,203)';
 inputPW1.style.backgroundColor = 'rgb(255,192,203)';
