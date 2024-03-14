@@ -214,6 +214,8 @@ Also thank you for the support:
 
 * Druhin Bala 
 
+(No one contributed code to this project except for the author, Lucca Wang.)
+
 [Back to the Table of Contents](#table-of-contents) 
 
 <a name="author"></a>
