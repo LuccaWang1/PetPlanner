@@ -23,7 +23,6 @@ function handleClick() {
    console.log(inputCurrentPW.value);
    console.log(inputPW1.value);
    console.log(inputPW2Verify.value);
-   // console.logs should show nothing, because not prepopulating those fields to keep pw more secure 
 }
 
 editPWFormButton.addEventListener('click', handleClick);
@@ -41,14 +40,14 @@ function savePWChange(event) {
    inputPW1.style.backgroundColor = 'rgb(212,235,242)';
    inputPW2Verify.style.backgroundColor = 'rgb(212,235,242)';
 
-   // check current/old password input.value to db/hashed pw
+   //getting values of fields and validation:
    
    // does the current/old password match with the password in the db? 
-   const inputCurrentPWValue = document.querySelector('#MA_password_old').value;
+   const inputCurrentPWValue = inputCurrentPW.value;
 
    // if 2 passwords are the same:
-   const inputPW1Value = document.querySelector('#MA_password').value;
-   const inputPW2VerifyValue = document.querySelector('#MA_passwordVerify').value;
+   const inputPW1Value = inputPW1.value;
+   const inputPW2VerifyValue = inputPW2Verify.value;
 
    console.log(`The current/old password is ${inputCurrentPWValue}`);
    console.log(`The new password is ${inputPW1Value}`);
