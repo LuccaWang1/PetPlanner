@@ -49,12 +49,8 @@ function savePWChange(event) {
    const inputPW1Value = inputPW1.value;
    const inputPW2VerifyValue = inputPW2Verify.value;
 
-   console.log(`The current/old password is ${inputCurrentPWValue}`);
-   console.log(`The new password is ${inputPW1Value}`);
-   console.log(`The new verified password is ${inputPW2VerifyValue}`);
-
    if (inputPW1Value === inputPW2VerifyValue) {
-      newPW = {password: inputPW1Value} 
+      const newPW = {password: inputPW1Value} 
       console.log('check if newpw1 and newpw2 are the same, then put newpw in dictionary to send server - before fetch')
 
       fetch('/save-new-password', {
