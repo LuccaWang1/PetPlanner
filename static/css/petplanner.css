@@ -46,7 +46,6 @@ a:hover {
 /* selected link */
 a:active {
     color: #ffc0cb;
-    transition-duration: 0.1s;
     border-radius: 5px;
 }
 
@@ -73,14 +72,47 @@ button:hover {
 
 button:active {
     background-color: #ffc0cb;
-    color: #d4ebf2;
-    border: 2px solid #008080;
+    color: #008080;
+    border: 2px solid #ffc0cb;
     border-radius: 5px;
 }
 
 /* Any input field will be light green */
 input {
     background-color: #d4ebf2;
+    border-radius: 5px;
+}
+
+/* Bottom nav button */
+.bottomnav-right a {
+    float: right;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #d4ebf2;
+    color: #008080;
+    width: 100%;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+/* Add the background color to bottom navbar links on hover */
+.bottomnav-right a:hover {
+    background-color: #008080;
+    color: #d4ebf2;
+    width: 100%;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+/* Right-aligned bottomnav section */
+.bottomnav-right {
+    float: right;
+    color: #008080;
+    background-color: #d4ebf2;
+    width: 100%;
+    bottom: 0;
     border-radius: 5px;
 }
 
@@ -121,7 +153,7 @@ input {
     text-decoration: none;
     font-size: 17px;
     background-color: #d4ebf2;
-    color: #008080;
+    color: #008080 !important;
     border-radius: 5px;
 }
 
@@ -192,50 +224,8 @@ input {
     background-color: #ffc0cb !important;
     border-radius: 5px;
     border-color: 1px #ffc0cb !important;
-    color: #d4ebf2 !important;
-    border: 1px solid #008080 !important;
-}
-
-
-.bottomnav-right a {
-    float: right;
-    text-align: right;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    background-color: #d4ebf2;
-    color: #008080;
-    width: 100%;
-    bottom: 0;
-    border-radius: 5px;
-}
-
-/* Add the background color to bottom navbar links on hover */
-.bottomnav-right a:hover {
-    background-color: #008080;
-    color: #d4ebf2;
-    width: 100%;
-    bottom: 0;
-    border-radius: 5px;
-}
-
-/* Right-aligned bottomnav section */
-.bottomnav-right {
-    float: right;
-    color: #008080;
-    background-color: #d4ebf2;
-    width: 100%;
-    bottom: 0;
-    border-radius: 5px;
-}
-
-.calendar {
-    max-width: 800px; 
-    margin: 10px auto;
-    background: #008080;
-    color: #d4ebf2;
-    border-radius: 5px;
-    border-color: #ffc0cb;
+    color: #008080 !important;
+    border: 1px solid #ffc0cb !important;
 }
 
 h1 {
@@ -286,4 +276,13 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.calendar {
+    max-width: 800px !important; 
+    margin: 10px auto !important;
+    background: #008080 !important;
+    color: #d4ebf2 !important;
+    border-radius: 5px !important;
+    border-color: #ffc0cb !important;
 }
