@@ -29,7 +29,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 
 ### Technologies Used
 1. Python (Server, OOP)
-2. Flask (Framework)
+2. Flask (Python Framework)
 3. Javascript (AJAX/JSON) (Frontend)
 4. React (Frontend)
 5. PostgreSQL (relational database)
@@ -41,7 +41,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 11. Full Calendar API (calendar and events API)
 12. Jinja2 (extends base.html, used for conditional rendering on navbars)
 13. Bootstrap (styling, used with React)
-14. Argon2 (Password Hashing)
+14. Passlib and Argon2 (Password Hashing)
 15. Wang chose to created data sets through her research and from data scraping for lists of different animal breeds. (She chose this over using PetFinder's API.)
 
 [Back to the Table of Contents](#table-of-contents) 
