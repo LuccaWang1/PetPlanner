@@ -21,7 +21,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 
 ### Snapshot of Project
 * Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
-* Experience overcoming AJAX fetch request JSON date and time challenges, including in React.
+* Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
 * Built out a data model for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
 * Utilized Cloudinary and FullCalendar APIs; built datasets from data scraping.
 * Hand built top and bottom navbars in HTML with Jinja for a clean user interface to streamline the user experience.
@@ -34,12 +34,12 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 4. React (Frontend)
 5. PostgreSQL (relational database)
 6. SQL (used to query the database in psql)
-7. SQLAlchemy (used to query to database within Python)
+7. SQLAlchemy (used to query the database within Python)
 8. HTML (webpages, base)
 9. CSS, Flexbox (styling)
 10. Cloudinary API (photo uploader API)
 11. Full Calendar API (calendar and events API)
-12. Jinja2 (extends base.html, used for conditional rendering on navbars)
+12. Jinja2 (Python web dev. templating engine that extends base.html, used for conditional rendering on navbars throughout site)
 13. Bootstrap (styling, used with React)
 14. Passlib and Argon2 (Password Hashing)
 15. Wang chose to created data sets through her research and from data scraping for lists of different animal breeds. (She chose this over using PetFinder's API.)
@@ -69,7 +69,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 ### How To Use PetPlanner / What The User Can Do
 1. Create an account 
 
-A user instance is created via the user inputs to the form and the User class in model.py. The user's account information is stored in the app's postgreSQL relational database. Passwords are hashed with salt using Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
+A user instance is created via the user inputs to the form and the User class in model.py. The user's account information is stored in the app's postgreSQL relational database. Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/petplanner_Create_An_Account.png)
 
