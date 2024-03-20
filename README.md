@@ -3,7 +3,7 @@
 # PetPlanner
 
 ### Project Description 
-PetPlanner is a web application Lucca Wang built from scratch (with Python, Flask, Javascript, React, and PostgreSQL) for pet lovers to keep track of their pets’ information, including events and specialists like vets, in a centralized location. Wang used two APIs: Cloudinary for photo uploading and Full Calendar for a calendar with events. She created data sets through her research and from data scraping for lists of different animal breeds. 
+PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log eat pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did ALL of the coding on this project - everything, including this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
 <a name="table-of-contents"></a>
@@ -16,7 +16,6 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 - [Snapshot of the Data Model](#data-model)
 - [How To Run PetPlanner](#run-pp)
 - [Photos (frontend)](#photos)
-- [Credits (thank yous)](#credits)
 - [Author](#author) 
 <a name="snapshot"></a>
 
@@ -43,6 +42,7 @@ PetPlanner is a web application Lucca Wang built from scratch (with Python, Flas
 12. Jinja2 (extends base.html, used for conditional rendering on navbars)
 13. Bootstrap (styling, used with React)
 14. Argon2 (Password Hashing)
+15. Wang chose to created data sets through her research and from data scraping for lists of different animal breeds. (She chose this over using PetFinder's API.)
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -195,24 +195,6 @@ All photos titles are formatted the same: "petplanner-title/name.format".
 
 All photos for adding a pet are around the same size and are 500px width by around 500px tall. 
 All photos for the carousel are 1200px width.  
-
-[Back to the Table of Contents](#table-of-contents) 
-
-<a name="credits"></a>
- 
-### Credits 
-
-Software engineer, creator of this app (and author): Lucca Wang 
-
-Amazing guidance from: 
-* Drue Gilbert 
-
-* Trew Boisvert 
-
-Also thank you for the support: 
-* Cris Pope 
-
-* Druhin Bala 
 
 [Back to the Table of Contents](#table-of-contents) 
 
