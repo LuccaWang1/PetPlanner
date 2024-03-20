@@ -93,6 +93,8 @@ The buttons contain hover and active css for visible changes for the user. And w
 
 5. View the Homepage 
 
+Lucca Wang chose a bootstrap carousel for a dynamic feature that's interesting and relates to the subject matter of the app, pet and their pets. Photos are sourced from Unsplash.com and have the photographer's name in the file names. Wang designed this by choosing time of the intervals (how much time is spent on one photo before transitioning to the next photo in the carousel), size of the carousel (dimensions on the webpage), size of the photos, and the order of the photos, which Wang hardcoded onto the Homepage. 
+
 ![Image of the Homepage with the turtle slide on the automatically moving Carousel that also has buttons](/static/images/Readme_Markdown/petplanner_Homepage_Turtle.png)
 
 6. View their Dashboard with their pets on it 
