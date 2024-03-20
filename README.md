@@ -3,7 +3,7 @@
 # PetPlanner
 
 ### Project Description 
-PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log eat pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did ALL of the coding on this project - everything, including this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
+PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log each pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did ALL of the coding on this project - everything, including this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
 <a name="table-of-contents"></a>
