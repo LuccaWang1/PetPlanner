@@ -49,17 +49,17 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 ![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 <a name="mvp-description"></a>
 ### MVP Description
-1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets from a guinea pig to a bird to a horse to a cat. The breeds are shown as a result of conditional rendering in Javascript React and Wang's data scraping and research on breeds and creating data sets from that breed research information. Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
+1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets from a guinea pig to a bird to a horse to a cat. The breeds are shown as a result of conditional rendering in Javascript React and Wang's data scraping and research on breeds and creating data sets from that breed research information. So, depending on the type, or species, of animal the user selects in the "type" field (user input), the breed list of animals corresponding to that specific type/species of animal is available for the pet owner to choose from. Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
 
 ![Image of Add A Pet Javascript React Bootstrap Modal Form, the species Form Control Select option for various animal species/types hardcoded into form](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_species.png)
 
 ![Image of Add A Pet Javascript React Bootstrap Modal Form, the breed Form Control Select option for various breeds from conditional rendering, depending on animal species/type selected by user, mapped from the data sets built from research and data scraping](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_breeds.png)
 
-2. Pet lovers can add events for each of their pets using FullCalendar API, including daily or annual events based on the needs and appointments of the pet -- like vaccinations, walks, annual vet appointments, or even medication administration. 
+2. Pet lovers can add events for each of their pets using FullCalendar API, including daily or annual events based on the needs and appointments of the pet -- like vaccinations, walks, annual vet appointments, or even medication administration. For each event, the user inputs the: title, location, start date, start time, end date, end time, and any notes. UT date and time formatting were used here and transmitted from the frontend of React.js to the Python server backend - and again from backend to frontend in the JSON response. 
 
 ![Image of Full Calendar API calendar on my_events.html webpage](/static/images/Readme_Markdown/petplanner_Custom_Full_Calendar_API.png)
 
-3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include.
+3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include. Specialists (like users, pets, and events) are saved in the PostgreSQL relational database within the User instance, AKA within the user's account. 
 
 ![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/petplanner_Add_A_Specialist.png)
 
@@ -79,13 +79,13 @@ A user instance is created via the user inputs to the form and the User class in
 
 3. Log out 
 
-Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
+The session is cleared when the user clicks the "Log Out" button that's in the top left of the website - on any webpage the user is on. About this user experience (UX) and the log out button in the top right navbar: Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
 
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/petplanner_Dashboard.png)
 
 4. Update their account information
 
-The buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Wang had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
+The "Edit" and "Save" buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Wang had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/petplanner_My_Account.png)
 
@@ -93,7 +93,7 @@ The buttons contain hover and active css for visible changes for the user. And w
 
 5. View the Homepage 
 
-Lucca Wang chose a bootstrap carousel for a dynamic feature that's interesting and relates to the subject matter of the app, pet and their pets. Photos are sourced from Unsplash.com and have the photographer's name in the file names. Wang designed this by choosing time of the intervals (how much time is spent on one photo before transitioning to the next photo in the carousel), size of the carousel (dimensions on the webpage), size of the photos, and the order of the photos, which Wang hardcoded onto the Homepage. 
+Lucca Wang chose a Bootstrap carousel for a dynamic feature that's interesting and relates to the subject matter of the app, people and their pets. Photos are sourced from Unsplash.com and have the photographer's name in the file names. Wang designed this by choosing time of the intervals (how much time is spent on one photo before transitioning to the next photo in the carousel), size of the carousel (dimensions on the webpage), size of the photos, and the order of the photos, which Wang hardcoded onto the Homepage. 
 
 ![Image of the Homepage with the turtle slide on the automatically moving Carousel that also has buttons](/static/images/Readme_Markdown/petplanner_Homepage_Turtle.png)
 
