@@ -56,7 +56,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 <br>
 
-### Technologies Used
+### Technologies
 1. Python (Server, OOP)
 2. Flask (Python Framework)
 3. Javascript (AJAX/JSON) (Frontend)
@@ -87,11 +87,11 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ### Features
 
-1. React Bootstrap Modal Forms 
+1. React Bootstrap Modal Forms (3) 
 
-* Uses 1-2 Javascript React AJAX fetch requests
-* AJAX fetch request loads the user's information at the time the modal form loads on the DOM and 
-* AJAX fetch request saves the information to the database and communicate between the server  and client
+* Use 1-2 Javascript React AJAX fetch requests per form
+* AJAX fetch request loads the user's information at the time the modal form loads on the DOM 
+* AJAX fetch request saves user inputs to the database and communicates between the server and client
 * Wang took pride in overcoming challenges related to handling the asynchronous requests, sending and receiving JSON objects
 * Date and time formatting
 
@@ -109,10 +109,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 2. Add a Pet
 
 * After creating an account, a user can add a pet to their account
-* The pet card's placed on the Dashboard
+* The pet card is placed on the Dashboard
 * Users can add as many pets as they want 
 * User inputs information about their pet
-* Incluing information on species
+* Inputs include information on species
 * The breed options depend on the species selected (conditional rendering and mapping)
 * Pet lovers can upload a photo of their pet with the help of the Cloudinary API
 
@@ -126,7 +126,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 3. Add an Event
 
-* Pet lovers can add events for each of their pets using FullCalendar API
+* Users can add events for each of their pets using FullCalendar API
 * Events can be for daily or annual events based on the needs and appointments of the pet
 
 ![Image of the hover over add event in dropdown](/static/images/Readme_Markdown/add_event_dropdown.png)
@@ -139,11 +139,9 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 3. Add a Specialist 
 
-* A user can add care providers, or specialists, for each pet
-* The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet  
+* A user can add care providers, or specialists, for each pet (vet, groomer, nail trimmer, and emergency vet)  
 * Specialists are saved in the PostgreSQL relational database under the user's account
-* The user can assign the specialist to one or all of their pets
-* The Javascript fetch request brings in the user's pet data, and I mapped to it so the user can associate one or all of their pets with the specialist
+* The user's existing pet data is mapped, so the user can assign the specialist to one or all of their pets
 
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
 *This is how a user can add a specialist for their pet or all their pets*
@@ -163,10 +161,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ### Snapshot of the Data Model
 
-* Designed with future features in mind
 * Has over 6 tables and more associative tables to create several many-to-many relationships
 * Also one-to-many relationships between tables
 * The Postgresql database is modeled and queried with SQLAlchemy
+* Designed to be built out even more with messaging between users and saved settings for calendar events
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
 *The data model of PetPlanner*
