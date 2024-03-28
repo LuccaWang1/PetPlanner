@@ -2,10 +2,12 @@
 
 # PetPlanner
 
+![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
+
 ### Project Description 
 PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log each pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did ALL of the coding on this project - everything, including the Markdown and writing of this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
 
-![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/petplanner_Homepage_Horse.png)
+![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
 <a name="table-of-contents"></a>
 
 ## Table of Contents 
@@ -46,12 +48,13 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 
 [Back to the Table of Contents](#table-of-contents) 
 
-![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/petplanner_Dashboard.png)
+![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/dashboard_zoom_out.png)
 <a name="mvp-description"></a>
+
 ### MVP Description
 1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets. The animals that are hardcoded into the React.js Bootstrap modal form are alphabetized from A-Z for organization for the UX of the user, and the animal types/species to choose from include: bird, cat, dog, fish, guinea pig, horse, and turtle. When the user gets to the breed field, that's is mapped in React.js to the type field - so depending on the type of animal, a dataset of breeds will pop up that corresponds to that type of animal. (So if a user selects a "cat" type of animal, they can choose from a list of cat breeds like American Shorthair, Bengal, Munchkin, etc. Like the animal types, the breeds are listed in alphabetical order for organization and a good user experience.) Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
 
-![Image of Add A Pet Javascript React Bootstrap Modal Form, the species Form Control Select option for various animal species/types hardcoded into form](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_species.png)
+![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/dashboard_zoom_in.png)
 
 ![Image of Add A Pet Javascript React Bootstrap Modal Form, the breed Form Control Select option for various breeds from conditional rendering, depending on animal species/type selected by user, mapped from the data sets built from research and data scraping](/static/images/Readme_Markdown/petplanner_Add_A_Pet_Modal_breeds.png)
 
