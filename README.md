@@ -142,8 +142,6 @@ Users can add an event for their pet. My Events webpage is an HTML page that use
 
 Users can add an event for their pet. My Events webpage is an HTML page that uses Jinja templating and the Full Calendar API. When we refresh the page, we see the event's added to our calendar. 
 
-![Image of the user's events](/static/images/Readme_Markdown/calendar.png)
-
 10. Add a specialist 
 
 Pet owners can also add a specialist. A Javascript fetch request brings in the user's pet data, and Wang mapped to it so the user can associate one or all of their pets with the specialist. 
