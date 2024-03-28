@@ -98,6 +98,8 @@ The "Edit" and "Save" buttons contain hover and active css for visible changes f
 
 ![Image of My Account webpage when saving](/static/images/Readme_Markdown/ma-saving.png)
 
+![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
+
 5. View the Homepage 
 
 Lucca Wang chose a Bootstrap carousel for a dynamic feature that's interesting and relates to the subject matter of the app, people and their pets. Photos are sourced from Unsplash.com and have the photographer's name in the file names. Wang designed this by choosing time of the intervals (how much time is spent on one photo before transitioning to the next photo in the carousel), size of the carousel (dimensions on the webpage), size of the photos, and the order of the photos, which Wang hardcoded onto the Homepage. 
@@ -123,6 +125,10 @@ Once they save the pet, they'll be notified of the add, and the pet will appear 
 ![Image of the user's Dashboard and the dropdown menu hovering](/static/images/Readme_Markdown/add_dropdown_hover.png)
 
 ![Image of the add a pet form](/static/images/Readme_Markdown/add_pet_modal.png)
+
+![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
+
+![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
 
 8. Add an event 
 
