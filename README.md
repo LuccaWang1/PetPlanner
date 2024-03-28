@@ -64,9 +64,9 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 
 3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include. Specialists (like users, pets, and events) are saved in the PostgreSQL relational database within the User instance, AKA within the user's account. And, the user can assign the specialist to one or all of their pets. 
 
-![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/add_specialist_modal.png)
+![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
 
-![Image of the Add A Specialist Modal Bootstrap Form](/static/images/Readme_Markdown/add_specialist_pets.png)
+![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -149,6 +149,8 @@ Pet owners can also add a specialist. A Javascript fetch request brings in the u
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
+
+![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
 
 [Back to the Table of Contents](#table-of-contents) 
 
