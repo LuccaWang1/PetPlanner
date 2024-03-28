@@ -24,9 +24,9 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 ### Snapshot of Project
 * Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
 * Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
-* Built out a data model for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
-* Utilized Cloudinary and FullCalendar APIs; built datasets from data scraping.
-* Hand built top and bottom navbars in HTML with Jinja for a clean user interface to streamline the user experience.
+* Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
+* Utilized [Cloudinary and FullCalendar APIs; built datasets from data scraping.](#mvp-description)
+* [Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.](#log-in)
 <a name="technologies-used"></a>
 
 ### Technologies Used
@@ -78,6 +78,7 @@ A user instance is created via the user inputs to the form and the User class in
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
 
+<a name="log-in"></a>
 2. Log in
 
 ![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
