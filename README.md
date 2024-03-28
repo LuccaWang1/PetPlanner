@@ -21,12 +21,12 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ## Table of Contents 
 - [Project Description](#description)
-- [Snapshot of Project](#snapshot) 
-- [Technologies Used](#technologies-used) 
-- [MVP Description](#mvp-description)
-- [How To Use PetPlanner / What The User Can Do](#how-to-1)
-- [Snapshot of the Data Model](#data-model)
+- [Project Snapshot](#snapshot) 
+- [Technologies](#technologies) 
+- [Features](#features)
+- [Data Model](#data-model) 
 - [How To Run PetPlanner](#run-pp)
+- [More](#more)
 - [Photos (frontend)](#photos)
 - [Author](#author) 
 
@@ -38,7 +38,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 <br>
 
-### Snapshot of Project
+### Project Snapshot
 * Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
 * Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
 * Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
@@ -48,11 +48,11 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 ![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
-*What a user sees when they're logged out, the homepage - notice the navbar*
+*The Homepage when a user is logged out - conditional rendering with Jinja on the navbar is used*
 
 ![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*What a user sees when they're logged in, the dashboard - notice the navbar*
-<a name="technologies-used"></a>
+*The Dashboard when a user is logged in - conditional rendering with Jinja on the navbar is used*
+<a name="technologies"></a>
 
 <br>
 
@@ -81,7 +81,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/dashboard_zoom_out.png)
 *The user's dashboard where their pet cards live*
-<a name="mvp-description"></a>
+<a name="features"></a>
 
 <br>
 
@@ -201,6 +201,7 @@ The full stack project includes a PostgreSQL relational database and was built a
    * python server.py
 
 5. Go to localhost:5000 to see the web app
+<a name="more"></a>
 
 <br>
 
