@@ -19,6 +19,8 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 - [How To Run PetPlanner](#run-pp)
 - [Photos (frontend)](#photos)
 - [Author](#author) 
+
+![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
 <a name="snapshot"></a>
 
 ### Snapshot of Project
