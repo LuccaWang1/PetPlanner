@@ -26,7 +26,13 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 * Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
 * Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
 * Utilized [Cloudinary and FullCalendar APIs; built datasets from data scraping.](#mvp-description)
-* [Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.](#log-in)
+* Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.
+
+![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
+
+![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard.png)
+
+
 <a name="technologies-used"></a>
 
 ### Technologies Used
