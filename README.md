@@ -9,7 +9,7 @@
 PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log each pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did all of the coding on this project - everything, including the Markdown and writing of this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
-*The web app's homepage*
+*The web app's homepage with a carousel*
 <a name="table-of-contents"></a>
 
 ## Table of Contents 
@@ -34,10 +34,10 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 * Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.
 
 ![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
-*What a users see when they're logged out, the homepage - notice the navbar*
+*What a user sees when they're logged out, the homepage - notice the navbar*
 
 ![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*What a users see when they're logged in, the dashboard - notice the navbar*
+*What a user sees when they're logged in, the dashboard - notice the navbar*
 
 
 <a name="technologies-used"></a>
@@ -85,7 +85,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 *The Add a Specialist form that's a React Bootstrap modal form*
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
-*The Add a Specialist form that's a React Bootstrap modal form with the user's pets mapped so they show in the dropdown menu for the user to select from*
+*The Add a Specialist form that's a React Bootstrap modal form with the user's pets mapped so the pets show in the dropdown menu for the user to select from*
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -250,10 +250,7 @@ There are 6 organized folders in the /static/images folder for clean organizatio
 5. Readme Markdown photos for this document - screenshots of the web app to go along with the text in this document
 6. Seed pets - these were for the demo video uploaded to Youtube at [https://www.youtube.com/watch?v=GA6h8ELNkco](https://www.youtube.com/watch?v=GA6h8ELNkco)
 
-All photos titles are formatted the same: "petplanner-title/name.format". 
-
-All photos for adding a pet are around the same size and are 500px width by around 500px tall. 
-All photos for the carousel are 1200px width.  
+All photos have short condensed titles for efficiency and organization.
 
 [Back to the Table of Contents](#table-of-contents) 
 
