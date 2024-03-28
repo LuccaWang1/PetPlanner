@@ -30,7 +30,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 
 ![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
 
-![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard.png)
+![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
 
 
 <a name="technologies-used"></a>
