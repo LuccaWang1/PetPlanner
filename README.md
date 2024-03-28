@@ -3,11 +3,13 @@
 # PetPlanner
 
 ![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
+*A user's dashboard*
 
 ### Project Description 
 PetPlanner allows pet owners to centralize their pets' information in one location. The full stack project that includes a PostgreSQL relational database was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, and more. Pet owners can log each pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates. (Lucca Wang is the software engineer of this project - she did all of the coding on this project - everything, including the Markdown and writing of this README documentation.) Wang chose two APIs and created datasets from data scraping for the app.
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
+*The web app's homepage*
 <a name="table-of-contents"></a>
 
 ## Table of Contents 
@@ -21,6 +23,7 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 - [Author](#author) 
 
 ![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
+*The code in the server that creates a pet instance on the Pet class (OOP!)*
 <a name="snapshot"></a>
 
 ### Snapshot of Project
@@ -31,8 +34,10 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 * Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.
 
 ![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
+*What a users see when they're logged out, the homepage - notice the navbar*
 
 ![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
+*What a users see when they're logged in, the dashboard - notice the navbar*
 
 
 <a name="technologies-used"></a>
@@ -57,24 +62,30 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 [Back to the Table of Contents](#table-of-contents) 
 
 ![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/dashboard_zoom_out.png)
+*The user's dashboard where their pet cards live*
 <a name="mvp-description"></a>
 
 ### MVP Description
 1. After creating an account, a user can add a pet to their account, and that pet will show in the cards on the dashboard. They can add as many pets as they would like and different kinds of pets. The animals that are hardcoded into the React.js Bootstrap modal form are alphabetized from A-Z for organization for the UX of the user, and the animal types/species to choose from include: bird, cat, dog, fish, guinea pig, horse, and turtle. When the user gets to the breed field, that's is mapped in React.js to the type field - so depending on the type of animal, a dataset of breeds will pop up that corresponds to that type of animal. (So if a user selects a "cat" type of animal, they can choose from a list of cat breeds like American Shorthair, Bengal, Munchkin, etc. Like the animal types, the breeds are listed in alphabetical order for organization and a good user experience.) Pet lovers can upload a photo of their pet with the help of the Cloudinary API. In the pet's information, many different types of information can be stored, including an emergency contact name, phone, and email and the pet's insurance company and policy number. 
 
 ![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
+*The Add a Pet form that's a React Bootstrap modal form - the user can select their pet's species*
 
 ![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
+*The Add a Pet form that's a React Bootstrap modal form - the user can select their pet's breed based on the animal's species*
 
 2. Pet lovers can add events for each of their pets using FullCalendar API, including daily or annual events based on the needs and appointments of the pet -- like vaccinations, walks, annual vet appointments, or even medication administration. For each event, the user inputs the: title, location, start date, start time, end date, end time, and any notes. UT date and time formatting were used here and transmitted from the frontend of React.js to the Python server backend - and again from backend to frontend in the JSON response. 
 
-![Image of Full Calendar API calendar on my_events.html webpage](/static/images/Readme_Markdown/add_event_modal.png)
+![Image of the add an event form](/static/images/Readme_Markdown/add_event_modal.png)
+*The Add an Event form that's a React Bootstrap modal form*
 
 3. A user can add care providers, or specialists, for each pet. The specialists can include the pet's vet, groomer, nail trimmer, and emergency vet.  The specialists' contact information includes the phone number, address, any notes, and more that the pet owner would like to include. Specialists (like users, pets, and events) are saved in the PostgreSQL relational database within the User instance, AKA within the user's account. And, the user can assign the specialist to one or all of their pets. 
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
+*The Add a Specialist form that's a React Bootstrap modal form*
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
+*The Add a Specialist form that's a React Bootstrap modal form with the user's pets mapped so they show in the dropdown menu for the user to select from*
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -85,39 +96,48 @@ PetPlanner allows pet owners to centralize their pets' information in one locati
 A user instance is created via the user inputs to the form and the User class in model.py. The user's account information is stored in the app's postgreSQL relational database. Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
+*A user can create an account*
 
 <a name="log-in"></a>
 2. Log in
 
 ![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
+*A user can log in*
 
 3. Log out 
 
 The session is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on. About this user experience (UX) and the log out button in the top right navbar: Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
 
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
+*A user can log out*
 
 4. Update their account information
 
 The "Edit" and "Save" buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Wang had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
+*A user's My Account webpage*
 
 ![Image of My Account webpage after clicking edit](/static/images/Readme_Markdown/ma-edit.png)
+*A user can edit their account information*
 
 ![Image of My Account webpage when saving](/static/images/Readme_Markdown/ma-saving.png)
+*A user can save their account information in the database*
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
+*The user has saved their account information!*
 
 5. View the Homepage 
 
 Lucca Wang chose a Bootstrap carousel for a dynamic feature that's interesting and relates to the subject matter of the app, people and their pets. Photos are sourced from Unsplash.com and have the photographer's name in the file names. Wang designed this by choosing time of the intervals (how much time is spent on one photo before transitioning to the next photo in the carousel), size of the carousel (dimensions on the webpage), size of the photos, and the order of the photos, which Wang hardcoded onto the Homepage. 
 
 ![Image of the Homepage with the turtle slide on the automatically moving Carousel that also has buttons](/static/images/Readme_Markdown/home.png)
+*The homepage - when a user is logged out*
 
 6. View their Dashboard with their pets on it 
 
 ![Image of the user's Dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
+*A user's dashboard*
 
 7. Add a pet
 
@@ -130,22 +150,29 @@ Wang used conditional rendering and mapping on the breed data field - it's based
 Once they save the pet, they'll be notified of the add, and the pet will appear on their dashboard. 
 
 ![Image of the user's Dashboard and the dropdown menu](/static/images/Readme_Markdown/add_dropdown.png)
+*This is how a user can use the reusable React components - they're in the navbar, accessible from all webpages*
 
 ![Image of the user's Dashboard and the dropdown menu hovering](/static/images/Readme_Markdown/add_dropdown_hover.png)
+*We can see the CSS hover styling here on the dropdown menu*
 
 ![Image of the add a pet form](/static/images/Readme_Markdown/add_pet_modal.png)
+*The Add a Pet form that's a React Bootstrap modal form*
 
 ![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
+*The Add a Pet form that's a React Bootstrap modal form - with the species dropdown menu*
 
 ![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
+*The Add a Pet form that's a React Bootstrap modal form - with the breeds dropdown menu*
 
 8. Add an event 
 
 Users can add an event for their pet. My Events webpage is an HTML page that uses Jinja templating and the Full Calendar API. When we refresh the page, we see the event's added to our calendar. 
 
 ![Image of the hover over add event in dropdown](/static/images/Readme_Markdown/add_event_dropdown.png)
+*This is how a user can add an event for their pet*
 
 ![Image of the add a event form](/static/images/Readme_Markdown/add_event_modal.png)
+*The Add an Event form that's a React Bootstrap modal form*
 
 9. See their events on the My Events webpage 
 
@@ -156,10 +183,13 @@ Users can add an event for their pet. My Events webpage is an HTML page that use
 Pet owners can also add a specialist. A Javascript fetch request brings in the user's pet data, and Wang mapped to it so the user can associate one or all of their pets with the specialist. 
 
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
+*This is how a user can add a specialist for their pet or all their pets*
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
+*The Add a Specialist form that's a React Bootstrap modal form*
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
+*The Add a Specialist form that's a React Bootstrap modal form - with the user's pets mapped, so the user can assign the specialist to one or all of their pets*
 
 [Back to the Table of Contents](#table-of-contents) 
 
@@ -170,6 +200,7 @@ Pet owners can also add a specialist. A Javascript fetch request brings in the u
 The data model on this puppy is huge. It's designed with future features in mind and has over 6 tables and more associative tables to create several many-to-many relationships. There are also one-to-many relationships between tables. The Postgresql database is modeled and queried with SQLAlchemy.
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
+*The data model of PetPlanner*
 
 [Back to the Table of Contents](#table-of-contents) 
 
