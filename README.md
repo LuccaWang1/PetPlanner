@@ -92,6 +92,8 @@ The session is cleared when the user clicks the "Log Out" button that's in the t
 
 The "Edit" and "Save" buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Wang had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
 
+![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
+
 ![Image of My Account webpage after clicking edit](/static/images/Readme_Markdown/ma-edit.png)
 
 ![Image of My Account webpage when saving](/static/images/Readme_Markdown/ma-saving.png)
