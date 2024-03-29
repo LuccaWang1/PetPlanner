@@ -41,9 +41,9 @@ The full stack project includes a PostgreSQL relational database and was built a
 ### Project Snapshot
 * Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
 * Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
-* Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
+* Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the PostgreSQL database.
 * Utilized [Cloudinary and FullCalendar APIs; built datasets from data scraping.](#mvp-description)
-* Hand built navbar in HTML with Jinja for a clean user interface to streamline the user experience.
+* Hand built navbar in HTML with Jinja2 for a clean user interface to streamline the user experience.
 
 <br>
 
@@ -87,7 +87,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ### Features
 
-1. React Bootstrap Modal Forms (3) 
+1. React Bootstrap Modal Forms (3 forms) 
 
 * Use 1-2 JavaScript React AJAX fetch requests per form
 * AJAX fetch request loads the user's information at the time the modal form loads on the DOM 
@@ -144,13 +144,13 @@ The full stack project includes a PostgreSQL relational database and was built a
 * The user's existing pet data is mapped, so the user can assign the specialist to one or all of their pets
 
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
-*This is how a user can add a specialist for their pet or all their pets*
+*A user can add a specialist from the dropdown menu*
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
 *The Add a Specialist form that's a React Bootstrap modal form*
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
-*The Add a Specialist form that's a React Bootstrap modal form - with the user's pets mapped, so the user can assign the specialist to one or all of their pets*
+*Wang mappen the user's existing pet data, so the user can assign the specialist to one or all of their pets*
 
 <br>
 
@@ -176,29 +176,29 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 ### How To Run the PetPlanner Flask App
 
-1. Set up and activate a python virtualenv, and install all dependencies:
+1. Set up and activate a Python `virtualenv`, and install all dependencies:
 
-   * pip install -r requirements.txt
+   * `pip install -r requirements.txt`
 
 2. Make sure you have PostgreSQL running. Create a new database in psql named pets:
 
-   * psql
+   * `psql`
 
-   * CREATE DATABASE pets;
+   * `CREATE DATABASE pets;`
 
 3. Create the tables in your database:
 
-   * python -i model.py
+   * `python -i model.py`
 
-   * While in interactive mode, create tables: db.create_all()
+   * While in interactive mode, create tables: `db.create_all()`
 
-   * Seed the pets table with some pets
+   * Seed the `pets` table with some pets
 
-4. Now, quit interactive mode. Start up the flask server:
+4. Now, quit interactive mode. Start up the Flask server:
 
-   * python server.py
+   * `python3 server.py`
 
-5. Go to localhost:5000 to see the web app
+5. Go to the URL `localhost:5000` in the browser to see the web app run
 <a name="more"></a>
 
 <br>
@@ -206,8 +206,8 @@ The full stack project includes a PostgreSQL relational database and was built a
 ### More if you're interested
 1. Create an account 
 
-* A user instance is created via the user inputs to the form and the User class in model.py (OOP). 
-* The user's account information is stored in the app's postgreSQL relational database. 
+* A user instance is created via the user inputs to the form and the `User` class in model.py (OOP). 
+* The user's account information is stored in the app's PostgreSQL relational database. 
 * Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
 * Form styled with flexbox.
 
@@ -233,8 +233,8 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 4. Update their account information
 
-* The "Edit" and "Save" buttons contain hover and active CSS for visible changes for the user. 
-* When the user clicks the ```Edit button to edit their account information, the input fields turns pink. 
+* The `Edit` and `Save` buttons contain hover and active CSS for visible changes for the user. 
+* When the user clicks the `Edit` button to edit their account information, the input fields turns pink. 
 * Wang had a lot of fun quickly coding this JavaScript with styling, listener, and the fetch request. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
