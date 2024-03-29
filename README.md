@@ -224,14 +224,18 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 3. Log out 
 
-The session is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on. About this user experience (UX) and the log out button in the top right navbar: Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
+* The session is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on. 
+* Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. 
+* She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
 
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
 *A user can log out*
 
 4. Update their account information
 
-The "Edit" and "Save" buttons contain hover and active css for visible changes for the user. And when the user clicks the Edit button to edit their account information, the input fields turn the pink-beige color of the set color palette of the app. Wang had a lot of fun quickly coding this Javascript with styling, listener, and the fetch request to the server and handling the server-side and server's response. 
+* The "Edit" and "Save" buttons contain hover and active CSS for visible changes for the user. 
+* When the user clicks the ```Edit button to edit their account information, the input fields turns pink. 
+* Wang had a lot of fun quickly coding this JavaScript with styling, listener, and the fetch request. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
 *A user's My Account webpage*
