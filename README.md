@@ -48,10 +48,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 ![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
-*The Homepage when a user is logged out - conditional rendering with Jinja on the navbar is used*
+*The Homepage when a user is logged out - Wang chose Jinja conditional rendering on the navbar*
 
 ![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*The Dashboard when a user is logged in - conditional rendering with Jinja on the navbar is used*
+*The Dashboard when a user is logged in - Wang chose Jinja conditional rendering on the navbar*
 <a name="technologies"></a>
 
 <br>
@@ -59,13 +59,13 @@ The full stack project includes a PostgreSQL relational database and was built a
 ### Technologies
 1. Python (Server, OOP)
 2. Flask (Python Framework)
-3. Javascript (AJAX/JSON) (Frontend)
+3. JavaScript (AJAX/JSON) (Frontend)
 4. React (Frontend)
 5. PostgreSQL (relational database)
 6. SQL (used to query the database in psql)
 7. SQLAlchemy (used to query the database within Python)
 8. HTML (webpages, base)
-9. CSS, Flexbox (styling)
+9. CSS, flexbox (styling)
 10. Cloudinary API (photo uploader API)
 11. Full Calendar API (calendar and events API)
 12. Jinja2 (Python web dev. templating engine that extends base.html, used for conditional rendering on navbars throughout site)
@@ -89,7 +89,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 1. React Bootstrap Modal Forms (3) 
 
-* Use 1-2 Javascript React AJAX fetch requests per form
+* Use 1-2 JavaScript React AJAX fetch requests per form
 * AJAX fetch request loads the user's information at the time the modal form loads on the DOM 
 * AJAX fetch request saves user inputs to the database and communicates between the server and client
 * Wang took pride in overcoming challenges related to handling the asynchronous requests, sending and receiving JSON objects
@@ -139,7 +139,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 3. Add a Specialist 
 
-* A user can add care providers, or specialists, for each pet (vet, groomer, nail trimmer, and emergency vet)  
+* A user can add care providers, or specialists, for each pet (e.g. vet, groomer, nail trimmer, and emergency vet)  
 * Specialists are saved in the PostgreSQL relational database under the user's account
 * The user's existing pet data is mapped, so the user can assign the specialist to one or all of their pets
 
@@ -163,7 +163,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 * Has over 6 tables and more associative tables to create several many-to-many relationships
 * Also one-to-many relationships between tables
-* The Postgresql database is modeled and queried with SQLAlchemy
+* The PostgreSQL database is modeled and queried with SQLAlchemy
 * Designed to be built out even more with messaging between users and saved settings for calendar events
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
@@ -206,13 +206,18 @@ The full stack project includes a PostgreSQL relational database and was built a
 ### More if you're interested
 1. Create an account 
 
-A user instance is created via the user inputs to the form and the User class in model.py. The user's account information is stored in the app's postgreSQL relational database. Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
+* A user instance is created via the user inputs to the form and the User class in model.py (OOP). 
+* The user's account information is stored in the app's postgreSQL relational database. 
+* Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
+* Form styled with flexbox.
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
 *A user can create an account*
 
 <a name="log-in"></a>
 2. Log in
+
+* Form styled with flexbox.
 
 ![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
 *A user can log in*
