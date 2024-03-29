@@ -263,7 +263,7 @@ There are 6 organized folders in the /static/images folder for clean organizatio
 1. Carousel slides 
 2. Default add a pet photo - for if someone doesn't have a photo of their pet at the time they add a pet. It's a pink/red-ish image with hearts on it 
 3. Demo add a pet - photo of Benny the Bengal cat 
-4. Favicon - it's a calendar icon with a heart in the middle. This is the Bootstrap calendar2-heart-fill.svg.
+4. Favicon - this is the [Bootstrap calendar2-heart-fill.svg](https://icons.getbootstrap.com/icons/calendar2-heart-fill/), a calendar icon with a heart in the middle
 5. Readme Markdown photos for this document - screenshots of the web app to go along with the text in this document
 6. Seed pets - these were for the demo video uploaded to Youtube at [https://www.youtube.com/watch?v=GA6h8ELNkco](https://www.youtube.com/watch?v=GA6h8ELNkco)
 
