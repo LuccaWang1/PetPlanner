@@ -132,7 +132,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 *The Add a Specialist form that's a React Bootstrap modal form*
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
-*Wang mappen the user's existing pet data, so the user can assign the specialist to one or all of their pets*
+*Wang mapped to the user's existing pet data, so the user can assign the specialist to one or all of their pets*
 
 * A user can add care providers, or specialists, for each pet (e.g. vet, groomer, nail trimmer, and emergency vet)  
 * Specialists are saved in the PostgreSQL relational database under the user's account
