@@ -2,57 +2,49 @@
 
 # PetPlanner
 
-![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*A user's dashboard*
+![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
+*The web app's homepage with a carousel*
 <a name="description"></a>
 
-### Project Description 
+## Project Description 
 PetPlanner allows pet owners to centralize their pets' information in one location. Pet owners can log each pet and the pet's information as well as their pets' specialists, like groomers and vets, and events, like annual vet visits, nail trims, and play dates.
 
 The full stack project includes a PostgreSQL relational database and was built and architected solely by Lucca Wang, who created the app from scratch, developing with Python, Flask, React, JavaScript, APIs, datasets from data scraping, and more. 
 
 <br>
 
-![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
-*The web app's homepage with a carousel*
+![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
+*A user's dashboard*
+<a name="snapshot"></a>
+
+<br>
+
+## Snapshot
+* Full stack web app built from scratch used by pet owners to centralize their pets' information in one location.
+* Created a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the postgreSQL database.
+* Experience overcoming AJAX fetch request JSON date and time challenges, including in React.
+* Developed in Python, Flask, JavaScript, and PostgreSQL to create over 5 features for a MVP.
+* Integrated [Cloudinary and FullCalendar APIs; built datasets from data scraping.](#mvp-description)
+* Hand built navbar in HTML with Jinja2 for a clean user interface to streamline the user experience.
+
+<br>
+
+![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
+*The code in the server that creates a pet instance on the Pet class (OOP!)*
 <a name="table-of-contents"></a>
 
 <br>
 
 ## Table of Contents 
 - [Project Description](#description)
-- [Project Snapshot](#snapshot) 
-- [Technologies](#technologies) 
-- [Features](#features)
+- [Snapshot](#snapshot) 
+- [Technologies](#technologies)
+- [Main Features](#features)
 - [Data Model](#data-model) 
 - [How To Run PetPlanner](#run-pp)
 - [More](#more)
 - [Photos (frontend)](#photos)
-- [Author](#author) 
-
-<br>
-
-![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
-*The code in the server that creates a pet instance on the Pet class (OOP!)*
-<a name="snapshot"></a>
-
-<br>
-
-### Project Snapshot
-* Web app for pet owners to keep their pets’ information, including events and specialists like vets, in a centralized location.
-* Experience overcoming AJAX fetch request JSON date and time and object/data structure challenges, including in React.
-* Built out a [data model](#data-model) for many-to-many and one-to-many relationships to set the foundation for the PostgreSQL database.
-* Utilized [Cloudinary and FullCalendar APIs; built datasets from data scraping.](#mvp-description)
-* Hand built navbar in HTML with Jinja2 for a clean user interface to streamline the user experience.
-
-<br>
-
-![Image of homepage - when someone's logged out](/static/images/Readme_Markdown/home.png)
-*The Homepage when a user is logged out - Wang chose Jinja conditional rendering on the navbar*
-
-![Image of dashboard - when someone's logged in](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*The Dashboard when a user is logged in - Wang chose Jinja conditional rendering on the navbar*
-<a name="technologies"></a>
+- [Author](#author)
 
 <br>
 
@@ -79,21 +71,9 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 <br>
 
-![Image of the user's dashboard that contains the pet cards](/static/images/Readme_Markdown/dashboard_zoom_out.png)
-*The user's dashboard where their pet cards live*
-<a name="features"></a>
-
-<br>
-
-### Features
+### Main Features
 
 1. React Bootstrap Modal Forms (3 forms) 
-
-* Use 1-2 JavaScript React AJAX fetch requests per form
-* AJAX fetch request loads the user's information at the time the modal form loads on the DOM 
-* AJAX fetch request saves user inputs to the database and communicates between the server and client
-* Wang took pride in overcoming challenges related to handling the asynchronous requests, sending and receiving JSON objects
-* Date and time formatting
 
 ![Image of the user's Dashboard and the dropdown menu](/static/images/Readme_Markdown/add_dropdown.png)
 *This is how a user can use the reusable React components - they're in the navbar, accessible from all webpages*
@@ -104,9 +84,21 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of the add a pet form](/static/images/Readme_Markdown/add_pet_modal.png)
 *The Add a Pet form that's a React Bootstrap modal form*
 
+* Use 1-2 JavaScript React AJAX fetch requests per form
+* AJAX fetch request loads the user's information at the time the modal form loads on the DOM 
+* AJAX fetch request saves user inputs to the database and communicates between the server and client
+* Wang took pride in overcoming challenges related to handling the asynchronous requests, sending and receiving JSON objects
+* Date and time formatting
+
 <br>
 
 2. Add a Pet
+
+![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
+*The Add a Pet form that's a React Bootstrap modal form - with the species dropdown menu*
+
+![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
+*The Add a Pet form that's a React Bootstrap modal form - with the breeds dropdown menu*
 
 * After creating an account, a user can add a pet to their account
 * The pet card is placed on the Dashboard
@@ -116,18 +108,9 @@ The full stack project includes a PostgreSQL relational database and was built a
 * The breed options depend on the species selected (conditional rendering and mapping)
 * Pet lovers can upload a photo of their pet with the help of the Cloudinary API
 
-![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
-*The Add a Pet form that's a React Bootstrap modal form - with the species dropdown menu*
-
-![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
-*The Add a Pet form that's a React Bootstrap modal form - with the breeds dropdown menu*
-
 <br>
 
 3. Add an Event
-
-* Users can add events for each of their pets using FullCalendar API
-* Events can be for daily or annual events based on the needs and appointments of the pet
 
 ![Image of the hover over add event in dropdown](/static/images/Readme_Markdown/add_event_dropdown.png)
 *This is how a user can add an event for their pet*
@@ -135,13 +118,12 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of the add a event form](/static/images/Readme_Markdown/add_event_modal.png)
 *The Add an Event form that's a React Bootstrap modal form*
 
+* Users can add events for each of their pets using FullCalendar API
+* Events can be for daily or annual events based on the needs and appointments of the pet
+
 <br>
 
-3. Add a Specialist 
-
-* A user can add care providers, or specialists, for each pet (e.g. vet, groomer, nail trimmer, and emergency vet)  
-* Specialists are saved in the PostgreSQL relational database under the user's account
-* The user's existing pet data is mapped, so the user can assign the specialist to one or all of their pets
+4. Add a Specialist 
 
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
 *A user can add a specialist from the dropdown menu*
@@ -152,6 +134,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
 *Wang mappen the user's existing pet data, so the user can assign the specialist to one or all of their pets*
 
+* A user can add care providers, or specialists, for each pet (e.g. vet, groomer, nail trimmer, and emergency vet)  
+* Specialists are saved in the PostgreSQL relational database under the user's account
+* The user's existing pet data is mapped, so the user can assign the specialist to one or all of their pets
+
 <br>
 
 [Back to the Table of Contents](#table-of-contents) 
@@ -159,15 +145,15 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 <br>
 
+![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
+*The data model of PetPlanner*
+
 ### Snapshot of the Data Model
 
 * Has over 6 tables and more associative tables to create several many-to-many relationships
 * Also one-to-many relationships between tables
 * The PostgreSQL database is modeled and queried with SQLAlchemy
 * Designed to be built out even more with messaging between users and saved settings for calendar events
-
-![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
-*The data model of PetPlanner*
 
 [Back to the Table of Contents](#table-of-contents) 
 <a name="run-pp"></a>
@@ -203,39 +189,44 @@ The full stack project includes a PostgreSQL relational database and was built a
 
 <br>
 
+[Back to the Table of Contents](#table-of-contents) 
+
+<br>
+
 ### More if you're interested
 1. Create an account 
+
+![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
+*A user can create an account*
 
 * A user instance is created via the user inputs to the form and the `User` class in model.py (OOP). 
 * The user's account information is stored in the app's PostgreSQL relational database. 
 * Passwords are hashed with salt using Passlib and Argon2 to securely hash passwords in a way that makes it difficult for attackers to perform brute-force (dictionary) attacks, even if they have access to significant computational resources. 
 * Form styled with flexbox.
 
-![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
-*A user can create an account*
+<br>
 
-<a name="log-in"></a>
 2. Log in
-
-* Form styled with flexbox.
 
 ![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
 *A user can log in*
 
+* Form styled with flexbox.
+
+<br>
+
 3. Log out 
+
+![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
+*A user can log out*
 
 * The session is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on. 
 * Utilizing Jinja templating on the navbar, Wang hand-built the top and bottom nav bars with HTML and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not. 
 * She intentionally chose this as a way to create a clean user interface to streamline the user experience when we're navigating the app.
 
-![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
-*A user can log out*
+<br>
 
 4. Update their account information
-
-* The `Edit` and `Save` buttons contain hover and active CSS for visible changes for the user. 
-* When the user clicks the `Edit` button to edit their account information, the input fields turns pink. 
-* Wang had a lot of fun quickly coding this JavaScript with styling, listener, and the fetch request. 
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
 *A user's My Account webpage*
@@ -249,11 +240,16 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
 *The user has saved their account information!*
 
-[Back to the Table of Contents](#table-of-contents) 
+* The `Edit` and `Save` buttons contain hover and active CSS for visible changes for the user. 
+* When the user clicks the `Edit` button to edit their account information, the input fields turns pink. 
+* Wang had a lot of fun quickly coding this JavaScript with styling, listener, and the fetch request. 
 
 <br>
 
+[Back to the Table of Contents](#table-of-contents) 
 <a name="photos"></a>
+
+<br>
 
 ### Photos 
 
@@ -272,7 +268,6 @@ All photos have short condensed titles for efficiency and organization.
 <br>
 
 [Back to the Table of Contents](#table-of-contents) 
-
 <a name="author"></a>
 
 <br>
