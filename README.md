@@ -68,6 +68,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 [Back to the Table of Contents](#table-of-contents) 
+<a name="features"></a>
 
 <br>
 
@@ -154,6 +155,8 @@ The full stack project includes a PostgreSQL relational database and was built a
 * Also one-to-many relationships between tables
 * The PostgreSQL database is modeled and queried with SQLAlchemy
 * Designed to be built out even more with messaging between users and saved settings for calendar events
+
+<br>
 
 [Back to the Table of Contents](#table-of-contents) 
 <a name="run-pp"></a>
