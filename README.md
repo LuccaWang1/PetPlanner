@@ -203,38 +203,26 @@ The full stack project includes a PostgreSQL relational database and was built a
 ### How To Run the PetPlanner Flask App
 
 1. Set up and activate a Python __`virtualenv`__, and install all dependencies:
+<br>
 
    * `pip install -r requirements.txt`
 <br>
 
-2. Make sure you have PostgreSQL running. Create a new __database__ in psql named pets:
-
-   * `psql`
-
-   * `CREATE DATABASE pets;`
+2. __Seed the app__: `python3 seed.py`
 <br>
 
-3. Create the __tables__ in your database:
-
-   * `python -i model.py`
-
-   * While in interactive mode, create tables: `db.create_all()`
+3.  Start up the __Flask server__: `python3 server.py`
 <br>
 
-4.  Seed the `pets` table with some pets: `python3 seed.py`
+4. Go to the __URL__ `localhost:5000` in the browser to see the web app run
 <br>
 
-5. Now, quit interactive mode. Start up the __Flask server__:
-
-   * `python3 server.py`
+5. How to run __tests__:
 <br>
-
-6. Go to the __URL__ `localhost:5000` in the browser to see the web app run
-<br>
-
-7. How to run __tests__:
 
    * `python3 tests.py`
+   <br>
+
    * Testing coverage is light right now with a couple unit tests
 <br>
 
