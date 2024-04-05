@@ -53,7 +53,8 @@ The full stack project includes a PostgreSQL relational database and was built a
 - [Data Model](#data-model) 
 - [How To Run PetPlanner](#run-pp)
 - [More](#more)
-- [Photos (frontend)](#photos)
+- [Photos](#photos)
+- [Challenges & Thoughts](#challenges)
 - [Author](#author)
 
 <br>
@@ -146,13 +147,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of the add a event form](/static/images/Readme_Markdown/add_event_modal.png)
 *The Add an Event form that's a React Bootstrap modal form*
 
-* Users can add events for each of their pets using __FullCalendar API__
-<br>
-
-* Events can be for daily or annual events based on the needs and appointments of the pet
-<br>
-
-* Events are stored in the database
+* Users can add and save events for each of their pets __via the PostgreSQL database and FullCalendar API__
 
 <br>
 
@@ -224,23 +219,23 @@ The full stack project includes a PostgreSQL relational database and was built a
    * `python -i model.py`
 
    * While in interactive mode, create tables: `db.create_all()`
-
-   * Seed the `pets` table with some pets
 <br>
 
-4. Now, quit interactive mode. Start up the __Flask server__:
+4.  Seed the `pets` table with some pets: `python3 seed.py`
+<br>
+
+5. Now, quit interactive mode. Start up the __Flask server__:
 
    * `python3 server.py`
 <br>
 
-5. Go to the __URL__ `localhost:5000` in the browser to see the web app run
+6. Go to the __URL__ `localhost:5000` in the browser to see the web app run
 <br>
 
-6. How to run __tests__:
+7. How to run __tests__:
 
    * `python3 tests.py`
    * Testing coverage is light right now with a couple unit tests
-    
 <br>
 
 <a name="more"></a>
@@ -285,7 +280,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
 *A user can log out*
 
-* The __session__ is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on
+* The __Flask session__ is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on
 <br>
 
 * Utilizing __Jinja templating__ on the navbar, I hand-built the top and bottom nav bars with __HTML__ and Jinja to determine what the user sees depending on which page the user is on and if they are logged in or not
@@ -351,8 +346,36 @@ All photos have __short condensed titles for efficiency and organization__.
 <br>
 
 [Back to the Table of Contents](#table-of-contents) 
-<a name="author"></a>
+<a name="challenges"></a>
 
+<br>
+
+### Challenges & Thoughts 
+
+- __CSS__, prioritizing my CSS styling over __Bootstrap and FullCalendar API's CSS styling__, including the __stack__ of the dropdown menu in my HTML & CSS top navbar (which I'll be working on)
+<br>
+
+- __Date and Time formatting__ with the transmitted __JSON object__ between the frontend React.js modal form and the backend Python logic on the Add An Event feature 
+<br>
+
+- Learning __React's hook useState__, and __React's state and props__
+<br>
+
+- I coded most things out the long way, since this is one of my first projects, but I know I could do a better job of using my __CRUD__ file in my backend server Python logic. 
+<br>
+
+- I __refactored my JavaScript__ code so that there aren't as many __document queries__ by __reusing variables__, cutting down on some __Runtime__.  
+<br>
+
+- Not a challenge but an opportunity: __build out the User, Messages, and Saved_Settings classes of the model__ and features
+<br>
+
+- I wasn't sure if I was going to be able to finish all the __features__ in this app by the __deadline__, but I managed to do it - through some long nights, nearly tears, and a lot of __research__ and __asking for help__
+<br>
+
+- Two things that I thought were important to gain experience with on the app that I did later are the __password hashing__ (and thinking about my knowledge of __hashmap structures__) and __testing__. I added two __unit tests__ and would appreciate adding more. 
+
+<a name="author"></a>
 <br>
 
 ### Author

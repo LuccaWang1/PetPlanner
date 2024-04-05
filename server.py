@@ -4,6 +4,7 @@ import os
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, session, redirect, jsonify, url_for
 import json
+import crud
 from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
 from datetime import datetime, date
 import cloudinary.uploader
@@ -179,7 +180,7 @@ def save_account_info():
     print(owner_lname)
     print(owner_email)
 
-    user = Owner.query.get(owner_id)
+    user = crud.get_owner_by_id
     print(user)
 
     if user:
@@ -217,7 +218,7 @@ def save_new_password():
 
     print("Owner_id:", owner_id)
 
-    user = Owner.query.get(owner_id) #query database for user instance with owner_id
+    user = crud.get_owner_by_id #query database for user instance with owner_id
     print("User found or not found in database:", user)
 
     if user: #if user with owner_id is found in database, then: 
