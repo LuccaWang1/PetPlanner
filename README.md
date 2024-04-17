@@ -361,7 +361,8 @@ All photos have __short condensed titles for efficiency and organization__.
 - I wasn't sure if I was going to be able to finish all the __features__ in this app by the __deadline__, but I managed to do it - through some long nights, nearly tears, and a lot of __research__ and __asking for help__
 <br>
 
-- Speaking of deadlines and time: My first choice for a calendar was Google Calendar, because it's widely used - I used it myself! But, Google migrated their sign in process; because it caused issues with OAuth, and there were some bugs with the change, I turned to Full Calendar. This was a challenge, because Full Calendar is less known and isn't a calendar everyone already has. It also meant I needed to update my model for table columns that matched the Full Calendar API instead of the setup I had for the Google Calendar API. This was practice in pivoting and working with what's possible in the given amount of time.  
+- Speaking of deadlines and time: My first choice for a calendar was Google Calendar's API, because it's widely used. But, since Google migrated their sign in process, it caused __issues with OAuth__ and there were some bugs. __I gained valuable experience working through this challenge, pivoting, and coming to a solution on what's possible in the given amount of time by utilizing the Full Calendar API instead.__  
+<br>
 
 - Two things that I thought were important to gain experience with on the app that I did later are the __password hashing__ (and thinking about my knowledge of __hashmap structures__) and __testing__. I added two __unit tests__ and would appreciate adding more. 
 
