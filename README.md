@@ -349,7 +349,7 @@ All photos have __short condensed titles for efficiency and organization__.
 - Learning __React's hook useState__, and __React's state and props__
 <br>
 
-- I coded most things out the long way, since this is one of my first projects, but I know I could do a better job of using my __CRUD__ file in my backend server Python logic. 
+- I coded most things out the long way, since this is one of my first projects, but I know I could do a better job of using my __CRUD__ file in my backend server Python logic. I used CRUD a couple times in server.py.
 <br>
 
 - I __refactored my JavaScript__ code so that there aren't as many __document queries__ by __reusing variables__, cutting down on some __Runtime__.  
@@ -360,6 +360,8 @@ All photos have __short condensed titles for efficiency and organization__.
 
 - I wasn't sure if I was going to be able to finish all the __features__ in this app by the __deadline__, but I managed to do it - through some long nights, nearly tears, and a lot of __research__ and __asking for help__
 <br>
+
+- Speaking of deadlines and time: My first choice for a calendar was Google Calendar, because it's widely used - I used it myself! But, Google migrated their sign in process; because it caused issues with OAuth, and there were some bugs with the change, I turned to Full Calendar. This was a challenge, because Full Calendar is less known and isn't a calendar everyone already has. It also meant I needed to update my model for table columns that matched the Full Calendar API instead of the setup I had for the Google Calendar API. This was practice in pivoting and working with what's possible in the given amount of time.  
 
 - Two things that I thought were important to gain experience with on the app that I did later are the __password hashing__ (and thinking about my knowledge of __hashmap structures__) and __testing__. I added two __unit tests__ and would appreciate adding more. 
 
