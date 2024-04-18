@@ -3,7 +3,7 @@
 # PetPlanner
 
 ![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
-*The web app's homepage with a Bootstrap carousel*
+_The web app's homepage with a Bootstrap carousel_
 <a name="description"></a>
 
 ## Project Description 
@@ -14,7 +14,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 ![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-*A user's dashboard*
+_A user's dashboard_
 <a name="snapshot"></a>
 
 <br>
@@ -40,7 +40,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 ![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
-*The code in the server that creates a pet instance on the Pet class*
+_The code in the server that creates a pet instance on the Pet class_
 <a name="table-of-contents"></a>
 
 <br>
@@ -88,10 +88,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 1. React Bootstrap Modal Forms (3 forms) 
 
 ![Image of the user's Dashboard and the dropdown menu hovering](/static/images/Readme_Markdown/add_dropdown_hover.png)
-*We can see the CSS hover styling here on the dropdown menu*
+_We can see the CSS hover styling here on the dropdown menu_
 
 ![Image of the add a pet form](/static/images/Readme_Markdown/add_pet_modal.png)
-*The Add a Pet form that's a React Bootstrap modal form*
+_The Add a Pet form that's a React Bootstrap modal form_
 
 * Each form uses 1-2 __JavaScript React AJAX fetch requests__
 <br>
@@ -109,10 +109,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 2. Add a Pet
 
 ![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
-*Conditional rendering and mapping on the breed `select options` in React are based on the species field*
+_Conditional rendering and mapping on the breed `select options` in React are based on the species field_
 
 ![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
-*The Add A Pet React Bootstrap modal form with the breed dropdown menu*
+_The Add A Pet React Bootstrap modal form with the breed dropdown menu_
 
 * After creating an account, a user can add a pet to their account
 <br>
@@ -142,10 +142,10 @@ The full stack project includes a PostgreSQL relational database and was built a
 3. Add an Event
 
 ![Image of the hover over add event in dropdown](/static/images/Readme_Markdown/add_event_dropdown.png)
-*This is how a user can add a calendar event for their pet*
+_This is how a user can add a calendar event for their pet_
 
 ![Image of the add a event form](/static/images/Readme_Markdown/add_event_modal.png)
-*The Add an Event form that's a React Bootstrap modal form*
+_The Add an Event form that's a React Bootstrap modal form_
 
 * Users can add and save events for each of their pets __via the PostgreSQL database and FullCalendar API__
 
@@ -154,13 +154,13 @@ The full stack project includes a PostgreSQL relational database and was built a
 4. Add a Specialist 
 
 ![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
-*The dropdown menu is styled with Bootstrap and my own CSS, and each button is an HTML div*
+_The dropdown menu is styled with Bootstrap and my own CSS, and each button is an HTML div_
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
-*The Add a Specialist form that's a React Bootstrap modal form*
+_The Add a Specialist form that's a React Bootstrap modal form_
 
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
-*I mapped to the user's existing pet data, so the user can assign the specialist to one or all of their pets*
+_I mapped to the user's existing pet data, so the user can assign the specialist to one or all of their pets_
 
 * A user can add care providers, or specialists, like a vet, groomer, nail trimmer, or emergency vet to their pet's instance because of the many-to-many relationship between the specialist and pet tables in the model 
 <br>
@@ -178,7 +178,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 <br>
 
 ![Image of the PetPlanner Data Model](/static/images/Readme_Markdown/data_model.png)
-*The data model of PetPlanner*
+_The data model of PetPlanner_
 
 ### Snapshot of the Data Model
 
@@ -236,7 +236,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 1. Create an account form 
 
 ![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
-*A user can create an account*
+_A user can create an account_
 
 * A user instance is created via the user inputs to the form and the `User` class in model.py with __Object Oriented Programming__
 <br>
@@ -254,7 +254,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 2. Log in form
 
 ![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
-*A user can log in*
+_A user can log in_
 
 * The __user inputs__ are transmitted to the backend as a __JSON__ object. Using Python logic, the __values within the dictionary__ are examined to determine if they correspond to the data stored in the __database__
 <br>
@@ -266,7 +266,7 @@ The full stack project includes a PostgreSQL relational database and was built a
 3. Log out 
 
 ![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
-*A user can log out*
+_A user can log out_
 
 * The __Flask session__ is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on
 <br>
@@ -281,16 +281,16 @@ The full stack project includes a PostgreSQL relational database and was built a
 4. Update their account information
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
-*A user's My Account webpage*
+_A user's My Account webpage_
 
 ![Image of My Account webpage after clicking edit](/static/images/Readme_Markdown/ma-edit.png)
-*A user can edit their account information*
+_A user can edit their account information_
 
 ![Image of My Account webpage when saving](/static/images/Readme_Markdown/ma-saving.png)
-*A user can save their account information in the database*
+_A user can save their account information in the database_
 
 ![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
-*The user has saved their account information!*
+_The user has saved their account information!_
 
 * The `Edit` and `Save` buttons contain __hover and active CSS__ for visible changes for the user 
 <br>
