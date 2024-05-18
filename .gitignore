@@ -3,3 +3,5 @@ secrets.sh
 env
 __pycache__/
 *.pyc
+settings.json
+.gitignore
