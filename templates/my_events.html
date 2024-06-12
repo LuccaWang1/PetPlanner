@@ -1,26 +1,19 @@
 {% extends 'base.html' %}
 
-<!-- start head -->
-{% block head %}<script src="
-https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js
-"></script>{% endblock %}
-{% block title %}Welcome!{% endblock %}
-<!-- end head -->
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>{% endblock %}
+{% block title %}{% endblock %}
 
-<!-- start body -->
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<h1>My Events</h1>
-<p></p>
-<div id='calendar' class="calendar"></div>
-<p></p>
-<script src="/static/js/calendar.js"></script>
-{% endblock %}
+    <h1>My Events</h1>
+    
+    <br>
 
-{% block bottomnav %}
-{% if "owner_email" in session %}
-<a class="bottomnav-right" href="/dashboard">Back to my babies</a>
-{% endif %}
+    <div id='calendar' class="calendar"></div>
+    
+    <br>
+
+    <script src="/static/js/calendar.js"></script>
 {% endblock %}
-<!-- end body -->
