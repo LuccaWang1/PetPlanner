@@ -6,41 +6,45 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
+<h1>{{ owner_fname }}'s Dashboard</h1>
 
-<h1>Welcome, {{ owner_fname }}!</h1>
-<br>
-<h2>Dashboard</h2>
 <!-- look at div row and columns  -->
-
 <div class="row row-cols-3">
-{% for pet in owner_pets %}
-<div class="col">
-    <div class="card" style="width: 18rem;">
-      {% if pet.imgUrl %}
-      <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Pet image">
-      {% else %}
-      <img class="card-img-top" src="/static/images/petplanner-defaultpetcardph.jpg" alt="Pet image default">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">{{ pet.pet_fname }}</h5>
-        <p class="card-text">Notes: {{ pet.pet_comment }}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Breed: {{ pet.breed }}</li>
-        <li class="list-group-item">Birthday: {{ pet.birthday }}</li>
-        <li class="list-group-item">Insurance Policy Number: {{ pet.insurance_policy_num }}</li>
-      </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">Edit</a>
-        <a href="#" class="card-link">Delete Pet</a>
-        <a href="#" class="card-link">See Pet</a>
-      </div>
-    </div> 
   <!-- looping through pet instances assoc. w/ owner id -->
-  </br>
-  </br>
-</div>
+  {% for pet in owner_pets %}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        {% if pet.imgUrl %}
+          <img class="card-img-top" src="{{ pet.imgUrl }}" alt="Pet image">
+        
+        {% else %}
+          <img class="card-img-top" src="/static/images/petplanner-defaultpetcardph.jpg" alt="Pet image default">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ pet.pet_fname }}</h5>
+          <p class="card-text">Notes: {{ pet.pet_comment }}</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Breed: {{ pet.breed }}</li>
+          <li class="list-group-item">Birthday: {{ pet.birthday }}</li>
+          <li class="list-group-item">Insurance Policy Number: {{ pet.insurance_policy_num }}</li>
+        </ul>
+
+        <div class="card-body">
+          <a href="#" class="card-link">Edit</a>
+          <a href="#" class="card-link">Delete Pet</a>
+          <a href="#" class="card-link">See Pet</a>
+        </div>
+      </div> 
+    
+    <br>
+    <br>
+  </div>
 {% endfor %}
 </div>
-<p></p>
+
+<br>
+<br>
 {% endblock %}
