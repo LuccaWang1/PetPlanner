@@ -1,0 +1,223 @@
+/* colors:  
+current:
+    dark teal: #008080 
+    light pink: #ffc0cb 'rgb(255,192,203)'
+    light blue: #d4ebf2 
+    white: #FFFFFF
+
+legacy - keeping for now just in case: 
+    light green: #defeca 
+    black: #000000 
+    light pink beige: #e69e8f 
+*/
+
+/* for consistent look and feel everything is slightly rounded corners, and is Noto Sans Google Font API */
+* {
+    border-radius: 5px;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+/* Noto Sans font defined for specific elements */
+.noto-sans-font {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+/* body styling */
+body {
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #008080;
+    background-color: #d4ebf2;
+    padding-top: 60px; /* added padding to avoid body being hidden under navbar */
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+/* link styles */
+a:link, a:visited, a:hover, a:active {
+    color: #008080;
+}
+
+a:active {
+    color: #ffc0cb;
+    transition-duration: 0.1s;
+}
+
+/* button styles */
+button {
+    background-color: #008080;
+    border: none;
+    color: #d4ebf2;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.1s;
+}
+
+button:hover {
+    background-color: #ffc0cb;
+    color: #008080;
+}
+
+button:active {
+    background-color: #008080;
+    color: #d4ebf2;
+
+}
+
+.LW-modal-btn {
+    background: #008080;
+    color: #d4ebf2;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.1s;
+}
+
+.LW-modal-btn:hover {
+    background-color: #ffc0cb;
+    color: #008080;
+}
+
+.LW-modal-btn:active {
+    background-color: #008080;
+    color: #d4ebf2;
+}
+
+/* nav bar at the top */
+.topnav {
+    background-color: #d4ebf2;
+    overflow: hidden;
+    color: #008080;
+    padding: 14px 16px;
+    top: 0;
+    width: 100%;
+}
+
+/* left-aligned section inside the top navigation */
+.topnav-left {
+    float: left;
+}
+
+/* right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+/* style the <a> tag links inside the navigation bar */
+.topnav a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #d4ebf2;
+    color: #008080;
+}
+
+/* add a color to the active/current link */
+.topnav a.active {
+    background-color: #d4ebf2;
+}
+
+/* add the background color to navbar links on hover */
+.topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
+    background-color: #008080;
+    color: #d4ebf2;
+}
+
+/* the dropdown container */
+.LW-dropdown {
+    overflow: relative;
+    display: inline-block;
+}
+  
+/* dropdown button */
+.LW-dropdown .LW-dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: #008080;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* important for vertical align on mobile phones */
+    margin: 0; /* important for vertical align on mobile phones */
+    border-radius: 5px;
+} 
+
+/* Dropdown content (hidden by default) */
+.LW-dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    background-color: #d4ebf2;
+    right: 0; 
+    z-index: 1000;
+    border-radius: 5px;
+}
+  
+/* links inside the dropdown */
+.LW-dropdown-content-btn {
+    color: #d4ebf2;
+    background-color: #008080;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Show the dropdown menu on hover & active */
+.LW-dropdown:hover .LW-dropdown-content {
+    display: block;
+}
+
+.LW-dropdown-content-btn:hover {
+    background-color: #008080;
+    border-color: #ffc0cb;
+}
+
+.LW-dropdown-content-btn:active {
+    background-color: #ffc0cb !important;
+    border-color: 1px #ffc0cb !important;
+    color: #d4ebf2 !important;
+    border: 1px solid #008080 !important;
+}
+
+/* user input fields */
+input {
+    background-color: #d4ebf2;
+}
+
+.calendar {
+    max-width: 800px; 
+    margin: 10px auto;
+    background: #008080;
+    color: #d4ebf2;
+    border-color: #ffc0cb;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 auto; /* to center element */
+}
+
+p.center {
+    text-align: center;
+}
+
+.box.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

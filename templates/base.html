@@ -1,111 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% block head %}{% endblock %}
+  <head>
+    {% block head %}{% endblock %}
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <title>{% block title %}PetPlanner{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Fullstack web app, developed in Python, JS, React, using Postgres relational database and APIs">
+    <meta name="author" content="Lucca Wang">
 
-  <!-- Link to SVG Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/static/images/favicon/calendar2-heart-fill.svg">
+    <!-- Open Graph internet protocol for the LinkedIn & Fb social card - so info. comes up with the url link-->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="PetPlanner by Lucca Wang">
+    <meta property="og:description" content="Fullstack web app, developed in Python, JS, React, using Postgres relational database and APIs">
+    <meta property="og:image" content="">
 
-  <!--Full Calendar CDN-->
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
-  
-  <!-- React and ReactDOM from CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
+    <!-- Open Graph for the Twitter social card - so info. comes up with the url link -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:creator" content="@LuccaWangNow"> 
+    <meta property="twitter:title" content="PetPlanner by Lucca Wang">
+    <meta property="twitter:description" content="Fullstack web app, developed in Python, JS, React, using Postgres relational database and APIs">
+    <meta property="twitter:image" content="">
+    
+    <title>{% block title %}PetPlanner{% endblock %}</title>
 
-  <script
-  src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
-  crossorigin></script>
+    <!-- Link to SVG Favicon -->
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon/cat-and-dog.png">
 
-  <!--Modal Bootstrap JS-->
-  <script
-  src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
-  crossorigin></script>
+    <!--Full Calendar CDN-->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    
+    <!-- React and ReactDOM from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
 
-   <!--Bootstrap JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
+    crossorigin></script>
 
-  <script>const Alert = ReactBootstrap.Alert;</script>
+    <!--Modal Bootstrap JS-->
+    <script
+    src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
+    crossorigin></script>
 
-  <!--Babel JS-->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  <!--Bootstrap CSS-->
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"
-  />
+    <script>const Alert = ReactBootstrap.Alert;</script>
 
-  <!-- My stylesheets and scripts here - they go below in case I want to overwrite anything on the bootstrap above -->
-  <link rel="stylesheet" href="/static/css/petplanner.css">
-  <!-- include this in the css link tag brackets above in the future for security: integrity="your-custom-integrity-hash" crossorigin="anonymous" -->
-</head>
+    <!--Babel JS-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<body>
-  <header>
-    <ul>
-      {% for message in get_flashed_messages() %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </header>
+    <!--Bootstrap CSS-->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"/>
 
-  <main>
-    <!-- saving this here: class="LW-dropdown-content-btn" -->
-    <!-- navbar -->
-    <div class="topnav"> 
-      {% if "owner_email" in session %}
-      <a href="/dashboard">Dashboard</a>
-      <!-- <a href="#mypets">My Pets</a> -->
-      <a href="/my-events">My Events</a>
-      <div class="LW-dropdown">
-        <button class="LW-dropbtn">Add
-          <i></i>
-        </button>
-        <div class="LW-dropdown-content">
-          <!-- <a href="#" id="add_pet">Pet</a> -->
-          <div class="p-1" id="add_pet"></div>
-          <!-- <a href="#">Event</a> -->
-          <div class="p-1" id="add_event"></div>
-          <!-- <a href="#">Specialist</a> -->
-          <div class="p-1" id="add_specialist"></div>  
+    <!-- Google Font API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- My own CSS in styles.css (place here below the Bootstrap CDN links, to use my CSS & overright Bootstrap in case I've specified anything for my own styling) -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+
+  <body>
+    <header>
+      <!-- this is to flush all flashed messages and make sure they are flashed to prevent any backlog or issues -->
+      <ul> 
+        {% for message in get_flashed_messages() %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </header>
+
+    <main>
+      <!-- navbar -->
+      <div class="topnav">
+        <!-- left side of nav -->
+        <div class="topnav-left"> 
+          {% if "owner_email" in session %}
+            <a href="/dashboard">Dashboard</a>
+
+            <a href="/my-events">My Events</a>
+
+            <div class="LW-dropdown">
+              <button class="LW-dropbtn">Add
+                <i></i>
+              </button>
+
+              <div class="LW-dropdown-content">
+                <div class="p-1" id="add_pet"></div>
+                <div class="p-1" id="add_event"></div>
+                <div class="p-1" id="add_specialist"></div>  
+              </div>
+            </div> 
+
+          {% else %}
+            <!-- if the user is logged in, Jinja2 will show them the above, but if not, the user will only see the options directly below in the nav -->
+            <a class="active" href="/">Home</a>
+
+            <a href="/create-account">Create Account</a>
+          {% endif %}
         </div>
-      </div> 
-      {% else %}
-      <a class="active" href="/">Home</a>
-      <a href="/create-account">Create Account</a>
-      {% endif %}
-      
-      <div class="topnav-right">
-      {% if "owner_email" in session %}
-        <a id="loginlogout" href="/logout">Log Out</a>
-        <a href="/my-account">My Account</a>
-      {% else %}
-      <a id="loginlogout" href="/login">Log In</a>
-      {% endif %}
+        
+        <!-- right side of nav -->
+        <!-- same thing here: i'm using Jinja2, a Python web template engine, for conditional rendering on the nav - this is on the part of the nav that floats to the right (on the same navbar, just position on the right side of the page/DOM) -->
+        <div class="topnav-right">
+          {% if "owner_email" in session %}
+            <a id="loginlogout" href="/logout">Log Out</a>
+
+            <a href="/my-account">My Account</a>
+
+          {% else %}
+            <a id="loginlogout" href="/login">Log In</a>
+          {% endif %}
+        </div>
       </div>
-    </div>
+      <!-- end navbar -->
 
-    {% block content %}{% endblock %}
-  </main>
+      {% block content %}{% endblock %}
+    </main>
 
-  <footer class="bottomnav-right">
-    <!-- footer navbar -->
-    <div class="bottomnav-right">
-      <div class="bottomnav-right">
-        {% block bottomnav %}
-        {% endblock %}
-      </div>
-    </div> 
-  </footer>
-
-  <script type="text/jsx" src="/static/js/AddPetModal.jsx"></script>
-  <script type="text/jsx" src="/static/js/AddEventModal.jsx"></script>
-  <script type="text/jsx" src="/static/js/AddSpecialistModal.jsx"></script>
-</body>
+    <!-- all script tags for React components - there are 3 React components, so they each get their own script file tag -->
+    <script type="text/jsx" src="/static/js/AddPetModal.jsx"></script>
+    <script type="text/jsx" src="/static/js/AddEventModal.jsx"></script>
+    <script type="text/jsx" src="/static/js/AddSpecialistModal.jsx"></script>
+  </body>
 </html>
