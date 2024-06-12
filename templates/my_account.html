@@ -14,75 +14,74 @@
 <!-- Regular user info: first and last name and email -->
 <h2>My Account Information</h2>
 
-<form id="editInfoForm" action="/save-account-info">
-    <div id="MA_OwnerInfoContainer">
-        <div id="MA_FirstNameContainer">
-            <label for="MA_owner_fname">First Name:</label>
-            <input type="text" class="MA_info" id="MA_owner_fname" value="{{ session['owner_fname'] }}" readonly required>
+<div class="box flex">
+    <form id="editInfoForm" action="/save-account-info">
+        <div id="MA_OwnerInfoContainer">
+            <div id="MA_FirstNameContainer">
+                <label for="MA_owner_fname">First Name:</label>
+                <input type="text" class="MA_info" id="MA_owner_fname" value="{{ session['owner_fname'] }}" readonly required>
+            </div>
+
+            <br>
+
+            <div id="MA_LastNameContainer">
+                <label for="MA_owner_lname">Last Name:</label>
+                <input type="text" class="MA_info" id="MA_owner_lname" value="{{ session['owner_lname'] }}" readonly required>
+            </div>
+
+            <br>
+
+            <div id="MA_EmailContainer">
+                <label for="MA_owner_email">Email:</label>
+                <input type="text" class="MA_info" id="MA_owner_email" value="{{ session['owner_email'] }}" readonly required>
+            </div>
         </div>
 
-        </br>
+        <br>
 
-        <div id="MA_LastNameContainer">
-            <label for="MA_owner_lname">Last Name:</label>
-            <input type="text" class="MA_info" id="MA_owner_lname" value="{{ session['owner_lname'] }}" readonly required>
-        </div>
+        <button type="button" id="MA_OwnerInfoEditButton">Edit</button>
+        <button type="submit" id="MA_OwnerInfoSaveButton">Save</button>
+    </form>
+</div>
 
-        </br>
-
-        <div id="MA_EmailContainer">
-            <label for="MA_owner_email">Email:</label>
-            <input type="text" class="MA_info" id="MA_owner_email" value="{{ session['owner_email'] }}" readonly required>
-        </div>
-    </div>
-
-    </br>
-
-    <button type="button" id="MA_OwnerInfoEditButton">Edit</button>
-    <button type="submit" id="MA_OwnerInfoSaveButton">Save</button>
-</form>
-
-</br>
+<br>
 
 <!-- Changing password -->
-
 <h2>Change My Password</h2>
 
-<form id="changePWForm">
-    <div id="MA_OwnerPWContainer">
-        <div id="MA_PasswordContainerOldPW">
-            <label for="MA_password_old">Current/Old Password:</label>
-            <input type="password" id="MA_password_old" readonly required>
+<div class="box flex">
+    <form id="changePWForm">
+        <div id="MA_OwnerPWContainer">
+            <div id="MA_PasswordContainerOldPW">
+                <label for="MA_password_old">Current/Old Password:</label>
+                <input type="password" id="MA_password_old" readonly required>
+            </div>
+            
+            </br>
+
+            <div id="MA_PasswordContainer">
+                <label for="MA_password">Change My Password:</label>
+                <input type="password" id="MA_password" readonly required>
+            </div>
+
+            </br>
+
+            <div id="MA_PasswordContainerVerify">
+                <label for="MA_passwordVerify">Verify New Password:</label>
+                <input type="password" id="MA_passwordVerify" readonly required>
+            </div>
         </div>
-        
+
         </br>
 
-        <div id="MA_PasswordContainer">
-            <label for="MA_password">Change My Password:</label>
-            <input type="password" id="MA_password" readonly required>
-        </div>
+        <button type="button" id="MA_OwnerPWEditButton">Edit</button>
+        <button type="submit">Save</button>
+    </form>
+</div>
 
-        </br>
+<br>
+<br>
 
-        <div id="MA_PasswordContainerVerify">
-            <label for="MA_passwordVerify">Verify New Password:</label>
-            <input type="password" id="MA_passwordVerify" readonly required>
-        </div>
-    </div>
-
-    </br>
-
-    <button type="button" id="MA_OwnerPWEditButton">Edit</button>
-    <button type="submit">Save</button>
-</form>
-
-</br></br>
 <script src="static/js/my_account_info.js"></script>
 <script src="static/js/my_account_pw.js"></script>
-{% endblock %}
-
-{% block bottomnav %}
-{% if "owner_email" in session %}
-<a class="bottomnav-right" href="/dashboard">Back to my babies</a>
-{% endif %}
 {% endblock %}

@@ -36,7 +36,6 @@ body {
     background-repeat: no-repeat;
     color: #008080;
     background-color: #d4ebf2;
-    padding-top: 60px; /* added padding to avoid body being hidden under navbar */
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -70,7 +69,6 @@ button:hover {
 button:active {
     background-color: #008080;
     color: #d4ebf2;
-
 }
 
 .LW-modal-btn {
@@ -164,6 +162,10 @@ button:active {
     z-index: 1000;
     border-radius: 5px;
 }
+
+#add_pet, #add_event, #add_specialist {
+    border-color: #008080;
+}
   
 /* links inside the dropdown */
 .LW-dropdown-content-btn {
@@ -220,4 +222,8 @@ p.center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.carousel-height {
+    height: 600px;
 }
