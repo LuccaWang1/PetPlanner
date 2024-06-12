@@ -7,26 +7,28 @@
 
 <!-- start body -->
 {% block content %}
-<h1>Log In</h1>
-<p></p>
-<p></p>
-<p></p>
-<div class="box flex">
-<form action="/login-handler" class="form-signin" id="login-form" method="POST">
-  <div>  
-    <label for="email">Email</label>
-    <input id="email" type="text" name="email" required />
-  </div>
-  <p></p>
-  <div>
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" required />
-  </div>
-  <p></p>
-  <div>
-    <button type="submit" id="login-btn">Log In</button>
-  </div>
-</form>
-</div>
+    <h1>Log In</h1>
+
+    <div class="box flex">
+      <form action="/login-handler" class="form-signin" id="login-form" method="POST">
+        <div>  
+          <label for="email">Email</label>
+          <input id="email" type="text" name="email" required />
+        </div>
+        
+        <br>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" required />
+        </div>
+        
+        <br>
+        
+        <div>
+          <button type="submit" id="login-btn">Log In</button>
+        </div>
+      </form>
+    </div>
 {% endblock %}
 <!-- end body -->

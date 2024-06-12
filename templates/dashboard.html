@@ -6,9 +6,10 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<h1>Dashboard</h1>
+
 <h1>Welcome, {{ owner_fname }}!</h1>
-<p></p>
+<br>
+<h2>Dashboard</h2>
 <!-- look at div row and columns  -->
 
 <div class="row row-cols-3">
@@ -43,10 +44,3 @@
 </div>
 <p></p>
 {% endblock %}
-
-{% block bottomnav %}
-{% if "owner_email" in session %}
-<a class="bottomnav-right" href="/">Homepage - you'll still be logged in</a>
-{% endif %}
-{% endblock %}
-
