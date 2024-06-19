@@ -58,15 +58,21 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition: background-color 0.1s, opacity 0.1s;
-    height: 397px;
     border-radius: 5px !important;
-    opacity: 0.1; /* set to 10% opacity for 90% transparency */
 }
 
 button:hover {
     background-color: #ffc0cb;
     color: #008080;
+}
+
+#button button {
+    height: 397px;
+    opacity: 0.1; /* set to 10% opacity for 90% transparency */
+    transition: background-color 0.1s, opacity 0.1s;
+}
+
+#button button:hover {
     opacity: 0.1; /* set to 10% opacity for 90% transparency */
 }
 
