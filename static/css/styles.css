@@ -1,6 +1,7 @@
 /* colors:  
 current:
     dark teal: #008080 
+    darkest teal: #006666
     light pink: #ffc0cb 'rgb(255,192,203)'
     light blue: #d4ebf2 
     white: #FFFFFF
@@ -40,6 +41,11 @@ body {
     padding-right: 2em;
 }
 
+/* anything within the body tag that's in the section w/ the id of "body" AKA the body that's NOT the navbar (because we want the position in the viewport to be more than this to always over what other content is in the body visible to the user */
+#body {
+    z-index: 0;
+}
+
 /* link styles */
 a:link, a:visited, a:hover, a:active {
     color: #008080;
@@ -63,26 +69,26 @@ button {
 
 button:hover {
     background-color: #ffc0cb;
-    color: #008080;
+    color: #006666;
 }
 
 /* using id for carousel buttons to make sure these properties are attributed to only the carousel buttons and not all the other buttons in the app */
-#button button {
-    height: 397px;
+.carousel-button {
     opacity: 0.1; /* set to 10% opacity for 90% transparency */
     transition: background-color 0.1s, opacity 0.1s;
+    max-height: 600px;
 }
 
-#button button:hover {
+button #button:hover {
     opacity: 0.1; /* set to 10% opacity for 90% transparency */
 }
 
-button:active {
-    background-color: #008080;
+button #button:active {
+    background-color: #006666;
     color: #d4ebf2;
-    opacity: 0.1; /* set to 10% opacity for 90% transparency */
 }
 
+/* These have LW on the name to signify that it's my css over or instead of the Bootstrap CSS - colors, etc./more */
 .LW-modal-btn {
     background: #008080;
     color: #d4ebf2;
@@ -95,22 +101,23 @@ button:active {
 
 .LW-modal-btn:hover {
     background-color: #ffc0cb;
-    color: #008080;
+    color: #006666;
 }
 
 .LW-modal-btn:active {
-    background-color: #008080;
+    background-color: #006666;
     color: #d4ebf2;
 }
 
 /* nav bar at the top */
-.topnav {
+nav {
     background-color: #d4ebf2;
     overflow: hidden;
     color: #008080;
     padding: 8px 16px;
     top: 0;
     width: 100%;
+    z-index: 5000 !important;
 }
 
 /* left-aligned section inside the top navigation */
@@ -147,7 +154,7 @@ button:active {
 
 /* the dropdown container */
 .LW-dropdown {
-    overflow: relative;
+    position: relative;
     display: inline-block;
 }
   
@@ -164,19 +171,17 @@ button:active {
     border-radius: 5px;
 } 
 
-/* Dropdown content (hidden by default) */
+/* dropdown content (hidden by default) */
 .LW-dropdown-content {
     display: none;
     position: absolute;
     min-width: 160px;
     background-color: #d4ebf2;
-    right: 0; 
-    z-index: 1000;
+    left: 0; /* position dropdown right under the button */
+    z-index: 1000 !important;
+    border: 1px solid #008080;
     border-radius: 5px;
-}
-
-#add_pet, #add_event, #add_specialist {
-    border-color: #008080;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); 
 }
   
 /* links inside the dropdown */
@@ -188,24 +193,26 @@ button:active {
     display: block;
     text-align: left;
     width: 100%;
+    border: 1px solid #008080;
     border-radius: 5px;
 }
 
-/* Show the dropdown menu on hover & active */
+/* show the dropdown menu on hover & active */
 .LW-dropdown:hover .LW-dropdown-content {
     display: block;
 }
 
-.LW-dropdown-content-btn:hover {
-    background-color: #008080;
-    border-color: #ffc0cb;
+/* hover effects for dropdown items */
+.LW-dropdown-content .LW-dropdown-content-btn:hover {
+    background-color: #006666;
+    border: 1px solid #006666;
 }
 
 .LW-dropdown-content-btn:active {
     background-color: #ffc0cb !important;
     border-color: 1px #ffc0cb !important;
     color: #d4ebf2 !important;
-    border: 1px solid #008080 !important;
+    border: 1px solid #006666 !important;
 }
 
 /* user input fields */
@@ -234,8 +241,4 @@ p.center {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.carousel-height {
-    height: 600px;
 }
