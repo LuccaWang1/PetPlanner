@@ -30,7 +30,7 @@ def homepage():
 def login():
     """Render login.html template."""
 
-    if 'owner_email' in session: #you're already logged in 
+    if 'owner_email' in session: #you're already logged in
         flash("Great news: You're already logged in")
         return redirect("/dashboard")
 
@@ -120,7 +120,7 @@ def handle_create_account():
     print(user)
 
     if user: #check in db, log in
-        flash("Great news: You already have an account -" 
+        flash("Great news: You already have an account -"
               "please log in with your log in information, email and password:")
         return redirect("/login")
 
@@ -162,7 +162,7 @@ def get_account_info():
         owner_fname = session.get('owner_fname')
         owner_lname = session.get('owner_lname')
         owner_email = session.get('owner_email')
-    
+
         return render_template("my_account.html", owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email)
     else:
         flash("You'll need to log in first.")
@@ -205,7 +205,7 @@ def save_account_info():
         session['owner_lname'] = owner_lname
         session['owner_email'] = owner_email
         session.modified = True
-        
+
         return jsonify({
             'owner_fname': owner_fname,
             'owner_lname': owner_lname,
@@ -219,7 +219,7 @@ def save_account_info():
 def save_new_password():
     """Save the user's new password in the db."""
 
-    owner_id = session.get('owner_id') #pull owner_id to query database 
+    owner_id = session.get('owner_id') #pull owner_id to query database
     password = request.json.get('password') #get password from key at password in JSON object
 
     print("Owner_id:", owner_id)
@@ -278,20 +278,20 @@ def create_pet():
 
     pet = Pet.query.filter_by(pet_fname=pet_fname).join(Pet.owners).filter(Owner.owner_id==owner_id).first()
     print(pet)
-    
+
     if pet: #check in db, if in db, tell user
         response = {"success": False, "status": f"Looks like {pet_fname} is already one of your pets"}
         return jsonify(response), 200
 
-    else: 
-        if my_file is not None: 
+    else:
+        if my_file is not None:
             result = cloudinary.uploader.upload(my_file, api_key=CLOUDINARY_KEY, api_secret=CLOUDINARY_SECRET, cloud_name=CLOUD_NAME)
 
             imgUrl = result['secure_url']
-        
-        else: 
-            imgUrl = None 
-        
+
+        else:
+            imgUrl = None
+
         print(birthday)
 
         pet = Pet(imgUrl=imgUrl, species=species, pet_fname=pet_fname, pet_lname=pet_lname, birthday=birthday, age=age, breed=breed, weight=weight, energy_level=energy_level, coat=coat, emer_contact_fname=emer_contact_fname, emer_contact_lname=emer_contact_lname, emer_contact_phone=emer_contact_phone, emer_contact_email=emer_contact_email, insurance_company=insurance_company, insurance_policy_num=insurance_policy_num, pet_comment=pet_comment) #create pet instance
@@ -304,21 +304,29 @@ def create_pet():
 
 @app.route("/breeds")
 def show_breeds():
-    """Send cat and dog breeds as json object from dictionary of two lists in Python file, animal_breeds.py."""
+    """Send cat and dog breeds as json object from dictionary 
+    of two lists in Python file, animal_breeds.py."""
 
     return jsonify(breed_data)
 
 
 @app.route("/get-pets-for-owner")
 def get_existing_pets_assoc_w_owner():
-    """Get pets associated in this owner/user's account. (Use of this route is on the add.jsx file to pull the pets for when the user is completing the add a specialist form to then use this list of pets to select from to associate the new specialist to either one or more, or all of the user's pets.)"""
+    """Get pets associated in this owner/user's account. 
+    (Use of this route is on the add.jsx file to pull the pets 
+    for when the user is completing the add a specialist form 
+    to then use this list of pets to select from to associate 
+    the new specialist to either one or more, or all of the 
+    user's pets.)"""
 
-    #pass a dictionary that is the instance of pet, create key-value pairs that is: key: pet_id : value: pet's data from model.py
+    # pass a dictionary that is the instance of pet,
+    # create key-value pairs that is: key: pet_id :
+    # value: pet's data from model.py
 
     owner_id = session.get('owner_id')
     print(owner_id)
 
-    # Query the pets associated with the given owner_id
+    # query the pets associated with the given owner_id
     owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
     print(owner_pets)
 
@@ -385,7 +393,7 @@ def get_owners_pets():
             "pet_comment": pet.pet_comment,
             }
         )
-    
+
     return render_template(pets_info)
 
 
@@ -476,7 +484,8 @@ def create_event():
 
 @app.route("/add-a-specialist", methods=['POST'])
 def add_specialist_to_pet():
-    """Create a new instance of the Specialist class that's associated with a pet, and save it in the db."""
+    """Create a new instance of the Specialist class 
+    that's associated with a pet, and save it in the db."""
 
     owner_id = session.get('owner_id')
     owner = Owner.query.get(owner_id)
