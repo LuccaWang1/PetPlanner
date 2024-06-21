@@ -1,7 +1,6 @@
 """CRUD operations."""
 
-from model import db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting, connect_to_db
-
+from model import Owner, Pet, Specialist, connect_to_db
 
 def create_user(owner_fname, owner_lname, email, password):
     """Create and return a new user."""
@@ -13,7 +12,7 @@ def create_user(owner_fname, owner_lname, email, password):
 
 def get_owner_by_id(owner_id):
     """Return a user/owner by primary key (owner_id)."""
-    
+
     return Owner.query.get(owner_id)
 
 
@@ -80,16 +79,16 @@ def create_specialist(specialist_fname, specialist_lname, street, street2, city,
     """Create and return a new rating."""
 
     specialist = Specialist(
-        specialist_fname=specialist_fname, 
-        specialist_lname=specialist_lname, 
-        street=street, 
-        street2=street2, 
-        city=city, 
-        state=state, 
-        zip_code=zip_code, 
-        role=role, 
-        specialist_email=specialist_email, 
-        phone=phone, 
+        specialist_fname=specialist_fname,
+        specialist_lname=specialist_lname,
+        street=street,
+        street2=street2,
+        city=city,
+        state=state,
+        zip_code=zip_code,
+        role=role,
+        specialist_email=specialist_email,
+        phone=phone,
         specialist_comment=specialist_comment
     )
 
@@ -100,16 +99,16 @@ def update_specialist(specialist_fname, specialist_lname, street, street2, city,
     """ Update a specialist given an owner has edited a specialist. """
     
     specialist = Specialist(
-        specialist_fname=specialist_fname, 
-        specialist_lname=specialist_lname, 
-        street=street, 
-        street2=street2, 
-        city=city, 
-        state=state, 
-        zip_code=zip_code, 
-        role=role, 
-        specialist_email=specialist_email, 
-        phone=phone, 
+        specialist_fname=specialist_fname,
+        specialist_lname=specialist_lname,
+        street=street,
+        street2=street2,
+        city=city,
+        state=state,
+        zip_code=zip_code,
+        role=role,
+        specialist_email=specialist_email,
+        phone=phone,
         specialist_comment=specialist_comment
     )
 
