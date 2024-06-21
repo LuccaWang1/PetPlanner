@@ -2,14 +2,13 @@
 
 import os
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, session, redirect, jsonify, url_for
-import json
-import crud
-from model import connect_to_db, db, Owner, Pet_Owner, Pet, Pet_Specialist, Specialist, Pet_Events, Owner_Events, Event, Message, Saved_Setting
-from datetime import datetime, date
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 import cloudinary.uploader
-from animal_breeds import breed_data
 from passlib.hash import argon2
+
+from animal_breeds import breed_data
+from model import connect_to_db, db, Owner, Pet, Specialist, Event, Pet_Owner
+import crud
 
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
@@ -34,17 +33,19 @@ def login():
     if 'owner_email' in session: #you're already logged in 
         flash("Great news: You're already logged in")
         return redirect("/dashboard")
-    
+
     return render_template("login.html")
 
 
 def is_valid_login(form_data):
+    """Checking if login is valid by checking email and password from user inputs to db."""
+
     if form_data.get('email') is None:
         return False
 
     if form_data.get('password') is None:
         return False
-    
+
     return True
 
 
@@ -59,24 +60,26 @@ def loginhandler():
     owner_email = request.form.get('email')
     owner_email = owner_email.lower()
     password = request.form.get('password')
-    
+
     user = Owner.query.filter_by(owner_email=owner_email).first()
 
     if user: #check in db, log in
-        if argon2.verify(password, user.hashed): #verifying pw is correct with previously hashed pw in the db using argon2 verify method 
+        #verifying pw is correct with previously hashed pw in the db using argon2 verify method
+        if argon2.verify(password, user.hashed):
             session['owner_id'] = user.owner_id
             session['owner_email'] = owner_email
             session['owner_fname'] = user.owner_fname
             session['owner_lname'] = user.owner_lname
 
             return redirect("/dashboard")
-        
+
         else: #check in db, if user in db but pw is incorrect
             flash('Oops! Incorrect password - please try again or reset your password')
             return redirect("/login")
-    
+
     else:
-        flash("Please check your email address, and try again - or, if you don't already have an account, please create one with the link below")
+        flash("Please check your email address, and try again -"
+              "or, if you don't already have an account, please create one.")
         return redirect("/login")
 
 
@@ -93,8 +96,9 @@ def logout():
 def create_account():
     """Render the create_account.html webpage."""
 
-    if 'owner_email' in session: #you're already logged in 
-        flash("Great news: You already have an account, and you're already logged in! Here's your dashboard:")
+    if 'owner_email' in session: #you're already logged in
+        flash("Great news: You already have an account,"
+              "and you're already logged in! Here's your dashboard:")
         return redirect("/dashboard")
 
     return render_template("create_account.html")
@@ -102,7 +106,8 @@ def create_account():
 
 @app.route("/create-account-handler", methods=["POST"])
 def handle_create_account():
-    """Handle create account request with a POST request, and store the login information in a session."""
+    """Handle create account request with a POST request, 
+    and store the login information in a session."""
 
     owner_fname = request.form.get('owner_fname')
     owner_lname = request.form.get('owner_lname')
@@ -110,21 +115,22 @@ def handle_create_account():
     owner_email = owner_email.lower()
     password = request.form.get('password')
     hashed = argon2.hash(password) #hash to db, adding salt
-    
+
     user = Owner.query.filter_by(owner_email=owner_email).first()
     print(user)
 
     if user: #check in db, log in
-        flash("Great news: You already have an account - please log in with your log in information, email and password:")
+        flash("Great news: You already have an account -" 
+              "please log in with your log in information, email and password:")
         return redirect("/login")
-  
-    else: 
+
+    else:
         new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, hashed=hashed) #create user instance
         db.session.add(new_user) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         flash(f"Thanks for creating your account, {owner_fname} - please log in")
         return redirect("/login")
-        #lines 90-92 can be a crud function 
+        #lines 90-92 can be a crud function
 
 
 @app.route("/dashboard")
@@ -218,17 +224,17 @@ def save_new_password():
 
     print("Owner_id:", owner_id)
 
-    user = crud.get_owner_by_id #query database for user instance with owner_id
+    user = crud.get_owner_by_id(owner_id) #query database for user instance with owner_id
     print("User found or not found in database:", user)
 
-    if user: #if user with owner_id is found in database, then: 
+    if user: #if user with owner_id is found in database, then:
         user.password = password #use chaining to set row of data at the user class instance and assign it to the new password passed to server from JS JSON object
-        db.session.commit() #save the new pw to the database 
+        db.session.commit() #save the new pw to the database
 
         print("Session has been saved with new My Account pw")
 
-        session.modified = True #refresh the session to updated with the new user pw 
-        
+        session.modified = True #refresh the session to updated with the new user pw
+
         #now return a response of success
         return jsonify({
             'status': 'success',
@@ -389,27 +395,31 @@ def render_events():
 
     return render_template("my_events.html")
 
-    
+
 @app.route('/show-events')
 def publish_events():
-    """Retrieve event instances of Event class associated with Owner who is logged in and render them on the calendar that shows on the user's dashboard.html."""
-    
+    """Retrieve event instances of Event class associated 
+    with Owner who is logged in and render them on the calendar 
+    that shows on the user's dashboard.html."""
+
     print("IN THE SHOW EVENTS ROUTE")
 
     owner_id = session.get('owner_id')
     print("OWNER_ID SHOW EVENTS:", owner_id)
 
     owner = Owner.query.get(owner_id) #getting access to Owner and events
-    #owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
+    # owner_pets = Pet.query.join(Pet_Owner).filter(Pet_Owner.owner_id == owner_id).all()
     print("OWNER DICT:", owner)
-    #owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
+    # owner_pets = Owner.query.join(Owner_Events).filter(Pet_Owner.owner_id == owner_id).all()
 
     if owner:
         print("OWNER.EVENTS:", owner.events)
 
         events_data = []
- 
-        for event in owner.events: #package the events in a dictionary to be able to package it in a JSON object back to fetch request in calendar.js
+
+        # package the events in a dictionary to be able to package
+        # it in a JSON object back to fetch request in calendar.js
+        for event in owner.events:
             events_data.append({
                 'title': event.title, 
                 'start_date': event.start_date.isoformat() if event.start_date else None,
@@ -425,7 +435,7 @@ def publish_events():
         request_data = {'events': events_data}
         print(type(request_data))
         print(request_data)
-        return jsonify(request_data), 200     
+        return jsonify(request_data), 200
     else:
         print("Owner not found.")
         return jsonify({'error': 'Owner not found'}), 404
@@ -434,7 +444,7 @@ def publish_events():
 @app.route('/create-event', methods=['POST'])
 def create_event():
     """Create an event and save to the database."""
-    
+
     owner_id = session.get('owner_id')
     print(owner_id)
     owner = Owner.query.get(owner_id)
@@ -447,14 +457,14 @@ def create_event():
     end_time = request.form.get("end_time")
     all_day = request.form.get("allDay")
     description = request.form.get("description")
-    
+
     if all_day == "true":
         all_day = True
         start_time = None
         end_time = None
     else:
         all_day = False
-        
+
     event = Event(title=title, location=location, start_date=start_date,start_time=start_time, end_date=end_date, end_time=end_time, all_day=all_day, description=description)
 
     event.owners.append(owner)
@@ -495,23 +505,23 @@ def add_specialist_to_pet():
         response = {"success": False, "status": "Looks like this specialist was already added"}
         return jsonify(response), 200
 
-    else: 
+    else:
         specialist = Specialist(role=role, specialist_company=specialist_company, specialist_fname=specialist_fname, specialist_lname=specialist_lname, specialist_email=specialist_email, specialist_phone=specialist_phone, street=street, street2=street2, city=city, state=state, zip_code=zip_code, specialist_comment=specialist_comment)
-        
+
         if all_pets_selected == "true":
             for pet in owner.pets:
                 specialist.pets.append(pet)
-        else: #if all pets selected is not selected, if it's false 
+        else: #if all pets selected is not selected, if it's false
             pet = Pet.query.get(pet_selected)
             specialist.pets.append(pet)
-        
+
         db.session.add(specialist) #add specialist to database
         db.session.commit() #then need to commit the to the database
         response = {"success": True, "status": "This specialist's been added!"}
         return jsonify(response), 200
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     connect_to_db(app) #postgresql:///pets
 
     app.run(host="0.0.0.0", debug=True)
