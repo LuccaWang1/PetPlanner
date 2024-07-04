@@ -130,7 +130,6 @@ def handle_create_account():
         db.session.commit() #then need to commit the change/add to the database
         flash(f"Thanks for creating your account, {owner_fname} - please log in")
         return redirect("/login")
-        #lines 90-92 can be a crud function
 
 
 @app.route("/dashboard")
