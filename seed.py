@@ -3,12 +3,9 @@
 #Created: test user, pets for test user, events for test user (appended to user/Owner class instance). Add and committed to session (AKA db).
 
 import os
-import json
-from random import choice, randint
-from datetime import datetime
 
 import crud
-from model import Owner, Pet, Specialist, Event, Pet_Owner, Pet_Specialist, connect_to_db, db
+from model import Owner, Pet, Event, connect_to_db, db
 import server
 from passlib.hash import argon2
 
