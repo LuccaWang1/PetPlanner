@@ -4,7 +4,6 @@
 
 import os
 
-import crud
 from model import Owner, Pet, Event, connect_to_db, db
 import server
 from passlib.hash import argon2
@@ -15,7 +14,7 @@ os.system("createdb pets")
 connect_to_db(server.app)
 db.create_all()
 
-password="Testpassword"
+password="TESTPASSWORD"
 
 test_user = Owner(
     owner_fname="Lucca",
@@ -381,19 +380,3 @@ db.session.add(event5)
 db.session.add(event6)
 db.session.add(event7)
 db.session.commit()
-
-# specialist = Specialist(
-#     role="Vet",
-#     specialist_fname="Carol",
-#     specialist_lname="Calista",
-#     specialist_email="calistaanimalhospital@gmail.com",
-#     specialist_phone="(575) 525-1000",
-#     street="1889 Calle de Ninos",
-#     street2="Calista",
-#     city="Las Cruces",
-#     state="NM",
-#     zip_code="88005",
-#     specialist_comment="I love this vet and the office!! Vet for Lily and Feefee",
-# )
-
-# pet.specialists.append(specialist)
