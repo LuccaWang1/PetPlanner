@@ -81,10 +81,20 @@
         <!-- left side of nav -->
         <div class="topnav-left"> 
           {% if "owner_email" in session %}
-            <a href="/dashboard">Dashboard</a>
-            <a href="/my-events">My Events</a>
+            <a href="/dashboard">
+              Dashboard
+            </a>
+            
+            <a href="/my-events">
+              My Events
+            </a>
+            
             <div class="LW-dropdown">
-              <button class="LW-dropbtn">Add<i></i></button>
+              <button class="LW-dropbtn">
+                Add
+                <i></i>
+              </button>
+              
               <div class="LW-dropdown-content">
                 <!-- Bootstrap and my own CSS styling -->
                 <div class="p-1 LW-dropdown-content-btn" id="add_pet"></div>
@@ -95,8 +105,13 @@
 
           {% else %}
             <!-- if the user is logged in, Jinja2 will show them the above, but if not, the user will only see the options directly below in the nav -->
-            <a class="active" href="/">Home</a>
-            <a href="/create-account">Create Account</a>
+            <a class="active" href="/">
+              Home
+            </a>
+            
+            <a href="/create-account">
+              Create Account
+            </a>
           {% endif %}
         </div>
       
@@ -104,12 +119,18 @@
       <!-- same thing here: i'm using Jinja2, a Python web template engine, for conditional rendering on the nav - this is on the part of the nav that floats to the right (on the same navbar, just position on the right side of the page/DOM) -->
         <div class="topnav-right">
           {% if "owner_email" in session %}
-            <a id="loginlogout" href="/logout">Log Out</a>
+            <a id="loginlogout" href="/logout">
+              Log Out
+            </a>
 
-            <a href="/my-account">My Account</a>
+            <a href="/my-account">
+              My Account
+            </a>
 
           {% else %}
-            <a id="loginlogout" href="/login">Log In</a>
+            <a id="loginlogout" href="/login">
+              Log In
+            </a>
           {% endif %}
         </div>
       </nav>
