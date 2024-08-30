@@ -371,7 +371,7 @@ All photos have __short condensed titles for efficiency and organization__.
 
 ### Author
 
-Hi, my name is Lucca, and I'm a software engineer. This pet planner app is my first full stack application which I created in four weeks as my final project at Hackbright, a 12-week accelerated software engineering fellowship. Feel free to connect on [LinkedIn](https://www.linkedin.com/in/luccawang/)!
+Hi, my name is Lucca, and I'm a software engineer. This pet planner app is my first full stack application which I created in four weeks as my final project at Hackbright, a 12-week accelerated software engineering fellowship. I have made updates since then. Feel free to connect on [LinkedIn](https://www.linkedin.com/in/luccawang/)!
 
 <br>
 
