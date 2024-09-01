@@ -172,24 +172,34 @@ def get_account_info():
 def save_account_info():
     """Save account info. in session and database, and then redirect to the /my-account route."""
 
+    # Flask session (for storing session data like owner_id)
     print(session)
 
+    # Fetching the owner_id from the session
     owner_id = session.get('owner_id')
+    # Fetching the information from the user via the form inputs the user inputted
     owner_fname = request.json.get('owner_fname')
     owner_lname = request.json.get('owner_lname')
     owner_email = request.json.get('owner_email')
     owner_email = owner_email.lower()
 
+    # Debugging print statements
     print(owner_id)
     print(owner_fname)
     print(owner_lname)
     print(owner_email)
 
-    user = crud.get_owner_by_id
+    # Uses CRUD function in crud.py on line 13
+    # - retrieves the user base on the owner_id within
+    # the Owner class instance originally created for the user
+    user = crud.get_owner_by_id(owner_id)
+    # Debugging statement
     print(user)
 
     if user:
-        print("in the if user area - line 155 or around there")
+        print("in the 'if user' area")
+
+        # Updating user attributes (to what the user has just input in the form via the retrieval above)
         user.owner_fname = owner_fname
         print(f"Owner first name is: {owner_fname}")
         user.owner_lname = owner_lname
@@ -197,9 +207,15 @@ def save_account_info():
         user.owner_email = owner_email
         print(f"Owner email is: {owner_email}")
 
-        db.session.commit()
-        print("Session has been saved with new information")
+        try:
+            db.session.commit()
+            print("Session has been saved with new information")
+        except Exception as e:
+            db.session.rollback() # Roll back the session if there's an error 
+            print(f"Error during commit: {e}")
+            return jsonify({'error': 'Could not save information'})
 
+        # Update Flask session
         session['owner_fname'] = owner_fname
         session['owner_lname'] = owner_lname
         session['owner_email'] = owner_email
