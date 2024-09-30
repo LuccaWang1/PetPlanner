@@ -12,38 +12,26 @@ legacy - keeping for now just in case:
     light pink beige: #e69e8f 
 */
 
-/* for consistent look and feel everything is slightly rounded corners, and is Noto Sans Google Font API */
-* {
-    border-radius: 5px;
-    font-family: "Noto Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-}
-
-/* Noto Sans font defined for specific elements */
-.noto-sans-font {
-    font-family: "Noto Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-}
-
 /* body styling */
 body {
+    font-family: "Noto Sans", sans-serif; /* set font for the entire body */
+    font-optical-sizing: auto;
+    font-weight: 400; /* can be adjusted */
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 25px; /* regular font size */
+    
+    /* body specific styles */
     background-position: center;
     background-repeat: no-repeat;
     color: #008080;
     background-color: #d4ebf2;
     padding-left: 2em;
     padding-right: 2em;
-}
+    z-index: 0; /* anything within the body tag that's in the section w/ the id of "body" AKA the body that's NOT the navbar (because we want the position in the viewport to be more than this to always over what other content is in the body visible to the user */
 
-/* anything within the body tag that's in the section w/ the id of "body" AKA the body that's NOT the navbar (because we want the position in the viewport to be more than this to always over what other content is in the body visible to the user */
-#body {
-    z-index: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* link styles */
@@ -72,20 +60,50 @@ button:hover {
     color: #006666;
 }
 
-/* using id for carousel buttons to make sure these properties are attributed to only the carousel buttons and not all the other buttons in the app */
-.carousel-button {
-    opacity: 0.1; /* set to 10% opacity for 90% transparency */
-    transition: background-color 0.1s, opacity 0.1s;
-    max-height: 600px;
-}
-
-button #button:hover {
-    opacity: 0.1; /* set to 10% opacity for 90% transparency */
-}
-
-button #button:active {
+button:active {
     background-color: #006666;
     color: #d4ebf2;
+}
+
+/* using id for carousel buttons to make sure these properties are attributed to only the carousel buttons and not all the other buttons in the app */
+.carousel-button {
+    height: 100%; /* make the buttons take the full height of the container/carousel */
+    display: flex; /* using flexbox for centering */
+    align-items: center; /* center vertically */
+    justify-content: center; /* center horizontally */
+    background-color: hsla(349.5, 80%, 87.6%, 0.3); /* hue, saturation, lightness, alpha https://www.w3schools.com/cssref/pr_background-color.php */
+    border: none; /* just in case of any default styling */
+    transition: background-color 0.3s; /* adding transition for hover and action effects */
+    border-radius: 0px !important;
+}
+
+.carousel-button:hover {
+    background-color: hsla(349.5, 90%, 87.6%, 0.5); /* hue, saturation, lightness, alpha https://www.w3schools.com/cssref/pr_background-color.php */
+}
+
+.carousel-button:active {
+    background-color: hsla(349.5, 100%, 87.6%, 0.7); /* hue, saturation, lightness, alpha https://www.w3schools.com/cssref/pr_background-color.php */
+}
+
+/* to make the outer edges only of the buttons be 5px border radius (slightly rounded) - but not the inside of the buttons, because then it wouldn't be flush with the top and bottom of the carousel img */
+/* left button on homepage carousel */
+.carousel-control-prev {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* right button on homepage carousel */
+.carousel-control-next {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.carousel-inner img {
+    border-radius: 5px;
 }
 
 /* These have LW on the name to signify that it's my css over or instead of the Bootstrap CSS - colors, etc./more */
@@ -136,7 +154,7 @@ nav {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 25px;
     background-color: #d4ebf2;
     color: #008080;
 }
@@ -148,8 +166,8 @@ nav {
 
 /* add the background color to navbar links on hover */
 .topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
-    background-color: #008080;
-    color: #d4ebf2;
+    background-color: #008080 !important;
+    color: #d4ebf2 !important;
 }
 
 /* the dropdown container */
@@ -160,7 +178,7 @@ nav {
   
 /* dropdown button */
 .LW-dropdown .LW-dropbtn {
-    font-size: 17px;
+    font-size: 25px;
     border: none;
     outline: none;
     color: #008080;
@@ -229,8 +247,8 @@ input {
 }
 
 h1 {
+    font-size: 40px;
     text-align: center;
-    margin: 0 auto; /* to center element */
 }
 
 p.center {
