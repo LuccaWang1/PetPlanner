@@ -53,7 +53,7 @@ _A user's dashboard_
 * Hand built navbar in __HTML__ with __Jinja2__ for a clean __user interface__ to streamline the __user experience__.
 <br>
 
-* __Users can do all of the following__: Users can [create an __account__](#more-if-youre-interested) - with password hashing for __security__, [log in](#log-in), [log out](#log-out), see their pets on their [dashboard](#project-description), see their __calendar__ with [events](#), add a [pet](#add-a-pet), add a calendar [event](#add-an-event), add a [specialist](#add-a-specialist), see their [account](#update-account) information, and [__update their account information__](#update-account).
+* __Users can do all of the following__: Users can [create an __account__](#more-if-youre-interested) - with password hashing for __security__, [log in](#log-in), [log out](#log-out), see their pets on their [dashboard](#project-description), see their __calendar__ with [events](#add-an-event), add a [pet](#add-a-pet), add a calendar [event](#add-an-event), add a [specialist](#add-a-specialist), see their [account](#update-account) information, and [__update their account information__](#update-account).
 <br>
 
 ![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
