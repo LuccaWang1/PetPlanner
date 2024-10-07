@@ -115,6 +115,8 @@
             </a>
           {% endif %}
         </div>
+
+        {% title in nav %}{% endblock %}
       
       <!-- right side of nav -->
       <!-- same thing here: i'm using Jinja2, a Python web template engine, for conditional rendering on the nav - this is on the part of the nav that floats to the right (on the same navbar, just position on the right side of the page/DOM) -->
