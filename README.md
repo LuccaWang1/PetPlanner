@@ -399,7 +399,7 @@ All photos have __short condensed titles for efficiency and organization__.
 - Learning __React's hook useState__, and __React's state and props__.
 <br>
 
-- I __refactored my JavaScript__ code so that there aren't as many __document queries__ by __reusing variables__, decreasing__Runtime__.
+- I __refactored my JavaScript__ code so that there aren't as many __document queries__ by __reusing variables__, decreasing __Runtime__.
 <br>
 
 - I had fun __building out the OOP classes of User, Messages, and Saved_Settings classes of the model__ and features.
