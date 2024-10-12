@@ -2,7 +2,7 @@
 
 <!-- start head -->
 {% block head %}{% endblock %}
-{% block title %}My Account{% endblock %}
+{% block title %}PetPlanner: My Account{% endblock %}
 <!-- end head -->
 
 <!-- start body -->
@@ -38,14 +38,16 @@
         </div>
 
         <br>
-
-        <button type="button" id="MA_OwnerInfoEditButton">
-            Edit
-        </button>
-
-        <button type="submit" id="MA_OwnerInfoSaveButton">
-            Save
-        </button>
+        
+        <div class="my-account-buttons-inline">
+            <button type="button" id="MA_OwnerInfoEditButton">
+                Edit
+            </button>
+    
+            <button type="submit" id="MA_OwnerInfoSaveButton">
+                Save
+            </button>
+        </div>
     </form>
 </div>
 
@@ -60,14 +62,14 @@
     <form id="changePWForm">
         <div id="MA_OwnerPWContainer">
             <div id="MA_PasswordContainerOldPW">
-                <label for="MA_password_old">Current/Old Password:</label>
+                <label for="MA_password_old">Password:</label>
                 <input type="password" id="MA_password_old" readonly required>
             </div>
             
             <br>
 
             <div id="MA_PasswordContainer">
-                <label for="MA_password">Change My Password:</label>
+                <label for="MA_password">New Password:</label>
                 <input type="password" id="MA_password" readonly required>
             </div>
 
@@ -81,13 +83,15 @@
 
         <br>
 
-        <button type="button" id="MA_OwnerPWEditButton">
-            Edit
-        </button>
-
-        <button type="submit">
-            Save
-        </button>
+        <div class="my-account-buttons-inline">
+            <button type="button" id="MA_OwnerPWEditButton">
+                Edit
+            </button>
+    
+            <button type="submit">
+                Save
+            </button>
+        </div>
     </form>
 </div>
 
