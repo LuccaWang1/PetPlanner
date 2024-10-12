@@ -2,8 +2,8 @@
 
 # PetPlanner
 
-![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/home.png)
-_The web app's homepage with a Bootstrap carousel_
+![Image of homepage, carousel, top nav before logging in/while logged out](/static/images/Readme_Markdown/luccawang-project-petplanner.gif)
+_The full-stack web app PetPlanner by Lucca Wang © 2024_
 <a name="description"></a>
 
 ## Table of Contents
@@ -14,7 +14,6 @@ _The web app's homepage with a Bootstrap carousel_
 - [Data Model](#data-model)
 - [How To Run PetPlanner](#how-to-run-the-petplanner-flask-app)
 - [Photos](#photos)
-- [Challenges & Thoughts](#challenges--thoughts)
 - [Author](#author)
 
 ## Project Description
@@ -28,7 +27,7 @@ __Users can do all of the following__:
 * with [password hashing](#technologies) for __security__,
 * [Log in](#log-in),
 * [Log out](#log-out),
-* See their pets on their [__dashboard__](#dashboard),
+* See their pets on their dashboard,
 * See their __calendar__ with [events](#add-an-event),
 * Add a [pet](#add-a-pet),
 * Add a calendar [event](#add-an-event),
@@ -36,19 +35,9 @@ __Users can do all of the following__:
 * See their [account](#update-account) information, and
 * [__Update their account information__](#update-account).
 
-<br>
-
-<a name="dashboard"></a>
-
-![Image of dashboard](/static/images/Readme_Markdown/dashboard_zoom_in.png)
-_A user's dashboard_
-
 <a name="snapshot"></a>
 
-<br>
-
 [Back to the Table of Contents](#table-of-contents)
-
 
 ## Snapshot
 
@@ -68,10 +57,7 @@ _A user's dashboard_
 <br>
 
 * Hand built navbar in __HTML__ with __Jinja2__ for a clean __user interface__ to streamline the __user experience__.
-<br>
 
-![Image of server.py code to add a pet](/static/images/Readme_Markdown/server.png)
-_The code in the server that creates a pet instance on the Pet class_.
 <a name="table-of-contents"></a>
 
 <br>
@@ -116,9 +102,6 @@ _The code in the server that creates a pet instance on the Pet class_.
 
 ### 1. React Bootstrap Modal Forms (3 forms) 
 
-![Image of the user's Dashboard and the dropdown menu hovering](/static/images/Readme_Markdown/add_dropdown_hover.png)
-_We can see the CSS hover styling here on the dropdown menu_
-
 ![Image of the add a pet form](/static/images/Readme_Markdown/add_pet_modal.png)
 _The Add a Pet form that's a React Bootstrap modal form_
 
@@ -148,8 +131,6 @@ _Conditional rendering and mapping on the breed `select options` in React are ba
 ![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
 _The Add A Pet React Bootstrap modal form with the breed dropdown menu_
 
-<br>
-
 * After creating an account, a user can add a pet to their account.
 <br>
 
@@ -172,7 +153,7 @@ _The Add A Pet React Bootstrap modal form with the breed dropdown menu_
 <br>
 
 * Pet lovers can upload a photo of their pet with the help of the __Cloudinary API__.
-<br>
+
 
 [Back to Features Index](#features)
 
@@ -180,25 +161,16 @@ _The Add A Pet React Bootstrap modal form with the breed dropdown menu_
 
 ### 3. Add an Event
 
-![Image of the hover over add event in dropdown](/static/images/Readme_Markdown/add_event_dropdown.png)
-_This is how a user can add a calendar event for their pet_
-
 ![Image of the add a event form](/static/images/Readme_Markdown/add_event_modal.png)
 _The Add an Event form that's a React Bootstrap modal form_
 
 * Users can add and save events for each of their pets __via the [PostgreSQL database](#data-model) and FullCalendar API__.
-<br>
 
 [Back to Features Index](#features)
 
 <a name="add-a-specialist"></a>
 
 ###  4. Add a Specialist
-
-![Image of the hover over add specialist in dropdown](/static/images/Readme_Markdown/add_specialist_dropdown.png)
-_The dropdown menu is styled with Bootstrap and my own CSS, and each button is an HTML div_
-
-<br>
 
 ![Image of the add a specialist form](/static/images/Readme_Markdown/add_specialist_modal.png)
 _The Add a Specialist form that's a React Bootstrap modal form_
@@ -208,8 +180,6 @@ _The Add a Specialist form that's a React Bootstrap modal form_
 ![Image of the add a specialist form with the user's mapped pets](/static/images/Readme_Markdown/add_specialist_pets.png)
 _I mapped to the user's existing pet data, so the user can assign the specialist to one or all of their pets_
 
-<br>
-
 * A user can add care providers, or specialists, like a vet, groomer, nail trimmer, or emergency vet to their pet's instance because of the [many-to-many relationship between the specialist and pet tables in the model](#snapshot-of-the-data-model).
 <br>
 
@@ -217,16 +187,12 @@ _I mapped to the user's existing pet data, so the user can assign the specialist
 <br>
 
 * The __user's existing pet data is mapped__, so the user can assign the specialist to one or all of their pets.
-<br>
 
 [Back to Features Index](#features)
 
 <a name="create-account"></a>
 
 ### 5. Create an account form
-
-![Image of the Create Account webpage](/static/images/Readme_Markdown/create-account.png)
-_A user can create an account_
 
 * A user instance is created via the user inputs to the form and the `User` class in <a href="https://github.com/LuccaWang1/PetPlanner/blob/main/model.py" target="_blank">model.py</a> with __Object Oriented Programming__.
 <br>
@@ -238,7 +204,6 @@ _A user can create an account_
 <br>
 
 * Form styled with __flexbox__.
-<br>
 
 [Back to Features Index](#features)
 
@@ -246,23 +211,16 @@ _A user can create an account_
 
 ### 6. Log in form
 
-![Image of the Log In webpage](/static/images/Readme_Markdown/log-in.png)
-_A user can log in_
-
 * The __user inputs__ are transmitted to the backend as a __JSON__ object. Using Python logic, the __values within the dictionary__ are examined to determine if they correspond to the data stored in the __database__.
 <br>
 
 * Form styled with __flexbox__.
-<br>
 
 [Back to Features Index](#features)
 
 <a name="log-out"></a>
 
-### 7. Log out 
-
-![Image of Dashboard webpage with the Log Out button/link in the top navbar in the top right of the image](/static/images/Readme_Markdown/log-out.png)
-_A user can log out_
+### 7. Log out
 
 * The __Flask session__ is cleared when the user clicks the "Log Out" button that's in the top right of the website - on any webpage the user is on.
 <br>
@@ -271,33 +229,12 @@ _A user can log out_
 <br>
 
 * I intentionally chose this as a way to create a clean __user interface__ to streamline the __user experience__ when we're navigating the app.
-<br>
 
 [Back to Features Index](#features)
 
 <a name="update-account"></a>
 
 ### 8. Update their account information
-
-![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
-_A user's My Account webpage_
-
-<br>
-
-![Image of My Account webpage after clicking edit](/static/images/Readme_Markdown/ma-edit.png)
-_A user can edit their account information_
-
-<br>
-
-![Image of My Account webpage when saving](/static/images/Readme_Markdown/ma-saving.png)
-_A user can save their account information in the database_
-
-<br>
-
-![Image of My Account webpage](/static/images/Readme_Markdown/ma.png)
-_The user has saved their account information!_
-
-<br>
 
 * The `Edit` and `Save` buttons contain __hover and active CSS__ for visible changes for the user.
 <br>
@@ -306,7 +243,6 @@ _The user has saved their account information!_
 <br>
 
 * I had a lot of fun coding this JavaScript with styling, listener, and the __fetch request__.
-<br>
 
 [Back to Features Index](#features)
 
@@ -329,8 +265,6 @@ _The data model of PetPlanner_
 <br>
 
 * Designed to be built out even more with messaging between users and saved settings for calendar events.
-
-<br>
 
 [Back to the Table of Contents](#table-of-contents)
 
@@ -355,7 +289,6 @@ _The data model of PetPlanner_
 <br>
 
    * `python3 tests.py`.
-<br>
 
 [Back to the Table of Contents](#table-of-contents)
 
@@ -383,38 +316,11 @@ There are 6 organized folders in the `/static/images` folder for clean organizat
 
 All photos have __short condensed titles for efficiency and organization__.
 
-<br>
-
-[Back to the Table of Contents](#table-of-contents)
-
-
-## Challenges & Thoughts
-
-- __CSS__, prioritizing my CSS styling over __Bootstrap and FullCalendar API's CSS styling__, including the __stack__ of the dropdown menu in my HTML & CSS top navbar (which I'll be working on).
-<br>
-
-- __Date and Time formatting__ with the transmitted __JSON object__ between the frontend React.js modal form and the backend Python logic on the Add An Event feature.
-<br>
-
-- Learning __React's hook useState__, and __React's state and props__.
-<br>
-
-- I __refactored my JavaScript__ code so that there aren't as many __document queries__ by __reusing variables__, decreasing __Runtime__.
-<br>
-
-- I had fun __building out the OOP classes of User, Messages, and Saved_Settings classes of the model__ and features.
-<br>
-
-- Speaking of deadlines and time: My first choice for a calendar was Google Calendar's API, because it's widely used. But, since Google migrated their sign in process, it caused __issues with OAuth__ and there were some bugs. __I gained valuable experience working through this challenge, pivoting, and coming to a solution on what's possible in the given amount of time by utilizing the Full Calendar API instead.__
-<br>
-
-- I gained experience with [__password hashing__](#technologies) (thinking about my knowledge of __hashmap structures__) and __testing__. I added two __unit tests__.
-
 [Back to the Table of Contents](#table-of-contents)
 
 ## Author
 
-Hi, my name is Lucca Wang, and I'm a software engineer. I created this full-stack web app in four weeks as my final project at Hackbright Academy, a 12-week accelerated software engineering fellowship. And, I've made updates since. Visit my website I hand built at <a href="https://luccawang.dev" target="_blank">https://luccawang.dev</a>, and please feel free to connect on <a href="https://www.linkedin.com/in/luccawang/" target="_blank">LinkedIn!
+Hi, my name is Lucca Wang, and I'm a software engineer. Visit my website I hand built at <a href="https://luccawang.dev" target="_blank">https://luccawang.dev</a>, and please feel free to connect on <a href="https://www.linkedin.com/in/luccawang/" target="_blank">LinkedIn!
 
 <br>
 
