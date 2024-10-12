@@ -1,18 +1,18 @@
-/* colors:  
-current:
-    dark teal: #008080 
-    darkest teal: #006666
-    light pink: #ffc0cb 'rgb(255,192,203)'
-    light blue: #d4ebf2 
-    white: #FFFFFF
+/*  ==================================
+    COLORS
+    ================================== */
 
-legacy - keeping for now just in case: 
-    light green: #defeca 
-    black: #000000 
-    light pink beige: #e69e8f 
-*/
+:root {
+    --darker-teal: #006666;
+    --teal: #008080;
+    --light-pink: #ffc0cb;
+    --white: white;
+}
 
-/* body styling */
+/*  ==================================
+    GLOBAL STYLES
+    ================================== */
+
 body {
     font-family: "Noto Sans", sans-serif; /* set font for the entire body */
     font-optical-sizing: auto;
@@ -24,46 +24,227 @@ body {
     /* body specific styles */
     background-position: center;
     background-repeat: no-repeat;
-    color: #008080;
-    background-color: #d4ebf2;
+    background-color: var(--white);
     padding-left: 2em;
     padding-right: 2em;
-    z-index: 0; /* anything within the body tag that's in the section w/ the id of "body" AKA the body that's NOT the navbar (because we want the position in the viewport to be more than this to always over what other content is in the body visible to the user */
+    margin: 0;
 
-    width: 100%;
-    height: 100%;
+    overflow: auto; /* allow vertical scrolling */
 }
 
-/* link styles */
-a:link, a:visited, a:hover, a:active {
-    color: #008080;
+/*  ==================================
+    LINK STYLES
+    ================================== */
+
+a {
+    color: var(--darker-teal);
+    transition: color 0.1s;
 }
 
 a:active {
-    color: #ffc0cb;
-    transition-duration: 0.1s;
+    color: var(--teal);
 }
 
-/* button styles */
-button {
-    background-color: #008080;
+/*  ==================================
+    NAVIGATION BAR STYLES
+    ================================== */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--darker-teal);
+    padding: 10px 20px;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 9999; /* ensure it's over other elements */
+    left: 0;
+    margin: 0px 0px 30px 0px; /* top right bottom left - ensuring there's some space between the nav and the start of the #body of the webpage template*/
+    transition: background-color 0.3s; /* smooth transition for background color change */
+}
+
+nav .topnav-left, nav .topnav-right {
+    display: flex;
+    gap: 20px;
+}
+
+/* left-aligned section inside the top navigation */
+nav .topnav-left {
+    float: left;
+}
+
+/* right-aligned section inside the top navigation */
+nav .topnav-right {
+    float: right;
+}
+
+nav .LW-dropdown {
+    position: relative;
+}
+  
+/* dropdown button */
+nav .LW-dropdown .LW-dropbtn {
     border: none;
-    color: #d4ebf2;
+    outline: none;
+    padding: 14px 16px;
+    margin: 0; /* important for vertical align on mobile phones */
+    border-radius: 5px;
+}
+
+/* dropdown content (hidden by default) */
+nav .LW-dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    left: 0;
+    top: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    background-color: var(--darker-teal);
+}
+  
+/* links inside the dropdown */
+nav .LW-dropdown-content-btn {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    color: var(--white);
+    border-radius: 5px;
+    font-size: inherit; /* make the dropdown font size the same as the nav above it */
+    background-color: var(--darker-teal);
+    border: none;
+    outline: none;
+}
+
+/* show the dropdown menu on hover & active */
+nav .LW-dropdown:hover .LW-dropdown-content {
+    display: block;
+}
+
+nav a {
+    border-radius: 5px;
+}
+
+/* style the <a> tag links inside the navigation bar */
+nav a, .LW-dropdown .LW-dropbtn {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: inherit;
+    color: var(--white) !important;
+    background-color: var(--darker-teal) !important;
+    display: inline-block;
+    min-width: 160px;
+    transition: background-color 0.3s; /* smooth transition for text color */
+}
+/* same hover effect for entire nav bar */
+nav a:hover, .LW-dropdown .LW-dropbtn:hover, nav .LW-dropdown-content-btn:hover {
+    background-color: var(--teal) !important;
+    color: var(--white) !important; /* maintain text color */
+}
+
+/*  ==================================
+    MAIN CONTENT STYLES (CONTAINS NAV - so body and footer are specified)
+    ================================== */
+
+main #body {
+    margin: 5px 30px;
+    padding-top: 80px; /* ensure space under the fixed nav */
+    font-size: 20px; /* "body" content font-size */
+}
+
+main #body, #footer {
+    position: relative;
+    background-color: var(--white);
+    color: var(--darker-teal);
+}
+
+/*  ==================================
+    BUTTON STYLES
+    ================================== */
+
+main #body button {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsla(349.5, 80%, 87.6%, 0.3);
+    border: none;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+    
+/* background-color: var(--darker-teal);
+color: var(--white);
+border: none;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+border-radius: 5px;
+padding: 5px 10px; */
+
+main #body button:hover {
+    background-color: hsla(349.5, 90%, 87.6%, 0.5);
+}
+
+main #body button:active {
+    background-color: hsla(349.5, 100%, 87.6%, 0.7);
+}
+
+/* so the buttons on the my account page are on the same line left to right */
+ .my-account-buttons-inline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/*  ==================================
+    MODAL STYLES
+    ================================== */
+
+.modal-content {
+    position: fixed;
+    z-index: 10000;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center in viewport according to it's hieght */
+    max-width: 800px;
+    max-height: 900px;
+    font-size: 20px;
+}
+
+/*  ==================================
+    MODAL BUTTON STYLES
+    ================================== */
+
+.LW-modal-btn {
+    background: --darker-teal;
+    color: white;
+    border: none;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 5px !important;
+    transition-duration: 0.1s;
 }
 
-button:hover {
-    background-color: #ffc0cb;
-    color: #006666;
+.LW-modal-btn:hover {
+    background-color: --light-pink;
+    color: --darker-teal;
 }
 
-button:active {
-    background-color: #006666;
-    color: #d4ebf2;
+.LW-modal-btn:active {
+    background-color: --darker-teal;
+    color: white;
 }
+
+/*  ==================================
+    CAROUSEL BUTTON STYLES
+    ================================== */
 
 /* using id for carousel buttons to make sure these properties are attributed to only the carousel buttons and not all the other buttons in the app */
 .carousel-button {
@@ -74,7 +255,7 @@ button:active {
     background-color: hsla(349.5, 80%, 87.6%, 0.3); /* hue, saturation, lightness, alpha https://www.w3schools.com/cssref/pr_background-color.php */
     border: none; /* just in case of any default styling */
     transition: background-color 0.3s; /* adding transition for hover and action effects */
-    border-radius: 0px !important;
+    border-radius: 0px;
 }
 
 .carousel-button:hover {
@@ -85,19 +266,19 @@ button:active {
     background-color: hsla(349.5, 100%, 87.6%, 0.7); /* hue, saturation, lightness, alpha https://www.w3schools.com/cssref/pr_background-color.php */
 }
 
-/* to make the outer edges only of the buttons be 5px border radius (slightly rounded) - but not the inside of the buttons, because then it wouldn't be flush with the top and bottom of the carousel img */
+/* to make the outer edges only of the buttons be 5px border radius (slightly rounded) - but not the inside of the buttons, because then it wouldn't be flush with the top and bottom of the carousel img */   
 /* left button on homepage carousel */
+.carousel-control-prev, .carousel-control-next {
+    border-radius: 0 !important;
+}
+
 .carousel-control-prev {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 /* right button on homepage carousel */
 .carousel-control-next {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -106,157 +287,68 @@ button:active {
     border-radius: 5px;
 }
 
-/* These have LW on the name to signify that it's my css over or instead of the Bootstrap CSS - colors, etc./more */
-.LW-modal-btn {
-    background: #008080;
-    color: #d4ebf2;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition-duration: 0.1s;
-}
+/*  ==================================
+    USER INPUT FIELDS
+    ================================== */
 
-.LW-modal-btn:hover {
-    background-color: #ffc0cb;
-    color: #006666;
-}
-
-.LW-modal-btn:active {
-    background-color: #006666;
-    color: #d4ebf2;
-}
-
-/* nav bar at the top */
-nav {
-    background-color: #d4ebf2;
-    overflow: hidden;
-    color: #008080;
-    padding: 8px 16px;
-    top: 0;
-    width: 100%;
-    z-index: 5000 !important;
-}
-
-/* left-aligned section inside the top navigation */
-.topnav-left {
-    float: left;
-}
-
-/* right-aligned section inside the top navigation */
-.topnav-right {
-    float: right;
-}
-
-/* style the <a> tag links inside the navigation bar */
-.topnav a {
-    float: left;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    background-color: #d4ebf2;
-    color: #008080;
-}
-
-/* add a color to the active/current link */
-.topnav a.active {
-    background-color: #d4ebf2;
-}
-
-/* add the background color to navbar links on hover */
-.topnav a:hover, .LW-dropdown:hover .LW-dropbtn {
-    background-color: #008080 !important;
-    color: #d4ebf2 !important;
-}
-
-/* the dropdown container */
-.LW-dropdown {
-    position: relative;
-    display: inline-block;
-}
-  
-/* dropdown button */
-.LW-dropdown .LW-dropbtn {
-    font-size: 25px;
-    border: none;
-    outline: none;
-    color: #008080;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* important for vertical align on mobile phones */
-    margin: 0; /* important for vertical align on mobile phones */
-    border-radius: 5px;
-} 
-
-/* dropdown content (hidden by default) */
-.LW-dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    background-color: #d4ebf2;
-    left: 0; /* position dropdown right under the button */
-    z-index: 1000 !important;
-    border: 1px solid #008080;
-    border-radius: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); 
-}
-  
-/* links inside the dropdown */
-.LW-dropdown-content-btn {
-    color: #d4ebf2;
-    background-color: #008080;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    border: 1px solid #008080;
-    border-radius: 5px;
-}
-
-/* show the dropdown menu on hover & active */
-.LW-dropdown:hover .LW-dropdown-content {
-    display: block;
-}
-
-/* hover effects for dropdown items */
-.LW-dropdown-content .LW-dropdown-content-btn:hover {
-    background-color: #006666;
-    border: 1px solid #006666;
-}
-
-.LW-dropdown-content-btn:active {
-    background-color: #ffc0cb !important;
-    border-color: 1px #ffc0cb !important;
-    color: #d4ebf2 !important;
-    border: 1px solid #006666 !important;
-}
-
-/* user input fields */
 input {
-    background-color: #d4ebf2;
+    background-color: white;
+    border-radius: 5px;
 }
 
-.calendar {
-    max-width: 800px; 
-    margin: 10px auto;
-    background: #008080;
-    color: #d4ebf2;
-    border-color: #ffc0cb;
+/*  ==================================
+    TEXT STYLES
+    ================================== */
+
+main #body h1 {
+    font-size: 27px !important;
+    text-align: center;
+    margin: 20px auto;
 }
 
-h1 {
-    font-size: 40px;
+main #body h2 {
+    font-size: 25px;
+    text-align: left;
+}
+
+main #body p.center {
     text-align: center;
 }
 
-p.center {
-    text-align: center;
-}
+/*  ==================================
+    FLEX BOX STYLES
+    ================================== */
 
 .box.flex {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100px; /* ensure some height */
+}
+
+/*  ==================================
+    CALENDAR STYLES
+    ================================== */
+
+.calendar {
+    max-width: 95%;
+    margin: 10px auto;
+    background: --darker-teal;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#calendar a {
+    color: var(--white);
+}
+
+/*  ==================================
+    FOOTER STYLES
+    ================================== */
+
+#footer {
+    font-size: 16px;
+    text-align: center;
+    margin: 60px auto;
 }
