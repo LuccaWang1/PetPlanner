@@ -124,12 +124,12 @@ _The Add a Pet form that's a React Bootstrap modal form_
 ### 2. Add a Pet
 
 ![Image of the add a pet form: species](/static/images/Readme_Markdown/add_pet_species.png)
-_Conditional rendering and mapping on the breed `select options` in React are based on the species field_
+_This is the Add A Pet React Bootstrap modal form. The user selects the `Species` of their pet from the dropdown menu._
 
 <br>
 
 ![Image of the add a pet form: breeds](/static/images/Readme_Markdown/add_pet_breeds.png)
-_The Add A Pet React Bootstrap modal form with the breed dropdown menu_
+_Conditional rendering and mapping on the `Breed` `select options` are based on the species field._
 
 * After creating an account, a user can add a pet to their account.
 <br>
