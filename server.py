@@ -1,22 +1,35 @@
 """Server for PetPlanner web app."""
 
+# Standard Library Imports
 import os
-from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
-import cloudinary.uploader
-from passlib.hash import argon2
+from urllib.parse import urlparse
 
+# Third-Party Imports
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from jinja2 import StrictUndefined
+import cloudinary
+from passlib.hash import argon2
+from dotenv import load_dotenv
+
+# Local Imports
+import crud
 from animal_breeds import breed_data
 from model import connect_to_db, db, Owner, Pet, Specialist, Event, Pet_Owner
-import crud
 
-CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
-CLOUDINARY_SECRET = os.environ['CLOUDINARY_SEC']
-CLOUD_NAME = "lwpetplanner"
+# Load environment variables
+load_dotenv()
+
+cloudinary.config(
+    cloudinary_url = os.environ.get("CLOUDINARY_URL")
+)
 
 app = Flask(__name__)
 app.secret_key = os.environ["KEY"]
 app.jinja_env.undefined = StrictUndefined
+
+db = SQLAlchemy(app)
+db_uri = os.environ.get("DATABASE_URL", "postgresql://localhost/pets")
 
 
 @app.route("/", methods=['POST', 'GET'])
@@ -126,6 +139,9 @@ def handle_create_account():
 
     else:
         new_user = Owner(owner_fname=owner_fname, owner_lname=owner_lname, owner_email=owner_email, hashed=hashed) #create user instance
+
+        print(type(db.session))
+
         db.session.add(new_user) #add user instance to database with .add built-in func
         db.session.commit() #then need to commit the change/add to the database
         flash(f"Thanks for creating your account, {owner_fname} - please log in")
@@ -546,6 +562,6 @@ def add_specialist_to_pet():
 
 
 if __name__ == "__main__":
-    connect_to_db(app) #postgresql:///pets
+    connect_to_db(app, db_uri) #postgresql:///pets
 
     app.run(host="0.0.0.0", debug=True)
